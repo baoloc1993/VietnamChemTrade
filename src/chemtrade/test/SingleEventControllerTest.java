@@ -13,8 +13,10 @@ public class SingleEventControllerTest extends TestCase {
 		//Test if request = null;
 		
 		
-		Event event = new SingleEventController().getEventByID("1");
-		assertEquals(1, event.getId());
+		//Event event = new SingleEventController().getEventByID("1");
+		//assertEquals(null, event.getId();
+		Event event = new SingleEventController().getEventByID("3");
+		assertEquals(3, event.getId());
 		assertEquals("Chemtech World Expo 2015", event.getTitle());
 		assertEquals("CHEMTECH World Expo 2015 will create a common platform to bring the entire ecosystem of the chemicals manufacturing and the allied services providing sectors for 27th time in India. Concurrent events include EPC World Expo, Industry Automation &amp; Control World Expo , Pumps Valves &amp; Fittings World Expo; and international conferences on Refining &amp; Petrochemicals and Specialty Chemicals.", event.getDescription());
 		assertEquals("http://www.chemtech-online.com/", event.getLink());

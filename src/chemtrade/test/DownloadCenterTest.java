@@ -19,32 +19,32 @@ import junit.framework.TestCase;
 
 public class DownloadCenterTest extends TestCase{
 	
-//	public void testConfigDownloadWrapper(){
-//		DownloadCenterController downloadCenterController = new DownloadCenterController();
-//		try {
-//			downloadCenterController.configDownloadWrapper("", "1");
-//			assertEquals(true, true);
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//			assertEquals(true, false);
-//			
-//		}
-//		//assertEquals(true, false);
-//	}
+	public void testConfigDownloadWrapper(){
+		DownloadCenterController downloadCenterController = new DownloadCenterController();
+		try {
+			downloadCenterController.configDownloadWrapper("", "1");
+			assertEquals(true, true);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			assertEquals(true, false);
+			
+		}
+		//assertEquals(true, false);
+	}
 	
-//	public void testSendEmail(){
-//		DownloadCenterController downloadCenterController = new DownloadCenterController();
-//		try {
-//			downloadCenterController.sendEmail("baoloc1993@gmail.com", "LuisNgo");
-//			assertEquals(true, true);
-//		} catch (MessagingException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//			assertEquals(true, false);
-//			
-//		}
-//	}
+	public void testSendEmail(){
+		DownloadCenterController downloadCenterController = new DownloadCenterController();
+		try {
+			downloadCenterController.sendEmail("baoloc1993@gmail.com", "LuisNgo");
+			assertEquals(true, true);
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			assertEquals(true, false);
+			
+		}
+	}
 	
 	public void testGetDownloadList(){
 		DownloadCenterController downloadCenterController = new DownloadCenterController();
@@ -62,19 +62,20 @@ public class DownloadCenterTest extends TestCase{
 			assertEquals(true, false);
 		}
 	}
-//	
-//	
-//	public void testAddToDownloadCenter(){
-//		DownloadCenterController downloadCenterController = new DownloadCenterController();
-//		try {
-//			downloadCenterController.sendInfoToDB("Loc", "baoloc1993@gmail.com", "83745574", "Test");
-//			// TODO Auto-generated catch block
-//			assertEquals(true, true);
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//			assertEquals(true, false);
-//	}
+	
+	
+	public void testAddToDownloadCenter(){
+		DownloadCenterController downloadCenterController = new DownloadCenterController();
+		try {
+			downloadCenterController.sendInfoToDB("Loc", "baoloc1993@gmail.com", "83745574", "Test");
+			// TODO Auto-generated catch block
+			assertEquals(true, true);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			assertEquals(true, false);
+		}
+	}
 
 //	public void testCompressSize(){
 //		DownloadCenterController downloadCenterController = new DownloadCenterController();
@@ -96,7 +97,7 @@ public class DownloadCenterTest extends TestCase{
 //		}
 //
 //	}
-//	
+	
 	
 	
 	

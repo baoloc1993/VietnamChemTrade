@@ -140,11 +140,13 @@ public class ProductController extends HttpServlet implements Constant{
         //ProductDAO pDAO = new ProductDAO();
         HttpSession session = req.getSession(); 
         if (session.getAttribute("productList") == null) {
+        	req.setAttribute("message", "no session");
             //pDAO.databaseRetrieval();
         	//Get only 3 DB
             products = getProductListFromDB(3);
             session.setAttribute("productList", products);
         } else {
+        	req.setAttribute("message", "have session");
             products = (ArrayList<Product>) session.getAttribute("productList");
         }
         

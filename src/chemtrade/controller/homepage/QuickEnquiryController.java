@@ -365,7 +365,7 @@ public class QuickEnquiryController extends HttpServlet implements Constant{
 		Connection conn;
 		
 		conn = ConnectionManager.getConnection();
-		String sql = "SELECT max(idd) as max FROM chemtrade.tbl_quickenquiry";
+		String sql = "SELECT max(idd) as max FROM tbl_quickenquiry";
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
 		rs.next();

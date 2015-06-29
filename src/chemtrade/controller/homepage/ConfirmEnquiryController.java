@@ -52,7 +52,7 @@ public class ConfirmEnquiryController extends HttpServlet {
 		
 			conn = ConnectionManager.getConnection();
 			String sql = "select count(*) as cnt from tbl_quickenquiry where `idd`='" + id + "' AND `approved_sts`='0'";
-			
+			System.out.println(sql);
 			PreparedStatement ps  = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			rs.next();

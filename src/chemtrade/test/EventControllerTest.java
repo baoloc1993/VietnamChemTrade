@@ -40,7 +40,7 @@ public class EventControllerTest extends TestCase {
 		//Test if request = null;
 		EventWrapper eventwrapper = eventController.getEventByDate("",1);
 		ArrayList<Event> latestEvent =  eventwrapper.getResults();
-		assertEquals(1, latestEvent.get(0).getId());
+		assertEquals(3, latestEvent.get(0).getId());
 		assertEquals("Chemtech World Expo 2015", latestEvent.get(0).getTitle());
 		assertEquals("CHEMTECH World Expo 2015 will create a common platform to bring the entire ecosystem of the chemicals manufacturing and the allied services providing sectors for 27th time in India. Concurrent events include EPC World Expo, Industry Automation &amp; Control World Expo , Pumps Valves &amp; Fittings World Expo; and international conferences on Refining &amp; Petrochemicals and Specialty Chemicals.", latestEvent.get(0).getDescription());
 		assertEquals("http://www.chemtech-online.com/", latestEvent.get(0).getLink());

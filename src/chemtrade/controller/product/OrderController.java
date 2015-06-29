@@ -70,144 +70,57 @@ public class OrderController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	
+    	
+    	ArrayList<Product> cartList = new ArrayList<Product>();
+    	HttpSession session = request.getSession();
+    	if (session.getAttribute("cartList") == null) {
+            cartList = new ArrayList<Product>();
+        } else {
+            cartList = (ArrayList<Product>) session.getAttribute("cartList");
+        }
+
+        String p2 = "";
+
+        if (cartList != null && cartList.size() != 0) {
+            p2 = "<b>Product Details</b>";
+        }
         //processRequest(request, response);
     	//CountryDAO country = new CountryDAO();
         //OrderDAO order = new OrderDAO();
        // country.databaseRetrieval();
     	CountryCodeController countryCodeController = new CountryCodeController();
         ArrayList<CountryCode> countryList = countryCodeController.getCountryCodes();
-        ArrayList<String> companyTypes = order.getCompanyTypes();
-        ArrayList<String> deliveryTerms = order.getDeliveryTerms();
-        ArrayList<String> paymentTerms = order.getPaymentTerms();
+        ArrayList<String> companyTypes = getCompanyTypes();
+        ArrayList<String> deliveryTerms = getDeliveryTerms();
+        ArrayList<String> paymentTerms = getPaymentTerms();
+        
+        Order order = getAllParameter(request);
 
-//        String dC = "";
-//        String dT = "";
-//        String dD = "";
-//        String p = "";
-//        String pT = "";
-//        String cN = "";
-//        String add = "";
-//        String ct = "";
-//        String cC = "";
-//        String aC = "";
-//        String cW = "";
-//        String cT = "";
-//        String cCty = "";
-//        String cS = "";
-//        String cZ = "";
-//        String cP = "";
-//        String cF = "";
-//        String cFN = "";
-//        String cCC = "";
-//        String cM = "";
-//        String cMN = "";
-//        String cLN = "";
-//        String cE = "";
-//        String cMID = "";
-//        String com = "";
-//
-//        dC = (String) request.getAttribute("deliveryCountry");
-//        if (dC == null) {
-//            dC = "";
-//        }
-//        dT = (String) request.getAttribute("deliveryTerm");
-//        if (dT == null) {
-//            dT = "";
-//        }
-//        dD = (String) request.getAttribute("deliveryDate");
-//        if (dD == null) {
-//            dD = "";
-//        }
-//        p = (String) request.getAttribute("port");
-//        if (p == null) {
-//            p = "";
-//        }
-//        pT = (String) request.getAttribute("paymentTerm");
-//        if (pT == null) {
-//            pT = "";
-//        }
-//        cN = (String) request.getAttribute("companyName");
-//        if (cN == null) {
-//            cN = "";
-//        }
-//        add = (String) request.getAttribute("address");
-//        if (add == null) {
-//            add = "";
-//        }
-//        ct = (String) request.getAttribute("city");
-//        if (ct == null) {
-//            ct = "";
-//        }
-//        cC = (String) request.getAttribute("callCode");
-//        if (cC == null) {
-//            cC = "";
-//        }
-//        aC = (String) request.getAttribute("areaCode");
-//        if (aC == null) {
-//            aC = "";
-//        }
-//        cW = (String) request.getAttribute("CompanyWeb");
-//        if (cW == null) {
-//            cW = "";
-//        }
-//        cT = (String) request.getAttribute("companyType");
-//        if (cT == null) {
-//            cT = "";
-//        }
-//        cCty = (String) request.getAttribute("companyCountry");
-//        if (cCty == null) {
-//            cCty = "";
-//        }
-//        cS = (String) request.getAttribute("companyState");
-//        if (cS == null) {
-//            cS = "";
-//        }
-//        cZ = (String) request.getAttribute("companyZip");
-//        if (cZ == null) {
-//            cZ = "";
-//        }
-//        cP = (String) request.getAttribute("companyPhone");
-//        if (cP == null) {
-//            cP = "";
-//        }
-//        cF = (String) request.getAttribute("companyFax");
-//        if (cF == null) {
-//            cF = "";
-//        }
-//
-//        cFN = (String) request.getAttribute("contactFName");
-//        if (cFN == null) {
-//            cFN = "";
-//        }
-//        cCC = (String) request.getAttribute("contactCallCode");
-//        if (cCC == null) {
-//            cCC = "";
-//        }
-//        cM = (String) request.getAttribute("contactMobile");
-//        if (cM == null) {
-//            cM = "";
-//        }
-//
-//        cMN = (String) request.getAttribute("contactMName");
-//        if (cMN == null) {
-//            cMN = "";
-//        }
-//        cLN = (String) request.getAttribute("contactLName");
-//        if (cLN == null) {
-//            cLN = "";
-//        }
-//        cE = (String) request.getAttribute("contactEmail");
-//        if (cE == null) {
-//            cE = "";
-//        }
-//        cMID = (String) request.getAttribute("contactMessengerID");
-//        if (cMID == null) {
-//            cMID = "";
-//        }
-//        com = (String) request.getAttribute("comments");
-//        if (com == null) {
-//            com = "";
-//        }
+
+        
+        
+        String orderMessage = "";
+        if (cartList.size() == 0) {
+           orderMessage = "Your cart is currently empty";
+        } else {
+           orderMessage = "You are requesting the following";
+        }
+        
+        
+        request.setAttribute("carts", cartList);
+        request.setAttribute("orderMessage", orderMessage);
+        
+    	request.setAttribute("countries", countryList);
+    	request.setAttribute("deliveries", deliveryTerms);
+    	request.setAttribute("payments", paymentTerms);
+    	request.setAttribute("types", companyTypes);
+    	request.setAttribute("order", order);
+    	
+        request.getRequestDispatcher("jsp/product/order.jsp").forward(request, response);
+        
+        
+        
     }
 
     /**
@@ -224,35 +137,7 @@ public class OrderController extends HttpServlet {
     	Order order = new Order();
         try {
 
-            order.setDeliveryCountry(request.getParameter("deliveryCountry"));
-            order.setDeliveryTerm(request.getParameter("deliveryTerm"));
-            order.setDeliveryDate(request.getParameter("deliveryDate"));
-            order.setPort(request.getParameter("port"));
-            order.setPaymentTerm(request.getParameter("paymentTerm"));
-           order.setCompanyName(request.getParameter("companyName"));
-            order.setAddress(request.getParameter("address"));
-           order.setCity(request.getParameter("city"));
-           order.setCallCode(request.getParameter("callCode"));
-           order.setAreaCode(request.getParameter("areaCode"));
-           order.setCompanyWeb(request.getParameter("CompanyWeb"));
-           order.setCompanyType(request.getParameter("companyType"));
-           order.setCompanyCountry(request.getParameter("companyCountry"));
-           order.setCompanyState(request.getParameter("companyState"));
-           order.setCompanyZip(request.getParameter("companyZip"));
-           order.setCompanyPhone(request.getParameter("companyPhone"));
-           order.setCompanyFax(request.getParameter("companyFax"));
-           order.setContactSalution(request.getParameter("contactSalution"));
-           order.setContactFName(request.getParameter("contactFName"));
-           order.setContactCallCode(request.getParameter("contactCallCode"));
-           order.setContactMobile(request.getParameter("contactMobile"));
-           order.setContactMessengerType(request.getParameter("contactMessengerType"));
-           order.setContactMName(request.getParameter("contactMName"));
-           order.setContactLName(request.getParameter("contactLName"));
-           order.setContactEmail(request.getParameter("contactEmail"));
-           order.setContactMessengerID(request.getParameter("contactMessengerID"));
-           order.setComments(request.getParameter("comments"));
-           order.setIpaddress(request.getLocalAddr());
-           order.setVerifyCode(request.getParameter("verifyCode"));
+            order = getAllParameter(request);
             
             HttpSession session = request.getSession(false);
             @SuppressWarnings("unchecked")
@@ -323,6 +208,46 @@ public class OrderController extends HttpServlet {
            // request.setAttribute("error", e.getMessage());
         }
     }
+
+	/**
+	 * Get all parameter and store into a class
+	 * @param request
+	 * @param order
+	 */
+	private Order getAllParameter(HttpServletRequest request) {
+		Order order = new Order();
+		order.setDeliveryCountry(request.getParameter("deliveryCountry"));
+		order.setDeliveryTerm(request.getParameter("deliveryTerm"));
+		order.setDeliveryDate(request.getParameter("deliveryDate"));
+		order.setPort(request.getParameter("port"));
+		order.setPaymentTerm(request.getParameter("paymentTerm"));
+         order.setCompanyName(request.getParameter("companyName"));
+		order.setAddress(request.getParameter("address"));
+         order.setCity(request.getParameter("city"));
+         order.setCallCode(request.getParameter("callCode"));
+         order.setAreaCode(request.getParameter("areaCode"));
+         order.setCompanyWeb(request.getParameter("CompanyWeb"));
+         order.setCompanyType(request.getParameter("companyType"));
+         order.setCompanyCountry(request.getParameter("companyCountry"));
+         order.setCompanyState(request.getParameter("companyState"));
+         order.setCompanyZip(request.getParameter("companyZip"));
+         order.setCompanyPhone(request.getParameter("companyPhone"));
+         order.setCompanyFax(request.getParameter("companyFax"));
+         order.setContactSalution(request.getParameter("contactSalution"));
+         order.setContactFName(request.getParameter("contactFName"));
+         order.setContactCallCode(request.getParameter("contactCallCode"));
+         order.setContactMobile(request.getParameter("contactMobile"));
+         order.setContactMessengerType(request.getParameter("contactMessengerType"));
+         order.setContactMName(request.getParameter("contactMName"));
+         order.setContactLName(request.getParameter("contactLName"));
+         order.setContactEmail(request.getParameter("contactEmail"));
+         order.setContactMessengerID(request.getParameter("contactMessengerID"));
+         order.setComments(request.getParameter("comments"));
+         order.setIpaddress(request.getLocalAddr());
+         order.setVerifyCode(request.getParameter("verifyCode"));
+         
+         return order;
+	}
 
     /**
      * Create Order after the user request
@@ -434,4 +359,85 @@ public class OrderController extends HttpServlet {
 	        return 0;
 
 	    }
+	    
+	    /**
+	     * Get delvivery term in tbl_delivery_terms
+	     * @return
+	     */
+	    @SuppressWarnings("finally")
+		public ArrayList<String> getDeliveryTerms() {
+	    	ArrayList<String> deliveryTermList = new ArrayList<String>();
+	    	Connection conn;
+	        try {
+	            conn = ConnectionManager.getConnection();
+	            PreparedStatement ps = conn.prepareStatement("SELECT * FROM tbl_delivery_terms");
+	            ResultSet rs = ps.executeQuery();
+
+	            while (rs.next()) {
+
+	                deliveryTermList.add(rs.getString("delivery_term"));
+
+	            }
+
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	           
+	        }finally{
+
+	        	return deliveryTermList;
+	        }
+
+	    }
+	    
+	    /**
+	     * Get data from tbl_companytype
+	     * @return
+	     */
+	    public ArrayList<String> getCompanyTypes() {
+	    	Connection conn;
+	        ArrayList<String> companyList = new ArrayList<String>();
+			try {
+	            conn = ConnectionManager.getConnection();
+	            PreparedStatement ps = conn.prepareStatement("SELECT * FROM tbl_companytype");
+	            ResultSet rs = ps.executeQuery();
+
+	            while (rs.next()) {
+
+	                companyList .add(rs.getString("company_type"));
+
+	            }
+
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        } finally {
+	            
+
+	        	return companyList;
+	        }
+
+	    }
+
+	    public ArrayList<String> getPaymentTerms() {
+	    	Connection conn;
+	        ArrayList<String> paymentTermList = new ArrayList<String>();
+			try {
+	            conn = ConnectionManager.getConnection();
+	            PreparedStatement ps = conn.prepareStatement("SELECT * FROM tbl_payment_terms");
+	            ResultSet rs = ps.executeQuery();
+
+	            while (rs.next()) {
+
+	                paymentTermList .add(rs.getString("payment_term"));
+
+	            }
+
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        } finally {
+
+	        	return paymentTermList;
+	        }
+
+	    }
+
 }

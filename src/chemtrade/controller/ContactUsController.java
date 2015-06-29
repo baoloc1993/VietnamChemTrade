@@ -143,7 +143,9 @@ public class ContactUsController extends HttpServlet {
         
         try {
             conn = ConnectionManager.getConnection();
-            PreparedStatement ps = conn.prepareStatement("select * from tbl_contact where id = " + countryId);
+            String sql = "select * from tbl_contact where id = " + countryId;
+          //  System.out.println(sql);
+            PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             rs.next();
             //while (rs.next()) {
@@ -151,10 +153,11 @@ public class ContactUsController extends HttpServlet {
                     rs.getString("address"), rs.getString("province"), rs.getString("zip_code"),
                     rs.getString("country"), rs.getString("tel"), rs.getString("fax"),
                     rs.getString("email"), rs.getString("business_days"), rs.getString("business_hours"),
-                    rs.getString("google_map"), rs.getString("flag"));
+                    rs.getString("google_map"));
             //}
             return c;
         } catch (Exception e) {
+        	e.printStackTrace();
         	return new Contact();
         }
         
@@ -181,8 +184,7 @@ public class ContactUsController extends HttpServlet {
 	 */
 	 private Contact getContact(String id, String label, String name, String address,
 	            String province, String zip_code, String country, String tel, String fax,
-	            String email, String business_days, String business_hours, String google_map,
-	            String flag) {
+	            String email, String business_days, String business_hours, String google_map) {
 	        Contact c = new Contact();
 	        c.setId(id);
 	        c.setLabel(label);
@@ -197,7 +199,6 @@ public class ContactUsController extends HttpServlet {
 	        c.setBusiness_days(business_days);
 	        c.setBusiness_hours(business_hours);
 	        c.setGoogle_map(google_map);
-	        c.setFlag(flag);
 
 	        return c;
 	    }

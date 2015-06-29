@@ -18,7 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.websocket.Session;
+//import javax.websocket.Session;
 
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindException;
@@ -95,8 +95,8 @@ public class AddNewEventController extends HttpServlet{
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		
-		EventWrapper eventWrapper = new EventController().getEventByDate(req);
+		String selectedDate = req.getParameter("date");
+		EventWrapper eventWrapper = new EventController().getEventByDate(selectedDate,1);
 		events = eventWrapper.getResults();
 		
 		ArrayList<CountryCode> countryCodes = new CountryCodeController().getCountryCodes();

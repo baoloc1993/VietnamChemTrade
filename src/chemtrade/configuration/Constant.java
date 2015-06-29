@@ -15,13 +15,13 @@ public interface Constant {
      * Constant for connect DATABASE
      */
     String DRIVER_NAME ="com.mysql.jdbc.Driver";
-//  private static final String URL = "jdbc:mysql://localhost/prodchem_chemtradeasiacom";
-//  private static final String USERNAME = "prodchem_chemlib";
-//  private static final String PASSWORD = "prodchem_chemlib";
+//  String URL = "jdbc:mysql://localhost/prodchem_chemtradeasiacom";
+//  String USERNAME = "prodchem_chemlib";
+//  String PASSWORD = "prodchem_chemlib";
 
-   String URL = "jdbc:mysql://localhost/chemtrade";
+   String URL = "jdbc:mysql://localhost/tradeasia";
    String USERNAME = "root";
-   String PASSWORD = "ngolebaoloc";
+   String PASSWORD = "";
    
    
    
@@ -35,10 +35,10 @@ public interface Constant {
     * BASE SQL
     */
    String PRODUCT_BASE_SQL = "SELECT p.product_id, p.product_name,p.specification,p.product_dir, p.msds, p.product_image, p.cas_number, p.chemical_formula, p.country_origin, c.country,a.phy_appear_name, pk.packaging_name "
-		   				+ "FROM chemtrade.tbl_product p "
-		   				+ "inner join chemtrade.tbl_countries c on p.country_origin = c.ccode "
-		   				+ "inner join chemtrade.tbl_phy_appear a on p.physical_appear = a.phy_appear_id "
-		   				+ "inner join chemtrade.tbl_packaging pk on p.packing_details = pk.id "
+		   				+ "FROM tbl_product p "
+		   				+ "inner join tbl_countries c on p.country_origin = c.ccode "
+		   				+ "inner join tbl_phy_appear a on p.physical_appear = a.phy_appear_id "
+		   				+ "inner join tbl_packaging pk on p.packing_details = pk.id "
    						+ "where p.r_status ='A'";
    String PRODUCT_ID = "product_id";
    String PRODUCT_NAME = "product_name";

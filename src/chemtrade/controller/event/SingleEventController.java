@@ -29,7 +29,8 @@ public class SingleEventController extends HttpServlet{
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try{
-			EventWrapper eventWrapper = new EventController().getEventByDate(req);
+			String selectedDate = req.getParameter("date");
+			EventWrapper eventWrapper = new EventController().getEventByDate(selectedDate,1);
 			ArrayList<Event> events = eventWrapper.getResults();
 			
 			req.setAttribute("events", events);

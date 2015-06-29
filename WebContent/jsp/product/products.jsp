@@ -57,7 +57,7 @@
 
                             </div>
                             <div class="col-xs-5 col-md-3">
-
+								
                                 <a href="products-category.jsp"><img style="min-width:100px" class="img-responsive" src="images/products/products-category.png" alt="products category" width="180"/></a>
 
                             </div>

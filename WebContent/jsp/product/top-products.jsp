@@ -33,7 +33,7 @@
                 <div class="col-md-10 col-md-offset-1 centerRow">
 
                     <!---add the header and navbar and search bar---->
-                    <%@include file="include/header_nav.jsp"%>
+                    <%@include file="../header_nav.jsp"%>
                     <br>
 
                     <!-- Products Banner-->
@@ -55,7 +55,7 @@
                         </form>
                     </div>
                     <!-- Footer Codes -->
-                    <%@include file="include/footer.jsp"%>
+                    <%@include file="../footer.jsp"%>
                 </div>
             </div>
         </div>

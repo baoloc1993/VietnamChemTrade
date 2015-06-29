@@ -20,7 +20,7 @@ public class ContactUsControllerTests extends TestCase {
         
         
         Contact contact = controller.getContactByCountryId("1");
-        assertEquals("Mumbai",contact.getProvince());
+        assertEquals("Singapore",contact.getProvince());
         
         	
         
