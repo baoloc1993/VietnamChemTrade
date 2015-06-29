@@ -1,0 +1,75 @@
+.FAQ_header {
+    color: rgb(26, 82, 146);
+    font-family: Oxygen-Bold,Roboto-regular,Arial;
+    font-size: 150%;
+    margin-top: 20px;
+}
+
+.faq-subheader {
+    color: #151515;
+    font-family: Roboto-regular,Arial;
+    font-size: 90%;
+    margin-bottom: 1.2%;
+    margin-top: 1.2%;
+}
+.borderless tbody tr td, .borderless tbody tr th, .borderless thead tr th {
+    border: none;
+}
+
+.panel-default > .panel-heading {
+    background-color: white;
+}
+.panel-heading:hover {
+    background-color: #7bbfe6;
+
+}
+.panel-heading:hover h4 {
+    color: white;
+
+}
+
+.panel-group .panel {
+    margin-bottom: -3px;
+    cursor: pointer;
+}
+
+
+.panel-group {
+    width: 100%;
+    margin-top: 18px;
+}
+
+.panel-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 96%;
+    font-family: Verdana,Arial,sans-serif;
+    font-weight: bold;
+    color: black;
+}
+
+.ui-accordion-header-icon {
+    position: absolute;
+    left: .5em;
+    top: 45%;
+    margin-top: -8px;
+}
+.ui-icon {
+    background: url(../images/faq-icon-qn.png);
+    width: 18px;
+    height: 20px;
+}
+.ui-icon-triangle-1-e {
+    background-position: -32px -16px;
+}
+.ui-icon {
+    display: block;
+    text-indent: -99999px;
+    overflow: hidden;
+    background-repeat: no-repeat;
+}
+
+.panel-body {
+    padding-bottom: 0px;
+    margin-bottom: 1.5em;
+}

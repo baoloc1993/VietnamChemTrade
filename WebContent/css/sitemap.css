@@ -1,0 +1,25 @@
+.sitemap_header {
+    color: rgb(26, 82, 146);
+    font-family: Oxygen-Bold,Roboto-regular,Arial;
+    font-size: 210%;
+}
+
+.tableMap th {
+    font-family: Oxygen-Bold,Roboto-regular,Arial;
+    text-align: center;
+}
+.tableMap td {
+    font-family: Roboto-regular,Arial;
+    text-align: center;
+}
+.modal-open {
+    padding-right: 0 !important;
+}
+
+td .modal-body {
+    text-align: left;
+}
+
+.tableMap a {
+    cursor: pointer;
+}

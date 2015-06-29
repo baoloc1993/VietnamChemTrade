@@ -1,0 +1,25 @@
+
+
+.noResult {
+    text-align: center;
+    color: slategrey;
+}
+
+a:hover, a:active {
+    outline: none;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a {
+    color: #06c;
+}
+
+a:hover {
+    color: #09f;
+}
+
+.blueimp-gallery .modal-body img, .blueimp-gallery .modal-body .video-content video, .blueimp-gallery .modal-body .video-content iframe, .blueimp-gallery .modal-body .video-content a {
+    width: 60%;
+    height: 100%;
+}

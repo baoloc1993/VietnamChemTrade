@@ -1,0 +1,31 @@
+function startCycle(container, width, height, infos1, timeout){
+	if(infos1) setInfo(width, height);
+	var slider = $('.'+container);
+
+	slider.cycle({
+		fx: 'fade,curtainY', // blindX, blindY, blindZ, cover, curtainX, curtainY, fade, fadeZoom, growX, growY, none, scrollUp, scrollDown, scrollLeft, scrollRight, scrollHorz, scrollVert, shuffle, slideX, slideY, toss, turnUp, turnDown, turnLeft, turnRight, uncover, wipe, zoom,.
+		randomizeEffects: true,
+		timeout: parseInt(timeout),
+		after: function(){$('.infoSlider1').html(slider.find('img:visible').attr('alt1'));}
+	});
+}
+
+function setInfo(width, height){
+	var hInfo = 10;
+	var padd = 10;
+	var tp = 2*padd;
+	var w = (parseInt(width)-tp);
+	var marginTop = hInfo+tp;
+	$('.infoSlider1').css({
+		'width': w+'px', 
+		'height':hInfo+'px', 
+		'padding': padd+'px', 
+		'margin-top': -marginTop+'px'
+	});
+}
+
+
+
+
+
+

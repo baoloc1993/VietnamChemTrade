@@ -1,0 +1,58 @@
+.order_header {
+    color: rgb(26, 82, 146);
+    font-family: Oxygen-Bold,Roboto-regular,Arial;
+    font-size: 150%;
+    margin-top: 20px;
+}
+
+
+
+.order_form input:required:valid, .order_form textarea:required:valid { 
+    /* when a field is considered valid by the browser */
+    background: #fff url(../images/valid.png) no-repeat 98% center;
+    box-shadow: 0 0 5px #5cd053;
+    border-color: #28921f;
+}
+
+.order-form input:focus:invalid, .order_form textarea:focus:invalid { /* when a field is considered invalid by the browser */
+    background: #fff url(../images/invalid.png) no-repeat 98% center;
+    box-shadow: 0 0 5px #d45252;
+    border-color: #b03535
+}
+label {
+    font-family: Oxygen-Bold, Verdana, sans-serif;
+    font-size:14px;
+}
+
+.form-control {
+    font-style: italic;
+    color: #3c3c3c;
+}
+
+.line {
+    margin-bottom: 30px; border-bottom: #d3d3d3 solid 1px;
+    margin-top: 30px;
+}
+
+.btn {
+    width: 100px;
+}
+
+.alert-success {
+    color: #329202;
+    background-color: #D0FFB8;
+}
+
+.removeBtn .btn {
+    width: 73px;
+    padding: 3px 12px;
+    font-size: 11px;
+}
+.rowSpc {
+    padding-top:5px;padding-bottom:10px;font-family: Roboto-Regular; font-size: 13px;
+
+}
+.cartBox {
+    margin-top: 25px;margin-left:3%; margin-right: 2%; background-color: #F9F9F9; border-radius: 7px;
+    padding-top: 10px
+}

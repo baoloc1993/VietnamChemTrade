@@ -1,0 +1,137 @@
+/**
+CSS Class for event.jsp
+**/
+
+.findevent-title {
+                font-family: Oxygen-Bold,Roboto-regular,Arial;
+                color: #000;
+                font-size: 113%;
+                width: 100px;
+                float: left;
+            }
+.list-view{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+.list-view-loading
+{
+    background:url(images/loading.gif) no-repeat;
+}
+
+.list-view .summary
+{
+    margin: 0 0 5px 0;
+    text-align: right;
+}
+
+.list-view .sorter
+{
+    margin: 0 0 5px 0;
+    text-align: right;
+}
+
+.list-view .pager
+{
+    margin: 5px 0 0 0;
+    text-align: right;
+}
+
+.list-view .sorter
+{
+    font-size: 0.9em;
+}
+
+.list-view .sorter ul
+{
+    display: inline;
+    list-style-image:none;
+    list-style-position:outside;
+    list-style-type:none;
+    margin:0;
+    padding:0;
+}
+
+.list-view .sorter li
+{
+    display: inline;
+    margin: 0 0 0 5px;
+    padding: 0;
+}
+
+.list-view .sorter a.asc
+{
+    background:url(up.gif) right center no-repeat;
+    padding-right: 10px;
+}
+
+.list-view .sorter a.desc
+{
+    background:url(down.gif) right center no-repeat;
+    padding-right: 10px;
+}
+
+ul.pager
+{
+    border-radius:0;
+    font-size:12px;
+    font-weight: bold;
+    border:0;
+    margin:0;
+    padding:0;
+    line-height:100%;
+    display:inline;
+}
+
+ul.pager li
+{
+    border-radius:0;
+    display:inline;
+}
+
+ul.pager a:link,
+ul.pager a:visited
+{
+    border:solid 1px #9aafe5;
+    font-weight:bold;
+    color:#0e509e;
+    padding:1px 6px;
+    text-decoration:none;
+}
+
+ul.pager .page a
+{
+    line-height: 18px;
+    border-radius:0;
+    font-size:14px;
+     font-weight: bold;
+}
+
+ul.pager a:hover
+{
+    border:solid 1px #0e509e;
+}
+
+ul.pager .selected a
+{
+    border-radius:0;
+    background:#2e6ab1;
+    color:#FFFFFF;
+    font-weight:bold;
+}
+
+ul.pager .hidden a
+{
+    border-radius:0;
+    border:solid 1px #DEDEDE;
+    color:#888888;
+    display:none;
+}
+
+/**
+ * Hide first and last buttons by default.
+ */
+ul.pager .first,
+ul.pager .last
+{
+    display:none;
+}

@@ -1,0 +1,557 @@
+@media screen and (max-width: 845px) {
+.wrapper {
+    width: 98% !important;
+}
+.wrap-bg {
+    width: 100% !important;
+}
+.search-bg {
+    width: 96% !important;
+}
+#banner-section {
+    width:auto !important;
+    float: left !important;
+}
+.container {
+    width: 98% !important;
+}
+#banner {
+    height: 295px !important;
+    float: left !important;
+    width: 540px !important;
+}
+#sliderb_container{
+width: 540px !important;
+height: 300px !important;
+}
+.product-slider {
+margin-left: -35px !important;
+}
+#product-category {
+    width: 193px !important;
+    float: left !important;
+}
+.pdt-header-bg {
+    width: 178px !important;
+    height: 33px !important;
+    font-size: 12px !important;
+}
+.pdt-category li a {
+    font-size: 12px !important;
+}
+.pdt-category li {
+   line-height:32px !important;
+   font-size: 12px !important;
+}
+.link-width {
+    width: 160px !important;
+    float: left !important;
+}
+a.quick-quote-bg {
+    float: left !important;
+    font-size: 12px !important;
+    width: 135px !important;
+    height:21px !important;
+    margin-top: -41px !important;
+}
+a.supplier-bg {
+    float: left !important;
+    font-size: 12px !important;
+    width: 135px !important;
+    height:30px !important;
+    margin-top: -41px !important;
+}
+a.products-bg {
+    float: left !important;
+    font-size: 12px !important;
+    width: 135px !important;
+    height:32px !important;
+    margin-top: -42px !important;
+}
+
+ul.link-width img{
+width:195px !important;
+height:40px !important;
+}
+.title-bg {
+   width:700px !important;
+   margin-left: -7px !important;
+}
+.jcarousel-wrapper{
+width: 700px !important;
+padding-left: 25px !important;
+}
+.group1 {
+    float: left !important;
+    margin-left: 2.5% !important;
+    width: 100% !important;
+}
+.group2 {
+    width: 100% !important;
+    float: left !important;
+    margin-left: 2.5% !important;
+}
+.other-websites{
+    float: left !important;
+    width: 100% !important;
+    margin-left: -41px !important;
+}
+.quick-enquiry-bg {
+    margin-top: 4px !important;
+    margin-left: 25px !important;
+    float: left !important;
+}
+.latest-events-bg {
+    width:92% !important;
+    margin-left: 25px !important;
+}
+#footer-section {
+     height:485px !important;
+     max-width: 90.5% !important;
+}
+.newsletter-width {
+    padding: 10px 28px 0px 0px !important;
+    float: left !important;
+    width: 100% !important;
+    background: none repeat scroll 0% 0% #5E9502;
+    margin-left: -20px !important;
+    margin-top: 8px !important;
+}
+.refulgence{
+   margin-top: 20% !important;
+}
+#wowslider-container1 .ws-title { max-width: 450px !important; width:75% !important; word-wrap:break-word !important; }
+.box1, .box2 {
+    max-width: 48% !important;
+}
+a.ws_prev {margin-left: 90% !important;}
+.jcarousel-first{
+     top: 361px !important;
+     left: 86% !important;
+}
+.jcarousel-last {
+     top: 361px !important;
+     left: 89% !important;
+}
+.jcarousel-control-prev {
+     top: 476px !important;
+     left: -86px !important;
+}
+.jcarousel-control-next{
+     top: 476px !important;
+     left: 665px !important;
+}
+a.event-txt{
+width: 85% !important;
+word-wrap: break-word !important;
+}
+.association-table {margin-top:2% !important;}
+}
+
+@media screen and (max-width: 775px) {
+
+.wrapper {
+    width: 98% !important;
+}
+.wrap-bg {
+    width: 100% !important;
+}
+.search-bg {
+    width: 96% !important;
+}
+#banner-section {
+    width:auto !important;
+    float: left !important;
+}
+.container {
+    width: 100% !important;
+}
+#banner {
+    height: 295px !important;
+    float: left !important;
+    width: 520px !important;
+}
+#sliderb_container{
+width: 520px !important;
+height: 300px !important;
+}
+#product-category {
+    width: 193px !important;
+    float: left !important;
+}
+.pdt-header-bg {
+    width: 178px !important;
+    height: 33px !important;
+    font-size: 12px !important;
+}
+.pdt-category li a {
+    font-size: 12px !important;
+}
+.pdt-category li {
+   line-height:32px !important;
+   font-size: 12px !important;
+}
+.link-width {
+    width: 160px !important;
+    float: left !important;
+}
+a.quick-quote-bg {
+    float: left !important;
+    font-size: 12px !important;
+    width: 135px !important;
+    height:21px !important;
+    margin-top: -41px !important;
+}
+a.supplier-bg {
+    float: left !important;
+    font-size: 12px !important;
+    width: 135px !important;
+    height:30px !important;
+    margin-top: -41px !important;
+}
+a.products-bg {
+    float: left !important;
+    font-size: 12px !important;
+    width: 135px !important;
+    height:32px !important;
+    margin-top: -42px !important;
+}
+
+ul.link-width img{
+width:195px !important;
+height:40px !important;
+}
+.title-bg {
+   width:700px !important;
+   margin:0px !important;
+}
+.jcarousel-wrapper{
+width: 572px !important;
+padding-left: 100px !important;
+}
+.group1 {
+    float: left !important;
+    margin-left: 2.5% !important;
+    width: 100% !important;
+}
+.group2 {
+    width: 100% !important;
+    float: left !important;
+    margin-left: 2.5% !important;
+}
+.other-websites{
+    float: left !important;
+    width: 100% !important;
+    margin-left: -30px !important;
+}
+.quick-enquiry-bg {
+    margin-top: 4px !important;
+    margin-left: 30px !important;
+    float: left !important;
+}
+.latest-events-bg {
+    width:95% !important;
+    margin-left: 30px !important;
+}
+#footer-section {
+     height:485px !important;
+     max-width: 90.5% !important;
+}
+.newsletter-width {
+    padding: 10px 28px 0px 0px !important;
+    float: left !important;
+    width: 100% !important;
+    background: none repeat scroll 0% 0% #5E9502;
+    margin-left: -20px !important;
+    margin-top: 8px !important;
+}
+.refulgence{
+   margin-top: 20% !important;
+}
+.infoSlider1 {
+    width: 510px !important;
+    overflow: hidden;
+}
+.box1, .box2 {
+     max-width:48% !important;
+}
+.jcarousel-first{
+     top: 357px !important;
+     left: 91% !important;
+}
+.jcarousel-last {
+     top: 357px !important;
+     left: 94% !important;
+}
+.jcarousel-control-prev {
+     top: 476px !important;
+     left: -65px !important;
+}
+.jcarousel-control-next{
+     top: 476px !important;
+     left: 614px !important;
+}
+/*menu css*/
+.nav{width:100% !important; margin-left: -12px  !important;}
+a.nav-home{width: 95px !important;}
+a.nav-about {width: 101px !important;}
+a.nav-product{width: 117px !important;}
+a.nav-events{width: 105px !important;}
+a.nav-gallery{width: 107px !important;}
+a.nav-faq{width: 92px !important;}
+a.nav-contact{width: 132px !important;}
+.association-table {margin-top:2% !important;}
+
+}
+
+
+ /* Extra Small Devices, Phones */ 
+@media only screen and (max-width : 480px) {
+
+}
+
+/*Mobiloe Screen*/
+@media screen and (max-width: 445px) {
+#banner-section {
+    width:350px !important;
+    float: left !important;
+}
+#banner {
+    height: 223px !important;
+    float: left !important;
+    width: 350px !important;
+}
+#sliderb_container{
+width: 350px !important;
+height: 220px !important;
+}
+.title-bg {
+   width:315px !important;
+   margin:0px !important;
+}
+.jcarousel-wrapper{
+width: 190px !important;
+padding-left: 31% !important;
+}
+#product-category {
+padding-left: 21% !important;
+margin-top: -6% !important;
+}
+.link-width{
+padding-left: 21% !important;
+}
+.box1, .box2 {
+    max-width: 87% !important;
+    margin-left: 10%;
+}
+.other-websites {
+    float: left !important;
+    width: 96% !important;
+    margin-left: 4% !important;
+}
+#footer-section {
+    height: 544px !important;
+}
+.refulgence {
+    margin-top: 2% !important;
+}
+.news-txt {
+width:320px !important;
+}
+
+/*QUick Enquiry*/
+.quick-enquiry-bg {
+margin-right: 25px !important;
+width: 90% !important;
+height: 420px !important;
+}
+.txtbox-width {
+    width: 333px !important;
+}
+.e-txtbox {
+margin-top: 5px !important;
+width: 55% !important;
+}
+.txtarea{
+width: 64% !important;
+}
+.captcha-txtbox {
+width: 55% !important;
+margin-top: -8px !important;
+}
+.disp #yw0{
+margin-top: -8px !important;
+width: 55% !important;
+}
+.submit-btn {
+    width: 35% !important;
+}
+.reset-btn {
+    width: 35% !important;
+}
+.jcarousel-control-prev {
+    top: 695px !important;
+    left: 12px !important;
+}
+.jcarousel-control-next {
+    top: 694px !important;
+    left: 240px !important;
+}
+.jcarousel-first {
+    top: 545px !important;
+    left: 81% !important;
+}
+.jcarousel-last {
+    top: 545px !important;
+    left: 88% !important;
+}
+.infoSlider1 {
+    width: 141px !important;
+}
+a.ws_prev{
+top: -37px !important;
+margin-left: 83% !important;
+}
+a.ws_next{
+top: -37px !important;
+}
+.advance-search-btn {
+font-size:10px !important;
+width:28% !important;
+}
+.search-btn {
+font-size:10px !important;
+width:14% !important
+}
+.search-field {
+width:55% !important;
+font-size:10px !important;
+}
+.news-txtbox{
+margin-top:1% !important;
+}
+.latest-events-bg {
+    width: 89% !important;
+    margin-left: 30px !important;
+}
+.container {
+    width: 94% !important;
+}
+}
+
+
+
+/*Mobiloe Screen*/
+@media screen and (max-width: 320px) {
+#banner-section {
+    width:350px !important;
+    float: left !important;
+}
+#banner {
+    height: 195px !important;
+    float: left !important;
+    width: 285px !important;
+}
+#sliderb_container{
+width: 285px !important;
+height: 195px !important;
+}
+.title-bg {
+   width:270px !important;
+   margin:0px !important;
+}
+.jcarousel-wrapper{
+width: 190px !important;
+padding-left: 31% !important;
+}
+#product-category {
+padding-left: 21% !important;
+margin-top: -6% !important;
+}
+.link-width{
+padding-left: 21% !important;
+}
+.box1, .box2 {
+    max-width: 87% !important;
+    margin-left: 10%;
+}
+.other-websites {
+    float: left !important;
+    width: 96% !important;
+    margin-left: 4% !important;
+}
+.product-bg{
+  width:91% !important;
+}
+#footer-section {
+    height: 544px !important;
+    width: 87% !important;
+    margin-left: 3% !important;
+}
+.refulgence {
+    margin-top: 2% !important;
+}
+.news-txt {
+width:320px !important;
+}
+
+/*QUick Enquiry*/
+.quick-enquiry-bg {
+margin-left: 38px !important;
+width: 80% !important;
+height: 420px !important;
+}
+.txtbox-width {
+    width: 333px !important;
+}
+.e-txtbox {
+margin-top: 5px !important;
+width: 55% !important;
+}
+.txtarea{
+width: 64% !important;
+}
+.captcha-txtbox {
+width: 55% !important;
+margin-top: -8px !important;
+}
+.disp #yw0{
+margin-top: -8px !important;
+width: 55% !important;
+}
+.submit-btn {
+    width: 35% !important;
+}
+.reset-btn {
+    width: 35% !important;
+}
+.jcarousel-control-prev {
+    top: 695px !important;
+    left: 12px !important;
+}
+.jcarousel-control-next {
+    top: 694px !important;
+    left: 240px !important;
+}
+.jcarousel-first {
+    top: 516px !important;
+    left: 81% !important;
+}
+.jcarousel-last {
+    top: 516px !important;
+    left: 88% !important;
+}
+.infoSlider1 {
+    width: 141px !important;
+}
+a.ws_prev{
+top: -37px !important;
+margin-left: 83% !important;
+}
+a.ws_next{
+top: -37px !important;
+}
+.ws_title{
+width:75%!important;
+}
+}

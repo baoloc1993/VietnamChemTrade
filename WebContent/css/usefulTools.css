@@ -1,0 +1,98 @@
+.noResult {
+    text-align: center;
+    margin-top: 18px;
+    color: slategrey;
+}
+
+.panel-body {
+    padding: 0px;
+}
+
+.borderless tbody tr td, .borderless tbody tr th, .borderless thead tr th {
+    border: none;
+}
+
+.panel-default > .panel-heading {
+    background: linear-gradient(#2294C8, #0F6AA3);
+}
+
+.panel-heading:hover {
+    background: linear-gradient(#84cc0d, #5e9502) !important;
+}
+.panel-heading h3 {
+    color: white;
+    font-family: Oxygen-Bold;
+}
+
+.panel-group .panel {
+    margin-bottom: -6px;
+    cursor: pointer;
+}
+
+
+.panel-group {
+    width: 97.2%;
+    margin-top: 19px;
+}
+
+.panel-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 96%;
+    font-family: Oxygen-Bold;
+    color: black;
+    text-align: left;
+}
+
+
+.panel-body {
+    padding-bottom: 0px;
+    margin-bottom: 1.5em;
+}
+
+.table > tbody > tr > td, .table > tfoot > tr > td {
+
+    border-top: none;
+    text-align: center;
+}
+
+.table > thead > tr > th {
+    border-bottom: none;
+}
+
+h3 {
+    margin-top: 15px; margin-bottom: 5px; text-align: center; color: #1a5292;
+    font-weight: bold;
+} 
+
+.tBody:hover {
+
+    background: linear-gradient(#84cc0d, #5e9502);  
+    cursor: pointer;
+}
+
+.tBody {
+    background: linear-gradient(#2294C8, #0F6AA3);
+    text-align: center;
+    font-family: Oxygen-Bold;
+    color: white;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin-bottom: 1Px;
+
+}
+
+.linkStyle {
+    text-decoration: none;
+    color: white;
+}
+
+.linkStyle:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.linkStyle:visited {
+    text-decoration: none;
+    color: white;
+}

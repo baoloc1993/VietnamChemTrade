@@ -1,0 +1,169 @@
+.contact-header {
+    color: rgb(26, 82, 146);
+    font-family: Oxygen-Bold,Roboto-regular,Arial;
+    font-size: 150%;
+    margin-top: 20px;
+}
+.contact-us-image{
+    position:relative;
+    max-width: 100%;
+    margin-bottom: 1%;
+    margin-top: 15px; 
+    left: 7px;
+}
+
+.line {
+    margin-bottom: 30px; border-bottom: #d3d3d3 solid 1px;
+    margin-top: 10px;
+}
+
+.tab{
+    padding-top:2px;
+    padding-right:5px;
+}
+.tab-container .tab {
+    display: block;
+    width: 196px;
+    width: auto;
+    height: 15%;
+    float: left;
+    position: relative;
+    /* left: 23px; */
+    background: -moz-linear-gradient(center top , #38ad2d 100%, #124f88 100%) repeat scroll 0 0 transparent;
+    border-bottom: 1px solid #124f88;
+    border-left: thin solid #124f88;
+    border-right: thin solid #FFFFFF;
+    -moz-border-top-left-radius: 1ex;
+    -ms-border-top-left-radius: 1ex;
+    -o-border-top-left-radius: 1ex;
+    -webkit-border-top-left-radius: 1ex;
+    border-top-left-radius: 1ex;
+    -moz-border-top-right-radius: 1ex;
+    -ms-border-top-right-radius: 1ex;
+    -o-border-top-right-radius: 1ex;
+    -webkit-border-top-right-radius: 1ex;
+    border-top-right-radius: 1ex;
+    background: -moz-linear-gradient(top, rgb(240,240,240) 0%, rgb(210,210,210) 100% );
+    background: -ms-linear-gradient(top, rgb(240,240,240) 0%, rgb(210,210,210) 100% );
+    background: -o-linear-gradient(top, rgb(240,240,240) 0%, rgb(210,210,210) 100% );
+    background: -webkit-linear-gradient(top, rgb(240,240,240) 0%, rgb(210,210,210) 100% );
+    background: linear-gradient(top, rgb(240,240,240) 0%, rgb(210,210,210) 100% );
+    border-left: thin solid #888;
+    border-right: thin solid #fff;
+    color: #000000;
+    font-size: 1em;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    /* margin-left: 2%; */
+    padding: 8px 20px 5px 20px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    border-bottom: 1px solid rgb(210,210,210);
+}
+.tab-container .tab-page {
+    z-index: 50;
+    background-color: white;
+    color: black;
+    display: block;
+    top: 3.475ex;
+    width: 100%;
+    float: left;
+    padding-left: 1%;
+    padding-right: 1%;
+    /* margin-left: 2%; */
+    border: thin solid #888;
+    box-shadow: 0.5ex 0.5ex 1ex #888;
+    transition: visibility 0s ease-out 0.3s;
+}
+.contact-box{
+    background: none repeat scroll 0 0 #FFFFFF;
+    color: #1D4B86;
+    display: block;
+    font-family: Oxygen-Regular;
+    font-size: 100%;
+    font-weight: 600;
+    height: 30px;
+    width: 100%;
+}
+.contact-width {
+    float: right;
+    max-width: 115px;
+    min-width: 75px;
+    width: 30%;
+}
+.tab-page{
+    width: 100%;
+    height: 100%;
+    padding: 4px 10px 4px 5px;
+}
+.contentnavi {
+    color: #333;
+    cursor: pointer;
+    /* float: left; */
+    font-size: 10px;
+    line-height: 16px;
+    text-align: left;
+    text-decoration: underline;
+}
+
+//for contact us form
+.hs-form.stacked .field {
+    margin-bottom: 18px;
+}
+
+.hs-form input:not([type="image"]), .hs-form textarea {
+    box-sizing: content-box;
+}
+
+.hs-form.stacked label {
+    display: block;
+    float: none;
+    width: auto;
+    font-weight: bold;
+    text-align: left;
+    line-height: 20px;
+    padding-top: 0;
+    margin-bottom: 4px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+.hs-form .hs-field-desc {
+    color: #aaa;
+    margin: 0px 0px 5px 150px;
+    font-size: 11px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.hs-form.stacked .field div.input {
+    margin-left: 0;
+}
+
+.success{
+    color: #4F8A10;
+    background-color: #DFF2BF;
+} 
+
+.contact-form input:focus:invalid, .contact_form textarea:focus:invalid { /* when a field is considered invalid by the browser */
+    background: #fff url(../images/invalid.png) no-repeat 98% center;
+    box-shadow: 0 0 5px #d45252;
+    border-color: #b03535
+}
+
+.contact-form input:required:valid, .contact_form textarea:required:valid { /* when a field is considered valid by the browser */
+    background: #fff url(../images/valid.png) no-repeat 98% center;
+    box-shadow: 0 0 5px #5cd053;
+    border-color: #28921f;
+}
+
+.required-notification { 
+    margin:5px 0 0 0; 
+    display:inline;
+    color: #FF0000;
+}
+
+*:focus {outline: none;}

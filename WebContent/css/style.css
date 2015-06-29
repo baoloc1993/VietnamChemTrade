@@ -1,0 +1,162 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 11, 2015, 2:58:44 PM
+    Author     : ASUS
+*/
+
+.modal-open {
+    padding-right: 0 !important
+}
+.modal-dialog {
+        color: black;
+    }
+.centerRow {
+    background: white;
+    height: auto;
+    padding-bottom: 1%;
+}
+html{
+    overflow-y: scroll;
+}
+body {
+    background: url(../images/bg.jpg) repeat;
+}
+
+.linkheader {
+    margin-top: -11px; margin-bottom:40px;
+}
+
+.cartImg {
+    height: 22px;
+}
+
+.linkheader li a {font-family: Oxygen-Regular, Verdana, Geneva, sans-serif;
+                  font-size: 11px;
+                  color: #6c6c6c;}
+.linkheader li {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    float: left;
+    padding: 0px 6px;
+}
+
+li.top-menu-pdd-lft {
+    padding-left: 0px;
+}
+
+.social-link ul {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    width: auto; 
+    float:left;
+}
+.social-link li {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    float: left;
+}
+.social-link li a {
+    text-decoration: none;
+    padding: 15px 0px 0px 30px;
+}
+
+.social-link li a:hover{}
+
+li.social-pdd-lft {
+    padding-left: 0px;
+}
+li.social-pdd-rgt {
+    padding-right: 0px;
+}
+
+
+.cart{background:url(../images/cart.png) no-repeat left;  width:22px; height:17px;}
+
+a.facebook{background:url(../images/facebook-icon.jpg) no-repeat left; width:9px; height:17px;}
+a.facebook:hover{background:url(../images/facebook-icon-hover.jpg) no-repeat left;}
+
+a.twitter{background:url(../images/twitter-icon.jpg) no-repeat left;  width:22px; height:17px;}
+a.twitter:hover{background:url(../images/twitter-icon-hover.jpg) no-repeat left;}
+
+a.in{background:url(../images/in-icon.jpg) no-repeat left;  width:18px; height:17px;}
+a.in:hover{background:url(../images/in-icon-hover.jpg) no-repeat left;}
+
+a.youtube{background:url(../images/youtube-icon.jpg) no-repeat left; width:15px; height:17px;}
+a.youtube:hover{background:url(../images/youtube-icon-hover.jpg) no-repeat left;}
+
+a.rss{background:url(../images/rss-icon.jpg) no-repeat left; width:17px; height:17px; }
+a.rss:hover{background:url(../images/rss-icon-hover.jpg) no-repeat left;}
+
+a.print{background:url(../images/print-icon.jpg) no-repeat left; width:17px; height:17px; }
+a.print:hover{background:url(../images/print-icon-hover.jpg) no-repeat left;}
+
+a.mail{background:url(../images/mail-icon.jpg) no-repeat left; width:20px; height:14px;}
+a.mail:hover{background:url(../images/mail-icon-hover.jpg) no-repeat left;}
+
+.navbg {
+    background: url(../images/misc/menu-bg-colour.png) repeat scroll 0% 0% transparent;
+}
+
+
+#menu-nav li {
+    border-right: #2AA1D8 solid 2px;            
+}
+#menu-nav a {
+    color: white;
+    text-align: center; 
+    font-family: Oxygen-Regular, Verdana, Geneva, sans-serif;
+    color: #ffffff;
+    font-size: 1em;
+}
+
+#menu-nav a:hover,
+#menu-nav a:active {
+    color: #fff;
+    background: url(../images/misc/menu-bg-colour-hover.png) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    /*background-color: #23577D;*/
+}
+
+#menu-nav .home .icon {
+    background-position: 0.3em 0;
+}
+
+#menu-nav .about .icon {
+    background-position: -1.9em 0;
+}
+
+#menu-nav .productmenu .icon {
+    background-position: -3.8em 0;
+}
+
+#menu-nav .events .icon {
+    background-position: -6.1em 0;
+}
+
+#menu-nav .gallery .icon {
+    background-position: -8.3em 0;
+}
+
+#menu-nav .faq .icon {
+    background-position: -10.5em 0;
+    width: 1em;
+}
+
+#menu-nav .contact .icon {
+    background-position: -12em 0;
+}
+#menu-nav .icon {
+    background: transparent url('../images/misc/menu-icon.png') no-repeat 0 0;
+    width: 1.99em;
+    height: 1.4em;
+    display: inline-block;
+    margin-right: .015em;
+    padding-right: .60em;
+    vertical-align: text-top;
+}

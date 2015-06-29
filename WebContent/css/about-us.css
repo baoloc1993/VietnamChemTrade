@@ -1,0 +1,11 @@
+@media only screen and (max-device-width:350px){
+    /* styles for mobile browsers smaller than 480px; (iPhone) */
+    .copyright {
+        font-size: 11px;
+    }
+}
+.form-control {
+    height: 30px;
+    padding: 2px 7px;
+    font-size: 12px;
+}

@@ -1,0 +1,10 @@
+.infoSlider{
+	/*background: none repeat scroll 0 0 #000000;
+	color: #FFFFFF;*/
+	font-size: 12px;
+	position: absolute;
+	z-index: 1000;
+	margin-left:151px;
+	opacity:0.5; width: 772px !important; height: 152px !important; margin-top: -152px !important; margin-left: 151px !important;
+	filter:alpha(opacity:50);
+}
