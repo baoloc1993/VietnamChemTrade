@@ -97,9 +97,6 @@ public class OrderController extends HttpServlet {
         
         Order order = getAllParameter(request);
 
-
-        
-        
         String orderMessage = "";
         if (cartList.size() == 0) {
            orderMessage = "Your cart is currently empty";
@@ -393,7 +390,8 @@ public class OrderController extends HttpServlet {
 	     * Get data from tbl_companytype
 	     * @return
 	     */
-	    public ArrayList<String> getCompanyTypes() {
+	    @SuppressWarnings("finally")
+		public ArrayList<String> getCompanyTypes() {
 	    	Connection conn;
 	        ArrayList<String> companyList = new ArrayList<String>();
 			try {
@@ -410,8 +408,6 @@ public class OrderController extends HttpServlet {
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	        } finally {
-	            
-
 	        	return companyList;
 	        }
 

@@ -21,10 +21,10 @@ import chemtrade.entity.Product;
  *
  * @author ASUS
  */
-@WebServlet("/addTocart")
+@WebServlet("/addToCart")
 public class AddtoCartController extends HttpServlet {
     
-    ArrayList<Product> cartList = null;
+    
     
     
 
@@ -38,27 +38,30 @@ public class AddtoCartController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	@Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-    	 HttpSession session = request.getSession();  
-         if (session.getAttribute("cartList") == null) {
-             cartList = new ArrayList<Product>();
-         } else {
-             cartList =(ArrayList<Product>)session.getAttribute("cartList");
-         }
-         
-         
-         int productID = Integer.parseInt(request.getParameter("pID"));
-         ProductController productController = new ProductController();
-         Product product = productController.getProductListFromDBByID(productID);
-         //Product p = productDAO.getProduct(productID);
-         cartList.add(product);
-         
-         session.setAttribute("cartList", cartList);
-         response.sendRedirect("jsp/product/products.jsp");
+    	
+	    	ArrayList<Product> cartList = new ArrayList<Product>();
+	    	 HttpSession session = request.getSession();  
+	         if (session.getAttribute("cartList") == null) {
+	             cartList = new ArrayList<Product>();
+	         } else {
+	             cartList =(ArrayList<Product>)session.getAttribute("cartList");
+	         }
+	         
+	         
+	         int productID = Integer.parseInt(request.getParameter("pid"));
+	         ProductController productController = new ProductController();
+	         Product product = productController.getProductListFromDBByID(productID);
+	         //Product p = productDAO.getProduct(productID);
+	         cartList.add(product);
+	         
+	         session.setAttribute("cartList", cartList);
+	         response.sendRedirect("product");
+    	
     }
 
 }

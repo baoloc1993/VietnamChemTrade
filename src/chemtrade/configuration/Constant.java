@@ -2,6 +2,12 @@ package chemtrade.configuration;
 
 public interface Constant {
 	
+	
+	/**
+	 * 
+	 */
+	
+	
 	/**
 	 * Constant for Sending Email
 	 */

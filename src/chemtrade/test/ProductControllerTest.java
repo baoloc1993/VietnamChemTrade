@@ -2,6 +2,7 @@ package chemtrade.test;
 
 import java.util.ArrayList;
 
+import chemtrade.controller.AddContactController;
 import chemtrade.controller.product.ProductController;
 import chemtrade.entity.Product;
 import junit.framework.TestCase;
@@ -42,6 +43,10 @@ public class ProductControllerTest extends TestCase{
 	
 	public void testGetProductByID(){
 		
+	}
+	
+	public void testAddToCart(){
+		AddContactController addContactController = new AddContactController();
 	}
 	
 }

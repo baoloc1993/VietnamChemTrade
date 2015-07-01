@@ -2,7 +2,7 @@
 
 
 <body>
-<div class = "container-fluid" style = "padding-right:27px; padding-left:5px; background-color: white;">
+<div class = "container-fluid" style = " padding-left:5%x; background-color: white;">
 	<!--  HEADER -->
 	<div class = "span12">
 		<%@ include file="../header_nav.jsp"%>

@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
@@ -24,8 +26,8 @@ import chemtrade.entity.Product;
  *
  *Get the top product from database
  */
-
-public class TopProductController{
+@WebServlet("/products-top")
+public class TopProductController extends HttpServlet{
 	private ArrayList<Product> topProduct = new ArrayList<>();
 	
 

@@ -20,7 +20,7 @@ public class Order {
     private String contactMessengerType, contactMName, contactLName, contactEmail, contactMessengerID;
     private String comments, verifyCode, ipaddress, timestamp, destinationCountry;
     private int enq_code, approve_sts;
-    private ArrayList<OrderDetail> orderList = null;
+    private ArrayList<OrderDetail> orderList = new ArrayList<OrderDetail>();
 
     public int getEnq_code() {
         return enq_code;
@@ -512,7 +512,7 @@ public class Order {
 
 	public ArrayList<OrderDetail> getOrderList() {
 		// TODO Auto-generated method stub
-		return null;
+		return orderList;
 	}
 
     public void setOrderList(ArrayList<OrderDetail> orderList) {

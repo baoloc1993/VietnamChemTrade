@@ -2,7 +2,7 @@ package chemtrade.test;
 
 import com.sun.net.httpserver.Authenticator.Success;
 
-import chemtrade.controller.homepage.ConfirmEnquiryController;
+import chemtrade.controller.homepage.ConfirmQuickEnquiryController;
 import chemtrade.controller.homepage.QuickEnquiryController;
 import junit.framework.TestCase;
 
@@ -21,7 +21,7 @@ public class EnquiryTest extends TestCase {
 		}
 	}
 	public void testConfirmation(){
-		ConfirmEnquiryController confirmEnquiryController = new ConfirmEnquiryController();
+		ConfirmQuickEnquiryController confirmEnquiryController = new ConfirmQuickEnquiryController();
 		try{
 			confirmEnquiryController.actionConfirmEnquiry("421");
 			assertEquals(1, 1);

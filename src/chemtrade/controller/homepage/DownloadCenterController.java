@@ -174,7 +174,9 @@ public class DownloadCenterController extends HttpServlet implements Constant{
         //System.out.println ("SIZE = " + paging);
 	}
     
-    
+    /**
+     * Handle POST METHOD
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	try{
@@ -300,7 +302,7 @@ public class DownloadCenterController extends HttpServlet implements Constant{
      * @param filrDir link of the file
      * @throws IOException 
      */
-    private void downFile(String FilePath ,HttpServletResponse response, String filrDir) throws IOException {
+    public void downFile(String FilePath ,HttpServletResponse response, String filrDir) throws IOException {
         //try {
             String path = FilePath + filrDir;
             File file = new File(path);

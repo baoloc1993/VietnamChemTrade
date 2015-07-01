@@ -386,7 +386,7 @@
                     </form>
 
                     <!-- Footer Codes -->
-                    <jsp:include page="../footer.jsp"/>
+                    <%@ include file ="../footer.jsp"%>
                 </div>
             </div>
         </div>

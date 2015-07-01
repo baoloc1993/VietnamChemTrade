@@ -16,7 +16,7 @@ import chemtrade.configuration.ConnectionManager;
 
 
 @WebServlet("/confirmEnquiry")
-public class ConfirmEnquiryController extends HttpServlet {
+public class ConfirmQuickEnquiryController extends HttpServlet {
 
 	
 	@Override
