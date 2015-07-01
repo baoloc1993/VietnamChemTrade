@@ -58,7 +58,7 @@
                             </div>
                             <div class="col-xs-5 col-md-3">
 								
-                                <a href="products-category"><img style="min-width:100px" class="img-responsive" src="images/products/products-category.png" alt="products category" width="180"/></a>
+                                <a href="category"><img style="min-width:100px" class="img-responsive" src="images/products/products-category.png" alt="products category" width="180"/></a>
 
                             </div>
 
@@ -238,6 +238,23 @@
 		                 	</div>
 	                     </c:forEach>
 	                     
+		                     <!-- Pagination -->
+	                       
+	                        <div class="row">
+	
+	                            <div class="col-md-12" >
+	                                <center>
+	                                    <div class="pagerClass">
+	                                        <ul id="yw1" class="pagination">
+	                                        	${paging }
+	                                        </ul>
+	                                    </div>
+	                                </center>
+	                            </div>
+	                        </div>
+
+                        
+                        <!-- END of ENTIRE PAGINATION-->
 	                    </div>
 	                    <!-- Footer Codes -->
 	                    <%@include file="../footer.jsp"%>
@@ -308,7 +325,7 @@
 					document.getElementById('email_id'+id).focus();
 					return false;
 				}
-               	if (atpos< 1 || dotpos<atpos+2 || dotpos+2 >= email_id.length) {
+               	if (atpos< 1 || dotpos<atpos+2 || ((dotpos+2) >= (email_id.length))) {
                         alert("Not a valid e-mail address");
                         return false;
                	}

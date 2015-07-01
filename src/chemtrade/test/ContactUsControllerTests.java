@@ -21,13 +21,6 @@ public class ContactUsControllerTests extends TestCase {
         
         Contact contact = controller.getContactByCountryId("1");
         assertEquals("Singapore",contact.getProvince());
-        
-        	
-        
-        
-        
-        
-        
-        
+
     }
 }

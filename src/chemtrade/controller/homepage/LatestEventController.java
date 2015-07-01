@@ -77,7 +77,9 @@ public class LatestEventController{
 	public ArrayList<Event> getLatestEvent() {
 		databaseRetrival();
 		//Set the first event is active
-		latestEvent.get(0).setActive(1);
+		if (latestEvent.size() > 0){
+			latestEvent.get(0).setActive(1);
+		}
 		return latestEvent;
 	}
 

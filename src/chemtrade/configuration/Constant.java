@@ -21,7 +21,7 @@ public interface Constant {
      * Constant for connect DATABASE
      */
     String DRIVER_NAME ="com.mysql.jdbc.Driver";
-//  String URL = "jdbc:mysql://localhost/prodchem_chemtradeasiacom";
+//  String URL = "jdbc:mysql://localhost/tradeus_vietnam";
 //  String USERNAME = "prodchem_chemlib";
 //  String PASSWORD = "prodchem_chemlib";
 
@@ -61,5 +61,7 @@ public interface Constant {
    String PRODUCT_COUNTRY_CODE = "country_origin";
    //String PRODUCT_FIELD_ID = "product_id";
    
+   
+   int NUMBER_ITEM_PER_PAGE = 10;
    
 }
