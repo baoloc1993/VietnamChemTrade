@@ -2,7 +2,7 @@
 <%@include file = "../setting.jsp" %>
 
     <body>
-        <div class="container">
+        <div class="container-fluid">
 
             <!---to wrap around all body content--->
             <div class="row">
@@ -19,6 +19,7 @@
                             <div class="col-md-12">
                                 <div class="order_header">
                                 	${orderMessage }
+                                	
                                 </div>
                             </div>
                         </div>
@@ -26,7 +27,8 @@
                         <div class="row cartBox">
                             <div class="col-md-11">
 							<!--  Display list of Products -->
-							<c:forEach var="i" begin="0" end="${fn:length(carts)-1}">
+							<c:if test = "${cartsSize > 0}">
+							<c:forEach var="i" begin="0" end="${cartsSize - 1 }">
 							
                                 <div class="row rowSpc" >
                                     <div class="col-md-12" >
@@ -69,7 +71,7 @@
 
                                                 <div class="removeBtn form-group">
                                                     <br>                                                    
-                                                    <a href="removeCart?p_ID=${carts.get(i).productId }" style="color:white; text-decoration: none"><div class="btn btn-danger">Remove</div></a></div>
+                                                    <a style  = "cursor: pointer" onclick= "removeCart('${carts.get(i).productId }')" style="color:white; text-decoration: none"><div class="btn btn-danger">Remove</div></a></div>
 
                                             </div>
                                         </div>
@@ -77,7 +79,7 @@
 
                                 </div>
 								</c:forEach>
-                                
+                                </c:if>
 
                             </div>
                         </div>
@@ -96,7 +98,6 @@
                                             <select class="form-control" name="deliveryCountry">
                                                 <option value="">Select Country</option>
                                                 
-                                                <option value="${order.deliveryCountry }">${order.deliveryCountry }</option>
                                                 <c:forEach items = "${countries }" var = "country">
                                                 	<option value="${country.country}">${country.country }</option>
 												</c:forEach>
@@ -110,7 +111,6 @@
                                             <select class="form-control" id="team" name="deliveryTerm">
                                                 
                                                 <option value="">Select Delivery Term</option>
-                                                <option value="${order.deliveryTerm }">${order.deliveryTerm }</option>
                                                
                                                 <c:forEach items = "${deliveries }" var = "delivery">
                                                 	<option value="${delivery}">${delivery }</option>
@@ -121,7 +121,7 @@
 
 
                                         <div class="form-group">
-                                            <input class="form-control" type="text" placeholder="Target Delivery Date" value="${order.deliveryDate }"  id="targetDate" name="deliveryDate">
+                                            <input class="form-control" type="text" placeholder="Target Delivery Date" value=""  id="targetDate" name="deliveryDate">
                                         </div>
 
 
@@ -131,7 +131,7 @@
                                     <div class="col-md-6" style="padding-right: 4%;">
                                         <div class="form-group">
                                             <label><font color="white">n</font></label>
-                                            <input type="text" placeholder="Port of Destination" value="${order.port }" class="form-control" name="port">
+                                            <input type="text" placeholder="Port of Destination" value="" class="form-control" name="port">
                                         </div>
 
                                         <div class="form-group">
@@ -140,7 +140,6 @@
                                                 
                                                 <option value="">Select Payment Term</option>
                                                 
-                                                <option value="${order.paymentTerm }">${order.paymentTerm }</option>
                                                 <c:forEach items = "${payments}" var = "payment">
                                                 	<option value="${payment }">${payment }></option>
                                                 </c:forEach>
@@ -157,17 +156,17 @@
                                     <div class="col-md-6" style="padding-right: 4%;">
                                         <div class="form-group order-form">
                                             <label>Company Information</label>
-                                            <input type="text" placeholder="Company Name*" class="form-control order-form" value="${order.companyName }" name="companyName" required>
+                                            <input type="text" placeholder="Company Name*" class="form-control order-form" value="" name="companyName" required>
 
                                         </div>
 
                                         <div class="form-group">
-                                            <textarea name="address" placeholder="Address" class="form-control" rows="4" >${order.address }</textarea>
+                                            <textarea name="address" placeholder="Address" class="form-control" rows="4" ></textarea>
                                         </div>
 
                                         <div class="form-group">
 
-                                            <input type="text" placeholder="City" class="form-control" value="${order.city }" name="city"  >
+                                            <input type="text" placeholder="City" class="form-control" value="" name="city"  >
                                         </div>
 
                                         <div class="row">
@@ -176,19 +175,19 @@
                                                 <div class="form-group">
 
 	                                               <input required type="text" placeholder="Calling Code*" class="form-control order-form" value="" name="callCode">
-	                                               <input required type="text" placeholder="Calling Code*" class="form-control order-form" value="${order.callCode }" name="callCode">
+	                                               <input required type="text" placeholder="Calling Code*" class="form-control order-form" value="" name="callCode">
                                                         
                                                 </div>
                                             </div>
                                             <div class="col-md-7" style="padding-left: 19px;">
                                                 <div class="form-group">
-                                                    <input type="number" placeholder="Area Code" value="${order.areaCode }" class="form-control" name="areaCode"  />
+                                                    <input type="number" placeholder="Area Code" value="" class="form-control" name="areaCode"  />
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <input type="text" placeholder="Website" class="form-control" value="${order.companyWeb }" name="CompanyWeb"  >
+                                            <input type="text" placeholder="Website" class="form-control" value="" name="CompanyWeb"  >
                                         </div>
 
                                     </div>
@@ -201,7 +200,6 @@
                                             <select class="form-control" name="companyType">
                                                 
                                                 <option value="">Type of Company</option>
-                                                <option value="${order.companyType }">${order.companyType }</option>
                                                 <c:forEach items="${types}" var = "type">
                                                 	<option value="${type }">${type }</option>
                                                 </c:forEach>
@@ -214,7 +212,6 @@
                                                 
                                                 	<option value="">Select Country</option>
                                                 
-                                                	<option value="${order.companyCountry }" selected="selected">${order.companyCountry }</option>
                                                 
                                             </select>
 
@@ -224,13 +221,12 @@
 
                                             <select class="form-control" title="State" style="height:35px;" name="companyState" id="state">
                                                 <option value="" selected="selected" >Select State</option>
-                                                <option value="${order.companyState}" >${order.companyState}</option>
                                             </select>
 
                                         </div>
 
                                         <div class="form-group">
-                                            <input type="number" placeholder="Zip / Postal Code" value="${order.companyZip }" class="form-control" name="companyZip"  >
+                                            <input type="number" placeholder="Zip / Postal Code" value="" class="form-control" name="companyZip"  >
                                         </div>
 
 
@@ -238,12 +234,12 @@
                                             <div class="col-md-6">
 
                                                 <div class="form-group">
-                                                    <input type="number" placeholder="Phone Number" value="${order.companyPhone }" class="form-control" name="companyPhone"  >
+                                                    <input type="number" placeholder="Phone Number" value="" class="form-control" name="companyPhone"  >
                                                 </div>
                                             </div>
                                             <div class="col-md-6" style="padding-left: 19px;">
                                                 <div class="form-group">
-                                                    <input type="number" placeholder="Fax Number" value="${order.companyFax }" class="form-control" name="companyFax"  >
+                                                    <input type="number" placeholder="Fax Number" value="" class="form-control" name="companyFax"  >
                                                 </div>
                                             </div>
                                         </div>
@@ -275,7 +271,7 @@
                                             </div>
                                             <div class="col-md-8" style="padding-left: 19px;">
                                                 <div class="form-group">
-                                                    <input class="form-control order-form" type="text" placeholder="First Name*" value="${order.contactFName }" name="contactFName" required>
+                                                    <input class="form-control order-form" type="text" placeholder="First Name*" value="" name="contactFName" required>
                                                 </div>
                                             </div>
 
@@ -287,13 +283,13 @@
 
                                                 <div class="form-group">
                                                     
-                                             		<input required type="text" placeholder="Calling Code*" class="form-control order-form" value="${order.contactCallcode }" name="contactCallCode">
+                                             		<input required type="text" placeholder="Calling Code*" class="form-control order-form" value="" name="contactCallCode">
                                                     
                                                 </div>
                                             </div>
                                             <div class="col-md-8" style="padding-left: 19px;">
                                                 <div class="form-group">
-                                                    <input class="form-control order-form" type="number" placeholder="Mobile No.*" value="${order.contactMobile }" name="contactMobile" required>
+                                                    <input class="form-control order-form" type="number" placeholder="Mobile No.*" value="" name="contactMobile" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -319,23 +315,23 @@
 
                                             <div class="col-md-6" style="padding-right: 19px;">
                                                 <div class="form-group">
-                                                    <input class="form-control" value="${order.contactMName }" type="text" placeholder="Middle Name" name="contactMName">
+                                                    <input class="form-control" value="" type="text" placeholder="Middle Name" name="contactMName">
                                                 </div>
                                             </div>
                                             <div class="col-md-6" >
                                                 <div class="form-group">
-                                                    <input class="form-control order-form" value="${order.contactLName }" type="text" placeholder="Last Name*" name="contactLName" required>
+                                                    <input class="form-control order-form" value="" type="text" placeholder="Last Name*" name="contactLName" required>
                                                 </div>
                                             </div>
 
                                         </div>
 
                                         <div class="form-group">
-                                            <input class="form-control order-form" value="${order.contactEmail }" type="email" placeholder="Email ID*" name="contactEmail" required>
+                                            <input class="form-control order-form" value="" type="email" placeholder="Email ID*" name="contactEmail" required>
                                         </div>
 
                                         <div class="form-group">
-                                            <input class="form-control" type="text" value="${order.contactMessengerID }" placeholder="Messenger ID" name="contactMessengerID">
+                                            <input class="form-control" type="text" value="" placeholder="Messenger ID" name="contactMessengerID">
                                         </div>
 
                                     </div>
@@ -410,6 +406,27 @@
         </script>
         <!--tradeasia's scripts --> 
         <script src="js/tradeasia.js"></script>      
-
+		<script>
+		
+		function removeCart(id){
+			 var data = {
+                     id: id,
+                                          
+             };
+             
+		        $.ajax({
+                 type: "POST",
+                 url: "removeCart",
+                 data: data,
+                 success: function () {
+              	   //alert("Removed");
+                     location.reload();
+                 },
+                 error: function(xhr, textStatus, errorThrown){
+                     alert("There are some errors. Cannot removed now");
+                  }
+             });
+		}
+		</script>
     </body>
 </html>

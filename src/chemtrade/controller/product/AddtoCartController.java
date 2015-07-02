@@ -54,13 +54,22 @@ public class AddtoCartController extends HttpServlet {
 	         
 	         
 	         int productID = Integer.parseInt(request.getParameter("pid"));
+	         for (Product p : cartList){
+	        	 if (productID == p.getProductId()){
+	        		 
+	        		 //1 mean user has add to cart before
+	        		 response.sendError(1);
+	        		 return;
+	        	 }
+	         }
 	         ProductController productController = new ProductController();
-	         Product product = productController.getProductListFromDBByID(productID);
+	         Product product = productController.getProductFromDBByID(productID);
 	         //Product p = productDAO.getProduct(productID);
 	         cartList.add(product);
 	         
 	         session.setAttribute("cartList", cartList);
-	         response.sendRedirect("product");
+	         return;
+	         //response.sendRedirect("product");
     	
     }
 

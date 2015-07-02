@@ -75,7 +75,7 @@
                         <!-- Categories start-->
                         <div class="row">
                             <div class="col-md-12">
-                                <form method="get" action="category">
+                                <form method="get" action="category" ${display }>
                                     <fieldset>
                                         <legend class="cat-header">You may choose only 1</legend>
                                         
@@ -92,9 +92,6 @@
                                         </div>
                                     </fieldset>
                                 </form>
-
-                                
-
                                 <a href="category" style = "cursor:pointer"><img src="images/misc/back.png" alt="back-button"></a>
                                 <br>
                                

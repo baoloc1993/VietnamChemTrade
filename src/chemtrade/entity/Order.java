@@ -13,13 +13,38 @@ import java.util.ArrayList;
  */
 public class Order {
 
-    private String deliveryCountry, deliveryTerm, deliveryDate, port;
-    private String paymentTerm, companyName, address, city, callCode, areaCode, companyWeb;
-    private String companyType, companyCountry, companyState, companyZip, companyPhone;
-    private String companyFax, contactSalution, contactFName, contactCallCode, contactMobile;
-    private String contactMessengerType, contactMName, contactLName, contactEmail, contactMessengerID;
-    private String comments, verifyCode, ipaddress, timestamp, destinationCountry;
-    private int enq_code, approve_sts;
+    private String deliveryCountry = "";
+    private String deliveryTerm = "";
+    private String deliveryDate = "";
+    private String port = "";
+    private String paymentTerm = "";
+    private String companyName = "";
+    private String address = "";
+    private String city = "";
+    private String callCode = "";
+    private String areaCode = "";
+    private String companyWeb = "";
+    private String companyType = "";
+    private String companyCountry = "";
+    private String companyState = "";
+    private String companyZip = ""; 
+    private String companyPhone = "";;
+    private String companyFax = "";
+    private String contactSalution = "";
+    private String contactFName = "";
+    private String contactCallCode = "";
+    private String contactMobile = "";
+    private String contactMessengerType = "";
+    private String contactMName = "";
+    private String contactLName = "";
+    private String contactEmail = "";
+    private String contactMessengerID = "";
+    private String comments = "";
+    private String verifyCode ="";
+    private String ipaddress = "";
+    private String timestamp = "";
+    private String destinationCountry = "";
+    private int enq_code = 0, approve_sts;
     private ArrayList<OrderDetail> orderList = new ArrayList<OrderDetail>();
 
     public int getEnq_code() {
@@ -30,47 +55,7 @@ public class Order {
         return approve_sts;
     }
     
-//    public Order(int enq_code,String company_name, String company_type, String contact_person_name, String middle_name,
-//            String last_name, String country_code_mob, String mobile_no, String email_id, String messenger_type,
-//            String messenger_id, String country_code, String area_code, String phone, String fax, String address,
-//            String country, String state, String city, String zip, String website, String delivery_term,
-//            String payment_term, String destination_port, String destination_country, String target_del_date,
-//            String comments, int approve_sts, String ip_address, String created_on) {
-//
-//        this.approve_sts = approve_sts;
-//        this.enq_code = enq_code;
-//        this.companyName = company_name;
-//        this.companyType = company_type;
-//        this.contactFName = contact_person_name;
-//        this.contactMName = middle_name;
-//        this.contactLName = last_name;
-//        this.contactCallCode = country_code_mob;
-//        this.contactMobile = mobile_no;
-//        this.contactEmail = email_id;
-//        this.contactMessengerType = messenger_type;
-//        this.contactMessengerID = messenger_id;
-//        this.callCode = country_code;
-//        this.areaCode = area_code;
-//        this.companyPhone = phone;
-//        this.companyFax = fax;
-//        this.address = address;
-//        this.companyCountry = country;
-//        this.companyState = state;
-//        this.city = city;
-//        this.companyZip = zip;
-//        this.companyWeb = website;
-//        this.deliveryTerm = delivery_term;
-//        this.paymentTerm = payment_term;
-//        this.port = destination_port;
-//        this.destinationCountry = destination_country;
-//        this.deliveryDate = target_del_date;
-//        this.comments = comments;
-//        this.ipaddress = ip_address;
-//        this.timestamp = created_on;
-//        
-//        orderList = new ArrayList<OrderDetail>();
-//        
-//    }
+
    
     public void addProductToCart(OrderDetail od) {
         orderList.add(od);

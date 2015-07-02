@@ -25,6 +25,10 @@ public class ProductControllerTest extends TestCase{
 			ArrayList<Product> products3 = productController.getProductListFromDB(10,20);
 			assertEquals(10,products3.size());
 			assertEquals(products2.get(0).getProductId(),products3.get(0).getProductId());
+			
+			ArrayList<Product> products4 = productController.getProductListFromDB(0,10,'A');
+			assertEquals(10,products4.size());
+			System.out.println (products4.get(0).getProductName());
 		}catch (Exception e){
 			e.printStackTrace();
 			assertEquals(1, 2);

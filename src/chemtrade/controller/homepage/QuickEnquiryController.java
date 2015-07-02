@@ -39,7 +39,7 @@ import org.springframework.mail.SimpleMailMessage;
 
 import chemtrade.configuration.ConnectionManager;
 import chemtrade.configuration.Constant;
-import chemtrade.configuration.EmailConfiguration;
+import chemtrade.controller.EmailController;
 @WebServlet("/enquiry")
 public class QuickEnquiryController extends HttpServlet implements Constant{
 
@@ -211,7 +211,9 @@ public class QuickEnquiryController extends HttpServlet implements Constant{
 		String adminMailBody = adminMailBodyHeader+ mailBodyDetail+adminMailBodyFooter+mailBodyFooter;
 		test = mailBody;
 
-		 sendEmailViaGmail(email, mailBody);
+		EmailController mailController = new EmailController();
+		mailController.sendEmailViaGmail(email, mailBody, "Quick Enquiry");
+		 
 		//	return test;
        
 		
@@ -219,32 +221,6 @@ public class QuickEnquiryController extends HttpServlet implements Constant{
 	    
 	}
 
-	/**
-	 * Create setting for sending email through email
-	 * Send email via gmail
-	 * @param email
-	 * @param mailBody
-	 */
-	private void sendEmailViaGmail(final String email, String mailBody) throws Exception{
-		// sets SMTP server properties
-        Session session = EmailConfiguration.settingGmail();
- 
-        // creates a new e-mail message
-        Message msg = new MimeMessage(session);
- 
-        //try {
-			msg.setFrom(new InternetAddress(USER));
-			 InternetAddress[] toAddresses = { new InternetAddress(email) };
-		        msg.setRecipients(Message.RecipientType.TO, toAddresses);
-		        msg.setSubject("Quick Enquiry");
-		        msg.setSentDate(new Date());
-		        msg.setText(mailBody);
-		 
-		        // sends the e-mail
-		        Transport.send(msg);
-		  //      return "SUCCESS";
-		
-	}
 
 
 

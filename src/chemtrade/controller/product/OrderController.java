@@ -67,7 +67,8 @@ public class OrderController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     	
@@ -101,18 +102,23 @@ public class OrderController extends HttpServlet {
         if (cartList.size() == 0) {
            orderMessage = "Your cart is currently empty";
         } else {
-           orderMessage = "You are requesting the following";
+           orderMessage = "You are requesting the following:";
         }
         
         
         request.setAttribute("carts", cartList);
+        request.setAttribute("cartsSize", cartList.size());
+
         request.setAttribute("orderMessage", orderMessage);
         
-    	request.setAttribute("countries", countryList);
+   		request.setAttribute("countries", countryList);
     	request.setAttribute("deliveries", deliveryTerms);
     	request.setAttribute("payments", paymentTerms);
     	request.setAttribute("types", companyTypes);
-    	request.setAttribute("order", order);
+    	
+    	request.setAttribute("types", companyTypes);
+    	request.setAttribute("types", companyTypes);
+    	//request.setAttribute("order", order);
     	
         request.getRequestDispatcher("jsp/product/order.jsp").forward(request, response);
         
@@ -184,7 +190,7 @@ public class OrderController extends HttpServlet {
                         quantity = Double.parseDouble(request.getParameter("expectedQty" + i));
                         ProductController productController = new ProductController();
                         //Product p = productDAO.getProduct(prodID);
-                        Product product  = productController.getProductListFromDBByID(prodID); 
+                        Product product  = productController.getProductFromDBByID(prodID); 
                         orderDetail = new OrderDetail(product, price, unit, quantity);
                         order.addProductToCart(orderDetail);
                     }
@@ -435,5 +441,6 @@ public class OrderController extends HttpServlet {
 	        }
 
 	    }
-
+	    
+	
 }

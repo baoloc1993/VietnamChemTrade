@@ -51,10 +51,11 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
+
 import chemtrade.configuration.ConnectionManager;
 import chemtrade.configuration.Constant;
-import chemtrade.configuration.EmailConfiguration;
 import chemtrade.controller.CountryCodeController;
+import chemtrade.controller.EmailController;
 import chemtrade.controller.product.ProductController;
 import chemtrade.entity.CountryCode;
 import chemtrade.entity.DownloadWrapper;
@@ -190,7 +191,8 @@ public class DownloadCenterController extends HttpServlet implements Constant{
 
 	        compressFile(response, FilePath,files);
     		sendInfoToDB(name, email, phone, requirement);
-    		sendEmail(email, name);
+    		EmailController emailController = new EmailController();
+    		emailController.sendEmailViaGmail(email, getMailBody(name), "Download Center");
     		
     		
 
@@ -377,27 +379,7 @@ public class DownloadCenterController extends HttpServlet implements Constant{
     }
     
     
-    public void sendEmail(String email,String name) throws MessagingException{
-    	String subject = "Download Center";
-		//String to  = "baoloc1993@gmail.com";
-		//String to  = "contact@chemtradeasia.com";
-		//String from = "no-reply@chemtradeasia.com"; 
-		Session session = EmailConfiguration.settingGmail();
-	      
-        // creates a new e-mail message
-        Message msg = new MimeMessage(session);
-        	
-        //try {
-        msg.setFrom(new InternetAddress(USER));
-        InternetAddress[] toAddresses = { new InternetAddress(email) };
-        msg.setRecipients(Message.RecipientType.TO, toAddresses);
-        msg.setSubject(subject);
-        msg.setSentDate(new Date());
-        msg.setText(getMailBody(name));
- 
-        // sends the e-mail
-        Transport.send(msg);
-    }
+   
     
     private String getMailBody(String name){
     	String header="http://"+ ROOT + "/images/email_header.jpg";

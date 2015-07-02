@@ -33,18 +33,7 @@ public class DownloadCenterTest extends TestCase{
 		//assertEquals(true, false);
 	}
 	
-	public void testSendEmail(){
-		DownloadCenterController downloadCenterController = new DownloadCenterController();
-		try {
-			downloadCenterController.sendEmail("baoloc1993@gmail.com", "LuisNgo");
-			assertEquals(true, true);
-		} catch (MessagingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			assertEquals(true, false);
-			
-		}
-	}
+	
 	
 	public void testGetDownloadList(){
 		DownloadCenterController downloadCenterController = new DownloadCenterController();

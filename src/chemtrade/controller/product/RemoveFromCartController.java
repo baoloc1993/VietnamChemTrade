@@ -38,23 +38,28 @@ public class RemoveFromCartController extends HttpServlet {
 	@Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int productID = Integer.parseInt(request.getParameter("p_ID"));
+        int productID = Integer.parseInt(request.getParameter("id"));
         HttpSession session = request.getSession();
         
 		ArrayList<Product> cartList = (ArrayList<Product>) session.getAttribute("cartList");
         Iterator<Product> iter = cartList.iterator();
 
         try {
-            while (iter.hasNext()) {
-                if (iter.next().getProductId() == productID) {
-                    iter.remove();
-                }
-            }
+        	for (Product product : cartList){
+        		if (product.getProductId() == productID){
+        			cartList.remove(product);
+        			session.setAttribute("cartList", cartList);
+        			return;
+
+        		}
+        	}
+            
         } catch (Exception e) {
             e.printStackTrace();
+            response.sendError(404);
         }
 
-        response.sendRedirect("jsp/product/order.jsp");
+        response.sendRedirect("order");
 
     }
 

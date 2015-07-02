@@ -27,7 +27,7 @@ import javax.servlet.http.HttpSession;
 
 import chemtrade.configuration.ConnectionManager;
 import chemtrade.configuration.Constant;
-import chemtrade.configuration.EmailConfiguration;
+import chemtrade.controller.EmailController;
 import chemtrade.entity.Product;
 
 @WebServlet("/product")
@@ -90,6 +90,65 @@ public class ProductController extends HttpServlet implements Constant{
          
     }
     
+    
+    /**
+     * Get Product from database which result will come from first position to last position
+     * Select product with name begin with letter 
+     * in database (exclusive first and inclusive last)
+     * If first or last < 0, load all data
+     * 
+     * @params letter
+     * @return 
+     * @throws SQLException 
+     */
+    public ArrayList<Product> getProductListFromDB(int first, int last, char letter) {
+    	 ArrayList<Product> products = new ArrayList<>();
+    	 int count = last - first;
+    	 if (first < 0 || last < 0){
+    		 count = 0;
+    	 }
+    	    Connection conn;;
+    	    PreparedStatement ps;;
+    	    ResultSet rs;
+        try{
+            conn = ConnectionManager.getConnection();
+            String sql = "";
+            if (count > 0 ){
+            	sql = PRODUCT_BASE_SQL + " AND product_name like '"+ letter + "%' ORDER BY product_id DESC limit " + count +" OFFSET " + first ;
+            	System.out.println(sql);
+            }else{
+            	sql = PRODUCT_BASE_SQL + " AND product_name like '"+ letter + "%' ORDER BY product_id DESC";
+            }
+        
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+           // rs.next();
+            /*
+             * GEt TOP 3 PRODUCT
+             */
+            //int count = 0;
+            while (rs.next()) {
+            	
+            	Product product = new Product();
+            	product.setProductId(rs.getInt(PRODUCT_ID));
+            	product.setProductName(rs.getString(PRODUCT_NAME));
+            	product.setCountryOrigin(rs.getString(PRODUCT_COUNTRY));
+            	product.setPackingDetail(rs.getString(PRODUCT_PACKAGE));
+            	product.setPhysicalAppear(rs.getString(PRODUCT_PHY_APPEAR));
+            	product.setCasNumber(rs.getString(PRODUCT_CAS_NUMBER));
+            	product.setChemicalFormula(rs.getString(PRODUCT_FORMULA));
+            	product.setCountryCode(rs.getString(PRODUCT_COUNTRY_CODE));
+            	products.add(product);
+            	
+            }
+            return products;
+        }catch (Exception e){
+        	return products;
+        }
+            //return list;
+         
+    }
+    
     /**
      * Get product list through page
      * @param page: page want to load. 10 products in each page
@@ -107,6 +166,24 @@ public class ProductController extends HttpServlet implements Constant{
     	return products;
     }
     
+    
+    /**
+     * Get product list through page and letter
+     * @param page: page want to load. 10 products in each page
+     * if page < 1, load all product
+     * @return
+     */
+    public ArrayList<Product> getProductListFromDB(int page, char letter) {
+    	ArrayList<Product> products = new ArrayList<Product>();
+    	if (page < 1){
+    		products = getProductListFromDB(0,0,letter);
+    	}
+    	int first = (page-1) * NUMBER_ITEM_PER_PAGE;
+    	int last = first + NUMBER_ITEM_PER_PAGE;
+    	products = getProductListFromDB(first,last,letter);
+    	return products;
+    }
+    
     public ArrayList<Product> getProductListFromDB() {
     	
     	ArrayList<Product> products = getProductListFromDB(0,0);
@@ -120,8 +197,8 @@ public class ProductController extends HttpServlet implements Constant{
      * @param id
      * @return
      */
-    public Product getProductListFromDBByID(int id) {
-   	 ArrayList<Product> products = new ArrayList<>();
+    public Product getProductFromDBByID(int id) {
+   	 
    	    Connection conn;;
    	    PreparedStatement ps;;
    	    ResultSet rs;
@@ -180,34 +257,45 @@ public class ProductController extends HttpServlet implements Constant{
         	
         }catch (Exception e){
         	page = 1;
-        }
-        String letter = req.getParameter("letter");
         
-        /*
-         *Count PageCount 
-         */
-        int pageCount;
-		try {
-			pageCount = getPageCount();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			pageCount = 0;
-		}
-		
-		/*
-		 * Get Paging
-		 */
+        }
+        
         String paging = "";
-        if (session.getAttribute("letter-chosen") != null){
-        	paging =  getLetterPaging(page, letter, pageCount);
+        String letter = req.getParameter("letter");
+        if ((letter == null) || (letter.length() != 1) || !(Character.isLetter(letter.charAt(0)))){
+        	products = getProductListFromDB(page);
+        	
+        	paging =  getNumberPaging(page, products.size());
         }else{
-        	paging = getNumberPaging(page, pageCount);
+        	products = getProductListFromDB(page,letter.charAt(0));
+        	paging =  getLetterPaging(page, letter, products.size());
+
         }
-        
+//        /*
+//         *Count PageCount 
+//         */
+//        int pageCount;
+//		try {
+//			pageCount = getPageCount();
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			pageCount = 0;
+//		}
+//		
+//		/*
+//		 * Get Paging
+//		 */
+//        
+//        if (session.getAttribute("letter-chosen") != null){
+//
+//        }else{
+//        	paging = getNumberPaging(page, pageCount);
+//        }
+//        
         
         //ProductDAO pDAO = new ProductDAO();
        // HttpSession session = req.getSession(); 
-        products = getProductListFromDB(page);
+        
 
 //        if (session.getAttribute("productList") == null) {
 //        	req.setAttribute("message", "no session");

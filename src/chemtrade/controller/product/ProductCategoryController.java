@@ -40,13 +40,15 @@ public class ProductCategoryController extends HttpServlet implements Constant {
 
              try {
 				categories = getCategoryDB();
+				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
              
          }else{
-        	 
+        	 String display = "style = \"display : none;\"";
+				request.setAttribute("display", display);
              categoryWrappers = getCategoryWrapper(request, cat);
          }
          

@@ -18,7 +18,7 @@
  </style>
 
     <body>
-        <div class="container-fluid">
+        <div class="container">
 
             <!---to wrap around all body content--->
             <div class="row">
@@ -291,11 +291,13 @@
                     url: "addToCart",
                     data: data,
                     success: function () {
-                 	   alert("Please check your email inbox to reconfirm your enquiry. ");
-                        location.reload();
+                 	   alert("Added");
                     },
                     error: function(xhr, textStatus, errorThrown){
-                        alert(xhr.ge);
+                    	
+                    	alert("This product has been added to cart or some error ocurred");
+                    	
+                    	
                      }
                 });
         	}

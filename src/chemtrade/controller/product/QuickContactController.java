@@ -25,7 +25,7 @@ import com.sun.mail.iap.Response;
 
 import chemtrade.configuration.ConnectionManager;
 import chemtrade.configuration.Constant;
-import chemtrade.configuration.EmailConfiguration;
+import chemtrade.controller.EmailController;
 import chemtrade.controller.homepage.DownloadCenterController;
 
 @WebServlet("/quickContact")
@@ -99,37 +99,14 @@ public class QuickContactController extends HttpServlet implements Constant{
 		String mailBody = getMessage(header, name, insertID, email, phone, productID, productName, requirement, footer);
 	    
 		//test = mailBody;
+		EmailController emailController = new EmailController();
+		emailController.sendEmailViaGmail(email, mailBody, "Quick Contact");
 
-		 sendEmailViaGmail(email, mailBody);
+		 //sendEmailViaGmail(email, mailBody);
 	}
 
 	
-	/**
-	 * Create setting for sending email through email
-	 * Send email via gmail
-	 * @param email
-	 * @param mailBody
-	 */
-	private void sendEmailViaGmail(final String email, String mailBody) throws Exception{
-		// sets SMTP server properties
-        Session session = EmailConfiguration.settingGmail();
- 
-        // creates a new e-mail message
-        Message msg = new MimeMessage(session);
- 
-        //try {
-			msg.setFrom(new InternetAddress(USER));
-			 InternetAddress[] toAddresses = { new InternetAddress(email) };
-		        msg.setRecipients(Message.RecipientType.TO, toAddresses);
-		        msg.setSubject("Product Enquiry");
-		        msg.setSentDate(new Date());
-		        msg.setText(mailBody);
-		 
-		        // sends the e-mail
-		        Transport.send(msg);
-		  //      return "SUCCESS";
-		
-	}
+	
 	
 	private String getMessage(String header, String name, String insertID, String email, String phone, String productID, String productName, String requirement, String footer){
 		String message = "";

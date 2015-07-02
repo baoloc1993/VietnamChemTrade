@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import chemtrade.configuration.ConnectionManager;
 import chemtrade.configuration.Constant;
-import chemtrade.configuration.EmailConfiguration;
+import chemtrade.controller.EmailController;
 import chemtrade.exception.ExistedEmailException;
 
 
@@ -54,6 +54,10 @@ public class SubcriberController extends HttpServlet implements Constant {
 					resp.sendError(405);
 				} catch (MessagingException e) {
 					// TODO Auto-generated catch block
+					resp.sendError(405);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 					resp.sendError(405);
 				}
 				return;
@@ -86,11 +90,9 @@ public class SubcriberController extends HttpServlet implements Constant {
 	 * @param header
 	 * @param newsName
 	 * @param email
-	 * @throws SQLException 
-	 * @throws MessagingException 
 	 * @throws Exception 
 	 */
-	public void sendEmail(String newsName, String email) throws ExistedEmailException, SQLException, MessagingException {
+	public void sendEmail(String newsName, String email) throws Exception {
 		String response;
 		String header="http://" + ROOT + "/images/email_header.jpg";
 		String footer="http://" + ROOT +"/images/email_footer.jpg";
@@ -122,8 +124,11 @@ public class SubcriberController extends HttpServlet implements Constant {
 	        }
 	        addMailFooter(mailBody, adminMailBody, footer);
 	        
-	        sendEmailUser(email, mailBody);
-	        sendEmailContact(adminMailBody);
+	        EmailController emailController = new EmailController();
+	        emailController.sendEmailViaGmail(email, mailBody, "Newsletter Subscription");
+	        emailController.sendEmailViaGmail("contact@chemtradeasia.com", adminMailBody,"Newsletter subscription– Chemtradeasia Portal");
+	       // sendEmailUser(email, mailBody);
+	        //sendEmailContact(adminMailBody);
 	        addToDatabase(newsName, email);
 //	        response = "<script>alert('Please check your email inbox to reconfirm your enquiry.');"
 //	        		+ " window.location.href = \"index\""
@@ -157,7 +162,7 @@ public class SubcriberController extends HttpServlet implements Constant {
 		mailBody += "<td colspan=\"3\">Greetings from Tradeasia International Pte. Ltd!</td>";
 		mailBody += "</tr>";
 		mailBody += "<tr><td height=\"10\"></td></tr>";
-		
+	
 		return mailBody;
 	}
 	
@@ -189,7 +194,7 @@ public class SubcriberController extends HttpServlet implements Constant {
 		  adminMailBody += "<td colspan=\"3\">Email Id: " + email + "</td>";
 		  adminMailBody += "</tr>";
 	 	  adminMailBody += "<tr><td height=\"10\"></td></tr>";
-	 	  
+	 
 	 	  return adminMailBody;
 
 	}
@@ -235,7 +240,7 @@ public class SubcriberController extends HttpServlet implements Constant {
 	   	 mailBody += "<tr><td colspan=\"4\">Tradeasia Team</td></tr>";
 	   	 mailBody += "<tr><td height=\"10\"></td></tr>";
 	   	 mailBody += "<tr>";
-	   	 mailBody += "<td colspan=\"3\"><img src=\"'.$footer.'\"></td>";
+	   	 mailBody += "<td colspan=\"3\"><img src=\"" + footer + "\"></td>";
 	   	 mailBody += "</tr>";
 	     mailBody += "</table>";
 	     
@@ -251,57 +256,7 @@ public class SubcriberController extends HttpServlet implements Constant {
       	 adminMailBody += "</table>";
 
 	}
-	/**
-	 * Send email back to the user
-	 * @param email
-	 * @param mailBody
-	 * @throws MessagingException 
-	 */
-	private void sendEmailUser(String email, String mailBody) throws MessagingException{
-		  String subject =  "Newsletter Subscription";
-	      String from = "no-reply@chemtradeasia.com"; 
-	      Session session = EmailConfiguration.settingGmail();
-      
-        // creates a new e-mail message
-        Message msg = new MimeMessage(session);
- 
-        //try {
-        msg.setFrom(new InternetAddress(USER));
-        InternetAddress[] toAddresses = { new InternetAddress(email) };
-        msg.setRecipients(Message.RecipientType.TO, toAddresses);
-        msg.setSubject(subject);
-        msg.setSentDate(new Date());
-        msg.setText(mailBody);
- 
-        // sends the e-mail
-        Transport.send(msg);
-	}
-	
-	/**
-	 * send email to chemtradeasia.com
-	 * @throws MessagingException 
-	 */
-	private void sendEmailContact(String adminMailBody) throws MessagingException{
-		String subject = "Newsletter subscription– Chemtradeasia Portal";
-		//String to  = "baoloc1993@gmail.com";
-		String to  = "contact@chemtradeasia.com";
-		String from = "no-reply@chemtradeasia.com"; 
-		Session session = EmailConfiguration.settingGmail();
-	      
-        // creates a new e-mail message
-        Message msg = new MimeMessage(session);
- 
-        //try {
-        msg.setFrom(new InternetAddress(USER));
-        InternetAddress[] toAddresses = { new InternetAddress(to) };
-        msg.setRecipients(Message.RecipientType.TO, toAddresses);
-        msg.setSubject(subject);
-        msg.setSentDate(new Date());
-        msg.setText(adminMailBody);
- 
-        // sends the e-mail
-        Transport.send(msg);
-	}
+
 	
 	
 }
