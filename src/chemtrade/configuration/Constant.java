@@ -40,7 +40,7 @@ public interface Constant {
    /**
     * BASE SQL
     */
-   String PRODUCT_BASE_SQL = "SELECT p.product_id, p.product_name,p.specification,p.product_dir, p.msds, p.product_image, p.cas_number, p.chemical_formula, p.country_origin, c.country,a.phy_appear_name, pk.packaging_name "
+   String PRODUCT_BASE_SQL = "SELECT p.description, p.application, p.product_id, p.product_name,p.specification,p.product_dir, p.msds, p.product_image, p.cas_number, p.chemical_formula, p.country_origin, c.country,a.phy_appear_name, pk.packaging_name "
 		   				+ "FROM tbl_product p "
 		   				+ "inner join tbl_countries c on p.country_origin = c.ccode "
 		   				+ "inner join tbl_phy_appear a on p.physical_appear = a.phy_appear_id "
@@ -59,6 +59,8 @@ public interface Constant {
    String PRODUCT_PACKAGE = "packaging_name";
    String PRODUCT_COUNTRY = "country";
    String PRODUCT_COUNTRY_CODE = "country_origin";
+   String PRODUCT_DESC = "description";
+   String PRODUCT_APPLICATION = "application";
    //String PRODUCT_FIELD_ID = "product_id";
    
    

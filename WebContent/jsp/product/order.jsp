@@ -1,6 +1,14 @@
+<%@ page import="net.tanesha.recaptcha.ReCaptcha" %>
+<%@ page import="net.tanesha.recaptcha.ReCaptchaFactory" %>
 
 <%@include file = "../setting.jsp" %>
+<script src="js/countries3.js"></script>
 
+   <script type="text/javascript">
+       function loadimage() {
+           document.getElementById("randImage").src = "../image.jsp?" + Math.random();
+       }
+   </script>
     <body>
         <div class="container-fluid">
 
@@ -174,7 +182,6 @@
 
                                                 <div class="form-group">
 
-	                                               <input required type="text" placeholder="Calling Code*" class="form-control order-form" value="" name="callCode">
 	                                               <input required type="text" placeholder="Calling Code*" class="form-control order-form" value="" name="callCode">
                                                         
                                                 </div>
@@ -356,11 +363,10 @@
                                     <div class="col-md-12">    
                                         <center>
                                             <div class="form-group">
-                                                <img alt="code..." name="randImage" id="randImage" src="include/image.jsp" width="20%" height="20%" />
-                                                <a href="javascript:loadimage();"><img src="images/body/refresh.png"/></a>
-                                            </div>
-                                            <div class="form-group">
-                                                <input class="form-control order-form"   maxlength="6" style="width:50%" placeholder="Verification Code*" id="verifyCode" title="verifyCode" name="verifyCode" type="text" required /> 
+                                               <%
+          											ReCaptcha c = ReCaptchaFactory.newReCaptcha("6LcodwgTAAAAAEMXp4gPqAkFuhWIGD89ZhARSl3d", "6LcodwgTAAAAAPVnzcwlz0t7ZJ99b-XC0NiBRw_q", false);
+          											out.print(c.createRecaptchaHtml(null, null));
+        		 								%>
                                             </div>
                                         </center>
                                     </div>

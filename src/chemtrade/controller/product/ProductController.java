@@ -79,6 +79,8 @@ public class ProductController extends HttpServlet implements Constant{
             	product.setCasNumber(rs.getString(PRODUCT_CAS_NUMBER));
             	product.setChemicalFormula(rs.getString(PRODUCT_FORMULA));
             	product.setCountryCode(rs.getString(PRODUCT_COUNTRY_CODE));
+            	product.setDescription(rs.getBlob(PRODUCT_DESC));
+               	product.setApplication(rs.getString(PRODUCT_APPLICATION));
             	products.add(product);
             	
             }
@@ -227,6 +229,8 @@ public class ProductController extends HttpServlet implements Constant{
            	product.setCasNumber(rs.getString(PRODUCT_CAS_NUMBER));
            	product.setChemicalFormula(rs.getString(PRODUCT_FORMULA));
            	product.setCountryCode(rs.getString(PRODUCT_COUNTRY_CODE));
+           	product.setDescription(rs.getBlob(PRODUCT_DESC));
+           	product.setApplication(rs.getString(PRODUCT_APPLICATION));
           // 	products.add(product);
            	
            //}

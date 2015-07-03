@@ -24,7 +24,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import net.tanesha.recaptcha.ReCaptchaImpl;
+import net.tanesha.recaptcha.ReCaptchaResponse;
 import chemtrade.configuration.ConnectionManager;
+import chemtrade.configuration.Constant;
 import chemtrade.controller.CountryCodeController;
 import chemtrade.entity.CountryCode;
 import chemtrade.entity.Order;
@@ -38,7 +41,7 @@ import java.util.ArrayList;
  * @author ASUS
  */
 @WebServlet("/order")
-public class OrderController extends HttpServlet {
+public class OrderController extends HttpServlet implements Constant {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -140,24 +143,29 @@ public class OrderController extends HttpServlet {
     	Order order = new Order();
         try {
 
-            order = getAllParameter(request);
-            
-            HttpSession session = request.getSession(false);
+        	HttpSession session = request.getSession(false);
             @SuppressWarnings("unchecked")
 			ArrayList<Product> cartList = (ArrayList<Product>) session.getAttribute("cartList");
+            
+            order = getAllParameter(request);
+            String ipAddress = request.getRemoteAddr();
+			//String remoteAddr = request.getRemoteAddr();
+	        ReCaptchaImpl reCaptcha = new ReCaptchaImpl();
+	        reCaptcha.setPrivateKey(CAPTCHA_PRIVATE_KEY);
 
-            String rand = (String) session.getAttribute("rand");
-            if (!rand.equalsIgnoreCase(order.getVerifyCode())) {
-                //request.setAttribute("error", "Wrong verification code");
-                response.sendError(ERROR_VERIFY_CODE);
-                //request.setAttribute("order", order);
-               // setFields(request);
-            } else if (cartList.isEmpty()) {
+	        String challenge = request.getParameter("recaptcha_challenge_field");
+	        String uresponse = request.getParameter("recaptcha_response_field");
+	        ReCaptchaResponse reCaptchaResponse = reCaptcha.checkAnswer(ipAddress, challenge, uresponse);
+	        if(!reCaptchaResponse.isValid()){
+				//req.setAttribute("message", test);
+	        	//req.getRequestDispatcher("jsp/test.jsp").forward(req,resp);
+	        	response.sendError(ERROR_VERIFY_CODE);
+				
+			}else if (cartList.isEmpty()) {
             	response.sendError(ERROR_EMPTY_CART);
                 //request.setAttribute("error", "LRequest failed. Your cart is empty");
             } else {
 
-                    
                     Calendar cal = Calendar.getInstance();
                     java.sql.Timestamp time = new java.sql.Timestamp(cal.getTimeInMillis());
                     String timestamp = time + "";
