@@ -7,7 +7,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <style>
     .advance-search-btn {
-        background: url('images/advance-search-bg.jpg') repeat-x;
+    	background-color: #7E9234;
         height: 29px;
         margin-bottom:10px;
         border: 1px #327f75 solid;

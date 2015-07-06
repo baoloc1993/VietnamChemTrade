@@ -90,30 +90,6 @@
                      }
                 });
         	}
-        
-        function go_to_product_detail(id){
-        	//Send request
-	        var data = {
-                    id: id
-                   // files: files.join(","),
-                    
-            };
-            
-	        $.ajax({
-                type: "GET",
-                url: "productDetail",
-                data: data,
-                success: function () {
-                    //location.reload();
-                },
-                error: function(xhr, textStatus, errorThrown){
-                	window.location.href = "index";
-                 }
-            });
-        }
-        
-        
-        
 
         </script>
 
@@ -133,10 +109,13 @@
                         <div class="row" style="margin-top:10px">                        
 
                             <!-----slider--------->
-                            <%@ include file = "imageslider.jsp" %>
-
+                            <div class="col-sm-8" style="padding-right: 5px; margin-bottom: 10px; padding-left: 0px;">
+                            	<%@ include file = "imageslider.jsp" %>
+							</div>
                             <!-------left bar ----->
-                            <%@ include file = "productCategory.jsp" %>
+                            <div class="col-sm-4" >
+                            	<%@ include file = "productCategory.jsp" %>
+                            </div>
                         </div>
                         <!----top products header---------->            
                         <%@ include file= "topProduct3.jsp" %>

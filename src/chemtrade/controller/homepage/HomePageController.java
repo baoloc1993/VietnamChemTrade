@@ -124,7 +124,7 @@ public class HomePageController extends HttpServlet{
 		req.setAttribute("wrapperTopProducts", wrapperTopProducts);
 		req.setAttribute("widgets", widgets);
 		req.setAttribute("assoRes", associationResources);
-		req.setAttribute("capcha", captcha);
+		//req.setAttribute("capcha", captcha);
 		req.setAttribute("cartMessage", cartMessage);
 		req.setAttribute("carts", cartList);
 		//req.setAttribute("pageName3", pageName3);
@@ -270,8 +270,7 @@ public class HomePageController extends HttpServlet{
                 }
                 wrapperBanners.setIndex(count);
                 bannerList.add(wrapperBanners);
-                
-                break;
+                count++;
             }
             conn.close();
         	return bannerList;

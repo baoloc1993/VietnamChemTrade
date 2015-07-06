@@ -1,10 +1,30 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-
-
+<script>
+       function go_to_product_detail(id){
+        	//Send request
+	        var data = {
+                    id: id
+                   // files: files.join(","),
+                    
+            };
+            
+	        $.ajax({
+                type: "GET",
+                url: "productDetail",
+                data: data,
+                success: function () {
+                    //location.reload();
+                },
+                error: function(xhr, textStatus, errorThrown){
+                	window.location.href = "index";
+                 }
+            });
+        }
+ </script>
 <div class="title-bg span12 row-fluid" style="font-size:15px; margin-bottom:1%; margin-left:0px;">
-	<div class  ="span10"> Top Products </div>
+	<div class  ="span10" style = "color: white"> Top Products </div>
 	
 </div>	
 
@@ -31,9 +51,9 @@
                                     <div class="col-xs-6 col-md-3" style="padding-right: 13px;padding-left: 5px;">
                                         <div class="thumbnail">
                                             <center>     
-                								<a href="javascript:{}" onclick="document.getElementById('my_form${product.productId}').submit(); return false;" class="imgLink">
+                								<a href="javascript:{}" onclick = "go_to_product_detail('${product.productId}')" class="imgLink">
                                                 
-                                                    <span class="pdd-lft">
+                                                    <span class="pdd-lft" >
                                                         ${product.shortName }
                                                     </span>
                                                     <div style="height:110px;width:130px;" >

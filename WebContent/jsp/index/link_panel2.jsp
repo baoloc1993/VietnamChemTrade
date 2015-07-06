@@ -18,7 +18,7 @@
             <div class="space">
 
                 <div class="col-md-12 box1" style="padding-left:0px; padding-right: 0px;">
-                    <div class="widget" style="background:#6b6b53">Useful Tools<br>& Widgets</div>
+                    <div class="widget" style="background:#143D55">Useful Tools<br>& Widgets</div>
                 </div>
                 <div class="col-md-12 box1" style="padding-left:0px; padding-right: 0px;">
                     <div style="padding-left: 5px">      
@@ -50,7 +50,7 @@
             <div class="space">
 
                 <div class="col-md-12 box2" style="padding-left:0px; padding-right: 0px;">
-                    <div class="widget" style="background:#6b6b53">Association<br>& Resources</div>
+                    <div class="widget" style="background:#7E9234">Association<br>& Resources</div>
                 </div>
                 <div class="col-md-12 box2" style="padding-left:0px; padding-right: 0px;">
                     <div style="padding-left: 5px">      
@@ -82,7 +82,7 @@
             <div class="space">
 
                 <div class="col-md-12 box1" style="padding-left:0px; padding-right: 0px;">
-                    <div class="widget" style="background:#6b6b53">Event<br>Center</div>
+                    <div class="widget" style="background:#143D55">Event<br>Center</div>
                 </div>
                 <div class="col-md-12 box1" style="padding-left:0px; padding-right: 0px;">
                     <div style="padding-left: 5px">      
@@ -116,7 +116,7 @@
         <div class="row" >
 
             <div class="col-md-12 box2" style="padding-left:0px; padding-right: 0px;">
-                <div class="widget" style="background:#6b6b53">Tradeasia<br>Mobile App</div>
+                <div class="widget" style="background:#7E9234">Tradeasia<br>Mobile App</div>
             </div>
             <div class="col-md-12 box2" style="padding-left:0px; padding-right: 0px;">
                 <div style="padding-left: 5px">      

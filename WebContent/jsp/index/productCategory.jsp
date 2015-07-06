@@ -1,4 +1,4 @@
-<div class="col-sm-3" >
+
      <div class='row' style='padding-right: 1%;  padding-left: 1%;'>                               
          <div class='col-md-12' style="padding-right:0px; padding-left: 0px">
              <ul class="pdt-category">
@@ -21,7 +21,7 @@
                      <div class="col-xs-9" style="padding:0px;">
                          <div class="aQtn">Got a Question?</div>
                      </div>
-                     <div class="col-xs-3 brder" style="height: 100%;padding-left: 0px;padding-right:0px; background-color: #6a6f51">
+                     <div class="col-xs-3 brder" style="height: 100%;padding-left: 0px;padding-right:0px; background-color: #7E9234">
                          <img src="images/pdt-quote_icon.png" class="center-block" style="padding-top:11px" height="50" width="30" alt="img">
                      </div>
                  </a>
@@ -37,7 +37,7 @@
                      <div class="col-xs-9" style="padding:0px;">
                          <div class="aQtn" style="padding-top:16px">Want to Be Our  supplier?</div>
                      </div>
-                     <div class="col-xs-3 brder" style="height: 100%;padding-left: 0px;padding-right:0px; background-color: #6a6f51">
+                     <div class="col-xs-3 brder" style="height: 100%;padding-left: 0px;padding-right:0px; background-color: #7E9234">
                          <img src="images/pdt-sup.png" class="center-block" style="padding-top:12px" height="40" width="40"   alt="img"> 
                      </div>
                  </a>
@@ -52,14 +52,14 @@
                      <div class="col-xs-9" style="padding:0px;">
                          <div class="aQtn" style="padding-top:3%">Download Products Specification</div>
                      </div>
-                     <div class="col-xs-3 brder" style="height: 100%;padding-left: 0px;padding-right:0px; background-color: #6a6f51">
+                     <div class="col-xs-3 brder" style="height: 100%;padding-left: 0px;padding-right:0px; background-color: #7E9234">
                          <img src="images/pdt-know-more-pdt.png" style="padding-top:5px"  class="center-block" height="55" width="48" alt="img"> 
                      </div>
                  </a>
              </div>
          </div>
      </div>
- </div>
+
                         
 
 	        	

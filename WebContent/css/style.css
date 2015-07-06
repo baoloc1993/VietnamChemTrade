@@ -101,7 +101,7 @@ a.mail{background:url(../images/mail-icon.jpg) no-repeat left; width:20px; heigh
 a.mail:hover{background:url(../images/mail-icon-hover.jpg) no-repeat left;}
 
 .navbg {
-    background: url(../images/misc/menu-bg-colour.png) repeat scroll 0% 0% transparent;
+    background-color: #143D55;
 }
 
 
@@ -119,8 +119,7 @@ a.mail:hover{background:url(../images/mail-icon-hover.jpg) no-repeat left;}
 #menu-nav a:hover,
 #menu-nav a:active {
     color: #fff;
-    background: url(../images/misc/menu-bg-colour-hover.png) repeat scroll 0 0 rgba(0, 0, 0, 0);
-    /*background-color: #23577D;*/
+     background-color: #3087B4;
 }
 
 #menu-nav .home .icon {

@@ -17,7 +17,7 @@ a:hover, a:focus {
 }
 
 .blogContent {
-    background: #367b76;
+    background: #143D55;
     padding: 2%;
     height: 343px;
 }
@@ -187,14 +187,14 @@ a.bismuth-table {
 
 .box1 {
     border-bottom: white dotted thin;
-    background: none repeat scroll 0 0 #7d7f57;
+    background: none repeat scroll 0 0 #143D55;
     padding-left:0px;
 }
 
 
 .box2 {
     border-bottom: white dotted thin;
-    background: none repeat scroll 0 0 #7d7f57;
+    background: none repeat scroll 0 0 #7E9234;
     padding-left:0px;
 }
 
@@ -223,21 +223,21 @@ a:hover {
     cursor: pointer;
 }
 .title-bg {
-    background: #5bc6c0;
+    background: #143D55;
     width: 100%;
     height: 33px;
     padding-left: 15px;
     margin: auto;
     font-family: Oxygen-Bold, Verdana, Geneva, sans-serif;
     font-size: 15px;
-    color: #ffffff;
+    color: #143D55;
     margin-top: 6px;
     line-height: 33px;
     font-weight: bold;
 }
 
 .pdt-header-bg {
-    background: #4fcbc0;
+    background: #287AA9;
     width:100%;
     height: 40px;
     font-family: Oxygen-Bold,Verdana,Geneva,sans-serif;
@@ -284,26 +284,26 @@ a:hover {
 }
 
 .qtn{
-    background-color: #7d7f57;
-    height: 56px;                 
+    background-color: #7E9234;
+    height: 60px;                 
 }
 .qtn:hover {
-    background-color: #8b845e;
+    background-color: #96AD3E;
 }
 .spl{
-    background-color: #8b845e;
-    height: 56px;                 
+    background-color: #7E9234;
+    height: 60px;                 
 }
 .spl:hover {
-    background-color: #94845e;
+    background-color: #96AD3E;
 }
 
 .dwn{
-    background-color: #90845e;
+    background-color: #7E9234;
     height: 60px;                 
 }
 .dwn:hover {
-    background-color: #7d7f57;
+    background-color: #96AD3E;
 }
 
 .aQtn {
@@ -360,7 +360,7 @@ a:hover {
 }
 
 .add-btn {
-    background: url(../images/add-btn.jpg) repeat-x;
+    background-color: #143D55
     width: 59px;
     height: 24px;
     text-align: center;

@@ -3,7 +3,7 @@
 <%@ page import="net.tanesha.recaptcha.ReCaptchaFactory" %>
 <script src='https://www.google.com/recaptcha/api.js'></script> 
 
-<div class="col-xs-12 col-md-6" style= "padding: 2% ;background-color: #badcdb">
+<div class="col-xs-12 col-md-6" style= "background-color: #7E9234">
 	<form id="contform" class="form-pdd"  onsubmit  = "return submitEnquiry()" action = "enquiry" method = "get" autocomplete="on" novalidate="true">
          <div style="margin-bottom: 15px;border-bottom: #FFF dotted thin;font-size: 18px;color:white;font-family: Oxygen-Bold">Quick Enquiry</div>
 

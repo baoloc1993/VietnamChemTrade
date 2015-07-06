@@ -3,7 +3,7 @@
 <style>
 
     .footerSect {
-        background-color: #5e9502; margin-top:20px;
+        background-color: #7E9234; margin-top:20px;
         padding: 10px;
     }
     .footer-head {
