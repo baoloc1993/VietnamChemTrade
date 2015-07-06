@@ -123,14 +123,9 @@
 
 
 <!-----slider-------->
-<div class="row">
-    <div class="col-xs-12" style="padding:0px;">
-
-        <div class="well noPd">
-            <div id="top_Carousel" class="carousel slide">
-
-                <!-- Carousel items -->
-                <div class="carousel-inner">
+<div id="topproduct" class="carousel slide" style = "margin-bottom: 30px; margin-top:4%; ">
+                           
+	<div class="carousel-inner">
                     <c:forEach items = "${wrapperTopProducts}" var = "topProduct">
                     <!--/SLIDE 1-->
                    
@@ -138,7 +133,6 @@
                         <div class="row">
 
                             <!--/SLIDE in loop-->
-                            <div class="item">
                                 <div class="row">
                                 
                                    <c:forEach items = "${topProduct.products}" var = "product">
@@ -266,24 +260,19 @@
 									</c:forEach>
                                 </div>
                                 <!--/row-->
-                            </div>
                            
                         </div>
                         <!--/carousel-inner--> 
-                        <a class="left carousel-control crslCntrl " style="  height: 100%;" href="#top_Carousel" data-slide="prev">‹</a>
-
-                 <a class="right carousel-control crslCntrl " style="  height: 100%;" href="#top_Carousel" data-slide="next">›</a>
-                        
-                    </div>
+                                                
+                    
                     <!--/myCarousel-->
                                                  <!--/well-->
             </div>
             
             </c:forEach>
-                                        
-            
-        </div>
+	</div>
+     <!-- Carousel nav -->
+     <a class="carousel-control left" href="#topproduct" data-slide="prev" style = "width:2%;"></a>
+     <a class="carousel-control right" href="#topproduct" data-slide="next" style = "width:2%;"></a>
     </div>
-</div>
-
                         
