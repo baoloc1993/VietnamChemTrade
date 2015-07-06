@@ -21,7 +21,7 @@ import chemtrade.controller.event.EventController.EventWrapper;
 import chemtrade.entity.Event;
 
 
-@WebServlet("/single_event")
+@WebServlet("/event-details")
 public class SingleEventController extends HttpServlet{
 
 	@Override

@@ -35,7 +35,7 @@ import chemtrade.entity.Event;
  *
  */
 @SuppressWarnings("deprecation")
-@WebServlet("/event")
+@WebServlet("/events")
 public class EventController extends HttpServlet{
 	private static String date = "";
 

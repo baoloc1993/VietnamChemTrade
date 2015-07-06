@@ -5,51 +5,135 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
  
  
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-
-<base href="${fn:substring(url, 0, fn:length(url) - fn:length(pageContext.request.requestURI))}${pageContext.request.contextPath}/" />
-
-
-
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>VIETNAM CHEM TRADE</title>
-<link href="css/main.css" rel="stylesheet">
- <link href="css/bootstrap.css" rel="stylesheet">
- <link href="css/bootstrap.min.css" rel="stylesheet">
- <link href="css/style.css" rel="stylesheet">
- <link href="css/main.css" rel="stylesheet">
- <link rel="stylesheet" type="text/css" href="css/highslide/highslide.css" media="screen, projection">
- 
- <link rel="stylesheet" type="text/css" href="css/menu-media.css" media="screen, projection">
- <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" rel="stylesheet">
-  <script async="" charset="utf-8" src="//v2.zopim.com/?1kUgCWtYUhiYkCh3M3I7o4tqy892pDcX" type="text/javascript"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><style type="text/css"></style>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-   
-   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-      <script type="text/javascript" src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-
-   <script type="text/javascript" src="js/countries3.js"></script>
-	<script type="text/javascript" src="http://highslide.com/highslide/highslide-full.js"></script>
-	<script src="js/jquery/dist/jquery.min.js"></script>
+<!DOCTYPE html>
+<html lang="en">
 	
-    
+    <head>
+    	<base href="${fn:substring(url, 0, fn:length(url) - fn:length(pageContext.request.requestURI))}${pageContext.request.contextPath}/" />
+    	
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Chemtradeasia | Your Trusted Partner for Chemicals</title>
+        <link rel="shortcut icon" href="icon/favicon.ico" type="icon/x-icon">
+        <link rel="SHORTCUT ICON" href="icon/favicon.ico">
+        <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 
-<script>
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <link href="css/fonts.css" rel="stylesheet">
+        <link href="css/home.css" rel="stylesheet">
 
-//Function To Display Popup
-function show_popup() {
-	
-	document.getElementById('register').style.display = "block";
-}
+        <script type="text/javascript" src="http://highslide.com/highslide/highslide-full.js"></script>
+        <script type="text/javascript" src="js/highslide/highslide-with-html.js"></script>
+        <script type="text/javascript" src="js/highslide/highslide-with-html1.js"></script>
+        <!-- blueprint js framework -->
+        <script type="text/javascript" src="js/ajaxtabs/ajaxtabs.js"></script>
 
-function hide_popup() {
-	document.getElementById('register').style.display = "none";
-}
-</script><style type="text/css">.highslide img {cursor: url(highslide/graphics/zoomin.cur), pointer !important;}.highslide-viewport-size {position: fixed; width: 100%; height: 100%; left: 0; top: 0}</style><style media="print" class="jx_ui_StyleSheet" __jx__id="___$_2" type="text/css">.zopim { display: none !important }</style>
-    
+        <!-- vediogallarytabs-->
+        <link rel="stylesheet" type="text/css" href="js/ajaxtabs/ajaxtabs.css"/>
+        <link rel="stylesheet" type="text/css" href="js/highslide/highslide.css" />
+        <script type="text/javascript">
+            hs.graphicsDir = 'http://highslide.com/highslide/graphics/';
+            hs.outlineType = 'rounded-white';
+            hs.wrapperClassName = 'draggable-header';
+        </script>
+        <script type="text/javascript">
+            function submitDownloadForm(id, element)
+            {
+                var name = document.getElementById('name' + id).value.trim();
+                var email = document.getElementById('email_id' + id).value.trim();
+                var phone = document.getElementById('phone' + id).value.trim();
+                var rec = document.getElementById('requirement' + id).value.trim();
+                var atpos = email.indexOf("@");
+                var dotpos = email.lastIndexOf(".");
+                if (name === "") {
+                    alert('Enter Your Name for Enquiry!');
+                    document.getElementById('name' + id).focus();
+                    hs.close(element);
+                    return false;
+                }
+                if (email == "") {
+                    alert('Enter Your Mail Id for Enquiry!');
+                    document.getElementById('email_id' + id).focus();
+                    hs.close(element);
+                    return false;
+                }
+                if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= email.length) {
+                    alert("Not a valid e-mail address");
+                    hs.close(element);
+                    return false;
+                }
+                var form = document.createElement("form");
+                form.setAttribute("type", "hidden");
+                form.setAttribute("name", "download");
+                form.setAttribute("id", "download");
+                form.setAttribute("method", "post");
+                form.setAttribute("action", "download-single");
+                var input = document.createElement("input");
+                input2.setAttribute("type", "hidden");
+                input2.setAttribute("name", "id");
+                input2.setAttribute("value", id);
+                var input2 = document.createElement("input");
+                input2.setAttribute("type", "hidden");
+                input2.setAttribute("name", "name");
+                input2.setAttribute("value", name);
+                var input3 = document.createElement("input");
+                input3.setAttribute("type", "hidden");
+                input3.setAttribute("name", "email");
+                input3.setAttribute("value", email);
+                var input4 = document.createElement("input");
+                input4.setAttribute("type", "hidden");
+                input4.setAttribute("name", "phone");
+                input4.setAttribute("value", phone);
+                var input5 = document.createElement("input");
+                input5.setAttribute("type", "hidden");
+                input5.setAttribute("name", "rec");
+                input5.setAttribute("value", rec);
+                document.getElementById("download").appendChild(input);
+                document.getElementById("download").appendChild(input2);
+                document.getElementById("download").appendChild(input3);
+                document.getElementById("download").appendChild(input4);
+                document.getElementById("download").appendChild(input5);
+                document.getElementById("download").submit();
 
-</head>
+            }
+
+            
+            function enquiry_submit_validate(id, element) {
+                var frm = document.getElementById('frm' + id);
+                var name = document.getElementById('name' + id).value.trim();
+                var email_id = document.getElementById('email_id' + id).value.trim();
+                var atpos = email_id.indexOf("@");
+                var dotpos = email_id.lastIndexOf(".");
+                if (name == "") {
+                    alert('Enter Your Name for Enquiry!');
+                    document.getElementById('name' + id).focus();
+                    return false;
+                }
+
+                if (email_id == "") {
+                    alert('Enter Your Mail Id for Enquiry!');
+                    document.getElementById('email_id' + id).focus();
+                    return false;
+                }
+                if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= email_id.length) {
+                    alert("Not a valid e-mail address");
+                    return false;
+                }
+                hs.close(element);
+                return true;
+            }
+
+
+        </script>
+
+        <script type="text/javascript">
+            function loadimage() {
+                document.getElementById("randImage").src = "include/image.jsp?" + Math.random();
+            }
+        </script>
+
+    </head>

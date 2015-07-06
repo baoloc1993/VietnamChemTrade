@@ -45,7 +45,7 @@
             <div class="span12" style="background-color: white;">
 
                 <!---add the header and navbar---->
-                <%@include file="../header_nav.jsp"%>
+                <%@include file="../header_nav2.jsp"%>
 
                 <!---sitemap links--->
 

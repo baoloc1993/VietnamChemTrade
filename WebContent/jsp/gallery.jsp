@@ -89,7 +89,7 @@
                 <div class="span12]">
 
                     <!---add the header and navbar and search bar---->
-                    <%@include file="header_nav.jsp"%>
+                    <%@include file="header_nav2.jsp"%>
 
 
                     <!--Start of Gallery tab----->

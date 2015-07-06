@@ -54,12 +54,12 @@ public class QuickEnquiryController extends HttpServlet implements Constant{
 		// TODO Auto-generated method stub
 		
 		try{
-			String name = req.getParameter("per_name");
+			String name = req.getParameter("name");
 			String email = req.getParameter("email");
 			String mobile = req.getParameter("contact");
-			String country = req.getParameter("ccode");
-			String productName = req.getParameter("chemical");
-			String message = req.getParameter("message");
+			String country = req.getParameter("countryCode");
+			String productName = req.getParameter("product");
+			String message = req.getParameter("comments");
 			//String createdOn = req.getParameter("created_on");
 		//	String ipAddress = req.getParameter("ip_addres");
 			String ipAddress = req.getRemoteAddr();

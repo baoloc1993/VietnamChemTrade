@@ -13,7 +13,7 @@
 	
 	
 	
-	<bean name="/hello.htm" class="chemtrade.controller.HelloController"/>
+	<!-- <bean name="/index" class="chemtrade.controller.homepage.HomePageController"/>-->
    
 	<bean id="reCaptcha" class="net.tanesha.recaptcha.ReCaptchaImpl">
 		<property name="privateKey" value="your_recaptcha_private_key"/>
@@ -29,10 +29,7 @@
 	    <property name="subject" value="Quick Enquiry"/>
 	</bean>
 
-	<bean id="sendEmail" class="chemtrade.controller.homepage.QuickEnquiryController">
-    	<property name="mailSender" ref="mailSender"/>
-    	<property name="templateMessage" ref="templateMessage"/>
-	</bean>
+	
 	 <!--  END CAPTCHA -->
      <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></property>

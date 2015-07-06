@@ -5,6 +5,7 @@ import java.util.List;
 public class Event {
 	private int id;
 	private String title;
+	private String shortName;
 	private String description;
 	private String link;
 	private String img;
@@ -30,6 +31,11 @@ public class Event {
 	}
 	public void setTitle(String title) {
 		this.title = title;
+		 if (title.length() > 20) {
+             shortName = title.substring(0, 20) + "..";
+         } else {
+             shortName = title;
+         }
 	}
 	public String getDescription() {
 		return description;
@@ -78,6 +84,18 @@ public class Event {
 	}
 	public void setActive(int active) {
 		this.active = active;
+	}
+	/**
+	 * @return the shortName
+	 */
+	public String getShortName() {
+		return shortName;
+	}
+	/**
+	 * @param shortName the shortName to set
+	 */
+	public void setShortName(String shortName) {
+		this.shortName = shortName;
 	}
 
 	

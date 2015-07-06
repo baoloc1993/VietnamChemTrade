@@ -23,12 +23,6 @@ import chemtrade.entity.Product;
  */
 @WebServlet("/addToCart")
 public class AddtoCartController extends HttpServlet {
-    
-    
-    
-    
-
-
 
     /**
      * Handles the HTTP <code>POST</code> method.

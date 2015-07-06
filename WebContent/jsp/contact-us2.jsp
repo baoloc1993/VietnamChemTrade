@@ -17,7 +17,7 @@ Created on : May 15, 2015, 11:24:12 AM
                 <div class="span12">
 
                     <!---add the header and navbar---->
-                    <%@include file="header_nav.jsp"%>
+                    <%@include file="header_nav2.jsp"%>
 
                   
 

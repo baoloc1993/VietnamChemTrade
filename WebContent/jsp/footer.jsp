@@ -15,6 +15,7 @@
     }
 
     .ftr-links {
+    	padding-left: 0px;
         
     }
 

@@ -46,6 +46,8 @@ public class Product {
 	
 	private Blob description;
 	
+	private String shortName = "";
+	
 	
 	/**
 	 * Contructor
@@ -104,6 +106,11 @@ public class Product {
 	}
 	public void setProductName(String productName) {
 		this.productName = productName;
+		 if (productName.length() > 40) {
+             shortName = productName.substring(0, 40) + "..";
+         } else {
+             shortName = productName;
+         }
 	}
 
 	public String getProductDir() {
@@ -394,5 +401,19 @@ public class Product {
 
 	public void setCountryCode(String countryCode) {
 		this.countryCode = countryCode;
+	}
+
+	/**
+	 * @return the shortName
+	 */
+	public String getShortName() {
+		return shortName;
+	}
+
+	/**
+	 * @param shortName the shortName to set
+	 */
+	public void setShortName(String shortName) {
+		this.shortName = shortName;
 	}
 }

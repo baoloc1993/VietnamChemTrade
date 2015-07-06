@@ -5,7 +5,7 @@
 <div class = "container-fluid" style = "padding-right:27px; padding-left:5px; background-color: white;">
 	<!--  HEADER -->
 	<div class = "span12">
-		<%@ include file="../header_nav.jsp"%>
+		<%@ include file="../header_nav2.jsp"%>
 	</div>
 	<!--  END HEADER -->
 	

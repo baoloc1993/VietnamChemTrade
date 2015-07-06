@@ -142,10 +142,6 @@
 	                                                </tr>
 	                                            </table>
 	
-	                                            <!----<br>
-	                                            <b>Packaging</b>
-	                                            <b>:</b>
-	                                            <b>${product.packingDetail}</b>--->
 	                                        </div>
 	                                    </div>
 	                                </div>

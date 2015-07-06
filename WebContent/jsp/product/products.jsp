@@ -26,7 +26,7 @@
                 <div class="col-md-12 centerRow">
 
                     <!---add the header and navbar and search bar---->
-                    <%@include file="../header_nav.jsp"%>
+                    <%@include file="../header_nav2.jsp"%>
 
                     <div class="container-fluid">
 
@@ -63,7 +63,43 @@
                             </div>
 
                         </div>
-
+						<!-- Search by Alphabet -->
+                        <div class="row">
+                            <div class="col-md-6 subheader">
+                                Search by
+                                <div style="font-size:14px;">
+                                    <a href="product?letter=a">A</a>
+                                    <a href="product?letter=b">B</a>
+                                    <a href="product?letter=c">C</a>
+                                    <a href="product?letter=d">D</a>
+                                    <a href="product?letter=e">E</a>
+                                    <a href="product?letter=f">F</a>
+                                    <a href="product?letter=g">G</a>
+                                    <a href="product?letter=h">H</a>
+                                    <a href="product?letter=i">I</a>
+                                    <a href="product?letter=j">J</a>
+                                    <a href="product?letter=k">K</a>
+                                    <a href="product?letter=l">L</a>
+                                    <a href="product?letter=m">M</a>
+                                    <a href="product?letter=n">N</a>
+                                    <a href="product?letter=o">O</a>
+                                    <a href="product?letter=p">P</a>
+                                    <a href="product?letter=q">Q</a>
+                                    <a href="product?letter=r">R</a>
+                                    <a href="product?letter=s">S</a>
+                                    <a href="product?letter=t">T</a>
+                                    <a href="product?letter=u">U</a>
+                                    <a href="product?letter=v">V</a>
+                                    <a href="product?letter=w">W</a>
+                                    <a href="product?letter=x">X</a>
+                                    <a href="product?letter=y">Y</a>
+                                    <a href="product?letter=z">Z</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        
                         <!-- Start of all Products -->
 						<c:forEach items = "${products}" var = "product">
 	                        <hr>

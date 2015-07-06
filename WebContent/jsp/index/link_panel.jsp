@@ -14,7 +14,7 @@
         return false;
     }
 </script>
-<div class = "row-fluid">
+<div class="row" style="padding-left: 1%;padding-right:1%;">
 
 <!--  USEFUL TOOL AND WIDGET -->
 <div id = "widget" class ="span3 box1">

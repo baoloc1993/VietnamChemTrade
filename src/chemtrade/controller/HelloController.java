@@ -16,6 +16,7 @@ import java.util.Date;
 
 public class HelloController implements Controller {
 
+	
     protected final Log logger = LogFactory.getLog(getClass());
 
     public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)

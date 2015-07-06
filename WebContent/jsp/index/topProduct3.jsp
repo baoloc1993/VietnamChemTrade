@@ -74,17 +74,10 @@
         
                 
 		<c:forEach items = "${wrapperTopProducts}" var = "topProduct">
-           
-          <c:if test="${topProduct.active > 0 }">                  	
-	  		<div class="item active">    
+           	
+	  		<div class="item ${topProduct.active }">    
 	  		${product.productName}            
-	  	  </c:if>
-	  	  <c:if test="${topProduct.active == 0 }">                  	
-	  		<div class="item">   
-	  		 ${product.productName}            
-	  	  </c:if>
-	  	  
-	  	  	
+
 	        	<table style = "margin-left:2%;">
 	               <tbody>
 	               	  	<tr>        			

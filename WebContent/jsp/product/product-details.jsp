@@ -14,7 +14,7 @@
                 <div class="col-md-10 col-md-offset-1 centerRow">
 
                     <!---add the header and navbar---->
-                    <%@include file="../header_nav.jsp"%>
+                    <%@include file="../header_nav2.jsp"%>
                     <jsp:include page="../index/search.jsp"/>
 
                     
