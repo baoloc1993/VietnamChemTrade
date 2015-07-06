@@ -26,7 +26,7 @@
                 <div class="col-md-12 centerRow">
 
                     <!---add the header and navbar and search bar---->
-                    <%@include file="../header_nav2.jsp"%>
+                    <%@include file="../header_nav.jsp"%>
 
                     <div class="container-fluid">
 

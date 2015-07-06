@@ -1,5 +1,5 @@
 .FAQ_header {
-    color: rgb(26, 82, 146);
+    color: #317e74;
     font-family: Oxygen-Bold,Roboto-regular,Arial;
     font-size: 150%;
     margin-top: 20px;
@@ -20,7 +20,7 @@
     background-color: white;
 }
 .panel-heading:hover {
-    background-color: #7bbfe6;
+    background-color: #54c8c5;
 
 }
 .panel-heading:hover h4 {

@@ -5,7 +5,7 @@
 <%@ page import="net.tanesha.recaptcha.ReCaptchaFactory" %>
 <script src='https://www.google.com/recaptcha/api.js'></script> 
 ${enquiryError }
-<div class="col-xs-12 col-md-6" style = "style="padding:2%;background-color: #336688"">
+<div class="col-xs-12 col-md-6" style="padding:2%; background-color: #336688"">
 	<div id="enquiry" class="enquiry-head" style="font-size:15px;">QUICK ENQUIRY</div>
 	<form id="contform" class="form-pdd"  onsubmit  = "return submitEnquiry()" action = "enquiry" method = "get" autocomplete="on" novalidate="true">
 		  	

@@ -74,7 +74,7 @@
                 <div class="col-md-10 col-md-offset-1 centerRow">
 
                     <!---add the header and navbar and search bar---->
-                    <%@include file="header_nav2.jsp"%>
+                    <%@include file="header_nav.jsp"%>
                     <!---main part--->
                     <div class="row">
                         <div id="page1" class="col-md-12 col-xs-12 col-xd-12">

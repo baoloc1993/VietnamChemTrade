@@ -7,7 +7,6 @@ import junit.framework.TestCase;
 import org.springframework.web.servlet.ModelAndView;
 
 import chemtrade.controller.homepage.LatestEventController;
-import chemtrade.controller.homepage.TopProductController;
 import chemtrade.entity.Event;
 import chemtrade.entity.Product;
 

@@ -17,6 +17,7 @@
                 background-color: #C3FDB8;
             }
 
+            
             #imgScale {
                 height: 130px;
                 width: 130px;
@@ -50,10 +51,10 @@
                 color: slategrey;
             }
 
-
+            
             .search-btn {
-                background: url('../images/search-btn-bg.jpg') repeat;
-                border: 1px #659c09 solid;
+                background: #3d7876;
+                border: 1px #397c72 solid;
                 text-align: center;
                 color: #ffffff;
                 border-radius: 0px;

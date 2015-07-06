@@ -13,7 +13,7 @@
         <div class="col-xs-9 col-md-9">
             <div class="row">
                 <div class="col-md-12">
-                    <a href="product-details.jsp?id=${cart.productId}">${cart.productName }</a>
+                    <a href="productDetail?id=${cart.productId}">${cart.productName }</a>
                     	<p>Appearance: ${cart.physicalAppear}
                     
                 </div>
@@ -23,7 +23,7 @@
         <div class="col-xs-3 col-md-3" style="text-align: center">
             <div class="removeBtn form-group">
                 <br>                                                    
-                <a href="removeCart?p_ID=${cart.productId}&page=${pageName3}" style="color:#46cfbb;font-size: 9px;">Remove</a>
+                <a href="removeCart?pid=${cart.productId}" style="color:#46cfbb;font-size: 9px;">Remove</a>
 
             </div>
         </div>

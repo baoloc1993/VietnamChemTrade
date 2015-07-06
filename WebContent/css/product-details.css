@@ -1,0 +1,68 @@
+@media only screen and (max-device-width:350px){
+    /* styles for mobile browsers smaller than 480px; (iPhone) */
+    .copyright {
+        font-size: 11px;
+    }
+}
+.form-control {
+    height: 30px;
+    padding: 2px 7px;
+    font-size: 12px;
+}
+
+.tab-panel {
+    width: 100%;
+    display: inline-block;
+}
+
+.tab-link:after {
+    display: block;
+    padding-top: 20px;
+    content: '';
+}
+
+.tab-link li {
+    margin: 0px 5px;
+    float: left;
+    list-style: none;
+}
+
+.tab-link a {
+    padding: 8px 15px;
+    display: inline-block;
+    border-radius: 10px 3px 0px 0px;
+    background: #A9BCF5;
+    font-weight: bold;
+    color: #4c4c4c;
+}
+
+.tab-link a:hover {
+    background: #5FB404;
+    text-decoration: none;
+}
+
+li.active a, li.active a:hover {
+    background: #2E64FE;
+    color: #ffffff;
+    text-decoration:none;
+}
+
+.content-area {
+    padding: 15px;
+    border-radius: 3px;
+    box-shadow: -1px 1px 1px rgba(0,0,0,0.15);
+    background: #fff;
+    border: 6px solid #2E64FE;
+}
+
+.inactive{
+    display: none;
+}
+
+.active {
+    display: block;
+}
+
+.resizeInfo {
+    font-family: Roboto-Regular;
+}

@@ -94,51 +94,51 @@ public class EventController extends HttpServlet{
 	        HttpSession session = request.getSession();
 	        String rand = (String) session.getAttribute("rand");
 	        String input = request.getParameter("verifyCode");
-	        if (!rand.equalsIgnoreCase(input)) {
-	            out.println("<script>alert('Wrong verification code');</script>");
-	            out.print("<script>location.href='addNewEvent.jsp';</script>");
-	        }
-
-	        input = request.getParameter("firstNm");
-	        if (input.length() == 0) {
-	            out.print("<script>alert('Empty First Name');</script>");
-	            out.print("<script>location.href='addNewEvent.jsp';</script>");
-	        }
-	        input = request.getParameter("middleNm");
-	        if (input.length() >= 100) {
-	            out.print("<script>alert('Too Long Middle Name');</script>");
-	            out.print("<script>location.href='addNewEvent.jsp';</script>");
-	        }
-
-	        input = request.getParameter("lastNm");
-	        if (input.length() == 0) {
-	            out.print("<script>alert('Empty Last Name');</script>");
-	            out.print("<script>location.href='addNewEvent.jsp';</script>");
-	        }
-
-	        input = request.getParameter("email");
-	        if (input.length() == 0) {
-	            out.print("<script>alert('Empty Email');</script>");
-	            out.print("<script>location.href='addNewEvent.jsp';</script>");
-	        }
-
-	        input = request.getParameter("title");
-	        if (input.length() == 0) {
-	            out.print("<script>alert('Empty Title');location.href='addNewEvent.jsp';</script>");
-	            out.print("<script>location.href='addNewEvent.jsp';</script>");
-	        }
-
-	        input = request.getParameter("location");
-	        if (input.length() == 0) {
-	            out.print("<script>alert('Empty Event Location');</script>");
-	            out.print("<script>location.href='addNewEvent.jsp';</script>");
-	        }
-
-	        input = request.getParameter("email");
-	        if (input.length() == 0) {
-	            out.print("<script>alert('Empty Email');</script>");
-	            out.print("<script>location.href='addNewEvent.jsp';</script>");
-	        }
+//	        if (!rand.equalsIgnoreCase(input)) {
+//	            out.println("<script>alert('Wrong verification code');</script>");
+//	            out.print("<script>location.href='addNewEvent.jsp';</script>");
+//	        }
+//
+//	        input = request.getParameter("firstNm");
+//	        if (input.length() == 0) {
+//	            out.print("<script>alert('Empty First Name');</script>");
+//	            out.print("<script>location.href='addNewEvent.jsp';</script>");
+//	        }
+//	        input = request.getParameter("middleNm");
+//	        if (input.length() >= 100) {
+//	            out.print("<script>alert('Too Long Middle Name');</script>");
+//	            out.print("<script>location.href='addNewEvent.jsp';</script>");
+//	        }
+//
+//	        input = request.getParameter("lastNm");
+//	        if (input.length() == 0) {
+//	            out.print("<script>alert('Empty Last Name');</script>");
+//	            out.print("<script>location.href='addNewEvent.jsp';</script>");
+//	        }
+//
+//	        input = request.getParameter("email");
+//	        if (input.length() == 0) {
+//	            out.print("<script>alert('Empty Email');</script>");
+//	            out.print("<script>location.href='addNewEvent.jsp';</script>");
+//	        }
+//
+//	        input = request.getParameter("title");
+//	        if (input.length() == 0) {
+//	            out.print("<script>alert('Empty Title');location.href='addNewEvent.jsp';</script>");
+//	            out.print("<script>location.href='addNewEvent.jsp';</script>");
+//	        }
+//
+//	        input = request.getParameter("location");
+//	        if (input.length() == 0) {
+//	            out.print("<script>alert('Empty Event Location');</script>");
+//	            out.print("<script>location.href='addNewEvent.jsp';</script>");
+//	        }
+//
+//	        input = request.getParameter("email");
+//	        if (input.length() == 0) {
+//	            out.print("<script>alert('Empty Email');</script>");
+//	            out.print("<script>location.href='addNewEvent.jsp';</script>");
+//	        }
 
 	        
 	        

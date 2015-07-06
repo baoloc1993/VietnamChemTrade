@@ -1,28 +1,8 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+ <script src="js/product.js"></script>
 
-<script>
-       function go_to_product_detail(id){
-        	//Send request
-	        var data = {
-                    id: id
-                   // files: files.join(","),
-                    
-            };
-            
-	        $.ajax({
-                type: "GET",
-                url: "productDetail",
-                data: data,
-                success: function () {
-                    //location.reload();
-                },
-                error: function(xhr, textStatus, errorThrown){
-                	window.location.href = "index";
-                 }
-            });
-        }
- </script>
+
 <div class="title-bg span12 row-fluid" style="font-size:15px; margin-bottom:1%; margin-left:0px;">
 	<div class  ="span10" style = "color: white"> Top Products </div>
 	
@@ -57,7 +37,7 @@
                                                         ${product.shortName }
                                                     </span>
                                                     <div style="height:110px;width:130px;" >
-                                                        <img src="images/${product.productDir }/${product.thumbImage}>" title="${product.productName}"  style="width:100%; height:100%" alt="${product.productName}" class="img-rounded">
+                                                        <img src="images/${product.productDir }/${product.thumbImage}" title="${product.productName}"  style="width:100%; height:100%" alt="${product.productName}" class="img-rounded">
                                                     </div>
                                                 </a>
                                                 <div class="pdfTxt">

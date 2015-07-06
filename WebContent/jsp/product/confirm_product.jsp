@@ -1,6 +1,6 @@
 <%@ include file = "../setting.jsp"%>
 <body>
-<%@ include file = "../header_nav2.jsp"%>
+<%@ include file = "../header_nav.jsp"%>
 <div class="confirmation-bg">
        <div class="confirmation-box">
              <table class="tblbord" >

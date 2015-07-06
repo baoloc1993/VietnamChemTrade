@@ -17,7 +17,7 @@
                 <div class="col-md-10 col-md-offset-1 centerRow">
 
                     <!---add the header and navbar and search bar---->
-                    <%@include file="../header_nav2.jsp"%>
+                    <%@include file="../header_nav.jsp"%>
                     <br>
 
                     <!-- Products Banner-->

@@ -15,7 +15,7 @@
                 <!----center content--->
                 <div class="span12">
                     <!---add the header and navbar and search bar---->
-                    <%@include file="../header_nav2.jsp"%>
+                    <%@include file="../header_nav.jsp"%>
                     <div class="span12" style = "margin-left:0px;">
                         
                     <!-- EVENT PANEL LEFT SIDEBAR -->

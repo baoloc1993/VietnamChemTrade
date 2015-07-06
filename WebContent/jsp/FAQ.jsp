@@ -15,7 +15,7 @@
                 <div class="span12">
 
                     <!---add the header and navbar---->
-                    <%@include file="header_nav2.jsp"%>
+                    <%@include file="header_nav.jsp"%>
                     
                     <!---FAQs Accordion--->                    
                     <div class="row-fluid">

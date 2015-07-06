@@ -1,10 +1,9 @@
 .order_header {
-    color: rgb(26, 82, 146);
+    color: #317e74;
     font-family: Oxygen-Bold,Roboto-regular,Arial;
     font-size: 150%;
     margin-top: 20px;
 }
-
 
 
 .order_form input:required:valid, .order_form textarea:required:valid { 
@@ -14,7 +13,7 @@
     border-color: #28921f;
 }
 
-.order-form input:focus:invalid, .order_form textarea:focus:invalid { /* when a field is considered invalid by the browser */
+.order_form input:focus:invalid, .order_form textarea:focus:invalid { /* when a field is considered invalid by the browser */
     background: #fff url(../images/invalid.png) no-repeat 98% center;
     box-shadow: 0 0 5px #d45252;
     border-color: #b03535

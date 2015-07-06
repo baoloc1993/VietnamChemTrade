@@ -14,7 +14,7 @@
                 <div class="span12">
 
                     <!---add the header and navbar and search bar---->
-                    <%@include file="../header_nav2.jsp"%>
+                    <%@include file="../header_nav.jsp"%>
                     <!--main part for event--->
                     <div class="span12 row-fluid">
                            <!--  Find Event according to Date -->

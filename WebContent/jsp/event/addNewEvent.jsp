@@ -23,7 +23,7 @@
                 <!----center content--->
                 <div class="span12">
                     <!---add the header and navbar and search bar---->
-                    <%@include file="../header_nav2.jsp"%>
+                    <%@include file="../header_nav.jsp"%>
                     <br>
                     <div class="span12 row-fluid">
                     <!-- EVENT PANEL LEFT SIDEBAR -->

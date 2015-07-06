@@ -12,7 +12,7 @@
                     <!---add the header and navbar and search bar---->
                                  
 				<div class="row-fluid">
-					<%@include file="header_nav2.jsp"%> 
+					<%@include file="header_nav.jsp"%> 
                     <!----wolfram----->
                     <div class="container-fluid span" >
                         <div class="row-fluid" style="margin-top:15px;">

@@ -13,11 +13,11 @@
 }
 
 .panel-default > .panel-heading {
-    background: linear-gradient(#2294C8, #0F6AA3);
+    background: linear-gradient(#847b55, #7b7b55);
 }
 
 .panel-heading:hover {
-    background: linear-gradient(#84cc0d, #5e9502) !important;
+    background: linear-gradient(#56d1c7, #56c8c0) !important;
 }
 .panel-heading h3 {
     color: white;
@@ -61,18 +61,18 @@
 }
 
 h3 {
-    margin-top: 15px; margin-bottom: 5px; text-align: center; color: #1a5292;
+    margin-top: 15px; margin-bottom: 5px; text-align: center; color: #317e74;
     font-weight: bold;
 } 
 
 .tBody:hover {
 
-    background: linear-gradient(#84cc0d, #5e9502);  
+    background: linear-gradient(#56d1c7, #56c8c0);  
     cursor: pointer;
 }
 
 .tBody {
-    background: linear-gradient(#2294C8, #0F6AA3);
+    background: linear-gradient(#847b55, #7b7b55);
     text-align: center;
     font-family: Oxygen-Bold;
     color: white;
