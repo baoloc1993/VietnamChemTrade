@@ -33,7 +33,7 @@
             <br>
             <form name="form1" id="form1" method="post" action="products">
 
-                <jsp:include page="autocomplete.jsp"/>
+                <%@ include file="autocomplete.jsp"%>
             </form>
             
             <!-- Advanced Search Button -->                   

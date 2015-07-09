@@ -1,5 +1,9 @@
 package chemtrade.controller;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Properties;
 
@@ -11,10 +15,19 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+
+
+
+
+
+
+import chemtrade.configuration.ConnectionManager;
 import chemtrade.configuration.Constant;
+import chemtrade.entity.EmailAccount;
+
 
 public class EmailController implements Constant{
-
+	 ArrayList<EmailAccount> emailList = new ArrayList<EmailAccount>();
 	/**
 	 * Setting the Gmail SMTP for sending email
 	 * @return
@@ -71,4 +84,38 @@ public class EmailController implements Constant{
 		  //      return "SUCCESS";
 		
 	}
+	
+	
+	public void getEmailAccounts() {
+		Connection conn;
+        try {
+            conn = ConnectionManager.getConnection();
+            PreparedStatement ps = conn.prepareStatement("SELECT distinct * FROM `tbl_email_accounts` where status=1");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String emailType = rs.getString("email_type");
+                String email = rs.getString("email_account");
+                String status = rs.getString("status");
+
+                EmailAccount emailAccount = new EmailAccount(id, emailType, email, status);
+                emailList.add(emailAccount);
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        
+        }
+    }
+    
+    public String getAdminEmail() {
+        getEmailAccounts();        
+        for (EmailAccount ea:emailList) {
+            if (ea.getAccountType().equalsIgnoreCase("admin")) {
+                return ea.getEmailAccount();
+            }
+        }
+        return "";
+        
+    }
 }

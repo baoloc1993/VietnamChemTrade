@@ -34,23 +34,23 @@ public class HomePageControllerTest extends TestCase{
 ////		System.out.println (wrapperBanners.get(0).getBanner().getFilepath());
 //	}
 	
-	public void testGetBanner() throws SQLException{
-		HomePageController homePageController = new HomePageController();
-		
-		ArrayList<WrapperBanners> wrapperBanners = homePageController.getBanners();
-		System.out.println (wrapperBanners.size());
-		for (WrapperBanners wrapperBanners2 : wrapperBanners){
-			System.out.println (wrapperBanners2.getActive());
-			System.out.println (wrapperBanners2.getIndex());
-			//System.out.println (wrapperBanners2.getBanner().getName());
-			System.out.println (wrapperBanners2.getBanner().getName());
-			System.out.println (wrapperBanners2.getBanner().getFilepath());
-			System.out.println (wrapperBanners2.getBtnColor());
-			System.out.println (wrapperBanners2.getBtnLink());
-			System.out.println (wrapperBanners2.getBtnName());
-		}
-		
-	}
+//	public void testGetBanner() throws SQLException{
+//		HomePageController homePageController = new HomePageController();
+//		
+//		ArrayList<WrapperProducts> wrapperBanners = homePageController.get
+//		System.out.println (wrapperBanners.size());
+//		for (WrapperBanners wrapperBanners2 : wrapperBanners){
+//			System.out.println (wrapperBanners2.getActive());
+//			System.out.println (wrapperBanners2.getIndex());
+//			//System.out.println (wrapperBanners2.getBanner().getName());
+//			System.out.println (wrapperBanners2.getBanner().getName());
+//			System.out.println (wrapperBanners2.getBanner().getFilepath());
+//			System.out.println (wrapperBanners2.getBtnColor());
+//			System.out.println (wrapperBanners2.getBtnLink());
+//			System.out.println (wrapperBanners2.getBtnName());
+//		}
+//		
+//	}
 	
 
 }

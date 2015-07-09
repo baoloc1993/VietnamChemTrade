@@ -1,5 +1,5 @@
 
-<%@ include file="cart.jsp"%>
+
 
 <style>
 
@@ -73,7 +73,7 @@
         background-color: white;
     }
 </style>
-
+<%@ include file="cart.jsp"%>
 <!---header row--->
 <div class="row" style="padding-top: 9px;">
 
@@ -155,7 +155,7 @@
                             <li><a class="productmenu" href="product"><span class="icon"></span>Products</a></li>
                             <li><a class="events" href="blog"><span class="icon"></span>Blog</a></li>
                             <li><a class="gallery" href="gallery"><span class="icon"></span>Gallery</a></li>
-                            <li><a class="faq" href="FAQ.jsp"><span class="icon"></span>FAQs</a></li>
+                            <li><a class="faq" href="faq"><span class="icon"></span>FAQs</a></li>
                             <li><a class="contact" href="contact-us"><span class="icon"></span>Contact Us</a></li>
                         </ul>
                     </div>

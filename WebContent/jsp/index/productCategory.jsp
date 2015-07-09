@@ -17,7 +17,7 @@
      <div class='row' style='padding-right: 1%;  padding-left: 1%;margin-bottom: 3px'>  
          <div class='col-md-12' style="padding-right:0px; padding-left: 0px; margin-top: 8px">
              <div class="row qtn" style="margin:0px;">
-                 <a href="send-enquiry.jsp" style="cursor: pointer"> 
+                 <a href="sendEnquiry" style="cursor: pointer"> 
                      <div class="col-xs-9" style="padding:0px;">
                          <div class="aQtn">Got a Question?</div>
                      </div>
@@ -33,7 +33,7 @@
      <div class='row' style='padding-right: 1%;  padding-left: 1%;margin-top: 3px'>  
          <div class='col-md-12' style="padding-right:0px; padding-left: 0px;">
              <div class="row spl" style="margin:0px;">
-                 <a href="new-supplier.jsp" style="cursor: pointer"> 
+                 <a href="newSupplier" style="cursor: pointer"> 
                      <div class="col-xs-9" style="padding:0px;">
                          <div class="aQtn" style="padding-top:16px">Want to Be Our  supplier?</div>
                      </div>
@@ -48,7 +48,7 @@
      <div class='row' style='padding-right: 1%;  padding-left: 1%;margin-top: 3px'>  
          <div class='col-md-12' style="padding-right:0px; padding-left: 0px;">
              <div class="row dwn" style="margin:0px;">
-                 <a href="download-center.jsp" style="cursor: pointer"> 
+                 <a href="downloadCenter" style="cursor: pointer"> 
                      <div class="col-xs-9" style="padding:0px;">
                          <div class="aQtn" style="padding-top:3%">Download Products Specification</div>
                      </div>

@@ -12,11 +12,11 @@
 
             <div class="row">
                 <!----support---->
-                <div class="col-md-3" style="margin-bottom:15px">
-                    <div style="font-family: Oxygen-Bold;  font-size: 13px;margin-bottom:15px;width: 100%">
+                <div class="col-md-3" style="margin-bottom:15px;">
+                    <div style="font-family: Oxygen-Bold; font-size :1.5em;margin-bottom:15px;width: 100%">
                         Support and Other Links
                     </div>
-                    <div style="font-family: Verdana; font-size: 10px" class="fLinks">
+                    <div style="font-family: Verdana; font-size: 1em" class="fLinks">
                         <a href="usefulTools">Useful Tools</a> | <a href="sitemap">Sitemap</a> | <a href="feedback">Feedback</a>
                     </div>
                 </div>
@@ -24,7 +24,7 @@
                 <!-----subscribe---->
                 <div class="col-md-5">
 
-                    <div style="font-family: Oxygen-Bold;  font-size: 13px;margin-bottom:10px;width: 100%">
+                    <div style="font-family: Oxygen-Bold;  font-size :1.5em;margin-bottom:10px;width: 100%">
                         Subscribe to Our Newsletter
                     </div>
 
@@ -60,7 +60,7 @@
                 </div>
 
                 <!-----logo--->
-                <div class="col-md-3" style="margin-top: 5px">
+                <div class="col-md-4" style="margin-top: 5px">
 
                     <img src="images/foot-logo.png" alt="footer-logo" style="width:100%;max-width: 400px">
 
@@ -73,7 +73,7 @@
         </div>
 
         <div class="col-md-12">
-            <div class="refulgence" style="cursor: pointer; ">
+            <div class="refulgence" style="cursor: pointer;font-size :1.1em ">
              
                 <a data-toggle="modal" data-target="#policyModal"><font color="white">Privacy Policy </font></a>
                 <!-- Modal for policy -->

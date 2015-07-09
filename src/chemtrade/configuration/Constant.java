@@ -25,9 +25,14 @@ public interface Constant {
 //  String USERNAME = "prodchem_chemlib";
 //  String PASSWORD = "prodchem_chemlib";
 
-   String URL = "jdbc:mysql://localhost/tradeasia";
+//   String URL = "jdbc:mysql://localhost/tradeasia";
+//   String USERNAME = "root";
+//   String PASSWORD = "ngolebaoloc";
+   
+   
+   String URL = "jdbc:mysql://localhost/tradeus_vietnam";
    String USERNAME = "root";
-   String PASSWORD = "";
+   String PASSWORD = "ngolebaoloc";
    
    
    
@@ -61,6 +66,7 @@ public interface Constant {
    String PRODUCT_COUNTRY_CODE = "country_origin";
    String PRODUCT_DESC = "description";
    String PRODUCT_APPLICATION = "application";
+   
    //String PRODUCT_FIELD_ID = "product_id";
    
    

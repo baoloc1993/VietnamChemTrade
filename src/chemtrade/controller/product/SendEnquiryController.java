@@ -85,7 +85,7 @@ public class SendEnquiryController extends HttpServlet {
          ArrayList<Product> products = productController.getProductListFromDB(0);
          
          req.setAttribute("products", products);
-         req.getRequestDispatcher("jsp/products/send-enquiry.jsp").forward(req, resp);
+         req.getRequestDispatcher("jsp/product/send-enquiry.jsp").forward(req, resp);
     	//super.doGet(req, resp);
     }
 }

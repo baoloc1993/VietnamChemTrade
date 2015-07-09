@@ -34,9 +34,9 @@
                                                                                         
                                     <div class="panel panel-default">
                                         <div class="panel-heading" role="tab" id="heading${i}" data-toggle="collapse" data-parent="#accordion" href="#collapse${i}" aria-expanded="true" aria-controls="collapse${i}">
-                                            <h4 class="panel-title" >
-                                                <span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span>
-                                                ${faqList.get(i).question }
+                                            <h4 class="panel-title" style = "cusor:pointer" >
+                                                
+                                               <a style = "cursor:pointer">${faqList.get(i).question }</a>
                                             </h4>
                                         </div>
                                         <div id="collapse${i}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading${i}">

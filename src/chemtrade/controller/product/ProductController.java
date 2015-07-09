@@ -313,6 +313,7 @@ public class ProductController extends HttpServlet implements Constant{
            	product.setCountryCode(rs.getString(PRODUCT_COUNTRY_CODE));
            	product.setDescription(rs.getBlob(PRODUCT_DESC));
            	product.setApplication(rs.getString(PRODUCT_APPLICATION));
+           	product.setThumbImage(rs.getString(PRODUCT_IMAGE));
           // 	products.add(product);
            	
            //}
@@ -471,6 +472,7 @@ public class ProductController extends HttpServlet implements Constant{
            //	System.out.println(sql);
            //}else{
            	sql = PRODUCT_BASE_SQL + " AND category_id like '%" + cateId + "%' order by product_name DESC";
+           sql = PRODUCT_BASE_SQL;
            	System.out.println (sql);
            //}
        
@@ -481,23 +483,28 @@ public class ProductController extends HttpServlet implements Constant{
             * GEt TOP 3 PRODUCT
             */
            //int count = 0;
+           //System.out.println (rs.getInt(PRODUCT_ID));
+          System.out.println( rs.next());
+          
            while (rs.next()) {
-           	
-           	Product product = new Product();
-           	product.setProductId(rs.getInt(PRODUCT_ID));
-           	product.setProductName(rs.getString(PRODUCT_NAME));
-           	product.setCountryOrigin(rs.getString(PRODUCT_COUNTRY));
-           	product.setPackingDetail(rs.getString(PRODUCT_PACKAGE));
-           	product.setPhysicalAppear(rs.getString(PRODUCT_PHY_APPEAR));
-           	product.setCasNumber(rs.getString(PRODUCT_CAS_NUMBER));
-           	product.setChemicalFormula(rs.getString(PRODUCT_FORMULA));
-           	product.setCountryCode(rs.getString(PRODUCT_COUNTRY_CODE));
-           	products.add(product);
-           	
+	           	Product product = new Product();
+	           	product.setProductId(rs.getInt(PRODUCT_ID));
+	           	product.setProductName(rs.getString(PRODUCT_NAME));
+	        	
+	           	product.setCountryOrigin(rs.getString(PRODUCT_COUNTRY));
+	           	product.setPackingDetail(rs.getString(PRODUCT_PACKAGE));
+	           	product.setPhysicalAppear(rs.getString(PRODUCT_PHY_APPEAR));
+	           	product.setCasNumber(rs.getString(PRODUCT_CAS_NUMBER));
+	           	product.setChemicalFormula(rs.getString(PRODUCT_FORMULA));
+	           	product.setCountryCode(rs.getString(PRODUCT_COUNTRY_CODE));
+	           	products.add(product);
+           
            }
+           
            return products;
        }catch (Exception e){
-       	return products;
+    	   e.printStackTrace();
+       		return products;
        }
     }
     
@@ -516,6 +523,7 @@ public class ProductController extends HttpServlet implements Constant{
 	         String sql = "select a.product_id as pid, b.product_name as pname, b.product_image, b.msds, b.specification, b.facebook_url, "
 	        	 		+ "b.twitter_url, b.skype_id from tbl_home_products a, "
 	         		+ "tbl_product b where a.product_id=b.product_id order by pname ASC";
+	         //String sql = PRODUCT_BASE_SQL;
 	         //System.out.println (sql);
 	         PreparedStatement ps = conn.prepareStatement(sql);
 	         //ps.setString(1, user);

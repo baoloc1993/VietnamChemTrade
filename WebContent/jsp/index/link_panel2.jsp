@@ -93,7 +93,7 @@
 	                                     <form id="my_formE${event.id}" action="event-details" method="get">
 	                						<input type="hidden" name="id" value="${event.id }">
 	            						</form>        
-	            					<a href="javascript:{}" onclick="document.getElementById('my_formE${event.id}').submit(); return false;" class="association-table" target="_blank" title="${event.title }">
+	            					<a href="${link }" class="association-table" target="_blank" title="${event.title }">
 	                                   
 	                                        ${event.shortName }</a></div>
 	                            </li>

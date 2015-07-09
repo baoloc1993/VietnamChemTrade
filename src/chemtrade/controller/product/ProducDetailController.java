@@ -24,7 +24,8 @@ public class ProducDetailController extends HttpServlet implements Constant {
 		try{
 			pid = Integer.parseInt(request.getParameter("id"));
 		}catch (Exception e){
-			request.getRequestDispatcher("product").forward(request, resp);
+			resp.sendRedirect("product");
+			//request.getRequestDispatcher("product").forward(request, resp);
 
 		}
 		

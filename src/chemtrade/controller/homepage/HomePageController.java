@@ -64,7 +64,15 @@ public class HomePageController extends HttpServlet{
 		ArrayList<Event> latestEvents = new LatestEventController().getLatestEvent();
 		ArrayList<Product> topProducts = new ProductController().getTopProducts();
 		//ArrayList<Product> topProducts = new ProductController().getProductListFromDB(1, 12);
-		
+		try{
+			if (topProducts.size() > 5){
+				topProducts = (ArrayList<Product>) topProducts.subList(0, 4);
+			}else{
+				topProducts = (ArrayList<Product>) topProducts.subList(0, topProducts.size()-1);
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
 		/*
 		 * Use for search bar
 		 */
@@ -97,7 +105,7 @@ public class HomePageController extends HttpServlet{
 		/*
 		 * Get Captcha 
 		 */
-		String captcha = new CaptchaController().getCaptchaHTML();
+		//String captcha = new CaptchaController().getCaptchaHTML();
 		
 		
 		wrapperTopProducts = configWrapperProduct(topProducts);

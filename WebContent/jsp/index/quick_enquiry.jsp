@@ -43,7 +43,7 @@
              <div class="col-md-6" style="margin-bottom:5px">
                  <input type="email" placeholder="Email" name="email" class="form-control" required>
              </div>
-             <div class="col-md-6" style="margin-top:7px">
+             <div class="col-md-6" >
 
                  <button type="submit" class="btn btn1 btn-info">Submit</button>
                  <button type="reset" class="btn btn1 btn-danger">Reset</button>

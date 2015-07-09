@@ -67,11 +67,11 @@
 
     <body>
         
-        <div class="container-fluid">
+        <div class="container">
             <!---to wrap around all body content--->
             <div class="row">
                 <!----center content--->
-                <div class="col-md-10 col-md-offset-1 centerRow">
+                <div class="col-md-12 centerRow">
 
                     <!---add the header and navbar and search bar---->
                     <%@include file="header_nav.jsp"%>

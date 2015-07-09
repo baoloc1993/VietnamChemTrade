@@ -129,96 +129,96 @@ public class OrderController extends HttpServlet implements Constant {
         
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-    	Order order = new Order();
-        try {
-
-        	HttpSession session = request.getSession(false);
-            @SuppressWarnings("unchecked")
-			ArrayList<Product> cartList = (ArrayList<Product>) session.getAttribute("cartList");
-            
-            order = getAllParameter(request);
-            String ipAddress = request.getRemoteAddr();
-			//String remoteAddr = request.getRemoteAddr();
-	        ReCaptchaImpl reCaptcha = new ReCaptchaImpl();
-	        reCaptcha.setPrivateKey(CAPTCHA_PRIVATE_KEY);
-
-	        String challenge = request.getParameter("recaptcha_challenge_field");
-	        String uresponse = request.getParameter("recaptcha_response_field");
-	        ReCaptchaResponse reCaptchaResponse = reCaptcha.checkAnswer(ipAddress, challenge, uresponse);
-	        if(!reCaptchaResponse.isValid()){
-				//req.setAttribute("message", test);
-	        	//req.getRequestDispatcher("jsp/test.jsp").forward(req,resp);
-	        	response.sendError(ERROR_VERIFY_CODE);
-				
-			}else if (cartList.isEmpty()) {
-            	response.sendError(ERROR_EMPTY_CART);
-                //request.setAttribute("error", "LRequest failed. Your cart is empty");
-            } else {
-
-                    Calendar cal = Calendar.getInstance();
-                    java.sql.Timestamp time = new java.sql.Timestamp(cal.getTimeInMillis());
-                    String timestamp = time + "";
-                    
-                    CountryCodeController countryCodeController = new CountryCodeController();
-              
-                    String destinationCountry = countryCodeController.getCountryName(deliveryCountry);
-                    int enq_code = 0;
-                    int approve_sts = 0;
-
-                    if (deliveryDate.isEmpty()) {
-                        deliveryDate = "0000-00-00 00:00:00";
-                    }
-
-                    //storing order details to database
-                    int total = cartList.size();
-                    double price = 0.0;
-                    String unit = "";
-                    double quantity = 0.0;
-                    int prodID = 0;
-                    OrderDetail orderDetail = null;
-                    //ProductDAO productDAO = new ProductDAO();
-                    //Order order = new Order(enq_code, companyName, companyType, contactFName, contactMName, contactLName, contactCallCode, contactMobile, contactEmail, contactMessengerType, contactMessengerID, callCode, areaCode, companyPhone, companyFax, address, companyCountry, companyState, city, companyZip, companyWeb, deliveryTerm, paymentTerm, port, destinationCountry, deliveryDate, comments, approve_sts, ipAddress, timestamp);
-
-                    //getting the order details
-                    for (int i = 1; i <= total; i++) {
-                        prodID = Integer.parseInt(request.getParameter("p_ID" + i));
-                        price = Double.parseDouble(request.getParameter("expectedPrice" + i));
-                        unit = request.getParameter("unit" + i);
-                        quantity = Double.parseDouble(request.getParameter("expectedQty" + i));
-                        ProductController productController = new ProductController();
-                        //Product p = productDAO.getProduct(prodID);
-                        Product product  = productController.getProductFromDBByID(prodID); 
-                        orderDetail = new OrderDetail(product, price, unit, quantity);
-                        order.addProductToCart(orderDetail);
-                    }
-
-                    //checking database storage is successful or not
-                    createOrder(order);
-                    session.removeAttribute("cartList");
-
-            }
-
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-            response.sendError(ERROR_QUANTITY);
-            //request.setAttribute("error", "Expected Price/Quantity fields should contain numbers only");
-        }catch (Exception e) {
-            e.printStackTrace();
-            response.sendError(404);
-           // request.setAttribute("error", e.getMessage());
-        }
-    }
+//    /**
+//     * Handles the HTTP <code>POST</code> method.
+//     *
+//     * @param request servlet request
+//     * @param response servlet response
+//     * @throws ServletException if a servlet-specific error occurs
+//     * @throws IOException if an I/O error occurs
+//     */
+//    @Override
+//    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+//            throws ServletException, IOException {
+//    	Order order = new Order();
+//        try {
+//
+//        	HttpSession session = request.getSession(false);
+//            @SuppressWarnings("unchecked")
+//			ArrayList<Product> cartList = (ArrayList<Product>) session.getAttribute("cartList");
+//            
+//            order = getAllParameter(request);
+//            String ipAddress = request.getRemoteAddr();
+//			//String remoteAddr = request.getRemoteAddr();
+//	        ReCaptchaImpl reCaptcha = new ReCaptchaImpl();
+//	        reCaptcha.setPrivateKey(CAPTCHA_PRIVATE_KEY);
+//
+//	        String challenge = request.getParameter("recaptcha_challenge_field");
+//	        String uresponse = request.getParameter("recaptcha_response_field");
+//	        ReCaptchaResponse reCaptchaResponse = reCaptcha.checkAnswer(ipAddress, challenge, uresponse);
+//	        if(!reCaptchaResponse.isValid()){
+//				//req.setAttribute("message", test);
+//	        	//req.getRequestDispatcher("jsp/test.jsp").forward(req,resp);
+//	        	response.sendError(ERROR_VERIFY_CODE);
+//				
+//			}else if (cartList.isEmpty()) {
+//            	response.sendError(ERROR_EMPTY_CART);
+//                //request.setAttribute("error", "LRequest failed. Your cart is empty");
+//            } else {
+//
+//                    Calendar cal = Calendar.getInstance();
+//                    java.sql.Timestamp time = new java.sql.Timestamp(cal.getTimeInMillis());
+//                    String timestamp = time + "";
+//                    
+//                    CountryCodeController countryCodeController = new CountryCodeController();
+//              
+//                    String destinationCountry = countryCodeController.getCountryName(deliveryCountry);
+//                    int enq_code = 0;
+//                    int approve_sts = 0;
+//
+//                    if (deliveryDate.isEmpty()) {
+//                        deliveryDate = "0000-00-00 00:00:00";
+//                    }
+//
+//                    //storing order details to database
+//                    int total = cartList.size();
+//                    double price = 0.0;
+//                    String unit = "";
+//                    double quantity = 0.0;
+//                    int prodID = 0;
+//                    OrderDetail orderDetail = null;
+//                    //ProductDAO productDAO = new ProductDAO();
+//                    //Order order = new Order(enq_code, companyName, companyType, contactFName, contactMName, contactLName, contactCallCode, contactMobile, contactEmail, contactMessengerType, contactMessengerID, callCode, areaCode, companyPhone, companyFax, address, companyCountry, companyState, city, companyZip, companyWeb, deliveryTerm, paymentTerm, port, destinationCountry, deliveryDate, comments, approve_sts, ipAddress, timestamp);
+//
+//                    //getting the order details
+//                    for (int i = 1; i <= total; i++) {
+//                        prodID = Integer.parseInt(request.getParameter("p_ID" + i));
+//                        price = Double.parseDouble(request.getParameter("expectedPrice" + i));
+//                        unit = request.getParameter("unit" + i);
+//                        quantity = Double.parseDouble(request.getParameter("expectedQty" + i));
+//                        ProductController productController = new ProductController();
+//                        //Product p = productDAO.getProduct(prodID);
+//                        Product product  = productController.getProductFromDBByID(prodID); 
+//                        orderDetail = new OrderDetail(product, price, unit, quantity);
+//                        order.addProductToCart(orderDetail);
+//                    }
+//
+//                    //checking database storage is successful or not
+//                    createOrder(order);
+//                    session.removeAttribute("cartList");
+//
+//            }
+//
+//        } catch (NumberFormatException e) {
+//            e.printStackTrace();
+//            response.sendError(ERROR_QUANTITY);
+//            //request.setAttribute("error", "Expected Price/Quantity fields should contain numbers only");
+//        }catch (Exception e) {
+//            e.printStackTrace();
+//            response.sendError(404);
+//           // request.setAttribute("error", e.getMessage());
+//        }
+//    }
 
 	/**
 	 * Get all parameter and store into a class
@@ -260,73 +260,7 @@ public class OrderController extends HttpServlet implements Constant {
          return order;
 	}
 
-    /**
-     * Create Order after the user request
-     * @param order
-     * @return
-     * @throws SQLException 
-     * @throws Exception
-     */
-    public void createOrder(Order order) throws SQLException {
-    	//String company_name, String company_type, String contact_person_name, String middle_name, String last_name, String country_code_mob, String mobile_no, String email_id, String messenger_type, String messenger_id, String country_code, String area_code, String phone, String fax, String address, String country, String state, String city, String zip, String website, String delivery_term, String payment_term, String destination_port, String destination_country, String target_del_date, String comments, String ip_address, String created_on
-    		Connection conn;
-	        //int row = 0;
-	        int orderID = getLastOrderID() + 1;
-
-	        int enq_code = order.getEnq_code();
-	        String company_name = order.getCompanyName();
-	        String company_type = order.getCompanyType();
-	        String contact_person_name = order.getContactFName();
-	        String middle_name = order.getContactMName();
-	        String last_name = order.getContactLName();
-	        String country_code_mob = order.getContactCallCode();
-	        String mobile_no = order.getContactMobile();
-	        String email_id = order.getContactEmail();
-	        String messenger_type = order.getContactMessengerType();
-	        String messenger_id = order.getContactMessengerID();
-	        String country_code = order.getContactCallCode();
-	        String area_code = order.getAreaCode();
-	        String phone = order.getCompanyPhone();
-	        String fax = order.getCompanyFax();
-	        String address = order.getAddress();
-	        String country = order.getCompanyCountry();
-	        String state = order.getCompanyState();
-	        String city = order.getCompanyState();
-	        String zip = order.getCompanyZip();
-	        String website = order.getCompanyWeb();
-	        String delivery_term = order.getDeliveryTerm();
-	        String payment_term = order.getPaymentTerm();
-	        String destination_port = order.getPort();
-	        String destination_country = order.getDeliveryCountry();
-	        String target_del_date = order.getDeliveryDate();
-	        String comments = order.getComments();
-	        int approve_sts = 0;
-	        String ip_address = order.getIpaddress();
-	        String created_on = order.getTimestamp();
-
-	        
-            conn = ConnectionManager.getConnection();
-            String sql = "INSERT INTO tbl_order(order_id,enq_code, company_name,"
-                    + "company_type, contact_person_name,middle_name, last_name, country_code_mob, mobile_no, email_id,"
-                    + "messenger_type, messenger_id, country_code,area_code, phone, fax, address, country, state, city,"
-                    + "zip, website, delivery_term, payment_term,destination_port, destination_country, target_del_date,"
-                    + "comments, approve_sts, created_on, ip_address) "
-                    + "VALUES(" + orderID + ",'" + enq_code + "','" + company_name + "','" + company_type + "','" + contact_person_name + "','"
-                    + middle_name + "','" + last_name + "','" + country_code_mob + "','" + mobile_no + "','" + email_id + "','"
-                    + messenger_type + "','" + messenger_id + "','" + country_code + "','" + area_code + "','" + phone + "','"
-                    + fax + "','" + address + "','" + country + "','" + state + "','" + city + "','" + zip + "','" + website + "','"
-                    + delivery_term + "','" + payment_term + "','" + destination_port + "','" + destination_country + "','"
-                    + target_del_date + "','" + comments + "'," + approve_sts + ",'" + created_on + "','" + ip_address + "')";
-            PreparedStatement ps = conn.prepareStatement(sql);
-
-            if (!ps.execute()){
-            	insertOrderDetails(order, orderID);
-            }
-            
-           // session.removeAttribute("cartList");
-
-
-	    }
+    
     	    
 	    public void insertOrderDetails(Order order, int orderID) throws SQLException {
 
@@ -345,31 +279,7 @@ public class OrderController extends HttpServlet implements Constant {
 	    }
 
     	   
-	    /**
-	     * Get the last id of table tbl_order
-	     * @return
-	     */
-	    public int getLastOrderID() {
-	    	Connection conn;
-	        try {
-	            conn = ConnectionManager.getConnection();
-	            PreparedStatement ps = conn.prepareStatement("SELECT MAX(order_id) as max FROM tbl_order");
-	            ResultSet rs = ps.executeQuery();
 
-	            while (rs.next()) {
-
-	                return rs.getInt("max");
-
-	            }
-
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        } 
-
-	        //if no return result from rs.next(), return 0 as new ID
-	        return 0;
-
-	    }
 	    
 	    /**
 	     * Get delvivery term in tbl_delivery_terms

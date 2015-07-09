@@ -112,16 +112,17 @@ public class ContactUsController extends HttpServlet {
 		ArrayList<CountryCode> countryCodes = new ArrayList<CountryCode>();
 		try{
 			String countryId = req.getParameter("cid");
-			if (countryId != null){
+			if (countryId == null){
+				countryId = "1";
+			}
+			
 				contact = getContactByCountryId(countryId);
 				countryCodes = new CountryCodeController().getCountryCodes();
 				req.setAttribute("contact", contact);
 				req.setAttribute("message", databaseMessage);
 				req.setAttribute("ccodes", countryCodes);
 		        req.getRequestDispatcher("jsp/contact-us2.jsp").forward(req, resp);
-			}else{
-				resp.sendRedirect("index");
-			}
+		
 			
 		}catch (Exception e){
 			req.setAttribute("error",e);

@@ -19,9 +19,9 @@
 
                     <!---add the header and navbar and search bar---->
                     <%@include file="../header_nav.jsp"%>
-                    <%@include file="../index/search.jsp"%>
+                    <%@include file="../index/searchbar.jsp"%>
 
-                    <form method="post" action="order">
+                    <form method="get" action="createOrder">
 
                         <div class="row" style="margin-left:1%; margin-right: 2%">
                             <div class="col-md-12">

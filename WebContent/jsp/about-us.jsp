@@ -50,7 +50,7 @@
                     <!---add the header and navbar---->
                     <%@include file="header_nav.jsp"%>
                     
-                    	<%@include file="index/search.jsp"%>
+                    	<%@include file="index/searchbar.jsp"%>
                     
 
                     <!-- About us TAB codes -->

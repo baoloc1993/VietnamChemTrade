@@ -22,7 +22,7 @@
 
                             <!-----slider--------->
                             <div class="col-sm-8" style="padding-right: 5px; margin-bottom: 10px; padding-left: 0px;">
-                            	<%@ include file = "imageslider.jsp" %>
+                            	<%@ include file = "Imageslider.jsp" %>
 							</div>
                             <!-------left bar ----->
                             <div class="col-sm-4" >

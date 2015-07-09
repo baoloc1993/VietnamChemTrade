@@ -49,7 +49,7 @@
 
                     <!---add the header and navbar and search bar---->
                     <%@include file="../header_nav.jsp"%>
-                    <%@ include file ="../index/search.jsp" %>
+                    <%@ include file ="../index/searchbar.jsp" %>
 
                     <div class="container-fluid">
                         <!-- Products Banner-->

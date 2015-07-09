@@ -10,7 +10,7 @@ Created on : May 15, 2015, 11:24:12 AM
 <%@ include file = "setting.jsp" %>
 <link href="css/tabstyle.css" rel="stylesheet">
  <link href="css/contact-us.css" rel="stylesheet">
-	<div class="container-fluid" style="background-color:white">
+	<div class="container" style="background-color:white">
             <!---to wrap around all body content--->
             <div class="row">
                 <!----center content--->
@@ -30,7 +30,7 @@ Created on : May 15, 2015, 11:24:12 AM
 
                             <!-- 2. Country Filter -->
                             <!-- Edit here to put your country as first displayed country -->
-                            <div class="contact-width">
+                            <!--                             <div class="contact-width">
                                 <form>
                                     <select class="contact-box" name="contact-box" title="Contact Box" id="countryID">
                                         <option value="0">Country</option>
@@ -51,7 +51,7 @@ Created on : May 15, 2015, 11:24:12 AM
                                     </select>
                                 </form>
                             </div>
-
+								-->
                             <!-- onchange Codes -->
                             <script type="text/javascript">
                                 //use the var to retrieve the value of option selected
@@ -69,7 +69,7 @@ Created on : May 15, 2015, 11:24:12 AM
                             <!-- 3. Google Search MAP -->
                             <div class="tab-container">
                                 <span class="tab">
-                                    <img src="images/contact/${contact.label }.png" height="13" width="16" alt="${contact.label }">${contact.label }
+                                    <img src="images/Vietnam.png" height="13" width="16" alt="Vietnam">Vietnam
                                 </span>
                                 <div class="tab-page" id="page1">
                                     <table width="100%" height="100%">
@@ -78,16 +78,16 @@ Created on : May 15, 2015, 11:24:12 AM
                                                 <!-- Description and Form -->
                                                 <td class="holder2" style="padding-left:1%;" valign="top">
                                                     <p class="contact_info">
-                                                        <b>${contact.name }</b><br>
-                                                        ${contact.address },
+                                                        <b>Tradeasia International Pte. Ltd (Ho Chi Minh Representative office)</b><br>
+                                                        VTP office Building, Unit G -Floor No.8 Nguyen Hue Blvd,District 1, 
                                                         <br>
-                                                        ${contact.province } ${contact.zip_code } <br>
-                                                        ${contact.country }<br>
-                                                        Tel : ${contact.tel }<br>
-                                                        Fax : ${contact.fax }<br>
-                                                        E-mail : ${contact.email }<br>
-                                                        Business Days : ${contact.business_days} <br>
-                                                        Business hours : ${business_hours}<br>
+                                                        Ho Chi Minh <br>
+                                                        Vietnam<br>
+                                                        Tel : +84-8-38277218/19 <br>
+                                                        Fax : +84-8-3915 9162<br>
+                                                       E-mail : contact@chemtradeasia.com, vietnam@chemtradeasia.com <br>
+                                                        Business Days : Monday - Friday  <br>
+                                                        Business hours : 9:30am - 6pm <br>
                                                     </p>
                                                     <!-- The Skype/email/linked in etc icons -->
                                                     <table width="100%">
@@ -122,11 +122,9 @@ Created on : May 15, 2015, 11:24:12 AM
 
                                                 <!-- Google Map Area -->
                                                 <td class="holder1" id="holder" width="60%" height="80%">
-                                                    <!-- Don't care the red warnings, it works -->
-                                                    <iframe class="google-map" width="100%" height="95%" frameborder="0%" scrolling="no" marginheight="0%" marginwidth="0%" 
-                                                            src="${contact.google_map }">                                                                 
-                                                    </iframe><br><small><a href="${contact.google_map}" 
-                                                                           target="_blank" class="contentnavi">View Larger Map</a></small>
+                                                    <iframe class="google_map" width="500" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3919.4662715648433!2d106.70193358819577!3d10.775555637839998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1s+VTP+office+Building+No.8+Nguyen+Hue+Blvd%2CDistrict+1%2C+Ho+Chi+Minh!5e0!3m2!1sen!2sin!4v1423541781037"></iframe>
+                                                    <br><small><a href="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3919.4662715648433!2d106.70193358819577!3d10.775555637839998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1s+VTP+office+Building+No.8+Nguyen+Hue+Blvd%2CDistrict+1%2C+Ho+Chi+Minh!5e0!3m2!1sen!2sin!4v1423541781037" target="_blank" class="contentnavi">View Larger Map</a></small>
+ </td>
                                                 </td>
                                                 <!-- Google Map Area Ends -->
                                             </tr>
