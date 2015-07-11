@@ -3,25 +3,33 @@
 
 <%@include file = "../setting.jsp" %>
 <script src="js/countries3.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
 
    <script type="text/javascript">
        function loadimage() {
-           document.getElementById("randImage").src = "../image.jsp?" + Math.random();
+    	   var text = "";
+    	    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    	    for( var i=0; i < 6; i++ )
+    	        text += possible.charAt(Math.floor(Math.random() * possible.length));
+    	  // String rand = Math.random();
+           document.getElementById("randImage").src = "image?vCode=" + text;
+           document.getElementById("vCode").value = text;
        }
    </script>
     <body>
-        <div class="container-fluid">
+        <div class="container">
 
             <!---to wrap around all body content--->
             <div class="row">
                 <!----center content--->
-                <div class="col-md-10 col-md-offset-1 centerRow">
+                <div class="col-md-12 centerRow">
 
                     <!---add the header and navbar and search bar---->
                     <%@include file="../header_nav.jsp"%>
                     <%@include file="../index/searchbar.jsp"%>
 
-                    <form method="get" action="createOrder">
 
                         <div class="row" style="margin-left:1%; margin-right: 2%">
                             <div class="col-md-12">
@@ -44,7 +52,7 @@
 
 
 	                                        <div class="col-md-4 col-md-offset-1" style="margin-bottom: 15px;">
-	                                            <input type="hidden" name="p_ID${i}" value="${carts.get(i).productId}"> 
+	                                            <input type="hidden" name="p_ID" value="${carts.get(i).productId}"> 
 	                                            Product #${i}:<br><b style="color: #666666">${carts.get(i).productName}</b>
 	
 	                                            <!--origin, appearance, packaging--->
@@ -55,14 +63,16 @@
                                                 <div class="form-group">
 
                                                     Expected Price: <input class="form-control order-form" id="expected" placeholder="USD/Unit" name="expectedPrice${i}" type="text" required>
+                                                    <div id = "errorForm"></div>
                                                 </div>
+                                                
 
                                             </div>
                                             <div class="col-md-2">
 
                                                 <div class="form-group">
 
-                                                    Unit: <select class="form-control" id="unit" name="unit${i}">
+                                                    Unit: <select class="form-control" id="unit" name="unit">
                                                         <option value="MT">MT</option>
                                                         <option value="KG">KG</option>
                                                     </select>    
@@ -70,8 +80,8 @@
 
                                             </div>
                                             <div class="col-md-2 ">
-                                                Quantity: <input id="qty" class="form-control order-form" name="expectedQty${i}" placeholder="Expected" type="text" required>
-
+                                                Quantity: <input id="qty" class="form-control order-form" name="expectedQty" placeholder="Expected" type="text" required>
+												<div id = "errorForm"></div>
                                             </div>
 
 
@@ -165,9 +175,9 @@
                                         <div class="form-group order-form">
                                             <label>Company Information</label>
                                             <input type="text" placeholder="Company Name*" class="form-control order-form" value="" name="companyName" required>
-
+											<div id = "errorForm"></div>
                                         </div>
-
+										
                                         <div class="form-group">
                                             <textarea name="address" placeholder="Address" class="form-control" rows="4" ></textarea>
                                         </div>
@@ -183,8 +193,9 @@
                                                 <div class="form-group">
 
 	                                               <input required type="text" placeholder="Calling Code*" class="form-control order-form" value="" name="callCode">
-                                                        
+                                                     <div id = "errorForm"></div>   
                                                 </div>
+                                                
                                             </div>
                                             <div class="col-md-7" style="padding-left: 19px;">
                                                 <div class="form-group">
@@ -278,8 +289,10 @@
                                             </div>
                                             <div class="col-md-8" style="padding-left: 19px;">
                                                 <div class="form-group">
-                                                    <input class="form-control order-form" type="text" placeholder="First Name*" value="" name="contactFName" required>
+                                                    <input class="form-control order-form" type="text" placeholder="First Name*" value="" name="contactFName"  required>
+                                                    <div id = "errorForm"></div>
                                                 </div>
+                                                
                                             </div>
 
                                         </div>
@@ -291,13 +304,16 @@
                                                 <div class="form-group">
                                                     
                                              		<input required type="text" placeholder="Calling Code*" class="form-control order-form" value="" name="contactCallCode">
-                                                    
+                                                    <div id = "errorForm"></div>
                                                 </div>
+                                                
                                             </div>
                                             <div class="col-md-8" style="padding-left: 19px;">
                                                 <div class="form-group">
                                                     <input class="form-control order-form" type="number" placeholder="Mobile No.*" value="" name="contactMobile" required>
+                                                    <div id = "errorForm"></div>
                                                 </div>
+                                                
                                             </div>
                                         </div>
 
@@ -328,15 +344,18 @@
                                             <div class="col-md-6" >
                                                 <div class="form-group">
                                                     <input class="form-control order-form" value="" type="text" placeholder="Last Name*" name="contactLName" required>
+                                                    <div id = "errorForm"></div>
                                                 </div>
+                                                
                                             </div>
 
                                         </div>
 
                                         <div class="form-group">
                                             <input class="form-control order-form" value="" type="email" placeholder="Email ID*" name="contactEmail" required>
+                                            <div id = "errorForm"></div>
                                         </div>
-
+				
                                         <div class="form-group">
                                             <input class="form-control" type="text" value="" placeholder="Messenger ID" name="contactMessengerID">
                                         </div>
@@ -357,26 +376,28 @@
                                 </div>
 
                                 <!---Verification Code------>
-                                <div class="row">
-
-                                    <div class="line"></div>
-                                    <div class="col-md-12">    
+                                 <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="line" style="margin-top: 20px;"></div>
                                         <center>
-                                            <div class="form-group">
-                                               <%
-          											ReCaptcha c = ReCaptchaFactory.newReCaptcha("6LcodwgTAAAAAEMXp4gPqAkFuhWIGD89ZhARSl3d", "6LcodwgTAAAAAPVnzcwlz0t7ZJ99b-XC0NiBRw_q", false);
-          											out.print(c.createRecaptchaHtml(null, null));
-        		 								%>
-                                            </div>
+                                            <img alt="code..." name="randImage" id="randImage" src="image?vCode=${vCode }" width="110" height="80"/>
+                                            <a href="javascript:loadimage();"><img src="images/body/refresh.png" alt="refresh"/></a>
+                                            <input required maxlength="6" class="form-control" style="width:50%" placeholder="Enter Code" id="verifyCode" title="verifyCode" name="verifyCode" type="text" />
+                                            <div id = "errorForm"></div>
+                                             <input type = "hidden"  value ="${vCode }" id="vCode" name="vCode" type="text" />
+                                             <div style  = "color:red"id = "errorCaptcha"></div>
+                                             
+                                            
                                         </center>
+                                        
                                     </div>
-                                </div>
+                                </div> 
 
                                 <!----button------>
                                 <div class="row" style="margin-top:20px">                                    
                                     <div class="col-md-12"> <center>
                                             <div class="form-group">
-                                                <button type="submit" class="btn btn-info">Submit</button>
+                                                <button type="submit" class="btn btn-info" onclick  = "submitOrder()">Submit</button>
                                                 <button type="reset" class="btn btn-danger">Reset</button>
                                             </div>
                                         </center>
@@ -385,7 +406,7 @@
 
                             </div>
                         </div>
-                    </form>
+                    
 
                     <!-- Footer Codes -->
                     <%@ include file ="../footer.jsp"%>
@@ -412,27 +433,7 @@
         </script>
         <!--tradeasia's scripts --> 
         <script src="js/tradeasia.js"></script>      
-		<script>
-		
-		function removeCart(id){
-			 var data = {
-                     id: id,
-                                          
-             };
-             
-		        $.ajax({
-                 type: "POST",
-                 url: "removeCart",
-                 data: data,
-                 success: function () {
-              	   //alert("Removed");
-                     location.reload();
-                 },
-                 error: function(xhr, textStatus, errorThrown){
-                     alert("There are some errors. Cannot removed now");
-                  }
-             });
-		}
+		<script src = "js/order.js">
 		</script>
     </body>
 </html>

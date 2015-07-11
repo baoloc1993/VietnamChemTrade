@@ -30,12 +30,6 @@ public class OrderControllerTest extends TestCase {
 		assertEquals("EXW" , list.get(0));
 	}
 	
-	public void testGetLastID(){
-		OrderController orderController = new OrderController();
-		int id = orderController.getLastOrderID();
-		assertEquals(5, id);
-		//assertEquals("EXW" , list.get(0));
-	}
 	
 	public void testInsertOrderDetail(){
 		OrderController orderController = new OrderController();

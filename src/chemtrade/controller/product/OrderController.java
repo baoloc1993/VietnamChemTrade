@@ -8,13 +8,17 @@
  */
 package chemtrade.controller.product;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Random;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -29,6 +33,7 @@ import net.tanesha.recaptcha.ReCaptchaResponse;
 import chemtrade.configuration.ConnectionManager;
 import chemtrade.configuration.Constant;
 import chemtrade.controller.CountryCodeController;
+import chemtrade.controller.VerificationCodeController;
 import chemtrade.entity.CountryCode;
 import chemtrade.entity.Order;
 import chemtrade.entity.OrderDetail;
@@ -99,7 +104,7 @@ public class OrderController extends HttpServlet implements Constant {
         ArrayList<String> deliveryTerms = getDeliveryTerms();
         ArrayList<String> paymentTerms = getPaymentTerms();
         
-        Order order = getAllParameter(request);
+       // Order order = getAllParameter(request);
 
         String orderMessage = "";
         if (cartList.size() == 0) {
@@ -108,7 +113,14 @@ public class OrderController extends HttpServlet implements Constant {
            orderMessage = "You are requesting the following:";
         }
         
-        
+        String verificationCode = "";
+        for (int i = 0; i < 6; i++) {
+            String rand = String.valueOf((char) (97 + new Random().nextInt(26)));
+            verificationCode += rand;
+        }
+        request.setAttribute("vCode", verificationCode);
+//        VerificationCodeController verificationCodeController = new VerificationCodeController();
+//        BufferedImage image =  verificationCodeController.getImageVerification(response, verificationCode);
         request.setAttribute("carts", cartList);
         request.setAttribute("cartsSize", cartList.size());
 
@@ -124,6 +136,7 @@ public class OrderController extends HttpServlet implements Constant {
     	//request.setAttribute("order", order);
     	
         request.getRequestDispatcher("jsp/product/order.jsp").forward(request, response);
+        //request.getRequestDispatcher("jsp/test.jsp").forward(request, response);
         
         
         
@@ -227,9 +240,16 @@ public class OrderController extends HttpServlet implements Constant {
 	 */
 	private Order getAllParameter(HttpServletRequest request) {
 		Order order = new Order();
+		try{
+			String newstring = new SimpleDateFormat("yyyy-MM-dd").format(request.getParameter("deliveryDate"));
+			order.setDeliveryDate(newstring);
+		}catch(Exception e){
+			
+		}
+		//System.out.println(newstring); // 2011-01-18
 		order.setDeliveryCountry(request.getParameter("deliveryCountry"));
 		order.setDeliveryTerm(request.getParameter("deliveryTerm"));
-		order.setDeliveryDate(request.getParameter("deliveryDate"));
+		
 		order.setPort(request.getParameter("port"));
 		order.setPaymentTerm(request.getParameter("paymentTerm"));
          order.setCompanyName(request.getParameter("companyName"));

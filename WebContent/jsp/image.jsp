@@ -36,9 +36,11 @@
     String sRand = "";
     Graphics2D g2d;
     double k = 0;
+    String vCode = request.getParameter ("vCode");
     for (int i = 0; i < 6; i++) {
-        String rand = String.valueOf((char) (97 + random.nextInt(26)));
-        sRand += rand;
+    	String rand = String.valueOf(vCode.charAt(i));
+       // String rand = String.valueOf((char) (97 + random.nextInt(26)));
+        //sRand += rand;
         g.setColor(new Color(0, 46, 184));
         if (i == 0) {
             k = (random.nextInt(3)-2) * Math.PI / 180.0;
@@ -52,7 +54,9 @@
         g2d.drawString(rand, 70 * i + random.nextInt(8), 140);
         g2d.rotate(-k);
     }
-    session.setAttribute("rand", sRand);
+    
+    //session.setAttribute("rand", sRand);
+    //out(oalert(session.getAttribute("rand"));
     g.dispose();
     ImageIO.write(image, "JPEG", response.getOutputStream());
 %>

@@ -6,6 +6,7 @@
 package chemtrade.entity;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -15,7 +16,7 @@ public class Order {
 
     private String deliveryCountry = "";
     private String deliveryTerm = "";
-    private String deliveryDate = "";
+    private String deliveryDate = "0000-00-00 00:00:000.0";
     private String port = "";
     private String paymentTerm = "";
     private String companyName = "";
@@ -42,7 +43,7 @@ public class Order {
     private String comments = "";
     private String verifyCode ="";
     private String ipaddress = "";
-    private String timestamp = "";
+    private String timestamp = "0000-00-00 00:00:000.0";
     private String destinationCountry = "";
     private int enq_code = 0, approve_sts;
     private ArrayList<OrderDetail> orderList = new ArrayList<OrderDetail>();
@@ -89,19 +90,7 @@ public class Order {
 		this.deliveryTerm = deliveryTerm;
 	}
 
-	/**
-	 * @return the deliveryDate
-	 */
-	public String getDeliveryDate() {
-		return deliveryDate;
-	}
 
-	/**
-	 * @param deliveryDate the deliveryDate to set
-	 */
-	public void setDeliveryDate(String deliveryDate) {
-		this.deliveryDate = deliveryDate;
-	}
 
 	/**
 	 * @return the port
@@ -509,6 +498,14 @@ public class Order {
     
     public void setEnq_code(int enq_code) {
 		this.enq_code = enq_code;
+	}
+
+	public String getDeliveryDate() {
+		return deliveryDate;
+	}
+
+	public void setDeliveryDate(String deliveryDate2) {
+		this.deliveryDate = deliveryDate2;
 	}
 
 }

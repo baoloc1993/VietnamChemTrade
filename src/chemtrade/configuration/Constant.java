@@ -33,7 +33,7 @@ public interface Constant {
    String URL = "jdbc:mysql://localhost/tradeus_vietnam";
    String USERNAME = "root";
    String PASSWORD = "ngolebaoloc";
-   
+//   
    
    
    /**

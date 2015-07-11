@@ -5,8 +5,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -39,41 +42,28 @@ public class CreateOrderController extends HttpServlet implements Constant{
     private static final int ERROR_EMPTY_CART = 0;
     private static final int ERROR_VERIFY_CODE = 1;
     private static final int ERROR_QUANTITY = 2;
+    
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		processRequest(req, resp);
 	}
-	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+
+	public void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         //preparing to direct the controller back to order.jsp after all codes are executed
 		Order order = new Order();
         try {
 
-        	HttpSession session = request.getSession(false);
-            @SuppressWarnings("unchecked")
-			ArrayList<Product> cartList = (ArrayList<Product>) session.getAttribute("cartList");
+    
             
             order = getAllParameter(request);
+           // String verifyCode = request.getParameter("verifyCode");
             String ipAddress = request.getRemoteAddr();
-			//String remoteAddr = request.getRemoteAddr();
-	        ReCaptchaImpl reCaptcha = new ReCaptchaImpl();
-	        reCaptcha.setPrivateKey(CAPTCHA_PRIVATE_KEY);
-
-	        String challenge = request.getParameter("recaptcha_challenge_field");
-	        String uresponse = request.getParameter("recaptcha_response_field");
-	        ReCaptchaResponse reCaptchaResponse = reCaptcha.checkAnswer(ipAddress, challenge, uresponse);
-	        if(!reCaptchaResponse.isValid()){
-				//req.setAttribute("message", test);
-	        	//req.getRequestDispatcher("jsp/test.jsp").forward(req,resp);
-	        	response.sendError(ERROR_VERIFY_CODE);
-				
-			}else if (cartList.isEmpty()) {
-            	response.sendError(ERROR_EMPTY_CART);
-                //request.setAttribute("error", "LRequest failed. Your cart is empty");
-            } else {
+		
+	       
 
                     Calendar cal = Calendar.getInstance();
                     java.sql.Timestamp time = new java.sql.Timestamp(cal.getTimeInMillis());
@@ -88,22 +78,30 @@ public class CreateOrderController extends HttpServlet implements Constant{
                     if (deliveryDate.isEmpty()) {
                         deliveryDate = "0000-00-00 00:00:00";
                     }
-
+                    order.setDestinationCountry(destinationCountry);
+                    order.setEnq_code(enq_code);
+                    order.setApprove_sts(approve_sts);
+                    order.setTimestamp(timestamp);
+                    order.setIpaddress(ipAddress);
                     //storing order details to database
-                    int total = cartList.size();
+                    //int total = cartList.size();
                     double price = 0.0;
                     String unit = "";
                     double quantity = 0.0;
                     int prodID = 0;
                     OrderDetail orderDetail = null;
+                    
                     //ProductDAO productDAO = new ProductDAO();
-                    //Order order = new Order(enq_code, companyName, companyType, contactFName, contactMName, contactLName, contactCallCode, contactMobile, contactEmail, contactMessengerType, contactMessengerID, callCode, areaCode, companyPhone, companyFax, address, companyCountry, companyState, city, companyZip, companyWeb, deliveryTerm, paymentTerm, port, destinationCountry, deliveryDate, comments, approve_sts, ipAddress, timestamp);
+                    //Order order2 = new Order(enq_code, companyName, companyType, contactFName, contactMName, contactLName, contactCallCode, contactMobile, contactEmail, contactMessengerType, contactMessengerID, callCode, areaCode, companyPhone, companyFax, address, companyCountry, companyState, city, companyZip, companyWeb, deliveryTerm, paymentTerm, port, destinationCountry, deliveryDate, comments, approve_sts, ipAddress, timestamp);
 
                     //getting the order details
-                    for (int i = 1; i <= total; i++) {
-                        prodID = Integer.parseInt(request.getParameter("p_ID" + i));
-                        price = Double.parseDouble(request.getParameter("expectedPrice" + i));
-                        unit = request.getParameter("unit" + i);
+                    String[] Ids = request.getParameterValues("p_ID");
+                    String[] expecteds = request.getParameterValues("expected");
+                    String[] expectedQtys = request.getParameterValues("expectedQty");
+                    for (int i = 1; i <= Ids.length; i++) {
+                        prodID = Integer.parseInt(Ids[i]);
+                        price = Double.parseDouble(expecteds[i]);
+                        unit = (expectedQtys[i]);
                         quantity = Double.parseDouble(request.getParameter("expectedQty" + i));
                         ProductController productController = new ProductController();
                         //Product p = productDAO.getProduct(prodID);
@@ -114,23 +112,31 @@ public class CreateOrderController extends HttpServlet implements Constant{
 
                     //checking database storage is successful or not
                     createOrder(order);
-                    session.removeAttribute("cartList");
-                    request.setAttribute("orderMessage", "Order Successfully");
+                    //session.removeAttribute("cartList");
+                    sendOrderMail(order);
+
+                   // request.setAttribute("orderMessage", "Please check your email");
+                    response.sendRedirect("order");
                     
 
-            }
-
+            
         } catch (NumberFormatException e) {
             e.printStackTrace();
-            //response.sendError(ERROR_QUANTITY);
-            request.setAttribute("orderMessage", "Expected Price/Quantity fields should contain numbers only");
-        }catch (Exception e) {
-            e.printStackTrace();
-           // response.sendError(404);
-            request.setAttribute("orderMessage", e.getMessage());
-        }finally{
-        	request.getRequestDispatcher("order").forward(request, response);
-        }
+            response.sendError(ERROR_QUANTITY, "ERROR QUANTITY");
+            //request.setAttribute("orderMessage", "Expected Price/Quantity fields should contain numbers only");
+        } catch (SQLException e) {
+			// TODO Auto-generated catch block
+        	response.sendError(3);
+			e.printStackTrace();
+		} catch (NullPointerException e) {
+			// TODO Auto-generated catch block
+			response.sendError(299, e.getMessage());
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			response.sendError(298, e.getMessage());
+			e.printStackTrace();
+		}
         return;
             
          
@@ -138,7 +144,7 @@ public class CreateOrderController extends HttpServlet implements Constant{
     }
 
     //send email to user for confirmation
-    private void sendOrderMail(Order order) throws Exception {
+    public void sendOrderMail(Order order) throws Exception {
         String header = "http://" + ROOT + "/images/email_header.jpg";
         String footer = "http://" + ROOT + "/images/email_footer.jpg";
         //String to = letterId; 
@@ -355,9 +361,17 @@ public class CreateOrderController extends HttpServlet implements Constant{
 	 */
 	private Order getAllParameter(HttpServletRequest request) {
 		Order order = new Order();
+		String deliveryDate;
+		try{
+			deliveryDate= new SimpleDateFormat("yyyy-MM-dd").format(request.getParameter("deliveryDate"));
+		}catch(Exception e){
+			deliveryDate = "0000-00-00 00:00:00.0";
+		}
+		//System.out.println(newstring); // 2011-01-18
+		 
 		order.setDeliveryCountry(request.getParameter("deliveryCountry"));
 		order.setDeliveryTerm(request.getParameter("deliveryTerm"));
-		order.setDeliveryDate(request.getParameter("deliveryDate"));
+		order.setDeliveryDate(deliveryDate);
 		order.setPort(request.getParameter("port"));
 		order.setPaymentTerm(request.getParameter("paymentTerm"));
          order.setCompanyName(request.getParameter("companyName"));
@@ -445,6 +459,7 @@ public class CreateOrderController extends HttpServlet implements Constant{
                     + fax + "','" + address + "','" + country + "','" + state + "','" + city + "','" + zip + "','" + website + "','"
                     + delivery_term + "','" + payment_term + "','" + destination_port + "','" + destination_country + "','"
                     + target_del_date + "','" + comments + "'," + approve_sts + ",'" + created_on + "','" + ip_address + "')";
+            System.out.println (sql);
             PreparedStatement ps = conn.prepareStatement(sql);
 
             if (!ps.execute()){
@@ -459,7 +474,7 @@ public class CreateOrderController extends HttpServlet implements Constant{
     public void insertOrderDetails(Order order, int orderID) throws SQLException {
 
         ArrayList<OrderDetail> orderList = order.getOrderList();
-        
+        //order.
         Connection conn;
 
         for (OrderDetail o : orderList) {
