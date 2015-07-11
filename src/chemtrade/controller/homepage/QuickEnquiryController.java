@@ -49,7 +49,7 @@ public class QuickEnquiryController extends HttpServlet implements Constant{
 	Connection conn;
 	String test;
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
@@ -64,44 +64,15 @@ public class QuickEnquiryController extends HttpServlet implements Constant{
 		//	String ipAddress = req.getParameter("ip_addres");
 			String ipAddress = req.getRemoteAddr();
 			//String remoteAddr = request.getRemoteAddr();
-	        ReCaptchaImpl reCaptcha = new ReCaptchaImpl();
-	        reCaptcha.setPrivateKey(CAPTCHA_PRIVATE_KEY);
+//	        ReCaptchaImpl reCaptcha = new ReCaptchaImpl();
+//	        reCaptcha.setPrivateKey(CAPTCHA_PRIVATE_KEY);
+//
 
-	        String challenge = req.getParameter("recaptcha_challenge_field");
-	        String uresponse = req.getParameter("recaptcha_response_field");
-	        ReCaptchaResponse reCaptchaResponse = reCaptcha.checkAnswer(ipAddress, challenge, uresponse);
-			//String captchaResponse =  req.getParameter("g_recaptcha_response"); 
-//			String responseField = req.getParameter("recaptcha_response_field"); 
-//			String remoteAddress = req.getRemoteAddr();
-			//ReCaptchaResponse reCaptchaResponse = this.reCaptcha.checkAnswer(remoteAddress, challangeField, responseField);
-			if(reCaptchaResponse.isValid()){
 				createQuickEnquery(name, email,mobile,country,productName,message, ipAddress);
-				//req.setAttribute("message", test);
-				//req.getRequestDispatcher("jsp/test.jsp").forward(req,resp);
-				
-			}else{
-				req.setAttribute("enquiryError","<script> alert(\"Invalid Captcha\");</script>");
-				req.getRequestDispatcher("index").forward(req, resp);
-			}
-	//		sendEmail(HOST, PORT, "Luis Ngo", "baoloc1993@gmail.com", "83745574", "Acid", "Hello", USER, PASS);
-			
-			
+	
 		}catch (Exception e){
-			String error = "<script>alert('" + "Cannot create Enquiry" + "');"
-					+ " window.location.href = \"index\""
-	        		+ "</script>";
-			req.setAttribute("enquiryError",error);
-			req.getRequestDispatcher("index").forward(req, resp);
+			resp.sendError(500);
 		}
-		String success = "Please check your email inbox to reconfirm your enquiry.";
-		String error = "<script>alert('" + success + "');"
-				+ " window.location.href = \"index\""
-        		+ "</script>";
-				
-		req.setAttribute("enquiryError",error);
-		req.getRequestDispatcher("index").forward(req, resp);
-			
-		
 		
 	}
 	

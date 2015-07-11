@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Random;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -123,7 +124,12 @@ public class HomePageController extends HttpServlet{
 		
 		//storeSearchWords(search, req.getRemoteAddr());
 		
-		
+			String verificationCode = "";
+	        for (int i = 0; i < 6; i++) {
+	            String rand = String.valueOf((char) (97 + new Random().nextInt(26)));
+	            verificationCode += rand;
+	        }
+	        req.setAttribute("vCode", verificationCode);
 		req.setAttribute("countryCodes", countryCodes);
 		//req.setAttribute("searchComplete", searchComplete);
 
