@@ -31,7 +31,7 @@
 
         <div class="col-md-12 col-xs-12" style="  padding-left: 2px; padding-right: 1px;" >
             <br>
-            <form name="form1" id="form1" method="post" action="search">
+            <form name="form1" id="form1" method="get" action="search">
 
                 <%@ include file="autocomplete.jsp"%>
             </form>
@@ -39,7 +39,7 @@
             <!-- Advanced Search Button -->                   
             <input type="button" class="advance-search-btn col-md-2 col-xs-5" value="Advanced Search" onclick="return hs.htmlExpand(this)" title="Advanced Search">                
             <div class="highslide-maincontent" style="display:none; background-color:white;">
-                <form name="frm_adv" id="frm_adv" action="index.php?r=TblProduct" method="post">
+                <form name="frm_adv" id="frm_adv" action="search" method="get">
                     <table style="text-align:left; width:100%;">
 
                         <tr>

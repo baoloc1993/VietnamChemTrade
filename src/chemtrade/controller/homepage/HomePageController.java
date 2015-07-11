@@ -63,13 +63,19 @@ public class HomePageController extends HttpServlet{
 		ArrayList<CountryCode> countryCodes = new CountryCodeController().getCountryCodes();
 		ArrayList<Website> otherWebsites = new OtherWebsiteController().getOtherWebsite();
 		ArrayList<Event> latestEvents = new LatestEventController().getLatestEvent();
-		ArrayList<Product> topProducts = new ProductController().getTopProducts();
+		ArrayList<Product> topProducts = new ProductController().getProductListFromDB();
 		//ArrayList<Product> topProducts = new ProductController().getProductListFromDB(1, 12);
 		try{
 			if (topProducts.size() > 5){
 				topProducts = (ArrayList<Product>) topProducts.subList(0, 4);
 			}else{
 				topProducts = (ArrayList<Product>) topProducts.subList(0, topProducts.size()-1);
+			}
+			
+			if (latestEvents.size() > 5){
+				latestEvents = (ArrayList<Event>) latestEvents.subList(0, 4);
+			}else{
+				latestEvents = (ArrayList<Event>) latestEvents.subList(0, latestEvents.size()-1);
 			}
 		}catch (Exception e) {
 			// TODO: handle exception

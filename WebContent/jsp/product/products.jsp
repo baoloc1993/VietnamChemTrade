@@ -139,7 +139,6 @@
 
         <!--tradeasia's scripts --> 
         <script src="js/tradeasia.js"></script>
-        <script type="text/javascript">
 
 
     </body>

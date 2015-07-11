@@ -21,18 +21,18 @@ public interface Constant {
      * Constant for connect DATABASE
      */
     String DRIVER_NAME ="com.mysql.jdbc.Driver";
-//  String URL = "jdbc:mysql://localhost/tradeus_vietnam";
-//  String USERNAME = "prodchem_chemlib";
-//  String PASSWORD = "prodchem_chemlib";
+  String URL = "jdbc:mysql://localhost/tradeus_vietnam";
+  String USERNAME = "prodchem_chemlib";
+  String PASSWORD = "prodchem_chemlib";
 
 //   String URL = "jdbc:mysql://localhost/tradeasia";
 //   String USERNAME = "root";
 //   String PASSWORD = "ngolebaoloc";
    
    
-   String URL = "jdbc:mysql://localhost/tradeus_vietnam";
-   String USERNAME = "root";
-   String PASSWORD = "ngolebaoloc";
+//   String URL = "jdbc:mysql://localhost/tradeus_vietnam";
+//   String USERNAME = "root";
+//   String PASSWORD = "ngolebaoloc";
 //   
    
    
