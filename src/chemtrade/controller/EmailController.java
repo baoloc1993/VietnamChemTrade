@@ -102,6 +102,7 @@ public class EmailController implements Constant{
                 emailList.add(emailAccount);
 
             }
+            //System.out.println (emailList.size());
         } catch (Exception e) {
             e.printStackTrace();
         
@@ -111,6 +112,7 @@ public class EmailController implements Constant{
     public String getAdminEmail() {
         getEmailAccounts();        
         for (EmailAccount ea:emailList) {
+        	System.out.println (ea.getAccountType());
             if (ea.getAccountType().equalsIgnoreCase("admin")) {
                 return ea.getEmailAccount();
             }
