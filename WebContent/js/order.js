@@ -1,6 +1,4 @@
-function submitOrder(){
-			var verifyCode =   document.getElementsByName("verifyCode")[0].value;
-			var vCode = document.getElementsByName("vCode")[0].value;
+
 			//var error = document.getElementById("errorCaptcha")[0].innerHTML;
 			
 			var deliveryCountry= document.getElementsByName("deliveryCountry")[0];
@@ -24,7 +22,6 @@ function submitOrder(){
 			var 		companyFax= document.getElementsByName("companyFax")[0];
 			var 		contactSalution= document.getElementsByName("contactSalution")[0];
 			
-			var 		contactFName= document.getElementsByName("deliveryCountry")[0];
 			var 		contactCallCode= document.getElementsByName("contactCallCode")[0];
 			var 		contactMobile= document.getElementsByName("contactMobile")[0];
 			var 		contactMessengerType= document.getElementsByName("contactMessengerType")[0];
@@ -40,80 +37,83 @@ function submitOrder(){
 			var p_ID = [];
 			var expected = [];
 			var expectedQty = [];
+			
+			deliveryTerm.defaultValue = ""; 
+	 		deliveryDate.defaultValue = ""; 
+	 		port.defaultValue = ""; 
+	 		paymentTerm.defaultValue = ""; 
+	 		companyName.defaultValue = ""; 
+	 		address.defaultValue = ""; 
+	 		city.defaultValue = ""; 
+	 		callCode.defaultValue = ""; 
+	 		areaCode.defaultValue = ""; 
+	 		CompanyWeb.defaultValue = ""; 
+	 		companyType.defaultValue = ""; 
+	 		companyCountry.defaultValue = ""; 
+	 		companyState.defaultValue = ""; 
+	 		companyZip.defaultValue = ""; 
+	 		companyPhone.defaultValue = ""; 
+	 		companyFax.defaultValue = ""; 
+	 		 
+	 		contactFName.defaultValue = "";
+	 		contactCallCode.defaultValue = ""; 
+	 		contactMobile.defaultValue = "";
+	 		contactMessengerType.defaultValue = "";
+	 		contactFName.defaultValue = ""; 
+	 		contactMName.defaultValue = ""; 
+	 		contactLName.defaultValue = ""; 
+	 		contactEmail.defaultValue = ""; 
+	 		contactMessengerID.defaultValue = "";
+	 		comments.defaultValue = ""; 
+	 		
+	 		for (i  = 0; i < expecteds.length;i++){
+			expecteds[i].value == "";
+				
+		}
+		for (i  = 0; i < expectedQtys.length;i++){
+			
+			expectedQtys[i].value == "";
+				
+			
+		}
+			function reset(){
+				deliveryTerm.value = ""; 
+						 		deliveryDate.value = ""; 
+						 		port.value = ""; 
+						 		paymentTerm.value = ""; 
+						 		companyName.value = ""; 
+						 		address.value = ""; 
+						 		city.value = ""; 
+						 		callCode.value = ""; 
+						 		areaCode.value = ""; 
+						 		CompanyWeb.value = ""; 
+						 		companyType.value = ""; 
+						 		companyCountry.value = ""; 
+						 		companyState.value = ""; 
+						 		companyZip.value = ""; 
+						 		companyPhone.value = ""; 
+						 		companyFax.value = ""; 
+						 		 
+						 		contactFName.value = "";
+						 		contactCallCode.value = ""; 
+						 		contactMobile.value = "";
+						 		contactMessengerType.value = "";
+						 		contactFName.value = ""; 
+						 		contactMName.value = ""; 
+						 		contactLName.value = ""; 
+						 		contactEmail.value = ""; 
+						 		contactMessengerID.value = "";
+						 		comments.value = ""; 
+			}
+function submitOrder(){
+	var verifyCode =   document.getElementsByName("verifyCode")[0].value;
+	var vCode = document.getElementsByName("vCode")[0].value;
 
-function reset(){
-	deliveryTerm.value = ""; 
-			 		deliveryDate.value = ""; 
-			 		port.value = ""; 
-			 		paymentTerm.value = ""; 
-			 		companyName.value = ""; 
-			 		address.value = ""; 
-			 		city.value = ""; 
-			 		callCode.value = ""; 
-			 		areaCode.value = ""; 
-			 		CompanyWeb.value = ""; 
-			 		companyType.value = ""; 
-			 		companyCountry.value = ""; 
-			 		companyState.value = ""; 
-			 		companyZip.value = ""; 
-			 		companyPhone.value = ""; 
-			 		companyFax.value = ""; 
-			 		 
-			 		contactFName.value = "";
-			 		contactCallCode.value = ""; 
-			 		contactMobile.value = "";
-			 		contactMessengerType.value = "";
-			 		contactFName.value = ""; 
-			 		contactMName.value = ""; 
-			 		contactLName.value = ""; 
-			 		contactEmail.value = ""; 
-			 		contactMessengerID.value = "";
-			 		comments.value = ""; 
-}
-deliveryTerm.defaultValue = ""; 
-			 		deliveryDate.defaultValue = ""; 
-			 		port.defaultValue = ""; 
-			 		paymentTerm.defaultValue = ""; 
-			 		companyName.defaultValue = ""; 
-			 		address.defaultValue = ""; 
-			 		city.defaultValue = ""; 
-			 		callCode.defaultValue = ""; 
-			 		areaCode.defaultValue = ""; 
-			 		CompanyWeb.defaultValue = ""; 
-			 		companyType.defaultValue = ""; 
-			 		companyCountry.defaultValue = ""; 
-			 		companyState.defaultValue = ""; 
-			 		companyZip.defaultValue = ""; 
-			 		companyPhone.defaultValue = ""; 
-			 		companyFax.defaultValue = ""; 
-			 		 
-			 		contactFName.defaultValue = "";
-			 		contactCallCode.defaultValue = ""; 
-			 		contactMobile.defaultValue = "";
-			 		contactMessengerType.defaultValue = "";
-			 		contactFName.defaultValue = ""; 
-			 		contactMName.defaultValue = ""; 
-			 		contactLName.defaultValue = ""; 
-			 		contactEmail.defaultValue = ""; 
-			 		contactMessengerID.defaultValue = "";
-			 		comments.defaultValue = ""; 
-			 		
-			 		for (i  = 0; i < expecteds.length;i++){
-					expecteds[i].value == "";
-						
-				}
-				for (i  = 0; i < expectedQtys.length;i++){
-					
-					expectedQtys[i].value == "";
-						
-					
-				}
-
-if (p_IDs.length ==0){
-	alert("Empty Cart");
-	return false;
-
-}
+			if (p_IDs.length ==0){
+				alert("Empty Cart");
+				return false;
+			
+			}
 			if (expecteds !=null || expectedQtys != null){
 				
 			    
@@ -209,7 +209,6 @@ if (p_IDs.length ==0){
 					companyPhone: companyPhone.value,
 					companyFax: companyFax.value,
 					contactSalution: contactSalution.value,
-					contactFName: deliveryCountry.value,
 					contactCallCode: contactCallCode.value,
 					contactMobile: contactMobile.value,
 					contactMessengerType: contactMessengerType.value,

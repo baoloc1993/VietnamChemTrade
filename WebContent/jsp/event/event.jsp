@@ -5,11 +5,23 @@
     Fix 		: Ngo Le Bao Loc
 --%>
 <%@ include file = "../setting.jsp" %>
+  <script type="text/javascript">
+       function loadimage() {
+    	   var text = "";
+    	    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    	    for( var i=0; i < 6; i++ )
+    	        text += possible.charAt(Math.floor(Math.random() * possible.length));
+    	  // String rand = Math.random();
+           document.getElementById("randImage").src = "image?vCode=" + text;
+           document.getElementById("vCode").value = text;
+       }
+   </script>
     <body>
     	<div class="container" style="padding-right:27px; padding-left:5px; background-color: white;">
 
             <!---to wrap around all body content--->
-            <div class="row-fluid">
+            <div class="col-md-12  centerRow">
                 <!----center content--->
                 <div class="span12">
 
@@ -38,7 +50,7 @@
 	                    	</div>
 	                    	<div id="tabs" class = "span2">
                         	<!--  ADD NEW EVENT BUTTON -->
-                            	<a href="addnewevent" class="submit_events" target="_blank"><img src="images/submit-an-event.png" alt="event submit" style="float: right; margin-top: 15%; padding-top: 3%;"/></a>
+                            	<a href="addEvent" class="submit_events" target="_blank"><img src="images/submit-an-event.png" alt="event submit" style="float: right; margin-top: 15%; padding-top: 3%;"/></a>
                             </div>	
                         </div>
                         <div id="yw0" class="list-view">
