@@ -8,7 +8,7 @@
 	String searchComplete = "";
 	ArrayList<Product> products =  new ProductController().getProductListFromDB();
 	for (Product product : products){
-		searchComplete += product.getProductName() + ",";
+		searchComplete += "\"" + product.getProductName() + "\",";
 	}
     
 %>
@@ -46,6 +46,6 @@
         minChars : 4,
         scroll : true,
         scrollHeight: 220,
-        source: [<%=searchComplete%>,"x"]
+        source: [<%=searchComplete%>"x"]
     });
 </script>

@@ -31,7 +31,7 @@
 
         <div class="col-md-12 col-xs-12" style="  padding-left: 2px; padding-right: 1px;" >
             <br>
-            <form name="form1" id="form1" method="post" action="products">
+            <form name="form1" id="form1" method="post" action="search">
 
                 <%@ include file="autocomplete.jsp"%>
             </form>
