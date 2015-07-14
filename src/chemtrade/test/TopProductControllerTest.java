@@ -20,6 +20,11 @@ public class TopProductControllerTest extends TestCase {
 	public void testRetrieveDatabase () throws Exception{
 
 		TopProductController topProductController = new TopProductController();
+		try{
+			topProductController.getTopProduct();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 //		ArrayList<Product> topProduct = topProductController.getTopProduct();
 //		assertEquals(1082, topProduct.get(0).getProductId());
 //		assertEquals("https://www.facebook.com/TradeasiaInternationalPte.Ltd", topProduct.get(0).getFacebookUrl());

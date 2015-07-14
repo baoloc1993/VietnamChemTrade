@@ -108,7 +108,7 @@ public class SupplierController extends HttpServlet {
 				        if ((productNames != null) || (productPrice != null) || (productSample != null)){
 				        	for (int i = 0; i < productNames.length; i++) {
 						           
-						          insertSupplierProduct(supplierProductController.getProduct(id + i, "Sup-" + String.valueOf(supllierId), productNames[i], productSample[i], productPrice[i]));
+						         supplierProductController.insertSupplierProduct(supplierProductController.getProduct(id + i, "Sup-" + String.valueOf(supllierId), productNames[i], productSample[i], productPrice[i]));
 						            
 						     }
 				        }
@@ -127,17 +127,7 @@ public class SupplierController extends HttpServlet {
 
 	    }
 
-	    public void insertSupplierProduct(SupplierProduct supplierProduct) throws SQLException {
-
-	        Connection conn = null;
-	        PreparedStatement ps = null;
-	        //ResultSet rs = null;
-	        
-            conn = ConnectionManager.getConnection();
-            ps = conn.prepareStatement("INSERT INTO `tbl_supplier_product` (`sup_pdt_id`, `supplier_id`, `product_name`, `sample_status`, `price`) VALUES (" + supplierProduct.getSup_pdt_id() + ", '" + supplierProduct.getSupplier_id() + "', '" + supplierProduct.getProduct_name() + "', '" + supplierProduct.getSample_status() + "', '" + supplierProduct.getPrice() + "');");
-            ps.execute();
-	        
-	    }
+	   
 	    
 	        public void insertSupplier(DetSupplier s) throws SQLException {
 	        Connection conn = null;
@@ -178,19 +168,7 @@ public class SupplierController extends HttpServlet {
 	               temp.setEnq_code(rs.getString("enq_code"));
 	                return temp;
 	        }
-//	        
-//	        public int getMaxIdSupplierProduct() throws SQLException{
-//	        	Connection conn = null;
-//	            PreparedStatement ps = null;
-//	            ResultSet rs = null;
-//	            
-//	                conn = ConnectionManager.getConnection();
-//	                ps = conn.prepareStatement("select max(sup_pdt_id) from tbl_supplier_product ");
-//	                rs = ps.executeQuery();
-//	                rs.next();
-//	              
-//	                return rs.getInt(1);
-//	        }
+
 	        
 
 	        public DetSupplier getSupplier(int det_supplier_id,

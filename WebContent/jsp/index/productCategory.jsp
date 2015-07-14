@@ -6,9 +6,9 @@
                      <div class="pdt-header-bg">Product Categories</div>
                  </li>
                  <li><a href="product"><img src="images/pdt-arrow.png" class="img-pdd-rgt" width="10" height="12" alt="image28">All Products</a></li>
-                 <li><a href="products-top"><img src="images/pdt-arrow.png" class="img-pdd-rgt" alt="image11" width="10" height="12">Top Products</a></li>
-                 <li><a href="#"><img src="images/pdt-arrow.png" class="img-pdd-rgt" alt="image12" width="10" height="12">Category A</a></li>
-                 <li><a href="#"><img src="images/pdt-arrow.png" class="img-pdd-rgt" alt="image13" width="10" height="12">Category B</a></li>
+                 <li><a href="topProduct"><img src="images/pdt-arrow.png" class="img-pdd-rgt" alt="image11" width="10" height="12">Top Products</a></li>
+                 <li><a href="index"><img src="images/pdt-arrow.png" class="img-pdd-rgt" alt="image12" width="10" height="12">Category A</a></li>
+                 <li><a href="index"><img src="images/pdt-arrow.png" class="img-pdd-rgt" alt="image13" width="10" height="12">Category B</a></li>
              </ul>
          </div>
      </div>

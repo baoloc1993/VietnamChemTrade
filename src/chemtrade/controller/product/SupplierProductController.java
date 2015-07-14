@@ -68,5 +68,17 @@ public class SupplierProductController {
             return rs.getInt(1);
         
     }
+    
+    public void insertSupplierProduct(SupplierProduct supplierProduct) throws SQLException {
+
+        Connection conn = null;
+        PreparedStatement ps = null;
+        //ResultSet rs = null;
+        
+        conn = ConnectionManager.getConnection();
+        ps = conn.prepareStatement("INSERT INTO `tbl_supplier_product` (`sup_pdt_id`, `supplier_id`, `product_name`, `sample_status`, `price`) VALUES (" + supplierProduct.getSup_pdt_id() + ", '" + supplierProduct.getSupplier_id() + "', '" + supplierProduct.getProduct_name() + "', '" + supplierProduct.getSample_status() + "', '" + supplierProduct.getPrice() + "');");
+        ps.execute();
+        
+    }
    
 }
