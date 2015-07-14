@@ -33,7 +33,7 @@
      <div class='row' style='padding-right: 1%;  padding-left: 1%;margin-top: 3px'>  
          <div class='col-md-12' style="padding-right:0px; padding-left: 0px;">
              <div class="row spl" style="margin:0px;">
-                 <a href="newSupplier" style="cursor: pointer"> 
+                 <a href="supplier" style="cursor: pointer"> 
                      <div class="col-xs-9" style="padding:0px;">
                          <div class="aQtn" style="padding-top:16px">Want to Be Our  supplier?</div>
                      </div>

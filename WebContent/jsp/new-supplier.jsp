@@ -14,31 +14,7 @@
            document.getElementById("vCode").value = text;
        }
    </script>
-        <script type="text/javascript">
-            var i = 2;
-
-            function addField() {
-                if (i <= 10) {
-                    i++;
-                    var div = document.createElement('div');
-                    div.innerHTML = '<div class="col-sm-12" style="padding-left:0px">\n\
-       <div class="col-xs-12 col-sm-4" style="margin-bottom:10px;padding-left:0px;"><input required type="text" name="product_name" class="form-control" id="product_name" placeholder="Product Name*" maxlength="500" title="Product Name*" /> </div> \n\
- <div class="col-xs-12 col-sm-3" style="padding-right:4px;margin-bottom:10px"><input name="price" type="text" class="form-control" id="price" placeholder="USD/MT" maxlength="500" title="USD/MT"/></div>\n\
-               <label class="radio-inline" > <input name="sample" id="sampley" type="radio" value="yes" checked="checked" />Yes</label>\n\
-<label class="radio-inline" ><input name="sample" id="samplen" type="radio" value="no" />No</label>\n\
-        </div><a href="#remove" style="color: #428bca; float: right; margin-top: 0%; margin-right: -2%" onclick="removeField(this)">x</a>\n\
-</div>';
-                    document.getElementById('TextBoxesGroup').appendChild(div);
-                    document.getElementById('product_name' + i).focus();
-                }
-            }
-
-            function removeField(div) {
-                document.getElementById('TextBoxesGroup').removeChild(div.parentNode);
-                i--;
-            }
-
-        </script>
+        
     <body>
         <div class="container">
             <!---to wrap around all body content--->
@@ -49,7 +25,7 @@
                     <!---add the header and navbar and search bar---->
                     <%@include file="header_nav.jsp"%>
 
-                    <form id="tbl-det-supplier-form" name="tbl-det-supplier-form" method="post" action="new-supplier-form">
+                    <!-- <form id="tbl-det-supplier-form" name="tbl-det-supplier-form" method="post" action="new-supplier-form">-->
 
                         <!-- Form Header-->
                         <div class="row" style="margin-left:0px; margin-right: 0px">                            
@@ -77,7 +53,7 @@
                                             <label>Your Company Information</label>
                                             <!--Company Name-->
                                             <div class="form-group">
-                                                <input required maxlength="150" placeholder="Company Name*" title="Company Name" class="form-control" id="comapny_name" name="TblDetSupplier[comapny_name]" type="text" />																				  											
+                                                <input required maxlength="150" placeholder="Company Name*" title="Company Name" class="form-control" id="company_name" name="TblDetSupplier[company_name]" type="text" />																				  											
                                             </div>
                                             <!--Manfacturer-->
                                             <div class="form-group">
@@ -101,7 +77,7 @@
                                                     <option value="">Country Code</option>
                                                     <c:forEach items = "${countries }" var = "country">
 	                                                    
-	                                                    <option value="${country.country }">${country.country }</option>
+	                                                    <option value="${country.cCode }">${country.country }</option>
                                                     </c:forEach>
                                                 </select>
                                             </div>
@@ -117,6 +93,12 @@
                                             <label><font color="white">s</font></label>
                                             <!--Year of Establishment-->
                                             <div class="form-group">
+                                             <select class="form-control" id="establish_year" name ="TblDetSupplier[establish_year]" title="Select Year">
+                                                    <option value="1900" selected= "selected">1900</option>
+                                                    <c:forEach begin = "1901" end = "2020" var = "i">
+                                                    	<option value="${i }" >${i }</option>
+                                                    </c:forEach>
+                                                </select>
                                                 <input maxlength="10" placeholder="Year Of Establishment" title="Establish year" class="form-control" id="establish_year" name="TblDetSupplier[establish_year]" type="text" />																				  											
                                             </div>
                                             <!--Website-->
@@ -203,7 +185,7 @@
                                                     <option value="">Country Code</option>
                                                     <c:forEach items = "${countries }" var = "country">
 	                                                    
-	                                                    <option value="${country.country }">${country.country }</option>
+	                                                    <option value="${country.cCode }">${country.country }</option>
                                                     </c:forEach>
                                                 </select>
                                             </div>
@@ -240,26 +222,6 @@
                                             </div>
                                             
                                             <div id='TextBoxesGroup'>
-                                            	<div class="row" >
-
-                                                    <div class="col-xs-12 col-sm-4" style="margin-bottom:10px">
-
-                                                        Product Name*           										
-
-                                                    </div>
-                                                    <div class="col-xs-12 col-sm-3" style="margin-bottom:10px">
-
-                                                       Price
-
-                                                    </div>
-                                                    <div class="col-xs-6 col-sm-3" style="margin-bottom:10px">
-
-                                                        Sample for us?
-                                                    </div>  
-                                                    <div class="col-xs-6 col-sm-2">
-                                                        
-                                                    </div>
-                                                </div>
                                                 <div class="row" >
 
                                                     <div class="col-xs-12 col-sm-4" style="margin-bottom:10px">
@@ -269,7 +231,7 @@
                                                     </div>
                                                     <div class="col-xs-12 col-sm-3" style="margin-bottom:10px">
 
-                                                        <input name="price1" type="text" class="form-control" id="price1" placeholder="USD/MT" maxlength="500" title="USD/MT" onKeyUp="num_dot(this, value, 'price')"/>
+                                                        <input name="price1" type="text" class="form-control" id="price1" placeholder="USD/MT" maxlength="500" title="USD/MT" />
 
                                                     </div>
                                                     <div class="col-xs-6 col-sm-3" style="margin-bottom:10px">
@@ -398,7 +360,7 @@
 		                                        
 		                                    </div>
 		                                </div> 
-                                    </div>
+                                    
                                     <!--Verification ENDS-->
 								 <!----button------>
 	                                <div class="row" style="margin-top:20px">                                    
@@ -416,47 +378,9 @@
 
 
                         </div><!-- form -->
-                        <script type="text/javascript">
-                            function GetXmlHttpObject() {
-                                var xmlhttp;
-                                if (window.XMLHttpRequest)
-                                {// code for IE7+, Firefox, Chrome, Opera, Safari
-                                    xmlhttp = new XMLHttpRequest();
-                                }
-                                else
-                                {// code for IE6, IE5
-                                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-                                }
-                                return xmlHttp;
-                            }
-                            function showcode(str) {
+                      
 
-                                xmlHttp = GetXmlHttpObject();
-                                if (xmlHttp == null) {
-                                    alert("you browser don't support the ajax");
-                                    return;
-
-                                }
-                                var url = "include/countr_codeResponse.jsp";
-                                url = url + "?country=" + str;
-                                url = url + "&sid =" + Math.random();
-                                xmlHttp.onreadystatechange = stateChanged;
-                                xmlHttp.open("GET", url, true);
-                                xmlHttp.send(null);
-                            }
-                            function stateChanged()
-                            {
-
-                                if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
-                                {
-                                    document.getElementById("countr_code").innerHTML = xmlhttp.responseText;
-                                }
-
-                            }
-
-                        </script>
-
-                    </form>
+                    <!-- </form>-->
 
                     <%@include file="footer.jsp" %>
                 </div>
@@ -467,6 +391,8 @@
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="js/bootstrap.js"></script>
         <script src="js/tradeasia.js"></script>
+                <script src="js/supplier.js"></script>
+        
 
     </body>
 </html>
