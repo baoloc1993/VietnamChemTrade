@@ -6,9 +6,11 @@ import java.util.ArrayList;
 import org.springframework.web.servlet.ModelAndView;
 
 import chemtrade.controller.homepage.HomePageController;
+import chemtrade.controller.homepage.LatestEventController;
 import chemtrade.controller.homepage.HomePageController.WrapperBanners;
 import chemtrade.controller.homepage.HomePageController.WrapperProducts;
 import chemtrade.controller.product.ProductController;
+import chemtrade.entity.Event;
 import chemtrade.entity.Product;
 import junit.framework.TestCase;
 
@@ -51,6 +53,15 @@ public class HomePageControllerTest extends TestCase{
 //		}
 //		
 //	}
+	
+	public void testLatesEvents(){
+		ArrayList<Event> latestEvents = new LatestEventController().getLatestEvent();
+		if (latestEvents.size() >= 5){
+			latestEvents = new ArrayList<Event>(latestEvents.subList(0, 5));
+		}
+		
+		assertEquals(5, latestEvents.size());
+	}
 	
 
 }

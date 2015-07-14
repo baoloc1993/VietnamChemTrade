@@ -100,7 +100,7 @@
 
                         	</c:forEach>
                             <li style=" min-height: 30px; text-align: center;">
-                                <a href="events" style="color:white;text-decoration: none">[Read More]</a>
+                                <a href="event" style="color:white;text-decoration: none">[Read More]</a>
                             </li>
 
                         </ul>

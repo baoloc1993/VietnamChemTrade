@@ -263,6 +263,7 @@ public class SupplierController extends HttpServlet implements Constant {
 	            String mailBody = mailBodyHeader + mailBodyDetail + mailBodyFooter;
 	            String adminMailBody = adminMailBodyHeader + mailBodyDetail + adminMailBodyFooter + mailBodyFooter;
 	            EmailController emailController = new EmailController();
+	            System.out.println (detSupllier.getEmailid());
 	            emailController.sendEmailViaGmail(detSupllier.getEmailid(), mailBody, "Supplier Enquiry");
 	            //sendEmailViaGmail(d.getEmailid(), mailBody);
 	            sendAdminEmail(adminMailBody);

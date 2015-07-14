@@ -9,11 +9,13 @@ import java.util.Properties;
 
 import javax.mail.Authenticator;
 import javax.mail.Message;
+import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+
 
 
 
@@ -62,8 +64,9 @@ public class EmailController implements Constant{
 	 * Send email via gmail
 	 * @param email
 	 * @param mailBody
+	 * @throws Exception 
 	 */
-	public void sendEmailViaGmail(final String email, String mailBody, String subject) throws Exception{
+	public void sendEmailViaGmail(final String email, String mailBody, String subject) throws Exception {
 		// sets SMTP server properties
         Session session = settingGmail();
  
@@ -75,9 +78,10 @@ public class EmailController implements Constant{
 			 InternetAddress[] toAddresses = { new InternetAddress(email) };
 		        msg.setRecipients(Message.RecipientType.TO, toAddresses);
 		        msg.setSubject(subject);
-		        msg.setContent(mailBody, "text/html; charset=utf-8");
+		       // msg.setContent(mailBody, "text/html; charset=utf-8");
 		        msg.setSentDate(new Date());
 		        msg.setText(mailBody);
+		        msg.setContent(mailBody, "text/html; charset=utf-8");
 		 
 		        // sends the e-mail
 		        Transport.send(msg);
