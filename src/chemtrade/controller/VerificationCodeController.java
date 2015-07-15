@@ -21,6 +21,9 @@ import javax.servlet.http.HttpSession;
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
 
+
+
+
 @WebServlet("/image")
 public class VerificationCodeController extends HttpServlet{
 	@Override

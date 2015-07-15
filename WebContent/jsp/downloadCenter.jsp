@@ -62,7 +62,7 @@
             text-decoration: underline;
         }
     </style>
-	<script src="js/downloadCenter.js"></script>
+
     
 
     <body>
@@ -101,7 +101,7 @@
                                         <td colspan="2">
                                             <span style="float:right;font-family:Oxygen-Bold;font-size:14px;margin:0 20px 0 7px;font-weight:600;">Select All</span>
                                             <label for="check1" style="display:none;">check11</label>
-                                            <input type="checkbox" name="checkall" id="check1" style="float:right;margin-top:2.5px; " onclick="checkedAll();">
+                                            <input type="checkbox" name="checkall" id="check1" style="float:right;margin-top:2.5px; " onclick="checkedAll(this.checked);">
                                         </td>
                                     </tr>
                                     <tr>
@@ -207,6 +207,7 @@
         	</div>
     	</div>
     </div>
+	<script src="js/downloadCenter.js"></script>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

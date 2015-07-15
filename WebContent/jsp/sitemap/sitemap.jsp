@@ -64,10 +64,10 @@
 
                                                 </tr>
                                                 <tr>
-                                                    <td><a href="index.jsp">Home</a><br />
-                                                        <a href="about.jsp">About Us</a><br />
-                                                        <a href="events.jps">Events</a><br />
-                                                        <a href="career.jps">Career</a><br />
+                                                    <td><a href="index">Home</a><br />
+                                                        <a href="about-us">About Us</a><br />
+                                                        <a href="event">Events</a><br />
+                                                        
 
                                                         <a data-toggle="modal" data-target="#privacyModal">Privacy</a><br />
                                                         <!-- Modal for Privacy -->
@@ -123,10 +123,10 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <a href="contact_us.jsp">Contact Us</a> <br />
-                                                        <a href="forum.jsp">Forum</a> <br />
-                                                        <a href="blog.jsp">Blog</a> <br />
-                                                        <a href="FAQ.jsp">FAQ</a><br />
+                                                        <a href="contact_us">Contact Us</a> <br />
+                                                  
+                                                        <a href="blog">Blog</a> <br />
+                                                        <a href="faq">FAQ</a><br />
 
                                                     </td>
                                                 </tr>
@@ -140,9 +140,9 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <a href="contact_us.jsp">Products</a> <br />
-                                                        <a href="useful_tools.jsp">Useful Tools</a><br />
-                                                        <a href="downloads.jsp">Downloads</a>
+                                                        <a href="contact_us">Products</a> <br />
+                                                        <a href="usefulTools">Useful Tools</a><br />
+                                                        <a href="downloadCenter">Downloads</a>
 
                                                     </td>
                                                 </tr>
@@ -154,8 +154,8 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <a href="supplierPage.jsp">Become A Supplier</a><br />
-                                                        <a href="orderPage.jsp">Order Now</a><br />
+                                                        <a href="supplier">Become A Supplier</a><br />
+                                                        <a href="order">Order Now</a><br />
                                                     </td>
                                                 </tr>
                                             </table>

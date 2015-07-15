@@ -7,23 +7,16 @@ $(function () {
                 })
             });
 
-
+var downloadIds = {};
 hs.graphicsDir = 'http://highslide.com/highslide/graphics/';
 hs.outlineType = 'rounded-white';
 hs.wrapperClassName = 'draggable-header';
 
 
-            checked = false;
-            function checkedAll(frm1) {
+            //checked = false;
+            function checkedAll(checked) {
                 var aa = document.getElementById('zips');
-                if (checked == false)
-                {
-                    checked = true;
-                }
-                else
-                {
-                    checked = false;
-                }
+                
                 for (var i = 0; i < aa.elements.length; i++)
                 {
                     aa.elements[i].checked = checked;
@@ -36,9 +29,14 @@ hs.wrapperClassName = 'draggable-header';
              * @param element
              * @returns {Boolean}
              */
-            var downloadIds = {};
-            function markDownload(id, checked) {
-                downloadIds[id] = checked;
+            
+            function markDownload(id, checked2) {
+                        if (downloadIds === undefined){
+                                    downloadIds = {};
+                        }
+            	//alert(downloadIds);
+                downloadIds[id] = checked2;
+                alertD
             }
             /**
              * Submit form

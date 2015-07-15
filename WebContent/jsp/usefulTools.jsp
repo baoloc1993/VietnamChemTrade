@@ -2,8 +2,9 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
    <%@include file = "setting.jsp"%>
+   <link href="css/usefulTools.css" rel="stylesheet">
     <body>
-        <div class="container-fluid" style="padding-right: 5%; background-color: white;">
+        <div class="container" >
 
            
                 <!----center content--->
@@ -11,10 +12,10 @@
 
                     <!---add the header and navbar and search bar---->
                                  
-				<div class="row-fluid">
+				<div class="row-fluid col-md-12 centerRow">
 					<%@include file="header_nav.jsp"%> 
                     <!----wolfram----->
-                    <div class="container-fluid span" >
+                    <div class="container-fluid " >
                         <div class="row-fluid" style="margin-top:15px;">
                             <div class="span3 ">
 

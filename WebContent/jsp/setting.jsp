@@ -31,6 +31,8 @@
         <script type="text/javascript" src="js/highslide/highslide-with-html1.js"></script>
         <!-- blueprint js framework -->
         <script type="text/javascript" src="js/ajaxtabs/ajaxtabs.js"></script>
+                <script type="text/javascript" src="js/countries3.js"></script>
+        
 
         <!-- vediogallarytabs-->
         <link rel="stylesheet" type="text/css" href="js/ajaxtabs/ajaxtabs.css"/>
@@ -130,10 +132,6 @@
 
         </script>
 
-        <script type="text/javascript">
-            function loadimage() {
-                document.getElementById("randImage").src = "include/image.jsp?" + Math.random();
-            }
-        </script>
+        
 
     </head>

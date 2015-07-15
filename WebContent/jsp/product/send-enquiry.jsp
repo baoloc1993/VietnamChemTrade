@@ -3,289 +3,258 @@
     Created on : May 21, 2015, 11:24:12 AM
     Author     : Qianpin
 --%>
-
-
 <%@ include file = "../setting.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+        
+
+         <script type="text/javascript">
+       function loadimage() {
+    	   var text = "";
+    	    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    	    for( var i=0; i < 6; i++ )
+    	        text += possible.charAt(Math.floor(Math.random() * possible.length));
+    	  // String rand = Math.random();
+           document.getElementById("randImage").src = "image?vCode=" + text;
+           document.getElementById("vCode").value = text;
+       }
+       
+       var i = 1;//starts from 1 because the default one being displayed currently is already 0
+
+       function addField() {
+           if (i <= 10) {
+               i++;
+               var div = document.createElement('div');
+
+               div.innerHTML = '<div class="col-xs-12 col-sm-4 enquiry-form" style="margin-bottom:10px;">\n\<input required class="form-control" placeholder="Product Name*" maxlength="500" title="Product Name*" name="product_name' + i + '" id="product_name' + i + '" type="text" /></div> \n\<div class="col-xs-12 col-sm-2" style="margin-bottom:10px;">\n\<select class="form-control" id="quantity' + i + '" name="quantity' + i + '">\n\<c:forEach begin = "1" end = "10" var = "i"><option value="${i}">${i}</option></c:forEach></select></div>\n\<div class="col-xs-12 col-sm-4" style="margin-bottom:10px"><select class="form-control" id="measurement' + i + '" name="measurement' + i + '">\n\<option value="Kilograms">Kilograms</option><option value="Tonnes">Tonnes</option><option value="Litre">Litre</option></select></div>\n\<a href="#remove" style="color: #428bca; float: right; margin-top: 0%; margin-right: -2%" onclick="removeField(this)">x</a>';
+
+
+               document.getElementById('TextBoxesGroup').appendChild(div);
+               document.getElementById('product_name' + i).focus();
+               productName.push("");
+				productQty.push("");
+				productUnit.push("");
+           }
+       }
+
+       function removeField(div) {
+           document.getElementById('TextBoxesGroup').removeChild(div.parentNode);
+           productName.length--;
+			productQty.length--;
+			productUnit.length--;
+           i--;
+       }
+   </script>
+    
+        <link href="css/send-enquiry.css" rel="stylesheet">
+
     <body>
         <div class="container">
-
             <!---to wrap around all body content--->
             <div class="row">
                 <!----center content--->
                 <div class="col-md-10 col-md-offset-1 centerRow">
 
-                    <!---add the header and navbar and search bar---->
+                    <!---add the header and navbar---->
                     <%@include file="../header_nav.jsp"%>
 
-                    <!-- CountryDAO to retrieve data from tbl_countries and loop in the drop down list -->
-                    
-                    <!-- Form goes into tbl_quickquote -->
-                    <div class="full-enquiry-bg">
-                        <div class="full-enquiry-box">
-                            <form enctype="text/plain" method="post" name="send-enquiry-form" action="include/validate.jsp">
-                                <table style="width:100%;">
 
-                                    <tbody><tr><th>
+                    <!--FORM-->
+                        <!-- Form Header-->
+                        <div class="row" style="margin-left:0px; margin-right: 0px">                            
+                            <div class="col-md-12" >
+                                <div class="enquiry_header">Enquiry Form</div>
+                            </div>
+                            <div class="col-md-5">
+                                <h6 style="color:red">* Denotes Required Field</h6>
+                            </div>
+                        </div>
 
-                                            </th>
-                                        </tr>
-                                        <tr>
-                                            <td style="width:35%;"><span style="font-size: 17pt" class="full-enquiry-head">Enquiry Form</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2" class="full-enquiry-txt-title" style="width: 93%; text-align: left">
-                                                <p class="enquiry-header"> Step 1: Your Details</p><br>
-                                            </td>
-                                        </tr>
+                        <!--Form content-->  
+                        <div class="row" style="margin-left:1%; margin-right: 2%;">
+                            <div class="col-md-12 col-md-offset-1">
+                                <div class="col-md-10">
 
-                                        <tr>
-                                            <td class="full-enquiry-header">
-                                                Salutation* 
-                                            </td>
-                                            <td class="full-enquiry-txt">
+                                    <!-- Form information -->
 
-                                                <select required title="Salutation" class="full-enquiry-field" name="salutation">
-                                                    <option value="" selected="selected">Select</option>
+                                    <!--Your Details-->
+                                    <div class="row">
+                                        <div class="line" style="margin-top: 20px;"></div>
+
+                                        <!--Salutation, Firstname, Lastname-->
+                                        <div class="col-md-12" style="padding-left: 4%;">
+                                            <label>Your Details</label>
+                                            <!--Salutation-->
+                                            <div class="form-group enquiry-form">
+                                                <select title="Salutation" class="form-control" id="salutation" name="salutation">
                                                     <option value="Mr">Mr</option>
                                                     <option value="Mrs">Mrs</option>
                                                     <option value="Ms">Ms</option>
                                                     <option value="Dr">Dr</option>
                                                     <option value="Prof">Prof</option>
-                                                </select>	                        	                    </td>
-                                        </tr>  
-                                        <tr>
-                                            <td class="full-enquiry-header">
-                                                First Name*
-                                            </td>
-                                            <td class="full-enquiry-txt">
-
-                                                <input required maxlength="200" placeholder="First Name" title="First Name" class="full-enquiry-field" name="TblQuickquote[first_name]" id="TblQuickquote_first_name" type="text">	                    		                    </td>
-                                        </tr>    
-                                        <tr>
-                                            <td class="full-enquiry-header">
-                                                Last Name*
-                                            </td>
-                                            <td class="full-enquiry-txt">
-
-                                                <input required maxlength="200" placeholder="Last Name" title="Last Name" class="full-enquiry-field" name="TblQuickquote[last_name]" id="TblQuickquote_last_name" type="text">	                    	    	                            
-                                            </td>
-                                        </tr> 
-                                        <tr>
-                                            <td colspan="2" class="full-enquiry-txt-title" style="width: 93%; text-align: left">
-                                                <br>
-                                                <hr style="width: 99.8%; background-color: #3c3c3c; height: 0.5px; border: 1px solid #3c3c3c">
-                                                <br>    
-                                                <p class="enquiry-header"> Step 2: Product Details</p><br>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td class="full-enquiry-header">
-                                                Product Name* 
-                                            </td>
-                                            <td class="full-enquiry-txt">
-
-                                                <select required title="product_name" class="full-enquiry-field" name="product_name[]" id="product_nameIDID">
-                                                    <option value="" selected="selected">Select</option>
-                                                    <c:forEach items = "${products}" var = "product">                          
-                                                    	<option value="${product.productName}">${product.productName}</option>
-                                                    </c:forEach>
-                                                </select>	                        	  
-                                            </td>
-                                        <tr>
-                                            <td class="full-enquiry-header">
-                                                Quantity* 
-                                            </td>
-                                            <td class="full-enquiry-txt">
-                                                <select required title="quantity" class="full-enquiry-field" name="quantity[]" id="quantityIDID">
-                                                    <option value="" selected="selected">Select</option>                              
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                    <option value="6">6</option>
-                                                    <option value="7">7</option>
-                                                    <option value="8">8</option>
-                                                    <option value="9">9</option>
-                                                    <option value="10">10</option>
-                                                </select>	                        	  
-                                                <select name="units[]">
-                                                    <option value="kilogram">Kilogram</option>
-                                                    <option value="tonnes">Tonnes</option>
-                                                    <option value="litre">Litre</option>
                                                 </select>
-                                                <input type="button" id="add_Button" onclick="addField()" value="+">(limit 10)
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2" class="full-enquiry-txt-title" style="width: 93%; text-align: left">
-                                                <br>
-                                                <hr style="width: 99.8%; background-color: #3c3c3c; height: 0.5px; border: 1px solid #3c3c3c">
-                                                <br>    
-                                                <p class="enquiry-header"> Step 3: Contact Details</p><br>
-                                            </td>
-                                        </tr> 
-                                        <tr>
-                                            <td class="full-enquiry-header">
-                                                Email address*
-                                            </td>
-                                            <td class="full-enquiry-txt">
+                                            </div>
+                                            <div class="form-group enquiry-form">
+                                                <input required maxlength="150" placeholder="First Name*" title="First Name*" class="form-control" id="first_name" name="first_name" type="text" />																				  											
+                                            </div>
+                                            <div class="form-group enquiry-form">
+                                                <input maxlength="150" placeholder="Middle Name" title="Middle Name*" class="form-control" id="middle_name" name="middle_name" type="text" />
+                                            </div>
+                                            <div class="form-group enquiry-form">
+                                                <input required maxlength="150" placeholder="Last Name*" title="Last Name*" class="form-control" id="last_name" name="last_name" type="text" />																				  											
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--Product Details-->
+                                    <div class="row">
+                                        <div class="line" style="margin-top: 20px;"></div>
 
-                                                <input required maxlength="200" placeholder="Email" title="email id" class="full-enquiry-field" name="TblQuickquote[email_id]" id="TblQuickquote_email_id" type="email">	                        	                    </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="full-enquiry-header">
-                                                Country
-                                            </td>
-                                            <td class="full-enquiry-txt">
+                                        <!--Product Name, Quantity, Add button-->
+                                        <div class="col-md-12" style="padding-left: 4%;">
+                                            <label>Product Details</label>
+                                            <br><br>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <label>Product*</label>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <label>Quantity*</label>
+                                                </div>
+                                            </div>
 
-                                                <select title="country" style="width: 43.9%; " class="full-enquiry-field" name="TblQuickquote[country]" id="TblQuickquote_country">
-                                                    <!-- id TblQuickquote_country is needed for the jQuery -->
-                                                    <option value="">Select Country</option>
-                                                    <c:forEach items = "${products}" var = "product">                          
-                                                    	<option value="${product.countryCode}">${product.countryOrigin}</option>
-                                                    </c:forEach>
-                                                    
-                                                </select>  
-                                                <script type="text/javascript">
-                                                    /*<![CDATA[*/
+                                            <div id='TextBoxesGroup'>
+                                                <div class="row" >
 
-                                                    jQuery(function ($tp) {
-                                                        jQuery('body').on('change', '#TblQuickquote_country', function () {
-                                                            jQuery.ajax({'type': 'post', 'url': '/send-enquiry.jsp', 'cache': false, 'data': jQuery(this).parents("form").serialize(), 'success': function (html) {
-                                                                    jQuery("#TblQuickquote_country_code").html(html);
-                                                                }});
-                                                            return false;
-                                                        });
+                                                    <div class="col-sm-12" style="padding-left:0px">
+                                                        <div class="col-xs-12 col-sm-4 enquiry-form" style="margin-bottom:10px">
+                                                            <input required class="form-control" placeholder="Product Name*" maxlength="500" title="Product Name*" name="product_name0" id="product_name0" type="text" />
+                                                        </div>
+                                                        <div class="col-xs-12 col-sm-2" style="margin-bottom:10px">
+                                                            <select class="form-control" id="quantity0" name="quantity0">
+                                                            <c:forEach begin = "1" end = "10" var = "i">
+                                                                
+                                                                <option value="${i}">${i}</option>
+                                                             </c:forEach>
+                                                                </select>
+                                                                
+                                                        </div>
+                                                        <div class="col-xs-12 col-sm-4" style="margin-bottom:10px">
+                                                            <select class="form-control" id="measurement0" name="measurement0">
+                                                                <option value="Kilograms">Kilograms</option>
+                                                                <option value="Tonnes">Tonnes</option>
+                                                                <option value="Litre">Litre</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-xs-6 col-sm-2">
+                                                            <center>
+                                                                <img src="images/add-row.jpg" onclick="addField()" onkeypress="addField()" tabindex="2" alt="Image1" height="20" width="20" /><b> (limit 10)</b>
+                                                            </center>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <!--Contact Details-->
+                                    <div class="row">
+                                        <div class="line" style="margin-top: 20px;"></div>
+
+                                        <!--Email, Country, Country Code, Phone Number-->
+                                        <div class="col-md-12" style="padding-left: 4%;">
+                                            <label>Contact Details</label>
+
+                                            <div class="form-group enquiry-form">
+                                                <input required maxlength="150" placeholder="Email*" title="Email" class="form-control" id="email" name="email" type="email" />																				  											
+                                            </div>
+                                            <div class="form-group enquiry-form">
+                                                <select class="form-control" id="country" name ="companyCountry" onChange="print_state('state', this.selectedIndex);
+                                                        showcode(this.value);" title="Select Country">
+                                                    <option selected="selected">Select Country</option>
+                                                </select>
+                                                <script type="text/javascript">print_country("country");</script>
+                                            </div>
+                                            <div class="form-group enquiry-form">
+                                                <input required maxlength="150" placeholder="Country Code*" title="Country Code" class="form-control" id="country_code" name="country_code" type="text" />																				  											
+                                            </div>
+                                            <div class="form-group enquiry-form">
+                                                <input required maxlength="150" placeholder="Phone Number*" title="Phone Number" class="form-control" id="phone_number" name="phone_number" type="text" />																				  											
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--Company Details-->
+                                    <div class="row">
+                                        <div class="line" style="margin-top: 20px;"></div>
+
+                                        <!--Company name, Company address, Destination Port, Destination Country, Comments-->
+                                        <div class="col-md-12" style="padding-left: 4%;">
+                                            <label>Company Details</label>
+
+                                            <div class="form-group enquiry-form">
+                                                <input required maxlength="150" placeholder="Company Name*" title="Company Name" class="form-control" id="company_name" name="company_name" type="text" />																				  											
+                                            </div>
+                                            <div class="form-group enquiry-form">
+                                                <input maxlength="150" placeholder="Company Address" title="Company Address" class="form-control" id="company_address" name="company_address" type="text" />																				  											
+                                            </div>
+                                            <div class="form-group enquiry-form">
+                                                <input maxlength="150" placeholder="Destination Port" title="Destination Port" class="form-control" id="destination_port" name="destination_port" type="text" />																				  											
+                                            </div>
+
+                                            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+                                            <script type="text/javascript" src="jquery.charactercounter.js"></script>
+                                            <div class="form-group enquiry-form">
+                                                <textarea id="comments" rows="5" cols="80" maxlength="500" placeholder="Comments/Notes (Max 500 characters)" title="Comments/Notes" class="form-control" name="comments"></textarea>
+                                                <div id="characterLeft"></div>
+                                            </div>
+                                            <script>
+                                                    $('#characterLeft').text('500 characters left');
+                                                    $('#comments').keyup(function () {
+                                                        var max = 500;
+                                                        var len = $(this).val().length;
+                                                        if (len >= max) {
+                                                            $('#characterLeft').text(' You have reached the limit');
+                                                        } else {
+                                                            var ch = max - len;
+                                                            $('#characterLeft').text(ch + ' characters left');
+                                                        }
                                                     });
-                                                    /*]]>*/
-                                                </script>
+                                            </script>
+                                        </div>
+                                    </div>
+                                    <!--Verification-->
+                                    <div class="row">
+                                        <div class="line" style="margin-top: 20px;"></div>
 
-                                            </td>
-                                        </tr>    
-                                        <tr>
-                                            <td class="full-enquiry-header">
-                                                Country Code* 
-                                            </td>
-                                            <td class="full-enquiry-txt">                                        
-                                                <input required type="text" placeholder="Code" name="countryCode[]" title="contactNO" id="contactNOIDID" class="full-enquiry-field">                                                
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="full-enquiry-header">
-                                                Phone Number* 
-                                            </td>
-                                            <td class="full-enquiry-txt">                                        
-                                                <input required type="text" placeholder="123456" name="contactNo[]" title="contactNO" id="contactNOIDID" class="full-enquiry-field">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2" class="full-enquiry-txt-title" style="width: 93%; text-align: left">
-                                                <br>
-                                                <hr style="width: 99.8%; background-color: #3c3c3c; height: 0.5px; border: 1px solid #3c3c3c">
-                                                <br>    
-                                                <p class="enquiry-header"> Step 4: Company Details</p><br>
-                                            </td>
-                                        </tr>    
-                                        <tr>
-                                            <td class="full-enquiry-header">
-                                                Company name*
-                                            </td>
-                                            <td class="full-enquiry-txt">
+                                         <%@ include file = "../verification_code.jsp" %>
+		                                
+                                    
+                                   
+                                                <input type="submit" class="btn btn-info" style="width:100px;" onclick = "submitEnquiry()" value="Submit">
+                                                <input type="reset" class="btn btn-danger" onclick = "reset()" style="width:100px;margin-right:5px">
+                                            
+                                        
 
-                                                <input required maxlength="200" placeholder="Company Name" title="Company Name" class="full-enquiry-field" name="TblQuickquote[company_name]" id="TblQuickquote_company_name" type="text">	                        	                    </td>
-                                        </tr>   
-                                        <tr>
-                                            <td class="full-enquiry-header">
-                                                Company address
-                                            </td>
-                                            <td class="full-enquiry-txt">
-                                                <input maxlength="200" placeholder="Company Address" title="Company Address" class="full-enquiry-field" name="TblQuickquote[company_addr]" id="TblQuickquote_company_addr" type="text">	                    </td>
-                                        </tr> 
-                                        <tr>
-                                            <td class="full-enquiry-header">
-                                                Destination port
-                                            </td>
-                                            <td class="full-enquiry-txt">
-
-                                                <input maxlength="200" placeholder="Destination Port" title="Destination Port" class="full-enquiry-field" name="TblQuickquote[dest_port]" id="TblQuickquote_dest_port" type="text">	                          
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="full-enquiry-header">
-                                                Destination country
-                                            </td>
-                                            <td class="full-enquiry-txt">
-                                                <select onchange="goto_pg(this.value)" title="country" style="width: 43.9%; " class="full-enquiry-field" name="dest_country" id="dest_country">             
-                                                    <option value="">Select Country</option>
-                                                    <c:forEach items = "${products}" var = "product">                          
-                                                    	<option value="${product.countryCode}">${product.countryOrigin}</option>
-                                                    </c:forEach>
-                                                </select>
-                                            </td>
-                                        </tr>      
-
-                                        <tr>
-                                            <td class="full-enquiry-header">
-                                                Comments (Max 800 characters)
-                                            </td>
-                                            <td class="full-enquiry-txt">
-                                                <label for="comment" style="display:none;">comment</label>
-
-                                                <textarea maxlength="800" placeholder="Comments" name="TblQuickquote[comment]" id="comment" title="comment" class="full-enquiry-comment"></textarea>
-                                            </td>
-                                        </tr>
-                                        <tr><td style="height:10;"></td></tr>
-                                        <tr>
-                                            <td colspan="2" style="text-align:center;">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="full-enquiry-header">
-                                                Verification Code*
-                                            </td>
-                                            <td class="full-enquiry-header" width="15%">
-                                                <img alt="code..." name="randImage" id="randImage" src="include/image.jsp" style="width: 100%; height: 100%;"/>
-                                                <a href="javascript:loadimage();"><img src="images/body/refresh.png"/></a>
-                                            </td>       
-                                        <tr>
-                                            <td class="full-enquiry-header">
-                                                <%="     "%><!-- Empty to push the verification code text bar to the next td -->
-                                            </td>
-                                            <td class="full-enquiry-header">
-                                                <input required maxlength="6" style="verify-code" placeholder="Enter Code" title="verifyCode" name="verifyCode" type="text" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2" style="text-align:center;">
-                                                <input value="Submit" name="submit" type="submit" class="full-enquiry-submit">
-                                                <input value="Reset" name="reset" type="reset" class="full-enquiry-submit" style="margin-left: 0%;">
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </form>
-                            <!-- To refresh a new verification code-->
-                            <script language="javascript">
-                                function loadimage() {
-                                    document.getElementById("randImage").src = "include/image.jsp?" + Math.random();
-                                }
-                            </script>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div> 
-
+                    
+                    <br>
                     <!-- Footer Codes -->
                     <%@include file="../footer.jsp"%>
                 </div>
             </div>
         </div>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="js/jquery.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="js/bootstrap.js"></script>
-
-
         <script src="js/tradeasia.js"></script>
+        <script src="js/sendEnquiry.js"></script>
+
+       
     </body>
 </html>

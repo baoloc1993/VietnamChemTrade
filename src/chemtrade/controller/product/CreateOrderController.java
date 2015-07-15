@@ -75,7 +75,7 @@ public class CreateOrderController extends HttpServlet implements Constant{
                     int enq_code = 0;
                     int approve_sts = 0;
 
-                    if (deliveryDate.isEmpty()) {
+                    if (deliveryDate.equals("")) {
                         deliveryDate = "0000-00-00 00:00:00";
                     }
                     order.setDestinationCountry(destinationCountry);

@@ -45,6 +45,7 @@ public class SupplierController extends HttpServlet implements Constant {
             String rand = String.valueOf((char) (97 + new Random().nextInt(26)));
             verificationCode += rand;
         }
+        //req.get
         req.setAttribute("vCode", verificationCode);
 		req.setAttribute("countries", countryCodes);
 		req.getRequestDispatcher("jsp/new-supplier.jsp").forward(req, resp);
