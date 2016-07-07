@@ -1,4 +1,4 @@
-
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!-- Popover 2 hidden content -->
 <div id="cartContent" style="display: none">
 
@@ -34,5 +34,5 @@
 </div>
 <!-- Popover 2 hidden title -->
 <div id="cartTitle" style="display: none">
-    <center><a class="cartLink" href="order" style="cursor: pointer"><u>VIEW CART</u> </a>| <a class="cartLink" href="order" style="cursor: pointer"><u>CHECKOUT</u></a></center>
+    <center><a class="cartLink" href="order" style="cursor: pointer"><u>Xem giỏ hàng</u> </a>| <a class="cartLink" href="order" style="cursor: pointer"><u>Thanh toán</u></a></center>
 </div> 

@@ -1,3 +1,19 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<title>Chính Sách Bảo Mật| Chemtradeasia |
+
+Tradeasia International Pte Ltd - Việt Nam</title> 
+<meta name = "keyword" content = "chính sách bảo mật công ty, điều khoản và
+
+điều kiện, điều khoản sử dụng, tuân thủ
+
+pháp luật">
+
+<meta name = "description" content  = "Tradeasia International luôn bảo mật thông
+
+tin và bảo vệ mọi dữ liệu khách hàng cung
+
+cấp khi sử dụng trang web."/>
 <font face="Roboto-Regular" color="black">
 <div style="padding-bottom: 25px">
 <h4>Terms Of Use</h4>

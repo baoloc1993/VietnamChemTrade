@@ -1,6 +1,6 @@
 
 
-
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ include file = "setting.jsp" %>
  <style>
             .feedback_header {
@@ -33,7 +33,7 @@
 
                         <!-- <form role="form" action="processFeedback" method="post">-->
                             <div class="form-group">
-                                <label for="name">Full Name*:</label>
+                                <label for="name">Họ và tên*:</label>
                                 <input type="text" class="form-control" name="fullname" id="name" required>
                             </div>
                             <div class="form-group">
@@ -41,21 +41,21 @@
                                 <input type="email" class="form-control" id="email" name="email" required>
                             </div>
                             <div class="form-group">
-                                <label for="comments">Comments*:</label>
+                                <label for="comments">Phản hồi*:</label>
                                 <textarea name="comments" id="comments" class="form-control" rows="5" required=""></textarea>
                             </div>
                             <div class="form-group">
-                                <label for="ratings">Ratings:</label> <p>
-                                    <label class="radio-inline"><input id="ratings" type="radio" value="1" name="ratings" checked>Normal</label>
-                                    <label class="radio-inline"><input id="ratings" type="radio" value="2" name="ratings">Average</label>
-                                    <label class="radio-inline"><input id="ratings" type="radio" value="3" name="ratings">OK</label>
-                                    <label class="radio-inline"><input id="ratings" type="radio" value="4" name="ratings">Good</label>
-                                    <label class="radio-inline"><input id="ratings" type="radio" value="5" name="ratings">Excellent</label>
+                                <label for="ratings">Đánh giá:</label> <p>
+                                    <label class="radio-inline"><input id="ratings" type="radio" value="1" name="ratings" checked>Rất kém</label>
+                                    <label class="radio-inline"><input id="ratings" type="radio" value="2" name="ratings">Kém</label>
+                                    <label class="radio-inline"><input id="ratings" type="radio" value="3" name="ratings">Bình thường</label>
+                                    <label class="radio-inline"><input id="ratings" type="radio" value="4" name="ratings">Tốt</label>
+                                    <label class="radio-inline"><input id="ratings" type="radio" value="5" name="ratings">Rất tốt</label>
                             </div>
 
                             <div style="margin-top:30px;">
-                                <button type="submit" class="btn btn-info btnC" onclick = "submitFeedback()">Submit</button>
-                                <button type="reset" class="btn btn-danger" onclick = "reset()" style="margin-left:1%">Reset</button>
+                                <button type="submit" class="btn btn-info btnC" onclick = "submitFeedback()">Xác nhận</button>
+                                <button type="reset" class="btn btn-danger" onclick = "reset()" style="margin-left:1%">Làm lại</button>
                             </div>
                         <!-- </form>-->
 

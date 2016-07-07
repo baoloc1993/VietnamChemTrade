@@ -1,3 +1,4 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%-- 
     Document   : products-category
     Created on : June 8, 2015, 11:24:12 AM
@@ -17,7 +18,7 @@
             <!---to wrap around all body content--->
             <div class="row">
                 <!----center content--->
-                <div class="col-md-12  centerRow">
+                <div class="col-md-10 col-md-offset-1  centerRow">
 
                     <!---add the header and navbar---->
                     <%@include file="../header_nav.jsp"%>
@@ -28,23 +29,8 @@
                         <div class="row">
                             <div class="col-md-12" style="margin-top:10px;">
                                 <a href="topProduct" >
-                                    <img class ="img-responsive" src="images/products/products-top-banner.jpg" alt="products-banner">
+                                    <img class ="img-responsive" src="images/products/products-top-banner.jpg" alt="products-banner" style = "width:100%">
                                 </a>
-                            </div>
-                        </div>
-
-                        <!--Shortcut Product Buttons-->
-                        <div class="row" style="margin-top:10px">
-
-                            <div class="col-xs-2 col-md-6">
-
-                            </div>
-                            <div class="col-xs-5 col-md-3">
-                                <!-- The Products buttons -->
-                                <a href="products-category.jsp"><img style="min-width:100px" class="img-responsive" src="images/products/products-category.png" alt="products category" width="180"/></a>
-                            </div>
-                            <div class="col-xs-5 col-md-3">
-                                <a href="products.jsp"><img style="min-width:100px" class="img-responsive" src="images/products/products-all.png" alt="all products" width="180"/></a>
                             </div>
                         </div>
 
@@ -67,16 +53,16 @@
                         </c:forEach>
                         <!--Pagination Codes-->
                         <div class="row">
-                                    <div class="col-md-12" >
-                                        <center>
-                                            <div class="pagerClass">
-                                                <ul id="yw1" class="pagination">
-                                                   ${paging }
-                                                </ul>
-                                            </div> 
-                                        </center>
-                                    </div>
-                                </div> 
+	                         <div class="col-md-12" >
+	                             <center>
+	                                 <div class="pagerClass">
+	                                     <ul id="yw1" class="pagination">
+	                                        ${paging }
+	                                     </ul>
+	                                 </div> 
+	                             </center>
+	                         </div>
+                        </div> 
                         <!--Pagination Codes ENDS-->
 
                     </div>

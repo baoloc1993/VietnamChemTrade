@@ -12,31 +12,32 @@ import junit.framework.TestCase;
 public class ProductControllerTest extends TestCase{
 
 	
-//	public void testGetProduct(){
-//		ProductController productController = new ProductController();
-//		try{
-//			ArrayList<Product> products = productController.getProductListFromDB();
-//			assertEquals(1010,products.size());
-//			assertEquals(1923,products.get(0).getProductId());
-//			
-//			ArrayList<Product> products2 = productController.getProductListFromDB(2);
-//			assertEquals(10,products2.size());
-//			//assertEquals(1923,products2.get(0).getProductId());
-//			
-//			ArrayList<Product> products3 = productController.getProductListFromDB(10,20);
-//			assertEquals(10,products3.size());
-//			assertEquals(products2.get(0).getProductId(),products3.get(0).getProductId());
-//			
-//			ArrayList<Product> products4 = productController.getProductListFromDB(0,10,'A');
-//			assertEquals(10,products4.size());
-//			System.out.println (products4.get(0).getProductName());
-//		}catch (Exception e){
-//			e.printStackTrace();
-//			assertEquals(1, 2);
-//		}
+	public void testGetProduct(){
+		ProductController productController = new ProductController();
+		try{
+			ArrayList<Product> products = productController.getProductListFromDB();
+			System.out.println (products.get(0).getThumbImage());
+			assertEquals(120,products.size());
+			assertEquals(1923,products.get(0).getProductId());
+			
+			ArrayList<Product> products2 = productController.getProductListFromDB(2);
+			assertEquals(10,products2.size());
+			//assertEquals(1923,products2.get(0).getProductId());
+			
+			ArrayList<Product> products3 = productController.getProductListFromDB(10,20);
+			assertEquals(10,products3.size());
+			assertEquals(products2.get(0).getProductId(),products3.get(0).getProductId());
+			
+			ArrayList<Product> products4 = productController.getProductListFromDB(0,10,'A');
+			assertEquals(10,products4.size());
+			System.out.println (products4.get(0).getProductName());
+		}catch (Exception e){
+			e.printStackTrace();
+			assertEquals(1, 2);
+		}
 //		
 //		
-//	}
+	}
 ////	
 //////	public void testGetProductbySEO(){
 //////		ProductController productController = new ProductController();

@@ -1,4 +1,4 @@
-
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
 <%@ include file = "setting.jsp" %>
@@ -86,7 +86,7 @@
             <!---to wrap around all body content--->
             <div class="row">
                 <!----center content--->
-                <div class="span12]">
+                <div class="col-md-10 col-md-offset-1 centerRow">
 
                     <!---add the header and navbar and search bar---->
                     <%@include file="header_nav.jsp"%>
@@ -100,32 +100,34 @@
                             <!--Search Form---->
                             <form method="get" action="gallery" >
 
-                                <div class="col-md-5"></div>
+                                
 
                                 <div class="col-md-5">
                                     <div class="form-group">
                                         <input type="text" class="form-control" value="${searchWord }" name="searchTB" placeholder="Search by chemical name" required>
-                                        <div style="margin-top:10px; font-size: 11px;" > <i>Search in:  
-                                                <label class="radio-inline" style="margin-left:5px"> <input type="radio" name="searchType" value="p" checked  = "checked"> Photo Gallery</label>
-                                                <label class="radio-inline"> <input type="radio" name="searchType" value="v"> Video Gallery</label>
-                                                <label class="radion-iline"><a href="gallery"><div class= "clearSearch">Clear Search</div></a></label>
+                                        <div style="margin-top:10px; font-size: 11px;" > <i>Tìm kiếm trong:  
+                                                <label class="radio-inline" style="margin-left:5px"> <input type="radio" name="searchType" value="p" checked  = "checked"> Thư viện ảnh</label>
+                                                <label class="radio-inline"> <input type="radio" name="searchType" value="v"> Thư viện phim</label>
+                                                <label class="radion-iline"><a href="gallery"><div class= "clearSearch">Xóa tìm kiếm</div></a></label>
                                             </i></div>
 
 
                                     </div>
                                 </div>
+								
 
                                 <div class="col-md-2" >
                                     <input type="submit" class="btn btn-info " value="Search">
                                 </div>
+								<div class="col-md-5"></div>
 
                             </form>
                         </div>
 
 						<!--  TAB NAME -->
                         <ul class="nav nav-tabs">
-                            <li class="active"><a data-toggle="tab" href="#photo" style = "color: rgb(90, 85, 85);" >Photo Gallery</a></li>
-                            <li><a data-toggle="tab" href="#video" style = "color: rgb(90, 85, 85);">Video Gallery</a></li>
+                            <li class="active"><a data-toggle="tab" href="#photo" style = "color: rgb(90, 85, 85);" >Thư viện ảnh</a></li>
+                            <li><a data-toggle="tab" href="#video" style = "color: rgb(90, 85, 85);">Thư viện phim</a></li>
                         </ul>
 						<!-- END TAB NAME -->
                         <!---START OF TAB CONTENT------>
@@ -178,11 +180,11 @@
 	                                                            <iframe class="embed-responsive-item" src="//www.youtube.com/embed/${video.videoLink }?rel=0&autoplay=0" allowfullscreen=""></iframe>
 	                                                        </div> <p>
 	
-	                                                        <h6>Pause the video before closing</h6>
+	                                                        <h6>Dừng video trước khi thoát</h6>
 	
 	                                                    </div>
 	                                                    <div class="modal-footer">
-	                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
 	                                                    </div>
 	                                                </div>
 	
@@ -214,9 +216,9 @@
                     <div class="slides"></div>
                     <!-- Controls for the borderless lightbox --
                     <h3 class="title"></h3>
-                    <a class="prev">‹</a>
-                    <a class="next">›</a>
-                    <a class="close">×</a>
+                    <a class="prev">â¹</a>
+                    <a class="next">âº</a>
+                    <a class="close">Ã</a>
                     <a class="play-pause"></a>
                     <ol class="indicator"></ol>
                     <!-- The modal dialog, which will be used to wrap the lightbox content --

@@ -11,15 +11,20 @@ a:hover, a:focus {
 }
 
 .blogBox {
-    margin-bottom: 5px;
+    margin-bottom: 0px;
     padding-left: 0px;
     padding-right: 1%;
+    margin-bottom: 8px;
 }
 
 .blogContent {
     background: #143D55;
-    padding: 2%;
-    height: 343px;
+    padding-left: 20px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-right: 22px;
+    min-height: 353px;
+    max-height: 353px;
 }
 
 @media (max-width: 1000px) {
@@ -194,7 +199,7 @@ a.bismuth-table {
 
 .box2 {
     border-bottom: white dotted thin;
-    background: none repeat scroll 0 0 #7E9234;
+    background: none repeat scroll 0 0 #800000;
     padding-left:0px;
 }
 
@@ -284,26 +289,26 @@ a:hover {
 }
 
 .qtn{
-    background-color: #7E9234;
+    background-color: #800000;
     height: 60px;                 
 }
 .qtn:hover {
-    background-color: #96AD3E;
+    background-color: #800000;
 }
 .spl{
-    background-color: #7E9234;
+    background-color: #800000;
     height: 60px;                 
 }
 .spl:hover {
-    background-color: #96AD3E;
+    background-color: #800000;
 }
 
 .dwn{
-    background-color: #7E9234;
+    background-color: #800000;
     height: 60px;                 
 }
 .dwn:hover {
-    background-color: #96AD3E;
+    background-color: #800000;
 }
 
 .aQtn {

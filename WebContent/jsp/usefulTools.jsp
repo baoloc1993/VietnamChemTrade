@@ -1,7 +1,23 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
    <%@include file = "setting.jsp"%>
+   
+   <title>Công Cụ Hữu Ích | Chemtradeasia | Tradeasia
+
+International Pte Ltd - Việt Nam</title> 
+<meta name = "keyword" content = "Số CAS, Công Thức Hóa Học, Đặc Tính Nhiệt Động Lực
+
+Học, Chuyển Đổi Đơn Vị , Máy Tính Tiền Tệ, Máy Chuyển
+
+Đổi Tiền Tệ">
+
+<meta name = "description" content  = "Chemtradeasia: Gồm nhiều công cụ tuyệt vời như máy
+
+tính, số cas, tỷ giá hối đoái để khách hàng dễ dàng sử
+
+dụng."/>
    <link href="css/usefulTools.css" rel="stylesheet">
     <body>
         <div class="container" >
@@ -12,14 +28,14 @@
 
                     <!---add the header and navbar and search bar---->
                                  
-				<div class="row-fluid col-md-12 centerRow">
+				<div class="row col-md-10 col-md-offset-1 centerRow">
 					<%@include file="header_nav.jsp"%> 
                     <!----wolfram----->
                     <div class="container-fluid " >
                         <div class="row-fluid" style="margin-top:15px;">
                             <div class="span3 ">
 
-                                <h3 style="color: #1a5292;"><b>Useful Widgets</b></h3>
+                                <h3 style="color: #1a5292;"><b>Tiện ích</b></h3>
                             </div>
                         </div>
 
@@ -62,7 +78,7 @@
 
                             <div class="span5">   
                                 <div style="margin-bottom:14px">
-                                    <h3>Association</h3>
+                                    <h3>Hiệp hội</h3>
                                 </div>
 
 								<c:forEach items = "${associations}" var = "association">
@@ -79,7 +95,7 @@
                             <div class="span5 offset1" >
 
                                 <div style="margin-bottom:14px">
-                                    <h3>Resources</h3></div>
+                                    <h3>Nguồn tham khảo</h3></div>
 
 
                      			<c:forEach items = "${resources}" var = "resource">
@@ -98,9 +114,9 @@
                         <!-- Footer Codes -->
                         
                     </div>
-					
+					 <%@include file="footer.jsp"%>
                 </div>
-                <%@include file="footer.jsp"%>
+               
             </div>
             
         

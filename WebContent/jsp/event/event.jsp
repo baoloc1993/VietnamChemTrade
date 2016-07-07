@@ -5,6 +5,27 @@
     Fix 		: Ngo Le Bao Loc
 --%>
 <%@ include file = "../setting.jsp" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<title>Sự Kiện | Chemtradeasia | Tradeasia
+
+International Pte Ltd - Việt Nam</title> 
+<meta name = "keyword" content = "Nhà phân phối hóa chất, Triển lãm thương
+
+mại ở Việt Nam, Hội Nghị Quốc Tế ở Việt
+
+Nam, Nhà cung cấp hóa chất cơ bản ở Việt
+
+Nam, Sự Kiện Thương Mại Hóa Chất Việt
+
+Nam, Sự Kiện Kinh Doanh Hóa Chất Việt
+
+Nam, Sự Kiện Thương Mại Việt Nam, sự
+
+kiện về nông nghiệp, sự kiện về hóa chất">
+
+<meta name = "description" content  = "Chemtradeasia: Cập nhật các sự kiện kinh
+
+doanh hóa chất mới nhất trên toàn thế giới."/>
   <script type="text/javascript">
        function loadimage() {
     	   var text = "";
@@ -21,23 +42,23 @@
     	<div class="container" style="padding-right:27px; padding-left:5px; background-color: white;">
 
             <!---to wrap around all body content--->
-            <div class="col-md-12  centerRow">
+            <div class="col-md-10 col-md-offset-1  centerRow">
                 <!----center content--->
-                <div class="span12">
+                <div class="col-md-12">
 
                     <!---add the header and navbar and search bar---->
                     <%@include file="../header_nav.jsp"%>
                     <!--main part for event--->
-                    <div class="span12 row-fluid">
+                    <div class="col-md-12">
                            <!--  Find Event according to Date -->
-                            <div class = "span8">
-	                            <form method="get"  action = "event" style="padding-top: 4%;">
-	                                <div class="findevent-title span2" style="font-size:110%; margin-top:3%;">Find Events: </div>
+                            <div class = "col-md-8">
+	                            <form method="get"  action = "event" >
+	                                <div class="findevent-title span2" style="font-size:110%; ">Tìm kiếm sự kiện: </div>
 	                                	<!--  SELECT DATE -->
 	                                <div>
-		                                <select title="Date"  class="event-box"  style="font-size: 13px; font-weight: bold; width: 45%; padding: 0.8% 0.5% 0.8% 1%; border-radius: 5px; color: rgb(0, 0, 0); margin-top: 2%;margin-left: 5%;" name="date" id="date" onchange = "this.form.submit()">
-		                                    <option value="">Select Date</<option>
-		                                    <option value="-">All<option>
+		                                <select title="Date"  class="event-box"  style="font-size: 13px; font-weight: bold; width: 45%; padding: 0.8% 0.5% 0.8% 1%; border-radius: 5px; color: rgb(0, 0, 0); " name="date" id="date" onchange = "this.form.submit()">
+		                                    <option value="">Chọn ngày</<option>
+		                                    <option value="-">Tất cả<option>
 		                                    <!--  LIST OPTION -->
 		                                    <c:forEach items="${dates}" var="date">
 												<option value= "${date}">${date}</option>
@@ -48,25 +69,27 @@
 	                            	</div>
 	                            </form>
 	                    	</div>
-	                    	<div id="tabs" class = "span2">
+	                    	<div id="tabs" class = "col-md-4">
                         	<!--  ADD NEW EVENT BUTTON -->
-                            	<a href="addEvent" class="submit_events" target="_blank"><img src="images/submit-an-event.png" alt="event submit" style="float: right; margin-top: 15%; padding-top: 3%;"/></a>
+                            	<a href="addEvent" class="submit_events" target="_blank"><img src="images/submit-an-event.png" alt="event submit" style="float: right; "/></a>
                             </div>	
-                        </div>
-                        <div id="yw0" class="list-view">
+							
+							<div id="yw0" class="list-view">
                         	<!--  min (position + 2, recordCount) -->
-                            <div style="text-align:right;"><br><br>Displaying ${wrapper.position + 1}-
+                            <div style="text-align:right;"><br><br>Hiển thị ${wrapper.position + 1}-
                             	<c:if test = "${wrapper.position + 2 >= wrapper.recordCount}">  
                             		${wrapper.recordCount }
                             	</c:if>
                             	<c:if test = "${wrapper.position + 2 < wrapper.recordCount}">  
                             		${wrapper.position + 2 + 1 }
-                            	</c:if> of ${wrapper.recordCount} results.</div>
+                            	</c:if> trong ${wrapper.recordCount} sự kiện.</div>
                             <!--  END IF -->
                         </div>
+                        </div>
+                        
 					</div>
 				</div>
-                <div class="items">
+                <div class="items col-md-12">
                  <!--  DISPLAY A LIST OF EVENT  LOOP -->
                  	<c:if test = "${wrapper.pageSize > 0 }">
                 	<c:forEach var = "event" items = "${wrapper.results }" begin = "${wrapper.position}" end = "${wrapper.pageSize + wrapper.position - 1 }">
@@ -104,7 +127,7 @@
                                              	<td style="word-wrap: break-word;"><br>${event.description}
                                              		<a href = "<c:url value="eventSingle.jsp">
                                      						<c:param name="id" value="${event.id}"/>
-                                     					</c:url>" style="color: #c8102a;">[Read More...]
+                                     					</c:url>" style="color: #c8102a;">[Xem thêm...]
                                      				</a>
                                                  </td></tr>
                                          </tbody>
@@ -174,7 +197,7 @@
                     </ul>
                 </div>
 			
-	            <div class= "span12" style = "margin-left:0px;" >
+	            <div class= "col-md-12"  >
 					<%@ include file="../footer.jsp"%>	
 				</div>
 			</div>

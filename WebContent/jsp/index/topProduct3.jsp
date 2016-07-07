@@ -1,10 +1,12 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
  <script src="js/product.js"></script>
 
 
 <div class="title-bg span12 row-fluid" style="font-size:15px; margin-bottom:1%; margin-left:0px;">
-	<div class  ="span10" style = "color: white"> Top Products </div>
+	<div class  ="span10" style = "color: white"> Sản phẩm hàng đầu </div>
 	
 </div>	
 
@@ -31,7 +33,7 @@
                                     <div class="col-xs-6 col-md-3" style="padding-right: 13px;padding-left: 5px;">
                                         <div class="thumbnail">
                                             <center>     
-                								<a href="javascript:{}" onclick = "go_to_product_detail('${product.productId}')" class="imgLink">
+                								<a href="productDetail?id=${product.productId }"  class="imgLink">
                                                 
                                                     <span class="pdd-lft" >
                                                         ${product.shortName }

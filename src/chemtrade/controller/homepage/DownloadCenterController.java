@@ -27,6 +27,7 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -47,6 +48,13 @@ import javax.servlet.http.HttpServletResponse;
 
 //import org.apache.tools.zip.ZipEntry;
 //import org.apache.tools.zip.ZipOutputStream;
+
+
+
+
+
+
+
 
 
 
@@ -89,6 +97,7 @@ public class DownloadCenterController extends HttpServlet implements Constant{
 
 			// TODO: handle exception
 		}finally{
+			//request.getSession().getServletContext().getRealPath("/");
 
 	        request.setAttribute("downloads", downloadWrappers);
 	        request.setAttribute("paging", paging);
@@ -106,8 +115,9 @@ public class DownloadCenterController extends HttpServlet implements Constant{
 	 * @param showPage Page want to display i.e: 1, 2, 3
 	 * 
 	 * @throws SQLException 
+	 * @throws UnsupportedEncodingException 
 	 */
-	public void configDownloadWrapper(String seoKeyWord, String showPage) throws SQLException {
+	public void configDownloadWrapper(String seoKeyWord, String showPage) throws SQLException, UnsupportedEncodingException {
 		int pageCount;
         int sPage;
     	try{
@@ -149,6 +159,7 @@ public class DownloadCenterController extends HttpServlet implements Constant{
             DownloadWrapper downloadWrapper = new DownloadWrapper();
              Product product = products.get(i);
              downloadWrapper.setProduct(product);
+            
             /*
              * Get name of country
              */
@@ -171,6 +182,7 @@ public class DownloadCenterController extends HttpServlet implements Constant{
             
         }
        // System.out.println ("SIZE = " + downloadWrappers.get(0).getCountry());
+        
         paging = setPaging(sPage, pageCount, position, recordCount);
         //System.out.println ("SIZE = " + paging);
 	}
@@ -180,26 +192,74 @@ public class DownloadCenterController extends HttpServlet implements Constant{
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	try{
+    	try {
     		String tempFiles = request.getParameter("files");
-    		String[] files =  tempFiles.split(",");
+    		String[] ids =  tempFiles.split(",");
     		String name = request.getParameter("name");
     		String email = request.getParameter("email");
-    		String phone = request.getParameter("phone");
-    		String requirement = request.getParameter("rec");
-	        String FilePath = request.getSession().getServletContext().getRealPath("/upload") + "\\";
-
+    		//String phone = request.getParameter("phone");
+    		//String requirement = request.getParameter("rec");
+	        String FilePath = request.getSession().getServletContext().getRealPath("/");
+	        //request.getLocalAddr();
+	        ArrayList<String> files;
+			
+				files = getListFile(ids);
+			
 	        compressFile(response, FilePath,files);
-    		sendInfoToDB(name, email, phone, requirement);
+    		sendInfoToDB(name, FilePath);
     		EmailController emailController = new EmailController();
     		emailController.sendEmailViaGmail(email, getMailBody(name), "Download Center");
-    		
-    		
+    	} catch (SQLException e) {
+    		response.sendError(511, e.getMessage());
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			response.sendError(512, e.getMessage());
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			response.sendError(513, e.getMessage());
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-        } catch (Exception e) {
-        	response.sendError(404, e.getMessage());
-            e.printStackTrace();
-        }
+        
+    }
+    /**
+     * Get List of file by list of id
+     * @return
+     * @throws SQLException 
+     */
+    public ArrayList<String> getListFile(String [] ids) throws SQLException{
+    	ArrayList<String> files = new ArrayList<String>();
+    	Connection conn = ConnectionManager.getConnection();
+    	String BASE_SQL = "SELECT p.specification,p.product_dir, p.msds "
+   				+ "FROM tbl_product p "
+   				+ "inner join tbl_countries c on p.country_origin = c.ccode "
+   				+ "inner join tbl_phy_appear a on p.physical_appear = a.phy_appear_id "
+   				+ "inner join tbl_packaging pk on p.packing_details = pk.id "
+					+ "where p.r_status ='A'";
+    	//String sql = PRODUCT_BASE_SQL;
+    	System.out.println (ids.length);
+    	for (int i = 0 ; i < ids.length; i++){
+    		try{
+    			String sql = BASE_SQL + " AND product_id = '" + ids[i].substring(1, ids[i].length())+"'";
+    			System.out.println (sql);
+    			PreparedStatement ps = conn.prepareStatement(sql);
+    	    	ResultSet rs = ps.executeQuery();
+    	    	rs.next();
+    	    	if (ids[i].startsWith("B")){
+    	    		files.add(rs.getString("product_dir") + "/" +  rs.getString("msds"));
+    	    	}else{
+    	    		files.add(rs.getString("product_dir") + "/" + rs.getString("specification"));
+    	    	}
+    		}catch(Exception e){
+    	    	e.printStackTrace();
+    	    }
+    	} 
+		return files;
+    	
+    	
     }
 
 
@@ -210,42 +270,61 @@ public class DownloadCenterController extends HttpServlet implements Constant{
 	 * @param request
 	 * @param response
 	 * @param files
-	 * @throws FileNotFoundException
 	 * @throws IOException
 	 */
 	
-	public void compressFile(HttpServletResponse response, String FilePath, String[] files)
-			throws FileNotFoundException, IOException {
+	public void compressFile( HttpServletResponse response ,String FilePath, ArrayList<String> files) throws IOException
+			 {
+		
+		//String sourceFileDir = "C:/Users/luisngo/Desktop" + "/images/";
+		String sourceFileDir = FilePath + "images/";
+		String filePath = FilePath + "upload/";
+		//String filePath = "C:/Users/luisngo/Desktop" + "/upload/";
 			File[] newFiles = new File[40];
-	        length = files.length;
-	        //FilePath = request.getSession().getServletContext().getRealPath("/upload") + "\\";
+	        length = files.size();
 	        /*
 	         * Standardize the file path
 	         */
 	        for (int i = 0; i < length; i++) {
-	            newFiles[i] = new File(FilePath + files[i].replace("/", "\\"));
+	            newFiles[i] = new File(sourceFileDir + files.get(i));
 	        }
 	        	
 	        String tmpFileName = "Download"+new SimpleDateFormat("MMddHHmm").format(Calendar.getInstance().getTime())+".zip";
 	        byte[] buffer = new byte[1024];
-	        String strZipPath = FilePath + tmpFileName;
-	        BufferedInputStream origin;
-	        FileOutputStream dest = new FileOutputStream(strZipPath);
-	        ZipOutputStream out = new ZipOutputStream(new BufferedOutputStream(dest));
-	        byte data[] = new byte[BUFFER];
-	        for (int i=0; i<files.length; i++) {
-	        	   System.out.println("Adding: "+ FilePath + files[i]);
-	        	   FileInputStream fi = new FileInputStream(FilePath + files[i]);
-	        	   origin = new BufferedInputStream(fi, BUFFER);
-	        	   ZipEntry entry = new ZipEntry(files[i]);
-	        	   out.putNextEntry(entry);
-	        	   int count;
-	        	   while((count = origin.read(data, 0, BUFFER)) != -1) {
-	        	      out.write(data, 0, count);
-	        	   }
-	        	   origin.close();
-	        }
-	        out.close();
+	       
+	        String strZipPath = filePath + tmpFileName;
+	        strZipPath = strZipPath.replace("\\", "");
+	        //System.out.println (strZipPath);
+	        BufferedInputStream origin = null;
+	        System.out.println (strZipPath);
+	        
+	           // BufferedInputStream origin = null;	
+	            File file = new File(strZipPath);
+	            if (!file.exists()) {
+					file.createNewFile();
+				}
+	            FileOutputStream dest = new FileOutputStream(file);
+	            ZipOutputStream out = new ZipOutputStream(new BufferedOutputStream(dest));
+	            //out.setMethod(ZipOutputStream.DEFLATED);
+	            byte data[] = new byte[BUFFER];
+	            // get a list of files from current directory
+//	            File f = new File(".");
+//	            String files[] = f.list();
+
+	            for (int i=0; i<length; i++) {
+	               System.out.println("Adding: "+newFiles[i]);
+	               FileInputStream fi = new FileInputStream(newFiles[i]);
+	               origin = new BufferedInputStream(fi, BUFFER);
+	               ZipEntry entry = new ZipEntry(files.get(i));
+	               out.putNextEntry(entry);
+	               int count;
+	               while((count = origin.read(data, 0,  BUFFER)) != -1) {
+	                  out.write(data, 0, count);
+	               }
+	               origin.close();
+	            }
+	            out.close();
+	        
 	        	   
 	        	   
 	        	   // create zip entry
@@ -266,8 +345,10 @@ public class DownloadCenterController extends HttpServlet implements Constant{
 //            }
             //out.close();
             //System.out.println(strZipPath);
-            //this.downFile(response, tmpFileName);
-            downFile(FilePath,response,tmpFileName);
+           // this.downFile(response, tmpFileName);
+	        PrintWriter writer = response.getWriter();
+	        writer.write(ROOT + "upload/" +tmpFileName);
+           // downFile(FilePath,response,tmpFileName);
 	}
 
     /**
@@ -278,7 +359,7 @@ public class DownloadCenterController extends HttpServlet implements Constant{
      * @param rec
      * @throws SQLException 
      */
-    public void sendInfoToDB(String name, String email, String phone, String rec) throws SQLException {
+    public void sendInfoToDB(String name, String filePath) throws SQLException {
         Connection conn = null;
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Calendar cal = Calendar.getInstance();
@@ -288,8 +369,8 @@ public class DownloadCenterController extends HttpServlet implements Constant{
 //        try {
             conn = ConnectionManager.getConnection();            
         	//String str_date2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime());
-        	String sql ="INSERT INTO `tbl_download_center` ( `date`,`name`,`file_path`,`status`,`e_name`, `e_email`, `e_phone`, `e_comments`) VALUES "
-                    + "('" + date + "','','','', '" + name + "', '" + email + "', '" + phone + "', '" + rec + "');";
+        	String sql ="INSERT INTO `tbl_download_center` ( `date`,`name`,`file_path`,`status`) VALUES "
+                    + "('" + date + "','" + name + "','" + filePath + "','');";
         	//System.out.println(sql);
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.execute();
@@ -306,32 +387,32 @@ public class DownloadCenterController extends HttpServlet implements Constant{
      */
     public void downFile(String FilePath ,HttpServletResponse response, String filrDir) throws IOException {
         //try {
-            String path = FilePath + filrDir;
-            File file = new File(path);
-            if (file.exists()) {
-                InputStream ins = new FileInputStream(path);
-                BufferedInputStream bins = new BufferedInputStream(ins);
-                OutputStream outs = response.getOutputStream();
-                BufferedOutputStream bouts = new BufferedOutputStream(outs);
-                response.setContentType("application/x-download");
-                response.setHeader(
-                        "Content-disposition",
-                        "attachment;filename="
-                        + URLEncoder.encode(filrDir, "UTF-8"));
-                int bytesRead = 0;
-                byte[] buffer = new byte[8192];
-                 
-                while ((bytesRead = bins.read(buffer, 0, 8192)) != -1) {
-                    bouts.write(buffer, 0, bytesRead);
-                }
-                bouts.flush();
-                ins.close();
-                bins.close();
-                outs.close();
-                bouts.close();
-            } else {
-                response.sendRedirect("../error.jsp");
-            }
+//            String path = FilePath + filrDir;
+//            File file = new File(path);
+//            if (file.exists()) {
+//                InputStream ins = new FileInputStream(path);
+//                BufferedInputStream bins = new BufferedInputStream(ins);
+//                OutputStream outs = response.getOutputStream();
+//                BufferedOutputStream bouts = new BufferedOutputStream(outs);
+//                response.setContentType("application/x-download");
+//                response.setHeader(
+//                        "Content-disposition",
+//                        "attachment;filename="
+//                        + URLEncoder.encode(filrDir, "UTF-8"));
+//                int bytesRead = 0;
+//                byte[] buffer = new byte[8192];
+//                 
+//                while ((bytesRead = bins.read(buffer, 0, 8192)) != -1) {
+//                    bouts.write(buffer, 0, bytesRead);
+//                }
+//                bouts.flush();
+//                ins.close();
+//                bins.close();
+//                outs.close();
+//                bouts.close();
+//            } else {
+//                response.sendRedirect("../error.jsp");
+//            }
         //} catch (IOException e) {
           //  e.printStackTrace();
         //}
@@ -391,20 +472,20 @@ public class DownloadCenterController extends HttpServlet implements Constant{
     	message += "</tr>";
     	message += "<tr><td height=\"10\"></td></tr>";
     	message += "<tr>";
-    	message += "<td colspan=\"3\">Dear " + name + "\",</td>";
+    	message += "<td colspan=\"3\">Chào bạn " + name + "\",</td>";
     	message += "</tr>";
     	message += "<tr><td height=\"10\"></td></tr>";
     	message += "<tr>";
-    	message += "<td colspan=\"3\">Greetings from Tradeasia International Pte. Ltd!</td>";
+    	message += "<td colspan=\"3\">Tradeasia International Pte. Ltd! xin gửi lời chào đến bạn.</td>";
     	message += "</tr>";
     	message += "<tr><td height=\"10\"></td></tr>";
     	message += "<tr>";
-    	message += "<td colspan=\"3\">Thank you for showing interest in our product.</td>";
+    	message += "<td colspan=\"3\">Cảm ơn bạn đã quan tâm đến sản phẩm của chúng tôi.</td>";
     	message += "</tr>";
     	message += "<tr><td height=\"10\"></td></tr>";    			    
     	message += "<tr><td height=\"10\"></td></tr>";
-    	message += "<tr><td colspan=\"4\">Best Regards,</td></tr><tr><td height=\"10\"></td></tr>";
-    	message += "<tr><td colspan=\"4\">Tradeasia Team</td></tr>";
+    	message += "<tr><td colspan=\"4\">Thân,</td></tr><tr><td height=\"10\"></td></tr>";
+    	message += "<tr><td colspan=\"4\">Tradeasia</td></tr>";
     	message += "<tr><td height=\"10\"></td></tr>";    			   
     	message += "<tr>";
     	message += "<td colspan=\"3\"><img src=\"" +footer + "\"></td>";
@@ -419,8 +500,9 @@ public class DownloadCenterController extends HttpServlet implements Constant{
      * @param s : given seo keyword
      * @return
      * @throws SQLException 
+     * @throws UnsupportedEncodingException 
      */
-    public ArrayList<Product> getDownloadList(String seo) throws SQLException{
+    public ArrayList<Product> getDownloadList(String seo) throws SQLException, UnsupportedEncodingException{
     	 ArrayList<Product> list = new ArrayList<>();
  	    Connection conn = null;
  	    PreparedStatement ps = null;
@@ -430,7 +512,7 @@ public class DownloadCenterController extends HttpServlet implements Constant{
  	    if (!seo.equals("")){    
             sql += " and `product_name` like '%" + seo + "%' or `iupac_name` like '%" + seo + "%' or `common_names` like '%" + seo + "%'";
     	}
-  	   System.out.println (sql);
+  	   //System.out.println (sql);
 
          //System.out.println (sql);
          ps = conn.prepareStatement(sql);
@@ -438,12 +520,17 @@ public class DownloadCenterController extends HttpServlet implements Constant{
          while (rs.next()) {
         	 Product product = new Product();
         	 product.setProductId(rs.getInt(PRODUCT_ID));
-        	 product.setProductName(rs.getString(PRODUCT_NAME));
-        	 product.setCountryOrigin(rs.getString(PRODUCT_COUNTRY));
-        	 product.setSpecification(rs.getString(PRODUCT_SPECIFICATION));
-        	 product.setMsds(rs.getString(PRODUCT_MSDS));
-        	 product.setProductDir(rs.getString(PRODUCT_DIR));
-        	 product.setPhysicalAppear(rs.getString(PRODUCT_PHY_APPEAR));
+         	product.setProductName(new String(rs.getBytes(PRODUCT_NAME), "UTF-8"));
+         	product.setCountryOrigin(new String(rs.getBytes(PRODUCT_COUNTRY), "UTF-8"));
+         	product.setPackingDetail(new String(rs.getBytes(PRODUCT_PACKAGE), "UTF-8"));
+         	product.setPhysicalAppear(new String(rs.getBytes(PRODUCT_PHY_APPEAR), "UTF-8"));
+         	product.setCasNumber(new String(rs.getBytes(PRODUCT_CAS_NUMBER), "UTF-8"));
+         	product.setChemicalFormula(new String(rs.getBytes(PRODUCT_FORMULA), "UTF-8"));
+         	product.setCountryCode(new String(rs.getBytes(PRODUCT_COUNTRY_CODE), "UTF-8"));
+         	product.setDescription(rs.getBlob(PRODUCT_DESC));
+            	product.setApplication(new String(rs.getBytes(PRODUCT_APPLICATION), "UTF-8"));
+            	product.setProductDir(new String(rs.getBytes(PRODUCT_DIR), "UTF-8"));
+            	product.setThumbImage(new String(rs.getBytes(PRODUCT_IMAGE), "UTF-8"));
         	list.add(product);
          }
 

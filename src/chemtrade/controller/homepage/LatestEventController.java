@@ -49,12 +49,12 @@ public class LatestEventController{
 	        	 Event event = new Event();
 		         //Set Attribute of Event
 		         event.setId(rs.getInt(1));
-		         event.setTitle(rs.getString(2));
-		         event.setDescription(rs.getString(3));
+		         event.setTitle(new String(rs.getBytes(2), "UTF-8"));
+		         event.setDescription(new String(rs.getBytes(3), "UTF-8"));
 		         event.setLink(rs.getString(4));
 		         event.setImg(rs.getString(5));
 		         event.setDate(rs.getString(6));
-		         event.setLocation(rs.getString(7));
+		         event.setLocation(new String(rs.getBytes(7), "UTF-8"));
 		         event.setCreatedOn(rs.getString(8));
 	        	 latestEvent.add(event);
 	           

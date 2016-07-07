@@ -1,15 +1,15 @@
 <%@ include file = "../setting.jsp" %> 
-
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <link href="css/screen.css" rel="stylesheet">
 <body>
-<div class = "container-fluid" style = "padding-right:27px; padding-left:5px; background-color: white;">
+<div class = "container" style = "padding-right:27px; padding-left:5px; background-color: white;">
 	<!--  HEADER -->
-	<div class = "span12">
+	<div class = "col-md-12">
 		<%@ include file="../header_nav.jsp"%>
 	</div>
 	<!--  END HEADER -->
 	
-	<div class = "span12" style = " margin-bottom:10px;">
+	<div class = "col-md-12" style = " margin-bottom:10px;">
 	    ${message }
 	</div>
 	

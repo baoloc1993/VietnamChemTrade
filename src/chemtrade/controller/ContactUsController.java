@@ -13,11 +13,13 @@ import java.util.*;
 import java.io.*;
 import java.sql.*;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
 import chemtrade.configuration.ConnectionManager;
+import chemtrade.configuration.Constant;
 import chemtrade.entity.Contact;
 import chemtrade.entity.CountryCode;
 
@@ -28,41 +30,194 @@ import chemtrade.entity.CountryCode;
  */
 
 @WebServlet("/contact-us")
-public class ContactUsController extends HttpServlet {
+public class ContactUsController extends HttpServlet implements Constant {
     
 	 
     
-    
-    protected void doPost(HttpServletRequest request,
-            HttpServletResponse response) throws ServletException, IOException {
+
        
 //        Connection conn = null; //connection to the database
-        String replyMessage = ""; //message will be sent back to the client
-        
-        try {
-        	 String firstName = request.getParameter("firstname");
-             String lastName = request.getParameter("lastname");
-             String descr = request.getParameter("description");
-             String email_ = request.getParameter("email");
-             String country_ = request.getParameter("country");
-             String message_ = request.getParameter("message");
-             
-            replyMessage = addContactFormToDatabase(firstName, lastName, descr, email_,
-					country_, message_);
+    	 protected void doPost(HttpServletRequest request,
+    	            HttpServletResponse response) throws ServletException, IOException {
+    	        String firstName = request.getParameter("firstname");
+    	        String lastName = request.getParameter("lastname");
+    	        //title
+    	        String descr = request.getParameter("description");
+    	        String email_ = request.getParameter("email");
+    	        String country_ = request.getParameter("country");
+    	        String message_ = request.getParameter("message");
 
-        }
-        catch (SQLException e){
-            replyMessage = "ERROR: " + e.getMessage();
-            e.printStackTrace();
-        }
+    	        Connection conn = null; //connection to the database
+    	        //String replyMessage = "none"; //message will be sent back to the client
+
+    	        try {
+    	            //connects to the database
+    	            //DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+    	            conn = ConnectionManager.getConnection();
+
+    	            //constructs SQL statement
+    	            String sql = "INSERT INTO tbl_contact_us "
+    	                    + "(firstname, lastname, description, email, country, message) values ('" + firstName + "','" + lastName + "','" + descr + "','" + email_ + "','" + country_ +  "','" + message_ + "');";
+    	            PreparedStatement ps =  conn.prepareStatement(sql);
+    	            ps.execute();
+    	            request.getRequestDispatcher("contact-us").forward(request,response);
+    	            //int row = stmt.executeUpdate(); //sends statement to the database server
+    	          
+
+    	        } catch (Exception e) {
+    	        	response.sendError(511,e.getMessage());
+    	        	
+    	           // replyMessage = "ERROR: " + e.getMessage();
+    	            //e.printStackTrace();
+    	        } 
+    	        //HttpSession session = request.getSession(false);//because request doesn't work
+    	       // request.setAttribute("databaseMessage", replyMessage); //sets message in session
+    	        //RequestDispatcher rd = request.getRequestDispatcher("contact-us2.jsp");
+    	       // rd.forward(request, response);
+    	        return;
+    	//response.sendRedirect("contact-us.jsp");
+
+    	    }
         
-        HttpSession session = request.getSession(false);
-        //request.setAttribute("databaseMessage", replyMessage); //sets message in session
-        request.getRequestDispatcher("index").forward(request, response);
         
-        
-    }
     
+    	  /**
+    	     * Sending Email function
+    	     *
+    	     * @param letterId
+    	     * @param ROOT
+    	     * @param name
+    	     * @param email
+    	     * @param contact
+    	     * @param product
+    	     * @param message
+    	     * @throws Exception
+    	     * @throws MessagingException
+    	     */
+    	    public void sendEmail(final String firstName, final String lastName, final String descr,
+    	            final String email_, final String country_, final String message_) throws Exception {
+    	        String header = "http://" + ROOT + "/images/email_header.jpg";
+    	        String footer = "http://" + ROOT + "/images/email_footer.jpg";
+
+    	        String mailBody = " <table width=\"870\" style=\"border:#666666 1px solid;\" align=\"center\">\n"
+    	                + " \n"
+    	                + " <tr>\n"
+    	                + "    <td colspan=\"3\"><img src=\"" + header + "\"></td>\n"
+    	                + "  </tr>\n"
+    	                + "  <tr><td height=\"10\"></td></tr>\n"
+    	                + "  <tr>\n"
+    	                + "    <td colspan=\"3\">Dear " + firstName + ",</td>\n"
+    	                + "  </tr>\n"
+    	                + "  <tr><td height=\"10\"></td></tr>\n"
+    	                + "  <tr>\n"
+    	                + "    <td colspan=\"3\">Greetings from Tradeasia International Pte. Ltd!</td>\n"
+    	                + "  </tr>\n"
+    	                + "  <tr><td height=\"10\"></td></tr>\n"
+    	                + "  <tr>\n"
+    	                + "    <td colspan=\"3\">Thank you for contacting us. We will review it and get back to you soon.</td>\n"
+    	                + "  </tr>\n"
+    	                + "  <tr><td height=\"10\"></td></tr>\n"
+    	                + "    \n"
+    	                + "  <tr><td height=\"10\"></td></tr>\n"
+    	                + "  <tr><td colspan=\"4\">Best Regards,</td></tr><tr><td height=\"10\"></td></tr>\n"
+    	                + "  <tr><td colspan=\"4\">Tradeasia Team</td></tr>\n"
+    	                + "  <tr><td height=\"10\"></td></tr>\n"
+    	                + "   \n"
+    	                + "  <tr>\n"
+    	                + "    <td colspan=\"3\"><img src=\"" + footer + "\"></td>\n"
+    	                + "  </tr>\n"
+    	                + "  \n"
+    	                + "</table>";
+
+    	        String adminMailBodyHeader = setAdminMailBodyHeader(header, firstName, lastName);
+    	        String mailBodyDetail = setMailBodyDetail(firstName, lastName, descr, email_, country_, message_);
+    	        String adminMailBodyFooter = setAdminMailBodyFooter(footer);
+
+    	        String adminMailBody = adminMailBodyHeader + mailBodyDetail + adminMailBodyFooter;
+    	        EmailController emailController = new EmailController();
+    	        emailController.sendEmailViaGmail(email_, mailBody, "Contact Us");
+    	        //sendEmailViaGmail(email_, mailBody);
+    	        String adminEmail = emailController.getAdminEmail();
+    	        emailController.sendEmailViaGmail(adminEmail, adminMailBodyFooter, "Contact Us – Chemtradeasia Portal");
+    	       // sendAdminEmail(adminMailBody);
+
+    	        // this.mailSender.send(msg);
+    	    }
+
+    	   
+    	    private String setAdminMailBodyFooter(String footer) {
+    	        String adminMailBodyFooter = "<tr><td height=\"10\"></td></tr>";
+    	        adminMailBodyFooter += "<tr><td colspan=\"4\"><b>This e-mail was sent from Contact Us form on <a href=\"www.chemtradeasia.co.id\">chemtradeasia.co.id</a> </b></td></tr>";
+    	        adminMailBodyFooter += "<tr><td height=\"10\"></td></tr>"
+    	                + "  <tr>\n"
+    	                + "    <td colspan=\"3\"><img src=\"" + footer + "\"></td>\n"
+    	                + "  </tr>\n"
+    	                + "  \n"
+    	                + "</table>";
+    	        return adminMailBodyFooter;
+    	    }
+
+    	    /**
+    	     * E-mail body
+    	     *
+    	     * @param name
+    	     * @param email
+    	     * @param contact
+    	     * @param product
+    	     * @param message
+    	     * @return
+    	     */
+    	    private String setMailBodyDetail(final String firstName, final String lastName, final String descr,
+    	            final String email_, final String country_, final String message_) {
+    	        String mailBodyDetail = "<tr><td height=\"10\"></td></tr>";
+    	        mailBodyDetail += "<tr>";
+    	        mailBodyDetail += "<td colspan=\"3\">The enquiry details are follows.</td>";
+    	        mailBodyDetail += "</tr>";
+    	        mailBodyDetail += "<tr><td height=\"10\"></td></tr>";
+    	        mailBodyDetail += "<tr>";
+    	        mailBodyDetail += "<th width=\"159\" scope=\"row\" align=\"left\">Name</th><td width=\"17\">:</td><td width=\"302\">" + firstName + " " + lastName + "</td>";
+    	        mailBodyDetail += "</tr>";
+    	        mailBodyDetail += "<tr><td height=\"10\"></td></tr>";
+    	        mailBodyDetail += "<tr>";
+    	        mailBodyDetail += "<th width=\"159\" scope=\"row\" align=\"left\">Mail Id</th><td width=\"17\">:</td><td width=\"302\">" + email_ + "</td>";
+    	        mailBodyDetail += "</tr>";
+    	        mailBodyDetail += "<tr><td height=\"10\"></td></tr>";
+    	        mailBodyDetail += "<tr>";
+    	        mailBodyDetail += "<th width=\"159\" scope=\"row\" align=\"left\">Title</th><td width=\"17\">:</td><td width=\"302\">" + descr + "</td>";
+    	        mailBodyDetail += "</tr>";
+    	        mailBodyDetail += "<tr><td height=\"10\"></td></tr>";
+    	        mailBodyDetail += "<tr>";
+    	        mailBodyDetail += "<th width=\"159\" scope=\"row\" align=\"left\">Country</th><td width=\"17\">:</td><td width=\"302\">" + country_+ "</td>";
+    	        mailBodyDetail += "</tr>";
+    	        mailBodyDetail += "<tr><td height=\"10\"></td></tr>";
+    	        mailBodyDetail += "<tr>";
+    	        mailBodyDetail += "<th width=\"159\" scope=\"row\" align=\"left\">Message</th><td width=\"17\">:</td><td width=\"302\">" + message_ + "</td>";
+    	        mailBodyDetail += "</tr>";
+    	        mailBodyDetail += "<tr><td height=\"10\"></td></tr>";
+    	        return mailBodyDetail;
+    	    }
+
+    	    private String setAdminMailBodyHeader(String header, String fname, String lname) {
+    	        String adminMailBodyHeader = "";
+    	        adminMailBodyHeader += "<table width=\"870\" style=\"border:#666666 1px solid;\"  align=\"center\">";
+    	        adminMailBodyHeader += "<tr>";
+    	        adminMailBodyHeader += "<td colspan=\"3\"><img src=\"" + header + " \"></td>";
+    	        adminMailBodyHeader += "</tr>";
+    	        adminMailBodyHeader += "<tr><td height=\"10\"></td></tr>";
+    	        adminMailBodyHeader += "<tr>";
+    	        adminMailBodyHeader += "<td colspan=\"3\">Hi,</td>";
+    	        adminMailBodyHeader += "</tr>";
+    	        adminMailBodyHeader += "<tr><td height=\"10\"></td></tr>";
+    	        adminMailBodyHeader += "<tr>";
+    	        adminMailBodyHeader += "<td colspan=\"3\">You have a new query from Contact Us form.</td>";
+    	        adminMailBodyHeader += "</tr>";
+    	        adminMailBodyHeader += "<tr><td height=\"10\"></td></tr>";
+    	        adminMailBodyHeader += "<tr>";
+    	        adminMailBodyHeader += "<td colspan=\"3\">From: "+ fname+ " " + lname + "</td>";
+    	        adminMailBodyHeader += "</tr>";
+    	        adminMailBodyHeader += "<tr><td height=\"10\"></td></tr>";
+    	        return adminMailBodyHeader;
+    	    }
     
     /**
      * Add info of contact form to database

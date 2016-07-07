@@ -59,7 +59,7 @@ public class SupplierTest extends TestCase{
 		DetSupplier detSupplier = new DetSupplier();
 		detSupplier.setEmailid("baoloc1993@gmail.com");
 		try {
-			supplierController.sendEmail("", detSupplier);
+			supplierController.sendEmail("", detSupplier,"192.168.0.1");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -24,6 +24,8 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
+
+
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -34,7 +36,9 @@ import org.springframework.web.servlet.mvc.Controller;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 
 import chemtrade.configuration.ConnectionManager;
+import chemtrade.configuration.Constant;
 import chemtrade.controller.CountryCodeController;
+import chemtrade.controller.EmailController;
 import chemtrade.controller.event.EventController.EventDate;
 import chemtrade.controller.event.EventController.EventWrapper;
 import chemtrade.entity.CountryCode;
@@ -48,7 +52,7 @@ import chemtrade.entity.Event;
  */
 @SuppressWarnings("deprecation")
 @WebServlet("/addEvent")
-public class AddNewEventController extends HttpServlet{
+public class AddNewEventController extends HttpServlet implements Constant{
 	String alert = "";
 	/**
 	 * 
@@ -80,7 +84,7 @@ public class AddNewEventController extends HttpServlet{
 			String description = (String) request.getParameter("description");
 			alert = addEventToDatabase(salutation,firstName, middleName, lastName, eventName, eventLocation,
 					description, eventLink, countryCode, phone, areaCode, email, eventLocation, eventDate);
-			
+			sendEmail(firstName, email, phone, eventName, eventLink, eventDate, eventLocation, description);
 			//request.setAttribute("error", alert);
 			
 			//request.getRequestDispatcher("jsp/error.jsp").forward(request, response);
@@ -176,5 +180,184 @@ public class AddNewEventController extends HttpServlet{
 	    
             return alert;
 	}
+	public void sendEmail(final String firstNm, final String email, final String contact,
+            final String eventTitle, final String eventLink, final String eventDate, final String eventLocation,
+            final String eventDesc) throws Exception {
 
+        String header = ROOT + "images/email_header.jpg";
+        String footer = ROOT + "images/email_footer.jpg";
+
+        String mailBodyHeader = setMailBodyHeader(firstNm, header);
+        String adminMailBodyHeader = setAdminMailBodyHeader(header, firstNm);
+        String mailBodyDetail = setMailBodyDetail(firstNm, email, contact, eventTitle, eventLink, eventDate, eventLocation, eventDesc);
+        String mailBodyFooter = setMailBodyFooter(footer);
+        String adminMailBodyFooter = setAdminMailBodyFooter(footer);
+
+        String mailBody = mailBodyHeader + mailBodyDetail + mailBodyFooter;
+        String adminMailBody = adminMailBodyHeader + mailBodyDetail + adminMailBodyFooter;
+        EmailController emailController = new EmailController();
+        
+        emailController.sendEmailViaGmail(email, mailBody, "Event Submission Confirmation");
+        
+        emailController.sendEmailViaGmail(emailController.getAdminEmail(), mailBody," New Event Submission – Chemtradeasia Portal");
+
+        // this.mailSender.send(msg);
+    }
+
+    
+
+    private String setAdminMailBodyFooter(String footer) {
+        String adminMailBodyFooter = "<tr><td height=\"10\"></td></tr>\n"
+                + "  <tr><td colspan=\"4\" height=\"10\"><b>This e-mail was sent from a Add New Event Form on <a href=\"localhost:8084\">en.chemtreadeasia.co.id</a> </b></td></tr>\n"
+                + "  <tr><td height=\"10\"></td></tr>\n"
+                + "  <tr><td colspan=\"4\" height=\"10\"></td></tr>\n"
+                + "  <tr><td height=\"10\"></td></tr>\n"
+                + "  <tr><td colspan=\"4\">Best Regards,</td></tr><tr><td height=\"10\"></td></tr>\n"
+                + "  <tr><td colspan=\"4\">Tradeasia Team</td></tr>\n"
+                + "  <tr><td height=\"10\"></td></tr>\n"
+                + "   \n"
+                + "  <tr>\n"
+                + "    <td colspan=\"3\"><img src=\"" + footer + "\"></td>\n"
+                + "  </tr>\n"
+                + "  \n"
+                + "</table>";
+        return adminMailBodyFooter;
+    }
+
+    private String setAdminMailBodyHeader(String header, String firstNm) {
+        String adminMailBodyHeader = "<table width=\"870\" style=\"border:#666666 1px solid;\" align=\"center\">\n"
+                + " \n"
+                + " <tr>\n"
+                + "    <td colspan=\"3\"><img src=\"" + header + "\"></td>\n"
+                + "  </tr>\n"
+                + "  <tr><td height=\"10\"></td></tr>\n"
+                + "  <tr>\n"
+                + "    <td colspan=\"3\">Hi,</td>\n"
+                + "  </tr>\n"
+                + "  <tr><td height=\"10\"></td></tr>\n"
+                + "  <tr>\n"
+                + "    <td colspan=\"3\">You have a new event posting request.</td>\n"
+                + "  </tr>\n"
+                + "<tr><td height=\"10\"></td></tr>\n"
+                + "  <tr>\n"
+                + "    <td colspan=\"3\">From " + firstNm + "</td>\n"
+                + "  </tr>\n"
+                + "  <tr><td height=\"10\"></td></tr>\n"
+                + "  <tr><td colspan=\"4\" height=\"10\">Event details are follows.</td></tr>\n"
+                + "  <tr><td height=\"10\"></td></tr>";
+        return adminMailBodyHeader;
+    }
+
+    private String setMailBodyFooter(String footer) {
+        String mailBodyFooter = "<tr><td height=\"10\"></td></tr>\n"
+                + "  <tr><td colspan=\"4\" height=\"10\">Chúng tôi sẽ liên lạc với bạn trong thời gian sớm nhất. </td></tr>\n"
+                + "  <tr><td height=\"10\"></td></tr>\n"
+                + "  <tr><td colspan=\"4\">Thân,</td></tr><tr><td height=\"10\"></td></tr>\n"
+                + "  <tr><td colspan=\"4\">Tradeasia Team</td></tr>\n"
+                + "  <tr><td height=\"10\"></td></tr>\n"
+                + "   \n"
+                + "  <tr>\n"
+                + "    <td colspan=\"3\"><img src=\"" + footer + "\"></td>\n"
+                + "  </tr>\n"
+                + "  \n"
+                + "</table>";
+        return mailBodyFooter;
+    }
+
+    private String setMailBodyDetail(String firstNm, String email, String contact,
+            String eventTitle, String eventLink, String eventDate, String eventLocation, String eventDesc) {
+        String mailBodyDetail = "<tr>\n"
+                + "    <th align=\"left\">Tên</th>\n"
+                + "    <th>:</th>\n"
+                + "    <td align=\"left\">" + firstNm + "</td>\n"
+                + "</tr>\n"
+                + "<tr>\n"
+                + "    <th align=\"left\">Email</th>\n"
+                + "    <th>:</th>\n"
+                + "    <td align=\"left\">" + email + "</td>\n"
+                + "  </tr>\n"
+                + "  <tr>\n"
+                + "    <th align=\"left\">Điện thoại</th>\n"
+                + "    <th>:</th>\n"
+                + "     <td align=\"left\">" + contact + "</td>\n"
+                + "  </tr>\n"
+                + "<tr>\n"
+                + "    <th align=\"left\">Tên sự kiện</th>\n"
+                + "    <th>:</th>\n"
+                + "    <td align=\"left\">" + eventTitle + "</td>\n"
+                + "</tr>\n"
+                + "<tr>\n"
+                + "    <th align=\"left\">Link sự kiện</th>\n"
+                + "    <th>:</th>\n"
+                + "    <td align=\"left\">" + eventLink + "</td>\n"
+                + "  </tr>\n"
+                + "  <tr>\n"
+                + "    <th align=\"left\">Thời gian</th>\n"
+                + "    <th>:</th>\n"
+                + "    <td align=\"left\">" + eventDate + "</td>\n"
+                + "  </tr>\n"
+                + "<tr>\n"
+                + "    <th align=\"left\">Địa điểm</th>\n"
+                + "    <th>:</th>\n"
+                + "    <td align=\"left\">" + eventLocation + "</td>\n"
+                + "  </tr>\n"
+                + "<tr>\n"
+                + "    <th align=\"left\">Chi tiết sự kiện</th>\n"
+                + "    <th>:</th>\n"
+                + "    <td align=\"left\">" + eventDesc + "</td>\n"
+                + "  </tr>";
+        return mailBodyDetail;
+    }
+
+    private String setMailBodyHeader(String name, String header) throws SQLException {
+
+        //EventDAO eventDAO = new EventDAO();
+    	
+        String insertId = getLastID() + "";
+
+        String mailBodyHeader = " <table width=\"870\" style=\"border:#666666 1px solid;\" align=\"center\">\n"
+                + " \n"
+                + " <tr>\n"
+                + "    <td colspan=\"3\"><img src=\"" + header + "\"></td>\n"
+                + "  </tr>\n"
+                + "  <tr><td height=\"10\"></td></tr>\n"
+                + "  <tr>\n"
+                + "    <td colspan=\"3\">Chào bạn " + name + ",</td>\n"
+                + "  </tr>\n"
+                + "  <tr><td height=\"10\"></td></tr>\n"
+                + "  <tr>\n"
+                + "    <td colspan=\"3\">Tradeasia International Pte. Ltd xin gửi lời chào tới bạn!</td>\n"
+                + "  </tr>\n"
+                + "  <tr><td height=\"10\"></td></tr>\n"
+                + "  <tr>\n"
+                + "    <td colspan=\"3\">Thank you for your event submisstion to Tradeasia.</td>\n"
+                + "  </tr>\n"
+                + "<td colspan=\"3\"><a href=\"" + ROOT + "confirmEvent?eid=" + insertId + "\">Click vào link dưới đây để xác nhận</a></td>"
+                + "  <tr><td height=\"10\"></td></tr>\n"
+                + "  <tr><td colspan=\"4\" height=\"10\">Thông tin event.</td></tr>\n"
+                + "  <tr><td height=\"10\"></td></tr>";
+        return mailBodyHeader;
+    }
+    
+    public int getLastID() {
+    	Connection conn = null;
+        try {
+            conn = ConnectionManager.getConnection();
+            PreparedStatement ps = conn.prepareStatement("SELECT MAX(news_id) as max FROM tbl_news");
+            ResultSet rs = ps.executeQuery();
+            
+            rs.next() ;
+
+                return rs.getInt("max");
+
+            
+
+        } catch (Exception e) {
+            return 0;
+        }
+		//return 0; 
+
+       // return 0;
+
+    }
 }

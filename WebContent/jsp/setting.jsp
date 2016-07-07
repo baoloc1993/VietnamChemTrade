@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <%@ page session="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -14,7 +14,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Chemtradeasia | Your Trusted Partner for Chemicals</title>
+        
         <link rel="shortcut icon" href="icon/favicon.ico" type="icon/x-icon">
         <link rel="SHORTCUT ICON" href="icon/favicon.ico">
         <link rel="icon" href="images/favicon.ico" type="image/x-icon">

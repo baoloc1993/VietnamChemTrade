@@ -118,8 +118,8 @@ public class SendEnquiryController extends HttpServlet implements Constant {
             String company_name, String company_address, String comments,
             String destination_port, String productsEnquired) throws Exception {
 
-        String header = "http://" + ROOT + "/images/email_header.jpg";
-        String footer = "http://" + ROOT + "/images/email_footer.jpg";
+        String header = ROOT + "images/email_header.jpg";
+        String footer = ROOT + "images/email_footer.jpg";
         //String to = letterId; 
 
         String mailBodyHeader = setMailBodyHeader(salutation, first_name, last_name, header);
@@ -143,7 +143,7 @@ public class SendEnquiryController extends HttpServlet implements Constant {
         /*
          * Send email to chemtrade
          */
-        emailController.sendEmailViaGmail(emailController.getAdminEmail(), adminMailBody, "Full Enquiry � Chemtradeasia Portal");
+        emailController.sendEmailViaGmail(emailController.getAdminEmail(), adminMailBody, "Full Enquiry – Chemtradeasia Portal");
         //sendAdminEmail(adminMailBody);
     }
     
@@ -155,13 +155,13 @@ public class SendEnquiryController extends HttpServlet implements Constant {
         //EnquiryProductDAO edao = new EnquiryProductDAO();
 
         String mailBodyFooter = "<tr> \n"
-                + "    <td colspan=\"3\">Thank you for your enquiry with Tradeasia International Pte. Ltd. Please click the below link for confirmation.</td> \n"
+                + "    <td colspan=\"3\">Cảm ơn bạn đã quan tâm đến Tradeasia International Pte. Ltd. Xin hãy click vào đường dẫn dưới đây để xác nhận.</td> \n"
                 + "  </tr> \n"
                 + "   <tr><td height=\"10\"></td></tr> \n"
-                + " <tr><td colspan=\"3\" height=\"10\"><a href=\"http://localhost:8084/Tradeasia/confirmQuickQuote?qid=" + getLastQuoteID() + "\">Please click here to confirm your enquiry.</a></td></tr> \n"
+                + " <tr><td colspan=\"3\" height=\"10\"><a href=\"" + ROOT + "confirmQuickQuote?qid=" + getLastQuoteID() + "\">Xin hãy click vào đường dẫn dưới đây để xác nhận.</a></td></tr> \n"
                 + "   <tr><td height=\"10\"></td></tr>\n"
-                + "  <tr><td colspan=\"4\">Best Regards,</td></tr><tr><td height=\"10\"></td></tr> \n"
-                + "  <tr><td colspan=\"4\">Tradeasia Team</td></tr> \n"
+                + "  <tr><td colspan=\"4\">Thân,</td></tr><tr><td height=\"10\"></td></tr> \n"
+                + "  <tr><td colspan=\"4\">Tradeasia</td></tr> \n"
                 + "  <tr><td height=\"10\"></td></tr> \n"
                 + "    <tr> \n"
                 + "    <td colspan=\"3\"><img src=\"" + footer + "\"></td> \n"
@@ -185,22 +185,22 @@ public class SendEnquiryController extends HttpServlet implements Constant {
             String companyAddress, String destinationPort, String comments, String productsEnquired) {
 
         String mailBodyDetail = "<tr> \n"
-                + "    <th width=\"159\" scope=\"row\" align=\"left\">Name</th> \n"
+                + "    <th width=\"159\" scope=\"row\" align=\"left\">Tên</th> \n"
                 + "    <td width=\"17\">:</td> \n"
                 + "    <td width=\"302\">" + salutation + " " + fname + " " + lname + "</td> \n"
                 + "  </tr> \n"
                 + "   <tr> \n"
-                + "    <th scope=\"row\" align=\"left\">Email Address</th> \n"
+                + "    <th scope=\"row\" align=\"left\">Email </th> \n"
                 + "    <td>:</td> \n"
                 + "    <td>" + email + "</td> \n"
                 + "  </tr> \n"
                 + "   <tr> \n"
-                + "    <th scope=\"row\" align=\"left\">Your Country</th> \n"
+                + "    <th scope=\"row\" align=\"left\">Quốc gia</th> \n"
                 + "    <td>:</td> \n"
                 + "    <td>" + country + "</td> \n"
                 + "  </tr>\n"
                 + "  <tr> \n"
-                + "    <th scope=\"row\" align=\"left\">Contact Number</th> \n"
+                + "    <th scope=\"row\" align=\"left\">Điện thoại</th> \n"
                 + "    <td>:</td> \n"
                 + "    <td>" + countryCode + " " + phone + "</td> \n"
                 + "  </tr>\n"
@@ -210,25 +210,25 @@ public class SendEnquiryController extends HttpServlet implements Constant {
                 + "  " + productsEnquired + "\n"
                 + "  <tr><td height=\"10\"></td></tr>\n"
                 + "  \n"
-                + "  <tr><th colspan=\"4\" bgcolor=\"#CCCCCC\">Company Details</th></tr>\n"
+                + "  <tr><th colspan=\"4\" bgcolor=\"#CCCCCC\">Thông tin công ty</th></tr>\n"
                 + "   <tr> \n"
-                + "    <th scope=\"row\" align=\"left\">Company Name</th> \n"
+                + "    <th scope=\"row\" align=\"left\">Tên</th> \n"
                 + "    <td>:</td> \n"
                 + "    <td>" + companyName + "</td> \n"
                 + "  </tr>\n"
                 + "   <tr> \n"
-                + "    <th scope=\"row\" align=\"left\">Company Address</th> \n"
+                + "    <th scope=\"row\" align=\"left\">Địa chỉ</th> \n"
                 + "    <td>:</td> \n"
                 + "    <td>" + companyAddress + "</td> \n"
                 + "  </tr>\n"
                 + "   <tr> \n"
-                + "    <th scope=\"row\" align=\"left\">Destination Port</th> \n"
+                + "    <th scope=\"row\" align=\"left\">Nơi chuyển hàng</th> \n"
                 + "    <td>:</td> \n"
                 + "    <td>" + destinationPort + "</td> \n"
                 + "  </tr>\n"
                 + "   \n"
                 + "   <tr> \n"
-                + "    <th scope=\"row\" align=\"left\">Comments</th> \n"
+                + "    <th scope=\"row\" align=\"left\">Ghi chú</th> \n"
                 + "    <td>:</td> \n"
                 + "    <td>" + comments + "</td> \n"
                 + "  </tr>\n"
@@ -245,14 +245,14 @@ public class SendEnquiryController extends HttpServlet implements Constant {
                 + "  </tr> \n"
                 + "  <tr><td height=\"10\"></td></tr> \n"
                 + "  <tr> \n"
-                + "    <td colspan=\"3\">Dear " + salutation + " " + fname + " " + lname + ",</td> \n"
+                + "    <td colspan=\"3\">Kính gửi " + salutation + " " + fname + " " + lname + ",</td> \n"
                 + "  </tr> \n"
                 + "  <tr><td height=\"10\"></td></tr> \n"
                 + "  <tr> \n"
-                + "    <td colspan=\"3\">Greetings from Tradeasia International Pte. Ltd!</td> \n"
+                + "    <td colspan=\"3\">Tradeasia International Pte. Ltd! xin gửi lời chào tới Ngài/Bà.</td> \n"
                 + "  </tr> \n"
                 + "   <tr><td height=\"10\"></td></tr> \n"
-                + "   <tr><th colspan=\"4\" bgcolor=\"#CCCCCC\">Your Details</th></tr>";
+                + "   <tr><th colspan=\"4\" bgcolor=\"#CCCCCC\">Thông tin của Ngài/Bà</th></tr>";
         return mailBodyHeader;
     }
 
@@ -260,10 +260,10 @@ public class SendEnquiryController extends HttpServlet implements Constant {
 
     private String setAdminMailBodyFooter(String footer) {
         String adminMailBodyFooter = "<tr> \n"
-                + "    <td colspan=\"3\"><b>This e-mail was sent from Got a Question form on <a href=\"http://localhost:8084\">changetoyourhost.com</a> </b></td> \n"
+                + "    <td colspan=\"3\"><b></b></td> \n"
                 + "  </tr> \n"
                 + "   <tr><td height=\"10\"></td></tr> \n"
-                + "  <tr><td colspan=\"4\">Best Regards,</td></tr><tr><td height=\"10\"></td></tr> \n"
+                + "  <tr><td colspan=\"4\">Thân,</td></tr><tr><td height=\"10\"></td></tr> \n"
                 + "  <tr><td colspan=\"4\">Tradeasia Team</td></tr> \n"
                 + "  <tr><td height=\"10\"></td></tr> \n"
                 + "    <tr> \n"

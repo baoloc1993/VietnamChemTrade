@@ -3,8 +3,29 @@
     Created on : 2015-6-4, 14:43:16
     Author     : Fla
 --%>
-
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ include file = "setting.jsp" %>
+
+   <title>Trung Tâm Tải Về | TDS, MSDS |
+
+Chemtradeasia | Tradeasia International
+
+Pte Ltd</title> 
+<meta name = "keyword" content = "TDS của hóa chất, MSDS của hóa chất,
+
+Tải TDS và MSDS của hóa chất, bảng
+
+dữ liệu an toàn, bảng dữ liệu kỹ thuật, tải
+
+TDS với số lượng lớn, , tải MSDS với số
+
+lượng lớn">
+
+<meta name = "description" content  = "Chemtradeasia: Chỉ với một thao tác
+
+nhấp chuột đơn giản để tải về TDS và
+
+MSDS của các sản phẩm hóa chất."/>
 
     <style>
         .text_block {
@@ -71,7 +92,7 @@
             <!---to wrap around all body content--->
             <div class="row">
                 <!----center content--->
-                <div class="col-md-12 centerRow">
+                <div class="col-md-10 col-md-offset-1 centerRow">
 
                     <!---add the header and navbar and search bar---->
                     <%@include file="header_nav.jsp"%>
@@ -110,9 +131,9 @@
 
                                     <tr style="background:#1981b7; color:#FFFFFF;">
 
-                                        <th style="font-weight:bold; font-size:12px; padding-left:10px;font-family:Oxygen-Bold, Arial, Helvetica, sans-serif; height:30;"> Name</th>
-                                        <th style="font-weight:bold; padding-left: 17px; font-size:12px; font-family:Oxygen-Bold, Arial, Helvetica, sans-serif">Appearance</th>
-                                        <th style="font-weight:bold; padding-left:10px; font-size:12px;font-family:Oxygen-Bold, Arial, Helvetica, sans-serif">Origin</th>
+                                        <th style="font-weight:bold; font-size:12px; padding-left:10px;font-family:Oxygen-Bold, Arial, Helvetica, sans-serif; height:30;"> Tên</th>
+                                        <th style="font-weight:bold; padding-left: 17px; font-size:12px; font-family:Oxygen-Bold, Arial, Helvetica, sans-serif">Hình dáng</th>
+                                        <th style="font-weight:bold; padding-left:10px; font-size:12px;font-family:Oxygen-Bold, Arial, Helvetica, sans-serif">Nguồn gốc</th>
                                         <th style="font-weight:bold; padding-left:0px; font-size:12px;font-family:Oxygen-Bold, Arial, Helvetica, sans-serif">TDS</th>
                                         <th style="font-weight:bold; padding-left:0px; font-size:12px;font-family:Oxygen-Bold, Arial, Helvetica, sans-serif">MSDS</th>
                                     </tr>
@@ -128,13 +149,13 @@
 	
 	                                            <div style="width: 10px;">
 	                                                <label for="${download.label1}" style="display:none;">${download.number}</label>
-	                                                <input type="checkbox" name="files" id="${download.label1}" data-select-all="files_tds" style="" value = "" onclick = "markDownload('${download.product.productDir}/${download.product.specification}', this.checked)"/>
+	                                                <input type="checkbox" name="files" id="${download.label1}" data-select-all="files_tds" style="" value = "" onclick = "markDownload('A${download.product.productId}', this.checked)"/>
 	                                            </div>
 	                                        </td>
 	                                        <td>
 	                                            <div style="width: 10px;">
 	                                                <label for="${download.label2 }" style="display:none;">check${download.number }</label>
-	                                                <input type="checkbox" name="files" id="${download.label2 }" style="" value = "" onclick = "markDownload('${download.product.productDir}/${download.product.msds}', this.checked)"/>
+	                                                <input type="checkbox" name="files" id="${download.label2 }" style="" value = "" onclick = "markDownload('B${download.product.productId}', this.checked)"/>
 	                                            </div>
 	                                        </td>
 	                                    </tr>
@@ -152,13 +173,13 @@
                                                     		<td>
                                                                 <table>
                                                                     <tr style="">
-	                                                                    <tr><td style="color:#333333; color:#333333; font-family:Oxygen-Bold,Verdana, Arial, Helvetica, sans-serif; font-size:14px; margin-bottom:10px; text-align:center;" colspan="2" >Please fill the form to download TDS/MSDS of our products </td></tr>
-	                                                                    <tr><td colspan="2"><span style="color:#FF0000;">*</span><span style="font-family:Verdana, Arial, Helvetica, sans-serif;font-size:10px; font-style:italic;"> Fields are Mandatory</span></td></tr>
-	                                                                    <tr><td style="color:#333333; font-family:Oxygen-Bold,Verdana, Arial, Helvetica, sans-serif; font-size:12px;">Name<span style="color:#FF0000">*</span>  :</td><td><input name="name" id="name40001" maxlength="150" style="width: 190px;margin-bottom:3px; margin-top: 5px;" type="text" title="Name"></td></tr>
+	                                                                    <tr><td style="color:#333333; color:#333333; font-family:Oxygen-Bold,Verdana, Arial, Helvetica, sans-serif; font-size:14px; margin-bottom:10px; text-align:center;" colspan="2" >Xin vui lòng điền đơn để tải TDS/MSDS của sản phẩm </td></tr>
+	                                                                    <tr><td colspan="2"><span style="color:#FF0000;">*</span><span style="font-family:Verdana, Arial, Helvetica, sans-serif;font-size:10px; font-style:italic;"> Bắt buộc</span></td></tr>
+	                                                                    <tr><td style="color:#333333; font-family:Oxygen-Bold,Verdana, Arial, Helvetica, sans-serif; font-size:12px;">Tên<span style="color:#FF0000">*</span>  :</td><td><input name="name" id="name40001" maxlength="150" style="width: 190px;margin-bottom:3px; margin-top: 5px;" type="text" title="Tên"></td></tr>
 	                                                                    <tr><td style="color:#333333; font-family:Oxygen-Bold, Verdana, Arial, Helvetica, sans-serif; font-size:12px;">E-Mail<span style="color:#FF0000">*</span>  :</td><td><input name="email_id" id="email_id40001" maxlength="250" style="width: 190px; margin-bottom:3px;" type="text" title="Email"></td></tr>
-	                                                                    <tr><td style="color:#333333; font-family:Oxygen-Bold, Verdana, Arial, Helvetica, sans-serif; font-size:12px;">Phone:</td><td><input id="phone40001" name="phone" maxlength="15" style="width: 190px; margin-bottom:3px;" type="text" title="Phone Number"></td></tr>
+	                                                                    <tr><td style="color:#333333; font-family:Oxygen-Bold, Verdana, Arial, Helvetica, sans-serif; font-size:12px;">Điện thoại:</td><td><input id="phone40001" name="phone" maxlength="15" style="width: 190px; margin-bottom:3px;" type="text" title="Điện thoại"></td></tr>
 	                                                                    <tr>
-	                                                                    	<td style="color:#333333; font-family:Oxygen-Bold,Verdana, Arial, Helvetica, sans-serif; font-size:12px; vertical-align:middle;" >Requirement :</td>
+	                                                                    	<td style="color:#333333; font-family:Oxygen-Bold,Verdana, Arial, Helvetica, sans-serif; font-size:12px; vertical-align:middle;" >Yêu cầu :</td>
 	                                                                    	<td>
 	                                                                            <label for="requirement40001" style="display:none;">requirement40001</label>
 	                                                                            <textarea name="requirement" id="requirement40001" maxlength="250" style="width: 190px; margin-bottom:3px;" title="Requirement"></textarea>

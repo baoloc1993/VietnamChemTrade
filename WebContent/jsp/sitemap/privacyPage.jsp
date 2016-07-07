@@ -1,3 +1,4 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div style="padding-bottom: 25px">
 <h4>Terms Of Use</h4>
 This web page represents a legal document that serves as our Terms of Use and it governs the legal terms of our website, www.chemtradeasia.com, sub-domains, and any associated web-based and mobile applications (collectively, "Website"), as owned and operated by Tradeasia International Pte Ltd.

@@ -1,7 +1,8 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <script>
     function go_widget(id) {
         
-    	alert(id);
+    	
     	url= "usefulTools?id=" +id;
     	window.location = url;
         
@@ -18,7 +19,7 @@
             <div class="space">
 
                 <div class="col-md-12 box1" style="padding-left:0px; padding-right: 0px;">
-                    <div class="widget" style="background:#143D55">Useful Tools<br>& Widgets</div>
+                    <div class="widget" style="background:#143D55">Công cụ hữu ích</div>
                 </div>
                 <div class="col-md-12 box1" style="padding-left:0px; padding-right: 0px;">
                     <div style="padding-left: 5px">      
@@ -33,7 +34,7 @@
 	                        </c:forEach>
 
                             <li style=" min-height: 30px; text-align: center;">
-                                <a href="usefulTools" style="color:white;text-decoration: none">[View All]</a>
+                                <a href="usefulTools" style="color:white;text-decoration: none">[Xem tất cả]</a>
                             </li>
                         </ul>
                     </div>
@@ -50,7 +51,7 @@
             <div class="space">
 
                 <div class="col-md-12 box2" style="padding-left:0px; padding-right: 0px;">
-                    <div class="widget" style="background:#7E9234">Association<br>& Resources</div>
+                    <div class="widget" style="background:#800000">Các Hiệp Hội & <br> Nguồn Tham Khảo</div>
                 </div>
                 <div class="col-md-12 box2" style="padding-left:0px; padding-right: 0px;">
                     <div style="padding-left: 5px">      
@@ -65,7 +66,7 @@
                             
 
                             <li style=" min-height: 30px; text-align: center;">
-                                <a href="usefulTools" style="color:white;text-decoration: none">[View All]</a>
+                                <a href="usefulTools" style="color:white;text-decoration: none">[Xem tất cả]</a>
                             </li>
                         </ul>
                     </div>
@@ -82,7 +83,7 @@
             <div class="space">
 
                 <div class="col-md-12 box1" style="padding-left:0px; padding-right: 0px;">
-                    <div class="widget" style="background:#143D55">Event<br>Center</div>
+                    <div class="widget" style="background:#143D55">Sự kiện</div>
                 </div>
                 <div class="col-md-12 box1" style="padding-left:0px; padding-right: 0px;">
                     <div style="padding-left: 5px">      
@@ -100,7 +101,7 @@
 
                         	</c:forEach>
                             <li style=" min-height: 30px; text-align: center;">
-                                <a href="event" style="color:white;text-decoration: none">[Read More]</a>
+                                <a href="event" style="color:white;text-decoration: none">[Xem tất cả]</a>
                             </li>
 
                         </ul>
@@ -116,7 +117,7 @@
         <div class="row" >
 
             <div class="col-md-12 box2" style="padding-left:0px; padding-right: 0px;">
-                <div class="widget" style="background:#7E9234">Tradeasia<br>Mobile App</div>
+                <div class="widget" style="background:#800000">Ứng dụng di động</div>
             </div>
             <div class="col-md-12 box2" style="padding-left:0px; padding-right: 0px;">
                 <div style="padding-left: 5px">      

@@ -72,66 +72,66 @@ function addEvent(){
 
 	var vCode = document.getElementsByName("vCode")[0].value;
 			if (verifyCode != vCode){
-				alert("error captcha");
+				alert("Sai mã xác nhận");
 				return false;
 			}
 			
 			if (companyName == null || companyName.value == ""){
-				alert("Please fill this field");
+				alert("Bạn cần điền đủ thông tin");
 				companyName.focus();
 				return false;
 			}
 			
 			if (callCode == null || callCode.value == ""){
-				alert("Please fill this field");
+				alert("Bạn cần điền đủ thông tin");
 				callCode.focus();
 				return false;
 			}
 			
 			if (contactFName == null || contactFName.value == ""){
-				alert("Please fill this field");
+				alert("Bạn cần điền đủ thông tin");
 				contactFName.focus();
 				return false;
 			}
 			
 			if (contactLocation == null ||contactLocation.value == ""){
-				alert("Please fill this field");
+				alert("Bạn cần điền đủ thông tin");
 				contactLocation.focus();
 				return false;
 			}
 			
 			if (title == null ||title.value == ""){
-				alert("Please fill this field");
+				alert("Bạn cần điền đủ thông tin");
 				title.focus();
 				return false;
 			}
 			if (date == null ||date.value == ""){
-				alert("Please fill this field");
+				alert("Bạn cần điền đủ thông tin");
 				date.focus();
 				return false;
 			}
 			
 			if (description == null ||description.value == ""){
-				alert("Please fill this field");
+				alert("Bạn cần điền đủ thông tin");
 				description.focus();
 				return false;
 			}
 			
 			//alert(contactMobile.value);
 			if (contactMobile == null || contactMobile.value == "" ||isNaN(contactMobile.value) ){
-				alert("Incorrect number");
+				alert("Điện thoại không hợp lệ");
 				contactMobile.focus();
 				return false;
 			}
 			
 			if (contactEmail == null || contactEmail.value == "" || (contactEmail.value).indexOf("@") == -1){
-				alert("Please fill correct Email");
+				alert("Email không hợp lệ");
 				contactEmail.focus();
 				return false;
 			}
 			
 			if (verifyCode == null || verifyCode.value == "" ){
-				alert("Please fill this field");
+				alert("Bạn cần điền đủ thông tin");
 				companyName.focus();
 				return false;
 			}
@@ -167,12 +167,12 @@ function addEvent(){
 	                 url: "addEvent",
 	                 data: data,
 	                 success: function () {
-	              	   alert("Thank you");
+	              	   alert("Cảm ơn bạn");
 	                     location.reload();
 	                 },
 	                 error: function(xhr, textStatus, errorThrown){
 	                	
-		                alert(xhr.responseText);
+		                alert(Có lỗi xảy ra. Xin thử lại lần sau);
 
 	                	 
 	                  }

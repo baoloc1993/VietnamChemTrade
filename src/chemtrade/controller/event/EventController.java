@@ -92,56 +92,7 @@ public class EventController extends HttpServlet{
 		// TODO Auto-generated method stub
 		  //PrintWriter out = response.getWriter();
 	        HttpSession session = request.getSession();
-	        String rand = (String) session.getAttribute("rand");
-	        String input = request.getParameter("verifyCode");
-//	        if (!rand.equalsIgnoreCase(input)) {
-//	            out.println("<script>alert('Wrong verification code');</script>");
-//	            out.print("<script>location.href='addNewEvent.jsp';</script>");
-//	        }
-//
-//	        input = request.getParameter("firstNm");
-//	        if (input.length() == 0) {
-//	            out.print("<script>alert('Empty First Name');</script>");
-//	            out.print("<script>location.href='addNewEvent.jsp';</script>");
-//	        }
-//	        input = request.getParameter("middleNm");
-//	        if (input.length() >= 100) {
-//	            out.print("<script>alert('Too Long Middle Name');</script>");
-//	            out.print("<script>location.href='addNewEvent.jsp';</script>");
-//	        }
-//
-//	        input = request.getParameter("lastNm");
-//	        if (input.length() == 0) {
-//	            out.print("<script>alert('Empty Last Name');</script>");
-//	            out.print("<script>location.href='addNewEvent.jsp';</script>");
-//	        }
-//
-//	        input = request.getParameter("email");
-//	        if (input.length() == 0) {
-//	            out.print("<script>alert('Empty Email');</script>");
-//	            out.print("<script>location.href='addNewEvent.jsp';</script>");
-//	        }
-//
-//	        input = request.getParameter("title");
-//	        if (input.length() == 0) {
-//	            out.print("<script>alert('Empty Title');location.href='addNewEvent.jsp';</script>");
-//	            out.print("<script>location.href='addNewEvent.jsp';</script>");
-//	        }
-//
-//	        input = request.getParameter("location");
-//	        if (input.length() == 0) {
-//	            out.print("<script>alert('Empty Event Location');</script>");
-//	            out.print("<script>location.href='addNewEvent.jsp';</script>");
-//	        }
-//
-//	        input = request.getParameter("email");
-//	        if (input.length() == 0) {
-//	            out.print("<script>alert('Empty Email');</script>");
-//	            out.print("<script>location.href='addNewEvent.jsp';</script>");
-//	        }
 
-	        
-	        
 	        ArrayList<Event> events = getAllEvent();
 	        Connection conn = null;
 	        Statement stat = null;
@@ -231,8 +182,7 @@ public class EventController extends HttpServlet{
 			return getEventByDate("", 1).getResults();
 	}
 
-	private void getEventFromDatabase(EventWrapper eventWrapper, int showPage, ArrayList<Event> results,
-			String sql) {
+	private void getEventFromDatabase(EventWrapper eventWrapper, int showPage, ArrayList<Event> results,String sql) {
 		Connection conn;
      
         try {
@@ -246,12 +196,13 @@ public class EventController extends HttpServlet{
             	Event event = new Event();
 		         //Set Attribute of Event
 		         event.setId(rs.getInt(1));
-		         event.setTitle(rs.getString(2));
-		         event.setDescription(rs.getString(3));
+		         
+		         event.setTitle(new String(rs.getBytes(2), "UTF-8"));
+		         event.setDescription(new String(rs.getBytes(3), "UTF-8"));
 		         event.setLink(rs.getString(4));
 		         event.setImg(rs.getString(5));
 		         event.setDate(rs.getString(6));
-		         event.setLocation(rs.getString(7));
+		         event.setLocation(new String(rs.getBytes(7), "UTF-8"));
 		         event.setCreatedOn(rs.getString(8));
 	        	 results.add(event);
             }

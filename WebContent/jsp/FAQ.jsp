@@ -4,13 +4,38 @@
     Author     : ASUS
 --%>
 
-
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ include file = "setting.jsp" %>
+
+<title>Hỏi Đáp | Chemtradeasia | Tradeasia
+
+International Pte Ltd - Việt Nam</title> 
+<meta name = "keyword" content = "Tải cùng lúc TDS và MSDS của nhiều
+
+hóa chất khác nhau, báo giá cho
+
+nhiều sản phẩm, đăng kí theo dõi mọi
+
+cập nhật, mua hóa chất trực tuyến,
+
+Tôi có thể thêm các sự kiện từ công ty
+
+của tôi, Làm thế nào để liên hệ đại
+
+diện của tradeasia, địa điểm các văn
+
+phòng">
+
+<meta name = "description" content  = "Chemtradeasia: Câu hỏi thường gặp:
+
+đưa ra những giải đáp tốt nhất cho
+
+các thắc mắc và câu hỏi thường gặp."/>
     <body>
-        <div class="container" style="padding-right:27px; padding-left:5px; background-color: white;">
+        <div class="container" >
 
             <!---to wrap around all body content--->
-            <div class="row-fluid">
+            <div class="row col-md-10 col-md-offset-1 centerRow">
                 <!----center content--->
                 <div class="span12">
 
@@ -21,8 +46,7 @@
                     <div class="row-fluid">
                         <div class="span12" style= "background-color: white;" >
                             <div class="container-fluid" style="margin-top:14px; margin-left:50px;">
-                                <div class="faq-mainheader" style="padding: 0!important;">Frequently Asked Questions</div>
-                                <p><span class="faq-subheader" style="margin: 0 !important; padding: 0!important;">Quickly find out if we’ve already addressed your query.</span></p>            
+                                <div class="faq-mainheader" style="padding: 0!important;">Câu hỏi thường gặp</div>
 
                                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                                     <!----panel 1--->

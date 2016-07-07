@@ -79,23 +79,29 @@ li.social-pdd-rgt {
 
 .cart{background:url(../images/cart.png) no-repeat left;  width:22px; height:17px;}
 
-a.facebook{background:url(../images/facebook-icon.jpg) no-repeat left; width:9px; height:17px;}
-a.facebook:hover{background:url(../images/facebook-icon-hover.jpg) no-repeat left;}
+a.facebook{background:url(../images/facebook-icon.png) no-repeat left; width:9px; height:17px;}
+a.facebook:hover{background:url(../images/facebook-icon.png) no-repeat left;}
 
-a.twitter{background:url(../images/twitter-icon.jpg) no-repeat left;  width:22px; height:17px;}
-a.twitter:hover{background:url(../images/twitter-icon-hover.jpg) no-repeat left;}
+a.twitter{background:url(../images/twitter-icon.png) no-repeat left;  width:22px; height:17px;}
+a.twitter:hover{background:url(../images/twitter-icon.png) no-repeat left;}
 
-a.in{background:url(../images/in-icon.jpg) no-repeat left;  width:18px; height:17px;}
-a.in:hover{background:url(../images/in-icon-hover.jpg) no-repeat left;}
+a.in{background:url(../images/linkedin-icon.png) no-repeat left;  width:18px; height:17px;}
+a.in:hover{background:url(../images/linkedin-icon.png) no-repeat left;}
 
-a.youtube{background:url(../images/youtube-icon.jpg) no-repeat left; width:15px; height:17px;}
-a.youtube:hover{background:url(../images/youtube-icon-hover.jpg) no-repeat left;}
+a.youtube{background:url(../images/youtube-icon.png) no-repeat left; width:15px; height:17px;}
+a.youtube:hover{background:url(../images/youtube-icon.png) no-repeat left;}
 
-a.rss{background:url(../images/rss-icon.jpg) no-repeat left; width:17px; height:17px; }
-a.rss:hover{background:url(../images/rss-icon-hover.jpg) no-repeat left;}
+a.pinterest{background:url(../images/pinterest-icon.png) no-repeat left; width:15px; height:17px;}
+a.pinterest:hover{background:url(../images/pinterest-icon.png) no-repeat left;}
 
-a.print{background:url(../images/print-icon.jpg) no-repeat left; width:17px; height:17px; }
-a.print:hover{background:url(../images/print-icon-hover.jpg) no-repeat left;}
+a.slideshare{background:url(../images/slideshare-icon.png) no-repeat left; width:15px; height:17px;}
+a.slideshare:hover{background:url(../images/slideshare-icon.png) no-repeat left;}
+
+a.rss{background:url(../images/rss-icon.png) no-repeat left; width:17px; height:17px; }
+a.rss:hover{background:url(../images/rss-icon.png) no-repeat left;}
+
+a.print{background:url(../images/print-icon.png) no-repeat left; width:17px; height:17px; }
+a.print:hover{background:url(../images/print-icon.png) no-repeat left;}
 
 a.mail{background:url(../images/mail-icon.jpg) no-repeat left; width:20px; height:14px;}
 a.mail:hover{background:url(../images/mail-icon-hover.jpg) no-repeat left;}

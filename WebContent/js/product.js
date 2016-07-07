@@ -25,11 +25,11 @@
                     url: "addToCart",
                     data: data,
                     success: function () {
-                 	   alert("Added");
+                 	   alert("Thêm giỏ hàng thành công");
                     },
                     error: function(xhr, textStatus, errorThrown){
                     	
-                    	alert("This product has been added to cart or some error ocurred");
+                    	alert("Bạn đã thêm sản phẩm này vào giỏ hàng. Hoặc có lỗi xảy ra.");
                     	
                     	
                      }
@@ -51,18 +51,18 @@
                 var atpos = email_id.indexOf("@");
                 var dotpos = email_id.lastIndexOf(".");
                 if(name == ""){
-					alert('Enter Your Name for Enquiry!');
+					alert('Vui lòng nhập tên của bạn');
 					document.getElementById('name'+id).focus();
 					return false;
 		 		}
 		
 				if(email_id == ""){
-					alert('Enter Your Mail Id for Enquiry!');
+					alert('Vui lòng nhập email của bạn');
 					document.getElementById('email_id'+id).focus();
 					return false;
 				}
                	if (atpos< 1 || dotpos<atpos+2 || ((dotpos+2) >= (email_id.length))) {
-                        alert("Not a valid e-mail address");
+                        alert("Vui lòng nhập đúng email");
                         return false;
                	}
 		        hs.close(element);
@@ -84,12 +84,11 @@
                     type: "POST",
                     url: "quickContact",
                     data: data,
-                    success: function () {
-                 	   alert("Please check your email inbox to reconfirm your enquiry. ");
-                        //location.reload();
+                    success: function (xhr) {
+                    	window.location.href = xhr;
                     },
                     error: function(xhr, textStatus, errorThrown){
-                        alert("There are some errors. Cannot make the enqiry now!");
+                        alert("Có lỗi xảy ra. xin vui lòng thử lại");
                      }
                 });
         	}

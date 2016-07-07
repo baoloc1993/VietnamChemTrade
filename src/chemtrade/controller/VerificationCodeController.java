@@ -30,11 +30,11 @@ public class VerificationCodeController extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		BufferedOutputStream out = null;            
+		//BufferedOutputStream out = null;            
         //BufferedImage myImage = null;                
-        ByteArrayOutputStream bos = null;
-        byte imageBuffer[] = null;
-        JPEGImageEncoder jpg = null;
+        //ByteArrayOutputStream bos = null;
+       // byte imageBuffer[] = null;
+        //JPEGImageEncoder jpg = null;
         String verificationCode = req.getParameter("vCode");
 //        for (int i = 0; i < 6; i++) {
 //            String rand = String.valueOf((char) (97 + new Random().nextInt(26)));
@@ -44,16 +44,17 @@ public class VerificationCodeController extends HttpServlet{
 //        session.setAttribute("vCode",verificationCode);
       //  request.setAttribute("vCode", verificationCode);
 		//String verificationCode = req.getParameter("vCode");
-		BufferedImage image = getImageVerification(resp, verificationCode);
-		bos = new ByteArrayOutputStream(); 
-
-        jpg = JPEGCodec.createJPEGEncoder(bos);
-        jpg.encode(image);
-
-        imageBuffer = bos.toByteArray();
-        out = new BufferedOutputStream(resp.getOutputStream(),imageBuffer.length);
-		out.write(imageBuffer);
-		out.flush();
+		BufferedImage image = getImageVerification(verificationCode);
+		//bos = new ByteArrayOutputStream(); 
+		ImageIO.write(image, "JPEG", resp.getOutputStream());
+	
+//        jpg = JPEGCodec.createJPEGEncoder(bos);
+//        jpg.encode(image);
+//
+//        imageBuffer = bos.toByteArray();
+//        out = new BufferedOutputStream(resp.getOutputStream(),imageBuffer.length);
+//		out.write(imageBuffer);
+//		out.flush();
 	}
 	Color getRandColor(int fc, int bc) {
         Random random = new Random();
@@ -69,10 +70,11 @@ public class VerificationCodeController extends HttpServlet{
         return new Color(r, g, b);
     }
 	
-	public BufferedImage getImageVerification( HttpServletResponse response ,String verificationCode) throws IOException{
+	public BufferedImage getImageVerification(String verificationCode) throws IOException{
 //		  response.setHeader("Pragma", "No-cache");
 //		    response.setHeader("Cache-Control", "no-cache");
 //		    response.setDateHeader("Expires", 0);
+		System.out.println (verificationCode.length());
 		    int width = 480, height = 200;
 		    BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		    Graphics g = image.getGraphics();
@@ -85,11 +87,17 @@ public class VerificationCodeController extends HttpServlet{
 		    double k = 0;
 		    //String vCode = request.getParameter ("vCode");
 		    for (int i = 0; i < 6; i++) {
-		    	String rand = String.valueOf(verificationCode.charAt(i));
+		    	String rand  = "";
+		    	try{
+		    		rand = String.valueOf(verificationCode.charAt(i));
+		    	}catch (Exception e){
+		    		 rand = String.valueOf((char) (97 + new Random().nextInt(26)));
+		    	}
+		    	
 		       // String rand = String.valueOf((char) (97 + random.nextInt(26)));
 		        //sRand += rand;
 		        g.setColor(new Color(0, 46, 184));
-		        if (i == 0) {
+		        if (i == 0) {;
 		            k = (random.nextInt(3)-2) * Math.PI / 180.0;
 		        } else if (k < 0) {
 		            k = (random.nextInt(3)) * Math.PI / 180.0;
@@ -106,7 +114,7 @@ public class VerificationCodeController extends HttpServlet{
 		    //out(oalert(session.getAttribute("rand"));
 		    g.dispose();
 		    return image;
-		    //ImageIO.write(image, "JPEG", response.getOutputStream());
+		    //ImageIO.write(image, "JPEG", response.getOutputStream())
 	}
 	
 	

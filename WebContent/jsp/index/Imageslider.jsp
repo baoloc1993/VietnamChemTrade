@@ -20,32 +20,32 @@
 			
              
              <div class="item active">
-             <a href="eBook">
-                 <img  style="width:100%" src="images/images_new/ChemTradeasiabanner.jpg" alt="ChemTradeasiabanner">
+             <a href="blog">
+                 <img  style="width:100%" src="images/banner/banner-1.png" alt="Blog">
              </a>    
              </div>
              
              <div class="item">
-             <a href = "blog">
-                 <img  style="width:100%" src="images/images_new/ChemTradeasiabanner_A.jpg" alt="ChemTradeasiabanner_A">
+             <a href = "catalogue">
+                 <img  style="width:100%" src="images/banner/banner-2.png" alt="Sản phẩm">
                 </a> 
              </div>
              
              <div class="item">
-             <a href = "quote">
-                 <img style="width:100%" src="images/images_new/ChemTradeasiabanner_B.jpg" alt="ChemTradeasiabanner_B">
+             <a href = "ebook">
+                 <img style="width:100%" src="images/banner/banner-3.png" alt="Ebook">
                </a>
              </div>
              
              <div class="item ">
-             <a href = "product">
-                 <img  style="width:100%" src="images/images_new/ChemTradeasiabanner_C.jpg" alt="ChemTradeasiabanner_C">
+             <a href = "contact-us">
+                 <img  style="width:100%" src="images/banner/banner-4.png" alt="Liên hệ">
               </a>   
              </div>
              
              <div class="item ">
-             <a href = "case-study">
-                 <img  style="width:100%" src="images/images_new/ChemTradeasiabanner_D" alt="ChemTradeasiabanner_D">
+             <a href = "supplier">
+                 <img  style="width:100%" src="images/banner/banner-5.png" alt="Nhà cung cấp">
               </a>   
              </div>
 			
@@ -56,5 +56,9 @@
       
      </div>
 
- 	<a class="carousel-control left" href="#myCarousel" data-slide="prev" style = "width:2%;"></a>
-     <a class="carousel-control right" href="#myCarousel" data-slide="next" style = "width:2%;"></a>
+ 	<a class="carousel-control left" href="#myCarousel" data-slide="prev" style = "width:0%; margin-top:10%">
+		<img src = "images/slider-left.png"></img>
+		</a>
+     <a class="carousel-control right" href="#myCarousel" data-slide="next" style = "width:0%; margin-top:10%; margin-right:9%">
+	 <img src = "images/slider-right.png"></img>
+	 </a>

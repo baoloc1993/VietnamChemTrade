@@ -137,7 +137,7 @@ function submitOrder(){
 			var k = 0;
 			for (k=1;k<= productName.length;k++){
 				if (document.getElementById('product_name' + k).value == ""){
-					alert("Please fill this field");
+					alert("Bạn cần điền đủ thông tin");
 					document.getElementById('product_name' + k).focus();
 					return;
 				}
@@ -152,84 +152,84 @@ function submitOrder(){
 			}
 
 			if (verifyCode != vCode){
-				alert("error captcha");
+				alert("Sai mã xác nhận");
 				return false;
 			}
 			
 			if (companyName == null || companyName.value == ""){
-				alert("Please fill this field");
+				alert("Bạn cần điền đủ thông tin");
 				companyName.focus();
 				return false;
 			}
 			
 			if (address == null || address.value == ""){
-				alert("Please fill this field");
+				alert("Bạn cần điền đủ thông tin");
 				address.focus();
 				return false;
 			}
 			if (companyZip == null || companyZip.value == ""){
-				alert("Please fill this field");
+				alert("Bạn cần điền đủ thông tin");
 				companyZip.focus();
 				return false;
 			}
 			if (companyPhone == null || companyPhone.value == "" ||isNaN(companyPhone.value)){
-				alert("Please fill this field");
+				alert("Bạn cần điền đủ thông tin");
 				companyPhone.focus();
 				return false;
 			}
 			
 			if (callCode == null || callCode.value == ""){
-				alert("Please fill this field");
+				alert("Bạn cần điền đủ thông tin");
 				callCode.focus();
 				return false;
 			}
 			
 			if (contactFName == null || contactFName.value == ""){
-				alert("Please fill this field");
+				alert("Bạn cần điền đủ thông tin");
 				contactFName.focus();
 				return false;
 			}
 			
 			if (contactLName == null || contactLName.value == ""){
-				alert("Please fill this field");
+				alert("Bạn cần điền đủ thông tin");
 				contactLName.focus();
 				return false;
 			}
 			
 			if (contactCallCode == null ||contactCallCode.value == ""){
-				alert("Please fill this field");
+				alert("Bạn cần điền đủ thông tin");
 				contactCallCode.focus();
 				return false;
 			}
 			
 			//alert(contactMobile.value);
 			if (contactMobile == null || contactMobile.value == "" ||isNaN(contactMobile.value) ){
-				alert("Incorrect number");
+				alert("Điện thoại không hợp lệ");
 				contactMobile.focus();
 				return false;
 			}
 			
 			if (contactEmail == null || contactEmail.value == "" || (contactEmail.value).indexOf("@") == -1){
-				alert("Please fill correct Email");
+				alert("Email không hợp lệ");
 				contactEmail.focus();
 				return false;
 			}
 			var count;
 			for (count = 0 ; i < productName.length;i++){
 				if (productName[i].value == ""){
-					alert("Please fill this field");
+					alert("Bạn cần điền đủ thông tin");
 					productName[i].focus();
 					return;
 				}
 				if (productPrice[i].value == ""){
-					alert("Please fill this field");
+					alert("Bạn cần điền đủ thông tin");
 					productPrice[i].forcus();
 					return;
 				}
 			}
 			
 			if (verifyCode == null || verifyCode.value == "" ){
-				alert("Please fill this field");
+				alert("Bạn cần điền đủ thông tin");
 				companyName.focus();
 				return false;
 			}
@@ -277,12 +277,12 @@ function submitOrder(){
 	                 url: "supplier",
 	                 data: data,
 	                 success: function () {
-	              	   alert("Please check your email");
+	              	   alert("Cảm ơn bạn. Xin kiểm tra email");
 	                     location.reload();
 	                 },
 	                 error: function(xhr, textStatus, errorThrown){
 	                	
-		                alert("Sorry,  create supplier this time. Please try again later");
+		                alert("Có lỗi xảy ra. Xin thử lại lần sau");
 	                	// alert(xhr.responseText);
 	                	 
 	                  }

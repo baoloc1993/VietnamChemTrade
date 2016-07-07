@@ -3,23 +3,10 @@
     Created on : June 8, 2015, 11:24:12 AM
     Author     : Qianpin
 --%>
-
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ include file = "../setting.jsp"%>
         
-        <script type="text/javascript">
-
-            var oldURL = [YOUR_URL_TO_REMOVE_PARAMS]
-            var index = 0;
-            var newURL = oldURL;
-            index = oldURL.indexOf('?');
-            if (index == -1) {
-                index = oldURL.indexOf('#');
-            }
-            if (index != -1) {
-                newURL = oldURL.substring(0, index);
-            }
-
-         </script>
+       
 
         <style>
             .cat-header {
@@ -41,11 +28,11 @@
 
     <body>
 
-        <div class="container-fluid">
+        <div class="container">
             <!---to wrap around all body content--->
             <div class="row">
                 <!----center content--->
-                <div class="col-md-10 col-md-offset-1 centerRow">
+                <div class="col-md-10 cold-md-offset-1 centerRow">
 
                     <!---add the header and navbar and search bar---->
                     <%@include file="../header_nav.jsp"%>
@@ -59,44 +46,31 @@
                             </div>
                         </div>
 
-                        <!--Shortcut Product Buttons-->
-                        <div class="row" style="margin-top:10px">
-                            <div class="col-xs-2 col-md-6"></div>
-                            <div class="col-xs-5 col-md-3">
-                                <!-- The Products buttons -->
-                                <a href="product"><img style="min-width:100px" class="img-responsive" src="images/products/products-all.png" alt="all products" width="180"/></a>
-                            </div>
-                            <div class="col-xs-5 col-md-3">
-                                <!-- The Products buttons -->
-                                <a href="products-top"><img style="min-width:100px" class="img-responsive" src="images/products/products-top.png" alt="top products" width="180"/></a>
-                            </div>
-                        </div>
+                       
 
                         <!-- Categories start-->
-                        <div class="row">
-                            <div class="col-md-12">
-                                <form method="get" action="category" ${display }>
-                                    <fieldset>
-                                        <legend class="cat-header">You may choose only 1</legend>
-                                        
-                                        <c:forEach items = "${categories}" var = "category"> 
-                                        <!--Logic for category enables selection of 1 or more categories. But would
-                                        then pose a pagination problem. So type="radio" changed to radio instead of 
-                                        checkbox. Should solution for pagination arise, just simply change the type-->
-                                        	<input type="radio" name="cat" id="${category.id}" value="${category.id }"/>
-                                        	<label for="${category.id }">${category.name }</label><br>
-                                        </c:forEach>
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-info">Submit</button>
-                                            <button type="reset" class="btn btn-danger">Reset</button>
-                                        </div>
-                                    </fieldset>
-                                </form>
-                                <a href="category" style = "cursor:pointer"><img src="images/misc/back.png" alt="back-button"></a>
-                                <br>
-                               
+                        <div class="row col-md-12">
+	                        <!-- Product Category -->
+	                            <div class="col-md-3">
+	                            
+	                            	
+	                                        <div style="color:white; background-color:#143D55; font-size:1.5em;"><center>Các loại sản phẩm</center></div>
+	                                    
+	                                    <c:forEach items = "${categories}" var = "category">
+	
+	                                    
+	                                               
+												 <div style="cursor:pointer;padding-left:1%;background-color: #337ab7;font-size: 1em;color: white;border-bottom: solid;border-width: 1px;" href="javascript:{}" onclick="window.location.href = 'category?cat=${category.id}'">
+	                                            
+	                                                ${category.name}
+													
+												</div>
+	
+	                                   </c:forEach>
+	                            </div>
+                            <div class="col-md-9">
                                 <c:forEach items = "${categoryWrappers}" var = "categoryWrapper">
-                                	<div class="cat-header">${categoryWrapper.header }</div>
+                                	
                                 	<div class="cat-subheader">${categoryWrapper.subheader }</div>
  
 	                                <!---displaying result information----->                       
@@ -110,176 +84,8 @@
 								<hr>
 	                      <!-- Start of all Products -->
 								<c:forEach items = "${categoryWrapper.products}" var = "product">
-			                        <hr>
-			                        <div class="row">
-			                            <div class="col-sm-7 col-md-7">
-			
-			                                <div class="row" style="margin-bottom:10px">
-			                                    <!--------Product Image--------->
-			                                    <div class="col-xs-4 col-md-4">
-			                                        <img src="images/products/individual/test.jpg" style="max-width: 130px;min-width: 81px;width:100%;height:100%;" class="img-rounded" width="100" height="100" alt="${product.productName}">
-			
-			                                    </div>
-			                                    <!------Product Description--------->
-			                                    <div class="col-xs-8 col-md-8">
-			                                        <a style="color: #08146c;" href="product.jsp"><span style="display: none;">Link1</span></a>
-			                                        <b><a href="products">${product.productName }</a></b>
-			                                        <div class="resizeInfo"> 
-			                                            <table >
-			                                                <tr>
-			                                                    <td><b>Origin:</b></td>
-			                                                    <td> ${product.countryOrigin }</td>
-			                                                </tr>
-			                                                <tr>
-			                                                    <td><b>Appearance: </b></td>
-			                                                    <td> ${product.physicalAppear}</td>
-			                                                </tr>
-			                                                <tr>
-			                                                    <td><b>CAS No.:</b></td>
-			                                                    <td> ${product.casNumber }</td>
-			                                                </tr>
-			                                                <tr>
-			                                                    <td><b>Formula:</b></td>
-			                                                    <td>${product.chemicalFormula}</td>
-			                                                </tr>
-			                                            </table>
-			
-			                                            <!----<br>
-			                                            <b>Packaging</b>
-			                                            <b>:</b>
-			                                            <b>${product.packingDetail}</b>--->
-			                                        </div>
-			                                    </div>
-			                                </div>
-			                            </div>
-			
-			                            <div class="col-xs-5">
-		                                <div class="row">
-		                                    <!--------MSDS--------->
-		                                    <div class="col-xs-3">
-		                                        <center><b>MSDS</b><br>
-		                                            <img src="images/products/pdf_pl.png" class="img-rounded pdf" onclick="return hs.htmlExpand(this)" onkeypress="return hs.htmlExpand(this)" width="30" alt="msds">
-		
-		                                            <div class="highslide-maincontent">
-		                                                <!--Start MSDS Form--> 
-		                                                
-		
-		                                                    <input type="hidden" name="pgnme" value="${pageName}">
-		                                                    <table style="width:100%; taxt-align:left;">
-		                                                        <tr style="display:none;"><th></th></tr>
-		                                                        <tbody><tr><td>
-		                                                                    <table>
-		                                                                        <tr style=""><th><br></th></tr>
-		                                                                        <tr><td style="color:#333333; color:#333333; font-family:Oxygen-Bold,Verdana, Arial, Helvetica, sans-serif; font-size:14px; margin-bottom:10px; text-align:center;" colspan="2" >Please fill the form to download TDS/MSDS of our products </td></tr>
-		                                                                        <tr><td colspan="2"><span style="color:#FF0000;">*</span><span style="font-family:Verdana, Arial, Helvetica, sans-serif;font-size:10px; font-style:italic;"> Fields are Mandatory</span><input name="id" id="idA${product.productId}" style="display:none" type="text" value="A${product.productId}"></td></tr>
-		                                                                        <tr><td style="color:#333333; font-family:Oxygen-Bold,Verdana, Arial, Helvetica, sans-serif; font-size:12px;">Name<span style="color:#FF0000">*</span>  :</td><td><input name="name" id="nameA${product.productId}" maxlength="150" style="width: 190px;margin-bottom:3px; margin-top: 5px;" type="text" title="Name"></td></tr>
-		                                                                        <tr><td style="color:#333333; font-family:Oxygen-Bold, Verdana, Arial, Helvetica, sans-serif; font-size:12px;">E-Mail<span style="color:#FF0000">*</span>  :</td><td><input name="email_id" id="email_idA${product.productId}" maxlength="250" style="width: 190px; margin-bottom:3px;" type="text" title="Email"></td></tr>
-		                                                                        <tr><td style="color:#333333; font-family:Oxygen-Bold, Verdana, Arial, Helvetica, sans-serif; font-size:12px;">Phone:</td><td><input id="phoneA${product.productId}" name="phone" maxlength="15" style="width: 190px; margin-bottom:3px;" type="text" title="Phone Number"></td></tr>
-		                                                                        <tr><td style="color:#333333; font-family:Oxygen-Bold,Verdana, Arial, Helvetica, sans-serif; font-size:12px; vertical-align:middle;" >Requirement :</td><td>
-		                                                                                <label for="requirementA${product.productId}" style="display:none;">requirementA${product.productId}</label>
-		                                                                                <textarea name="requirement" id="requirementA${product.productId}" maxlength="250" style="width: 190px; margin-bottom:3px;" title="Requirement"></textarea></td></tr>
-		                                                                        <tr><td>&nbsp;</td>
-		                                                                            <td style="vertical-align:top;">
-		                                                                                <table>
-		                                                                                    <tr style="display:none;"><th></th></tr>
-		                                                                                    <tr><td><img src="images/email_reset.png" onclick="resetDownload('A','${product.productId}');" onkeypress="resetDownload('A','${product.productId}');" style="cursor:pointer" alt="reset" height="26" width="88" tabindex="0"></td>
-		                                                                                        <td><input name="submit" id="submitA${product.productId}" value="Submit" src="images/email_submit.png" type="image" onclick="javascript:submitDownloadForm('A' ,'${product.productId}','${product.productName}', this);" onkeypress="javascript:submitDownloadForm('A' ,'${product.productId}','${product.productName}', this);" alt="input8"></td></tr></tbody></table>
-		                                                                            </td></tr></tbody></table>
-		
-		                                                    </td></tr>
-		                                                    </tbody>
-		                                                    </table>
-		                                                <!--End MSDS Form-->
-		                                            </div> 
-		                                        </center>
-		                                    </div>
-		                                    <!--------TDS--------->
-		                                    <div class="col-xs-3">
-		                                        <center><b>TDS</b><br>
-		                                            <img src="images/products/pdf_pl.png" class="img-rounded pdf" onclick="return hs.htmlExpand(this)" onkeypress="return hs.htmlExpand(this)" width="30" alt="tds">
-		
-		                                            <div class="highslide-maincontent">
-		
-		                                                <!--Start TDS Form-->
-		                                                
-		                                                    <input type="hidden" name="pgnme" value="${pageName}">
-		                                                    <table style="width:100%; taxt-align:left;">
-		                                                        <tr style="display:none;"><th></th></tr>
-		                                                        <tbody><tr><td>
-		                                                                    <table>
-		                                                                        <tr style=""><th><br></th></tr>
-		                                                                        <tr><td style="color:#333333; color:#333333; font-family:Oxygen-Bold,Verdana, Arial, Helvetica, sans-serif; font-size:14px; margin-bottom:10px; text-align:center;" colspan="2" >Please fill the form to download TDS/MSDS of our products </td></tr>
-		                                                                        <tr><td colspan="2"><span style="color:#FF0000;">*</span><span style="font-family:Verdana, Arial, Helvetica, sans-serif;font-size:10px; font-style:italic;"> Fields are Mandatory</span><input name="id" id="idB${product.productId}" style="display:none" type="text" value="B${product.productId}"></td></tr>
-		                                                                        <tr><td style="color:#333333; font-family:Oxygen-Bold,Verdana, Arial, Helvetica, sans-serif; font-size:12px;">Name<span style="color:#FF0000">*</span>  :</td><td><input name="name" id="nameB${product.productId}" maxlength="150" style="width: 190px;margin-bottom:3px; margin-top: 5px;" type="text" title="Name"></td></tr>
-		                                                                        <tr><td style="color:#333333; font-family:Oxygen-Bold, Verdana, Arial, Helvetica, sans-serif; font-size:12px;">E-Mail<span style="color:#FF0000">*</span>  :</td><td><input name="email_id" id="email_idB${product.productId}" maxlength="250" style="width: 190px; margin-bottom:3px;" type="text" title="Email"></td></tr>
-		                                                                        <tr><td style="color:#333333; font-family:Oxygen-Bold, Verdana, Arial, Helvetica, sans-serif; font-size:12px;">Phone:</td><td><input id="phoneB${product.productId}" name="phone" maxlength="15" style="width: 190px; margin-bottom:3px;" type="text" title="Phone Number"></td></tr>
-		                                                                        <tr><td style="color:#333333; font-family:Oxygen-Bold,Verdana, Arial, Helvetica, sans-serif; font-size:12px; vertical-align:middle;" >Requirement :</td><td>
-		                                                                                <label for="requirementB${product.productId}" style="display:none;">requirementB${product.productId}</label>
-		                                                                                <textarea name="requirement" id="requirementB${product.productId}" maxlength="250" style="width: 190px; margin-bottom:3px;" title="Requirement"></textarea></td></tr>
-		                                                                        <tr><td>&nbsp;</td>
-		                                                                            <td style="vertical-align:top;">
-		                                                                                <table>
-		                                                                                    <tr style="display:none;"><th></th></tr>
-		                                                                                    <tr><td><img src="images/email_reset.png" onclick="resetDownload('B','${product.productId}');" onkeypress="resetDownload('B','${product.productId}');" style="cursor:pointer" alt="reset" height="26" width="88" tabindex="0"></td>
-		                                                                                        <td><input name="submit" id="submitB${product.productId}" value="Submit" src="images/email_submit.png" type="image" onclick="javascript:submitDownloadForm('B','${product.productId}','${product.productName}', this);" onkeypress="javascript:submitDownloadForm('B' ,'${product.productId}','${product.productName}', this);" alt="input8"></td></tr></tbody></table>
-		                                                                            </td></tr></tbody></table>
-		
-		                                                    </td></tr>
-		                                                    </tbody></table>
-		                                                
-		                                                <!--End TDS Form-->
-		                                            </div>
-		                                        </center>
-		                                    </div>
-		
-		                                    <!----mail----->
-		                                    <div class="col-xs-3">
-		                                        <center><br>
-		                                            <img src="images/products/mail_pl.png" class="img-rounded pdf" onclick="return hs.htmlExpand(this)" onkeypress="return hs.htmlExpand(this)" width="30" alt="tds">
-		
-		                                            <div class="highslide-maincontent">
-		
-		                                                <!--Start MAIL Form-->
-		                                                
-		                                                    <input type="hidden" name="pgnme" value="${pageName}">
-		                                                    <table style="width:100%; taxt-align:left;">
-		                                                        <tr style="display:none;"><th></th></tr>
-		                                                        <tbody><tr><td>
-		                                                                    <table>
-		                                                                        <tr style=""><th><br></th></tr>
-		                                                                        <tr><td style="color:#333333; color:#333333; font-family:Oxygen-Bold,Verdana, Arial, Helvetica, sans-serif; font-size:14px; margin-bottom:10px; text-align:center;" colspan="2" >Please fill in this form for any enquiries on our products. </td></tr>
-		                                                                        <tr><td colspan="2"><span style="color:#FF0000;">*</span><span style="font-family:Verdana, Arial, Helvetica, sans-serif;font-size:10px; font-style:italic;"> Fields are Mandatory</span><input name="id" id="idC${product.productId}" style="display:none" type="text" value="C${product.productId}"></td></tr>
-		                                                                        <tr><td style="color:#333333; font-family:Oxygen-Bold,Verdana, Arial, Helvetica, sans-serif; font-size:12px;">Name<span style="color:#FF0000">*</span>  :</td><td><input name="name" id="nameC${product.productId}" maxlength="150" style="width: 190px;margin-bottom:3px; margin-top: 5px;" type="text" title="Name"></td></tr>
-		                                                                        <tr><td style="color:#333333; font-family:Oxygen-Bold, Verdana, Arial, Helvetica, sans-serif; font-size:12px;">E-Mail<span style="color:#FF0000">*</span>  :</td><td><input name="email_id" id="email_idC${product.productId}" maxlength="250" style="width: 190px; margin-bottom:3px;" type="text" title="Email"></td></tr>
-		                                                                        <tr><td style="color:#333333; font-family:Oxygen-Bold, Verdana, Arial, Helvetica, sans-serif; font-size:12px;">Phone:</td><td><input id="phoneC${product.productId}" name="phone" maxlength="15" style="width: 190px; margin-bottom:3px;" type="text" title="Phone Number"></td></tr>
-		                                                                        <tr><td style="color:#333333; font-family:Oxygen-Bold,Verdana, Arial, Helvetica, sans-serif; font-size:12px; vertical-align:middle;" >Requirement :</td><td>
-		                                                                                <label for="requirementC${product.productId}" style="display:none;">requirementB${product.productId}</label>
-		                                                                                <textarea name="requirement" id="requirementB${product.productId}" maxlength="250" style="width: 190px; margin-bottom:3px;" title="Requirement"></textarea></td></tr>
-		                                                                        <tr><td>&nbsp;</td>
-		                                                                            <td style="vertical-align:top;">
-		                                                                                <table>
-		                                                                                    <tr style="display:none;"><th></th></tr>
-		                                                                                    <tr><td><img src="images/email_reset.png" onclick="resetDownload('C','${product.productId}');" onkeypress="resetDownload('C','${product.productId}');" style="cursor:pointer" alt="reset" height="26" width="88" tabindex="0"></td>
-		                                                                                        <td><input name="submit" id="submitC${product.productId}" value="Submit" src="images/email_submit.png" type="image" onclick="javascript:submitDownloadForm('C','${product.productId}','${product.productName}', this);" onkeypress="javascript:submitDownloadForm('C' ,'${product.productId}','${product.productName}', this);" alt="input8"></td></tr></tbody></table>
-		                                                                            </td></tr></tbody></table>
-		                                                    </td></tr>
-		                                                    </tbody></table>
-		                                               
-		                                                <!--End MAIL Form-->
-		                                            </div>
-		                                        </center>
-		                                    </div>                                   
-		                                
-		                            
-					                            <!-----add to cart button----->
-					                            <div class="col-xs-3">
-					                                <a style = "cursor: pointer" onclick = "addToCart(${product.productId})"><img src="images/products/add-to-cart.png">
-					                                </a>
-					
-					                            </div>
-				                        	</div>
-				                 		</div>
-				                 	</div>
+			                        <%@include file = "display_product_template.jsp"%>
+			                        
 			                     </c:forEach>
                                
                                 <!--Pagination Display-->

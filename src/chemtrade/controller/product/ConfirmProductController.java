@@ -42,15 +42,15 @@ public class ConfirmProductController extends HttpServlet{
          message += "<td>";
          message +="<img src=\"images/confirmation-icon.png\" style=\"display: block; margin-left: auto; margin-right: auto\">";
          message +="<br>";
-         message += "<div class=\"confirmation-mainheader\">Enquiry Confirmation</div>";
+         message += "<div class=\"confirmation-mainheader\">Xác nhận yêu cầu</div>";
          message += "<hr>";
          message += "<div class=\"confirmation-details\">";
-         message += "Thank you for submitting your enquiry. Tradeasia will contact you shortly in regards to this enquiry.";
+         message += "Cảm ơn bạn đã gửi yêu cầu. Chúng tôi sẽ liên lạc với bạn trong thời gian sớm nhất.";
          message += "<br>";
-         message += "We really appreciate your time and we look forward to doing business with you.";
+         message += "Chúng tôi hy vọng có cơ hội làm việc với bạn trong tương lai.";
          message +="<br>";
          message +="</div>";
-         message += "<a href=\"index\"><input class=\"confirmation-btn\" value=\"Back to Home\" type=\"submit\"></a>";
+         message += "<a href=\"index\"><input class=\"confirmation-btn\" value=\"Quay lại\" type=\"submit\"></a>";
           message += "</td>";
           message += "</tr>";
           
@@ -62,17 +62,17 @@ public class ConfirmProductController extends HttpServlet{
         message += "<td>";
         message +="<img src=\"images/no-confirmation-icon.png\" style=\"display: block; margin-left: auto; margin-right: auto\">";
         message +="<br>";
-        message += "<div class=\"confirmation-mainheader\">No Record Received.</div>";
+        message += "<div class=\"confirmation-mainheader\">Không tìm thấy dữ liệu</div>";
         message += "<hr>";
         message += "<div class=\"confirmation-details\">";
-        message += "Sorry, No record was received. ";
+        message += "Không tìm thấy dữ liệu ";
         message += "<br>";
-        message += "Kindly fill in your details for the product you are enquiring on and submit again.";
+        message += "Xin hãy điền lại thông tin và gửi cho chúng tôi.";
         message +="<br>";
-        message += "We really appreciate your time and we look forward to doing business with you.";
+        message += "Chúng tôi hy vọng có cơ hội làm việc với bạn trong tương lai.";
         message += "<br>";
         message +="</div>";
-        message += " <a href=\"index\"><input class=\"confirmation-btn\" value=\"Back\" type=\"button\"></a>";
+        message += " <a href=\"index\"><input class=\"confirmation-btn\" value=\"Quay lại\" type=\"button\"></a>";
          message += "</td>";
          message += "</tr>";
          

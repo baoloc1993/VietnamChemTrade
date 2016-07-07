@@ -168,12 +168,12 @@ public class QuickEnquiryController extends HttpServlet implements Constant{
 	 */
 	public void sendEmail(final String name, final String email, final String contact,
 			final String product, final String message) throws Exception {
-		String header="http://"+ROOT+"/images/email_header.jpg";
-		String footer="http://"+ROOT+"/images/email_footer.jpg";
+		String header=ROOT+"images/email_header.jpg";
+		String footer=ROOT+"images/email_footer.jpg";
 		//String to = letterId; 
 		
 		String mailBodyHeader = setMailBodyHeader(name, header);
-	    String adminMailBodyHeader = setAdminMailBodyHeader(header);
+	    String adminMailBodyHeader = setAdminMailBodyHeader(header,name);
 		String mailBodyDetail = setMailBodyDetail(name, email, contact,product, message);
 		String mailBodyFooter = setMailBodyFooter(footer);
 		String adminMailBodyFooter = setAdminMailBodyFooter();
@@ -183,7 +183,7 @@ public class QuickEnquiryController extends HttpServlet implements Constant{
 		test = mailBody;
 
 		EmailController mailController = new EmailController();
-		mailController.sendEmailViaGmail(email, mailBody, "Quick Enquiry");
+		mailController.sendEmailViaGmail(email, mailBody, "Yêu cầu nhanh");
 		 
 		//	return test;
        
@@ -204,7 +204,7 @@ public class QuickEnquiryController extends HttpServlet implements Constant{
 
 	private String setMailBodyFooter(String footer) {
 		String 	mailBodyFooter = "<tr><td height=\"10\"></td></tr>";
-		 		mailBodyFooter += "<tr><td colspan=\"4\">Best Regards,</td></tr><tr><td height=\"10\"></td></tr>";
+		 		mailBodyFooter += "<tr><td colspan=\"4\">Thân,</td></tr><tr><td height=\"10\"></td></tr>";
 	 			mailBodyFooter += "<tr><td colspan=\"4\">Tradeasia Team</td></tr>";
 	 			mailBodyFooter += "<tr><td height=\"10\"></td></tr>";
 	 			mailBodyFooter += "<tr>";
@@ -227,33 +227,33 @@ public class QuickEnquiryController extends HttpServlet implements Constant{
 			String product, String message) {
 		String 	mailBodyDetail = "<tr><td height=\"10\"></td></tr>";
 				mailBodyDetail += "<tr>";	
-				mailBodyDetail += "<td colspan=\"3\">Your enquiry details are follows.</td>";
+				mailBodyDetail += "<td colspan=\"3\">Thông tin yêu cầu.</td>";
 				mailBodyDetail += "</tr>";
 				mailBodyDetail += "<tr><td height=\"10\"></td></tr>";
 				mailBodyDetail += "<tr>";	
-				mailBodyDetail += "<th width=\"159\" scope=\"row\" align=\"left\">Name</th><td width=\"17\">:</td><td width=\"302\">"+name+"</td>";
+				mailBodyDetail += "<th width=\"159\" scope=\"row\" align=\"left\">Tên</th><td width=\"17\">:</td><td width=\"302\">"+name+"</td>";
 				mailBodyDetail += "</tr>";
 				mailBodyDetail += "<tr><td height=\"10\"></td></tr>";
 				mailBodyDetail += "<tr>";	
-				mailBodyDetail += "<th width=\"159\" scope=\"row\" align=\"left\">Mail Id</th><td width=\"17\">:</td><td width=\"302\">"+email+"</td>";
+				mailBodyDetail += "<th width=\"159\" scope=\"row\" align=\"left\">Email</th><td width=\"17\">:</td><td width=\"302\">"+email+"</td>";
 				mailBodyDetail += "</tr>";
 				mailBodyDetail += "<tr><td height=\"10\"></td></tr>";
 				mailBodyDetail += "<tr>";	
-				mailBodyDetail += "<th width=\"159\" scope=\"row\" align=\"left\">Contact NO</th><td width=\"17\">:</td><td width=\"302\">"+contact+"</td>";
+				mailBodyDetail += "<th width=\"159\" scope=\"row\" align=\"left\">Điện thoại</th><td width=\"17\">:</td><td width=\"302\">"+contact+"</td>";
 				mailBodyDetail += "</tr>";
 				mailBodyDetail += "<tr><td height=\"10\"></td></tr>";
 				mailBodyDetail += "<tr>";	
-				mailBodyDetail += "<th width=\"159\" scope=\"row\" align=\"left\">Product</th><td width=\"17\">:</td><td width=\"302\">"+product+"</td>";
+				mailBodyDetail += "<th width=\"159\" scope=\"row\" align=\"left\">Sản phẩm</th><td width=\"17\">:</td><td width=\"302\">"+product+"</td>";
 				mailBodyDetail += "</tr>";
 				mailBodyDetail += "<tr><td height=\"10\"></td></tr>";
 				mailBodyDetail += "<tr>";	
-				mailBodyDetail += "<th width=\"159\" scope=\"row\" align=\"left\">Requirement</th><td width=\"17\">:</td><td width=\"302\">"+message+"</td>";
+				mailBodyDetail += "<th width=\"159\" scope=\"row\" align=\"left\">Yêu cầu</th><td width=\"17\">:</td><td width=\"302\">"+message+"</td>";
 				mailBodyDetail += "</tr>";
 				mailBodyDetail += "<tr><td height=\"10\"></td></tr>";
 		return mailBodyDetail;
 	}
 
-	private String setAdminMailBodyHeader(String header) {
+	private String setAdminMailBodyHeader(String header, String name) {
 		String  adminMailBodyHeader = "";
 				adminMailBodyHeader += "<table width=\"870\" style=\"border:#666666 1px solid;\"  align=\"center\">";
 				adminMailBodyHeader += "<tr>";
@@ -269,7 +269,7 @@ public class QuickEnquiryController extends HttpServlet implements Constant{
 				adminMailBodyHeader += "</tr>";
 				adminMailBodyHeader += "<tr><td height=\"10\"></td></tr>";
 				adminMailBodyHeader += "<tr>";
-				adminMailBodyHeader += "<td colspan=\"3\">From: '+_REQUEST['per_name']+\"</td>";
+				adminMailBodyHeader += "<td colspan=\"3\">From: " + name + "</td>";
 				adminMailBodyHeader += "</tr>";
 				adminMailBodyHeader += "<tr><td height=\"10\"></td></tr>";
 				adminMailBodyHeader += "</table>";
@@ -284,19 +284,19 @@ public class QuickEnquiryController extends HttpServlet implements Constant{
 				mailBodyHeader += "</tr>";
 				mailBodyHeader += "<tr><td height=\"10\"></td></tr>";
 				mailBodyHeader += "<tr>";
-				mailBodyHeader += "<td colspan=\"3\">Dear "+ name + ",</td>";
+				mailBodyHeader += "<td colspan=\"3\">Chào  "+ name + ",</td>";
 				mailBodyHeader += "</tr>";
 				mailBodyHeader += "<tr><td height=\"10\"></td></tr>";
 				mailBodyHeader += "<tr>";
-				mailBodyHeader += "<td colspan=\"3\">Greetings from Tradeasia International Pte. Ltd!</td>";
+				mailBodyHeader += "<td colspan=\"3\">Tradeasia International Pte. Ltd xin gửi lời chào tới bạn!</td>";
 				mailBodyHeader += "</tr>";
 				mailBodyHeader += "<tr><td height=\"10\"></td></tr>";
 				mailBodyHeader += "<tr>";
-				mailBodyHeader += "<td colspan=\"3\">Thank you for your enquiry with Tradeasia.</td>";
+				mailBodyHeader += "<td colspan=\"3\">Cảm ơn bạn vì đã tin tưởng Tradeasia.</td>";
 				mailBodyHeader += "</tr>";
 				mailBodyHeader += "<tr><td height=\"10\"></td></tr>";
 				mailBodyHeader += "<tr>";
-				mailBodyHeader += "<td colspan=\"3\"><a href=\"http://www.chemtradeasia.com/confirmEnquiry?id="+insertId+"\">Please click here to confirm your enquiry about this product.</a></td>";
+				mailBodyHeader += "<td colspan=\"3\"><a href=\"" + ROOT + "confirmEnquiry?id="+insertId+"\">Click vào đường dẫn dưới đây để xác nhận yêu cầut.</a></td>";
 				mailBodyHeader += "</tr>";
 		return mailBodyHeader;
 	}

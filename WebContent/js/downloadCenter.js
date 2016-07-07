@@ -36,7 +36,6 @@ hs.wrapperClassName = 'draggable-header';
                         }
             	//alert(downloadIds);
                 downloadIds[id] = checked2;
-                alertD
             }
             /**
              * Submit form
@@ -51,6 +50,10 @@ hs.wrapperClassName = 'draggable-header';
                 var phone = document.getElementById('phone' + id).value.trim();
                 var rec = document.getElementById('requirement' + id).value.trim();
                 //var files = document.getElementsByName('files[]');
+                if (downloadIds === undefined){
+                    alert ("Vui lòng chọn ít nhất 1 tệp");
+                    return false;
+                }
                 var files = Object.keys(downloadIds).filter(function (id) {
                     return downloadIds[id];
                 });
@@ -60,22 +63,22 @@ hs.wrapperClassName = 'draggable-header';
                 //var flag = 0;
                 var filescount = 40;
                 if (name == "") {
-                    alert('Enter Your Name for Enquiry!');
+                    alert('Vui lòng nhập tên của bạn');
                     document.getElementById('name' + id).focus();
                     return false;
                 }
                 if (email == "") {
-                    alert('Enter Your Mail Id for Enquiry!');
+                    alert('Vui lòng nhập đúng email');
                     document.getElementById('email_id' + id).focus();
                     return false;
                 }
                 if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= email.length) {
-                    alert("Not a valid e-mail address");
+                    alert("Vui lòng nhập đúng email");
                     return false;
                 }
 
                 if (files.length === 0) {
-                    alert("No item marked");
+                    alert("Vui lòng chọn ít nhất 1 tệp");
                     return;
                 }
 
@@ -92,14 +95,14 @@ hs.wrapperClassName = 'draggable-header';
                     type: "POST",
                     url: "downloadCenter",
                     data: data,
-                    success: function () {
-                    	alert("Thank you for showing interest in our products ");
+                    success: function (xhr) {
+                    	alert("Cám ơn bạn đã quan tâm đến sản phẩm của chúng tôi.");
                     	resetDownload(id,element);
-                        location.reload();
+                    	window.location.href = xhr;                    
                     },
                     
                 }).fail(function(){
-                	alert("Oops something is worng. Please try again "); 
+                	alert("Có lỗi xảy ra. xin vui lòng thử lại "); 
                 	return false;
                 });
                 //return false;

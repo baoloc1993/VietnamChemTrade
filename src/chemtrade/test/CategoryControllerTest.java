@@ -1,5 +1,6 @@
 package chemtrade.test;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -9,7 +10,7 @@ import junit.framework.TestCase;
 
 public class CategoryControllerTest extends TestCase {
 	
-	public void testGetCategoryWrapper(){
+	public void testGetCategoryWrapper() throws UnsupportedEncodingException{
 		
 		ProductCategoryController productCategoryController = new ProductCategoryController();
 		

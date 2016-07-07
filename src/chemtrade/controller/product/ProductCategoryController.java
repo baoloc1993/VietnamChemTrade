@@ -1,6 +1,7 @@
 package chemtrade.controller.product;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,6 +32,13 @@ public class ProductCategoryController extends HttpServlet implements Constant {
          //ArrayList<Product> productResults = new ArrayList<Product>();
          ArrayList<Category> categories = new ArrayList<Category>();
          ArrayList<CategoryWrapper> categoryWrappers = new ArrayList<CategoryWrapper>();
+         ProductCategoryController productCategoryController = new ProductCategoryController();
+         //ArrayList<Category> categories = new ArrayList<Category>();
+         try{
+         	categories = productCategoryController.getCategoryDB();
+         }catch(Exception e){
+         	
+         }
         // String subheader = "";
       
 		 String uri2 = request.getRequestURI();
@@ -53,6 +61,7 @@ public class ProductCategoryController extends HttpServlet implements Constant {
          }
          
          //request.setAttribute("products", productResults);
+         //request.setAttribute("categories", categories);
          request.setAttribute("categoryWrappers", categoryWrappers);
          request.setAttribute("categories", categories);
          //request.setAttribute("subheader", subheader);
@@ -119,7 +128,7 @@ public class ProductCategoryController extends HttpServlet implements Constant {
 		     }
 		     
 		     int position = (showPage - 1) * NUMBER_ITEM_PER_PAGE + 1; //position is the position of the starting product being displayed
-		     for (int i = position - 1; i < position - 1 + NUMBER_ITEM_PER_PAGE; i++) { //limit number of products shown here, and limit what position of products to show too
+		     for (int i = position - 1; i < Math.min(position - 1 + NUMBER_ITEM_PER_PAGE,products.size()); i++) { //limit number of products shown here, and limit what position of products to show too
 		         productResults.add(products.get(i));
 		     }
 		     
@@ -184,14 +193,15 @@ public class ProductCategoryController extends HttpServlet implements Constant {
 	 * Get list of catetgory from database
 	 * @return
 	 * @throws SQLException 
+	 * @throws UnsupportedEncodingException 
 	 */
-	public ArrayList<Category> getCategoryDB() throws SQLException{
+	public ArrayList<Category> getCategoryDB() throws SQLException, UnsupportedEncodingException{
 		ArrayList<Category> categories =  new ArrayList<Category>();
 	    Connection conn = ConnectionManager.getConnection();
 	    PreparedStatement ps = conn.prepareStatement("select * from tbl_categorymaster order by category_name");
 	    ResultSet rs = ps.executeQuery();
 	    while (rs.next()) {
-	        categories.add(getCategory(rs.getInt("category_id"), rs.getString("category_name"), rs.getTimestamp("r_date"),
+	        categories.add(getCategory(rs.getInt("category_id"), new String (rs.getBytes("category_name"),"UTF-8"), rs.getTimestamp("r_date"),
 	                rs.getString("r_status"), rs.getString("parent_id")));
 	    }
 		return categories;

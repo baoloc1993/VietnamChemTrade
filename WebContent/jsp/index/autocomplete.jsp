@@ -1,5 +1,5 @@
 
-
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.*"%>
 <%@page import="chemtrade.controller.product.*"%>
 <%@page import="chemtrade.entity.*"%>
@@ -39,7 +39,7 @@
 </style>
 
 
-<input  type="text" class="search-field search-icon col-md-10 col-xs-12" placeholder="Search for a chemical by Name, CAS No. HS code, Origin" name="keyword" id="keywordkk" title="keywordkk">
+<input  type="text" class="search-field search-icon col-md-10 col-xs-12" placeholder="Tìm kiếm hóa chất bằng tên , số CAS, mã HS, Nguồn gốc" name="keyword" id="keywordkk" title="keywordkk">
 
 <script>
     $("#keywordkk").autocomplete({

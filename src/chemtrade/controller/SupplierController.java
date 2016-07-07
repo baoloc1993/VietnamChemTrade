@@ -141,7 +141,7 @@ public class SupplierController extends HttpServlet implements Constant {
 		                productDetails = productHeader + productDetails;
 		                //start sending email
 
-		                sendEmail(productDetails, detSupplier);
+		                sendEmail(productDetails, detSupplier,request.getLocalAddr());
 				        
 			} catch ( SQLException e) {
 				// TODO Auto-generated catch block
@@ -248,10 +248,10 @@ public class SupplierController extends HttpServlet implements Constant {
 	        }
 	        
 	        
-	        public void sendEmail(String productDetails, DetSupplier detSupllier) throws Exception {
+	        public void sendEmail(String productDetails, DetSupplier detSupllier, String localAddress) throws Exception {
 
-	            String header = "http://" + ROOT + "/images/email_header.jpg";
-	            String footer = "http://" + ROOT + "/images/email_footer.jpg";
+	            String header = ROOT + "images/email_header.jpg";
+	            String footer = ROOT + "images/email_footer.jpg";
 	            //String to = letterId; 
 
 	            String mailBodyHeader = setMailBodyHeader(detSupllier, header);
@@ -259,7 +259,7 @@ public class SupplierController extends HttpServlet implements Constant {
 	            String mailBodyFooter = setMailBodyFooter(footer);
 
 	            String adminMailBodyHeader = setAdminMailBodyHeader(header, detSupllier.getSalutation(), detSupllier.getLast_name(), detSupllier.getLast_name());
-	            String adminMailBodyFooter = setAdminMailBodyFooter(footer);
+	            String adminMailBodyFooter = setAdminMailBodyFooter(footer,localAddress);
 
 	            String mailBody = mailBodyHeader + mailBodyDetail + mailBodyFooter;
 	            String adminMailBody = adminMailBodyHeader + mailBodyDetail + adminMailBodyFooter + mailBodyFooter;
@@ -274,7 +274,7 @@ public class SupplierController extends HttpServlet implements Constant {
 
 	        //sending admin notification
 	        private void sendAdminEmail(String adminMailBody) throws Exception {
-	            String subject = "Supplier Enquiry � Chemtradeasia Portal";
+	            String subject = "Supplier Enquiry – Chemtradeasia Portal";
 	            EmailController emailController = new EmailController();
 	           // emailController.getAdminEmail();
 	            //EmailAccountDAO accountDAO = new EmailAccountDAO();
@@ -289,10 +289,10 @@ public class SupplierController extends HttpServlet implements Constant {
 	            //EnquiryProductDAO edao = new EnquiryProductDAO();
 
 	            String mailBodyFooter = " <tr><td height=\"10\"></td></tr>\n"
-	                    + "  <tr><td colspan=\"4\" height=\"10\"><a href=\"http://localhost:8084/Tradeasia/confirmDetSupplier?sid=" + getLastID() + "\">Please click here to confirm that you want to be a supplier of above products.</a></td></tr>\n"
+	                    + "  <tr><td colspan=\"4\" height=\"10\"><a href=\"" + ROOT + "confirmDetSupplier?sid=" + getLastID() + "\">Click vào link dưới đây để xác nhân.</a></td></tr>\n"
 	                    + "  <tr><td height=\"10\"></td></tr>\n"
 	                    + "  <tr><td height=\"10\"></td></tr>\n"
-	                    + "  <tr><td colspan=\"4\">Best Regards,</td></tr><tr><td height=\"10\"></td></tr>\n"
+	                    + "  <tr><td colspan=\"4\">Thân,</td></tr><tr><td height=\"10\"></td></tr>\n"
 	                    + "  <tr><td colspan=\"4\">Tradeasia Team</td></tr>\n"
 	                    + "  <tr><td height=\"10\"></td></tr>\n"
 	                    + "  <tr>\n"
@@ -315,51 +315,51 @@ public class SupplierController extends HttpServlet implements Constant {
 	        private String setMailBodyDetail(final String productDetails, final DetSupplier d) {
 
 	            String mailBodyDetail = "<tr><td height=\"10\"></td></tr>\n"
-	                    + "  <tr><th colspan=\"4\" bgcolor=\"#CCCCCC\">Company and Contact Details</th></tr>\n"
+	                    + "  <tr><th colspan=\"4\" bgcolor=\"#CCCCCC\">Thông tin công ty và cá nhân</th></tr>\n"
 	                    + "  \n"
 	                    + "  <tr> \n"
-	                    + "    <th scope=\"row\" align=\"left\">Company Name</th>\n"
+	                    + "    <th scope=\"row\" align=\"left\">Tên Công ty</th>\n"
 	                    + "    <td>" + d.getComapny_name() + "</td>\n"
-	                    + "	 <th scope=\"row\" align=\"left\">Year of Establishment</th>\n"
+	                    + "	 <th scope=\"row\" align=\"left\">Năm thành lập</th>\n"
 	                    + "    <td>" + d.getEstablish_year() + "</td>\n"
 	                    + "	</tr>\n"
 	                    + "	\n"
 	                    + "	 <tr>\n"
-	                    + "    <th width=\"159\" scope=\"row\" align=\"left\">Company Type</th>\n"
+	                    + "    <th width=\"159\" scope=\"row\" align=\"left\">Loại hình công ty</th>\n"
 	                    + "    <td width=\"302\">" + d.getCompany_type() + "</td>\n"
 	                    + "      <th scope=\"row\" align=\"left\">Website</th>\n"
 	                    + "    <td>" + d.getWebsite() + "</td>\n"
 	                    + "  </tr>\n"
 	                    + "   \n"
 	                    + " <tr>\n"
-	                    + "    <th colspan=\"2\" scope=\"row\" align=\"left\">Address</th>\n"
-	                    + "    <th scope=\"row\" align=\"left\">City</th>\n"
+	                    + "    <th colspan=\"2\" scope=\"row\" align=\"left\">Địa chỉ</th>\n"
+	                    + "    <th scope=\"row\" align=\"left\">Thành phố</th>\n"
 	                    + "    <td>" + d.getCity() + "</td>\n"
 	                    + "  </tr>\n"
 	                    + "\n"
 	                    + "  <tr>\n"
 	                    + "  <td rowspan=\"3\" colspan=\"2\">" + d.getAddress() + "</td>\n"
-	                    + "    <th scope=\"row\" align=\"left\">State</th>\n"
+	                    + "    <th scope=\"row\" align=\"left\">Tỉnh</th>\n"
 	                    + "    <td>" + d.getState() + "</td>\n"
 	                    + "  </tr>\n"
 	                    + "  <tr>\n"
-	                    + "    <th scope=\"row\" align=\"left\">Zip</th>\n"
+	                    + "    <th scope=\"row\" align=\"left\">Mã bưu điện</th>\n"
 	                    + "    <td>" + d.getZip() + "</td>\n"
 	                    + "  </tr>\n"
 	                    + "  <tr>\n"
-	                    + "    <th scope=\"row\" align=\"left\">Country</th>\n"
+	                    + "    <th scope=\"row\" align=\"left\">Quốc gia</th>\n"
 	                    + "    <td>" + d.getCountry() + "</td>\n"
 	                    + "  </tr>\n"
 	                    + "  \n"
 	                    + "   <tr>\n"
-	                    + "    <th scope=\"row\" align=\"left\">Country Code</th>\n"
+	                    + "    <th scope=\"row\" align=\"left\">Mã nước</th>\n"
 	                    + "    <td>" + d.getCountry_code() + "</td>\n"
-	                    + "    <th scope=\"row\" align=\"left\">Area Code</th>\n"
+	                    + "    <th scope=\"row\" align=\"left\">Mã vùng</th>\n"
 	                    + "    <td>" + d.getArea_code() + "</td>\n"
 	                    + "  </tr>\n"
 	                    + " \n"
 	                    + "  <tr>\n"
-	                    + "    <th scope=\"row\" align=\"left\">Phone Number</th>\n"
+	                    + "    <th scope=\"row\" align=\"left\">Điện thoại</th>\n"
 	                    + "    <td>" + d.getPhone() + "</td>\n"
 	                    + "    <th scope=\"row\" align=\"left\">Fax</th>\n"
 	                    + "    <td>" + d.getFax() + "</td>\n"
@@ -367,44 +367,44 @@ public class SupplierController extends HttpServlet implements Constant {
 	                    + "  \n"
 	                    + "\n"
 	                    + "  <tr>\n"
-	                    + "    <th scope=\"row\" align=\"left\">Contact Name</th>\n"
+	                    + "    <th scope=\"row\" align=\"left\">Tên </th>\n"
 	                    + "    <td>" + d.getSalutation() + " " + d.getLast_name() + " " + d.getMiddle_name() + " " + d.getLast_name() + "</td>\n"
-	                    + "    <th scope=\"row\" align=\"left\">Designation</th>\n"
+	                    + "    <th scope=\"row\" align=\"left\">Chức danh</th>\n"
 	                    + "    <td>" + d.getDesignation() + "</td> \n"
 	                    + "  </tr>\n"
 	                    + "  \n"
 	                    + "  <tr>\n"
-	                    + "    <th scope=\"row\" align=\"left\">Country Code</th>\n"
+	                    + "    <th scope=\"row\" align=\"left\">Mã nước</th>\n"
 	                    + "    <td>" + d.getCountry_code_mob() + "</td>\n"
-	                    + "    <th scope=\"row\" align=\"left\">Mobile</th>\n"
+	                    + "    <th scope=\"row\" align=\"left\">Điện thoại</th>\n"
 	                    + "    <td>" + d.getMobile() + "</td>\n"
 	                    + "  </tr>\n"
 	                    + "  \n"
 	                    + "  <tr>\n"
-	                    + "    <th scope=\"row\" align=\"left\">Emailid</th>\n"
+	                    + "    <th scope=\"row\" align=\"left\">Email</th>\n"
 	                    + "    <td>" + d.getEmailid() + "</td>\n"
 	                    + "    <th scope=\"row\" align=\"left\">Messenger</th>\n"
 	                    + "    <td>" + d.getMessenger_type() + " : " + d.getMessenger_id() + "</td>\n"
 	                    + "  </tr>\n"
 	                    + "  \n"
 	                    + "  <tr>\n"
-	                    + "    <th scope=\"row\" align=\"left\">Delivery Term</th>\n"
+	                    + "    <th scope=\"row\" align=\"left\">Phương thức vận chuyển</th>\n"
 	                    + "    <td>" + d.getDelivery_term() + "</td>\n"
-	                    + "      <th scope=\"row\" align=\"left\">Payment Term</th>\n"
+	                    + "      <th scope=\"row\" align=\"left\">Phương thức thanh toán</th>\n"
 	                    + "    <td>" + d.getPayment_term() + "</td>\n"
 	                    + "  </tr>\n"
 	                    + "  \n"
 	                    + "  <tr>\n"
-	                    + "    <th scope=\"row\" align=\"left\">Port of Loading</th>\n"
+	                    + "    <th scope=\"row\" align=\"left\">Địa điểm giao hàng</th>\n"
 	                    + "    <td>" + d.getLoading_port() + "</td>\n"
-	                    + "   <th scope=\"row\" align=\"left\">Days</th>\n"
+	                    + "   <th scope=\"row\" align=\"left\">Ngày</th>\n"
 	                    + "    <td>" + d.getDays_to_deliver() + "</td>\n"
 	                    + "	</tr>\n"
 	                    + "	<tr><td height=\"10\"></td></tr>\n"
 	                    + "	" + productDetails + "\n"
 	                    + "	<tr><td height=\"10\"></td></tr>\n"
 	                    + "	 <tr bgcolor=\"#CCCCCC\">\n"
-	                    + "    <th scope=\"row\" align=\"center\" colspan=\"4\" >Comments/Notes</th>\n"
+	                    + "    <th scope=\"row\" align=\"center\" colspan=\"4\" >Ghi chú</th>\n"
 	                    + "    \n"
 	                    + "   </tr>\n"
 	                    + "  \n"
@@ -423,24 +423,24 @@ public class SupplierController extends HttpServlet implements Constant {
 	                    + "  </tr>\n"
 	                    + "  <tr><td height=\"10\"></td></tr>\n"
 	                    + "  <tr>\n"
-	                    + "    <td colspan=\"4\">Dear " + detSupplier.getSalutation() + " " + detSupplier.getLast_name() + " " + detSupplier.getLast_name() + ",</td>\n"
+	                    + "    <td colspan=\"4\">Chào  " + detSupplier.getSalutation() + " " + detSupplier.getLast_name() + " " + detSupplier.getLast_name() + ",</td>\n"
 	                    + "  </tr>\n"
 	                    + "  <tr><td height=\"10\"></td></tr>\n"
 	                    + "  <tr>\n"
-	                    + "    <td colspan=\"4\">Greetings from Tradeasia International Pte. Ltd!</td>\n"
+	                    + "    <td colspan=\"4\">Tradeasia International Pte. Ltd xin gửi lời chào đến bạn!</td>\n"
 	                    + "  </tr>\n"
 	                    + "  <tr><td height=\"10\"></td></tr>\n"
 	                    + "  <tr>\n"
-	                    + "    <td colspan=\"4\">Thanks for your enquiry with Tradeasia International Pte. Ltd. Your enquiry ID is Sup-" + getLastID() + ".</td>\n"
+	                    + "    <td colspan=\"4\">Cảm ơn bạn đã đề nghị cung cấp sản phẩm cho chúng tôi. Mã số của bạn là : Sup-" + getLastID() + ".</td>\n"
 	                    + "  </tr>\n"
 	                    + "  <tr><td height=\"10\"></td></tr>\n"
-	                    + "  <tr><td colspan=\"4\">We have received your enquiry and will contact you to follow up your offering product\n"
-	                    + "with <a href=\"http://localhost:8084/\">chemtradeasia.co.id</a>. Your Company is required to pass the verification steps to become an \n"
-	                    + "approved supplier.</td></tr>\n"
+	                    + "  <tr><td colspan=\"4\">Chúng tôi đã nhận được yêu cầu của bạn và sẽ liên lạc với bạn trong thời gian sớm nhất.\n"
+	                    + "with <a href=\"" + ROOT + "</a>.Công ty của bạn cần vượt qua các bước xác nhận trước khi trở thành nhà cung cấp của chúng tôi. \n"
+	                    + "</td></tr>\n"
 	                    + "	 <tr><td height=\"10\"></td></tr>\n"
 	                    + "	 <tr><td height=\"10\"></td></tr>\n"
 	                    + "	<tr>\n"
-	                    + "    <td colspan=\"4\">The product details are:</td>\n"
+	                    + "    <td colspan=\"4\">Thông tin sản phẩm:</td>\n"
 	                    + "  </tr>";
 	            return mailBodyHeader;
 	        }
@@ -463,9 +463,9 @@ public class SupplierController extends HttpServlet implements Constant {
 	            return id;
 	        }
 
-	        private String setAdminMailBodyFooter(String footer) {
+	        private String setAdminMailBodyFooter(String footer, String localAddress) {
 	            String adminMailBodyFooter = "<tr><td height=\"10\"></td></tr>\n"
-	                    + "  <tr><td colspan=\"4\" height=\"10\"><b>This e-mail was sent from Supplier Form on <a href=\"http://chemtradeasia.co.id\">chemtradeasia.co.id</a> </b></td></tr>\n"
+	                    + "  <tr><td colspan=\"4\" height=\"10\"><b>This e-mail was sent from Supplier Form on <a href=\"" + localAddress +"\"" + localAddress + "</a> </b></td></tr>\n"
 	                    + "  <tr><td height=\"10\"></td></tr>\n"
 	                    + "  <tr><td height=\"10\"></td></tr>\n"
 	                    + "  <tr><td colspan=\"4\">Best Regards,</td></tr><tr><td height=\"10\"></td></tr>\n"

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import com.mysql.jdbc.Driver;
 /**
  * To create a Connection object for use
@@ -29,8 +30,11 @@ public class ConnectionManager  implements Constant{
    * @return Connection object to the database.
    * @throws SQLException
    */
+ // Database CHARSET=utf8
+
+	    	//Database Collation = utf8_general_ci
   public static Connection getConnection() throws SQLException {
-	  return DriverManager.getConnection(URL + "?zeroDateTimeBehavior=convertToNull", USERNAME, PASSWORD);
+	  return DriverManager.getConnection(URL + "?useUnicode=true&characterEncoding=UTF-8", USERNAME, PASSWORD);
   }
   
   

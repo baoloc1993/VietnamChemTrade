@@ -145,8 +145,8 @@ public class CreateOrderController extends HttpServlet implements Constant{
 
     //send email to user for confirmation
     public void sendOrderMail(Order order) throws Exception {
-        String header = "http://" + ROOT + "/images/email_header.jpg";
-        String footer = "http://" + ROOT + "/images/email_footer.jpg";
+        String header = ROOT + "images/email_header.jpg";
+        String footer = ROOT + "images/email_footer.jpg";
         //String to = letterId; 
 
         String salutation = order.getContactSalution() + " " + order.getContactLName();
@@ -161,10 +161,10 @@ public class CreateOrderController extends HttpServlet implements Constant{
         //send user
         
       //  sendEmailViaGmail(order.getContactEmail(), mailBody);
-        new EmailController().sendEmailViaGmail(order.getContactEmail(), mailBody, "Product Order Confirmation");
+        new EmailController().sendEmailViaGmail(order.getContactEmail(), mailBody, "Xác nhận đơn đặt hàng");
         
         //send to admin
-        String adminSubject = "New Order � Chemtradeasia Portal";
+        String adminSubject = "New Order – Chemtradeasia Portal";
         EmailController emailController = new EmailController();
         String to = emailController.getAdminEmail();   
         emailController.sendEmailViaGmail(to, adminMailBody, adminSubject);
@@ -175,7 +175,7 @@ public class CreateOrderController extends HttpServlet implements Constant{
     
     private String setAdminMailBodyFooter(String footer) {
         String adminMailBodyFooter = "<tr><td height=\"10\"></td></tr>\n"
-                + "  <tr><td colspan=\"4\" height=\"10\"><b>This e-mail was sent from Order Form on <a href=\"http://javaid.tradeasia.us/\">http://javaid.tradeasia.us/</a> </b></td></tr>\n"
+                + "  <tr><td colspan=\"4\" height=\"10\"><b>This e-mail was sent from Order Form on <a href=\"" +  ROOT + "\">" + ROOT + "</a> </b></td></tr>\n"
                 + "  <tr><td height=\"10\"></td></tr>\n"
                 + "  <tr><td colspan=\"4\">Best Regards,</td></tr><tr><td height=\"10\"></td></tr>\n"
                 + "  <tr><td colspan=\"4\">Tradeasia Team</td></tr>\n"
@@ -224,19 +224,19 @@ public class CreateOrderController extends HttpServlet implements Constant{
         mailBodyHeader += "</tr>";
         mailBodyHeader += "<tr><td height=\"10\"></td></tr>";
         mailBodyHeader += "<tr>";
-        mailBodyHeader += "<td colspan=\"3\">Dear " + name + ",</td>";
+        mailBodyHeader += "<td colspan=\"3\">Chào bạn " + name + ",</td>";
         mailBodyHeader += "</tr>";
         mailBodyHeader += "<tr><td height=\"10\"></td></tr>";
         mailBodyHeader += "<tr>";
-        mailBodyHeader += "<td colspan=\"3\">Greetings from Tradeasia International Pte. Ltd!</td>";
+        mailBodyHeader += "<td colspan=\"3\">Tradeasia International Pte. Ltd xin gửi lời chào tới bạn!</td>";
         mailBodyHeader += "</tr>";
         mailBodyHeader += "<tr><td height=\"10\"></td></tr>";
         mailBodyHeader += "<tr>";
-        mailBodyHeader += "<td colspan=\"4\">Thank you for your order with Tradeasia. Your order ID is '" + insertId + "'. Please click the below link for reconfirmation.</td>";
+        mailBodyHeader += "<td colspan=\"4\">Cảm ơn bạn đã đặt hàng. Mã số đặt hàng của bạn là: " + insertId + "'. Xin click vào link dưới đây để xác nhận</td>";
         mailBodyHeader += "</tr>";
         mailBodyHeader += "<tr><td height=\"10\"></td></tr>";
         mailBodyHeader += "<tr>";
-        mailBodyHeader += "<td colspan=\"4\"><a href=\"http://localhost:8084/Tradeasia/confirmOrder?id=" + insertId + "\">Please click here to confirm your order list</a></td>";
+        mailBodyHeader += "<td colspan=\"4\"><a href=\"" + ROOT + "confirmOrder?id=" + insertId + "\">Xin click vào link dưới đây để xác nhận</a></td>";
         mailBodyHeader += "</tr><tr><td height=\"10\"></td></tr>\n"
                 + "  <tr>\n"
                 + "    <td colspan=\"4\">Your order details are follows.</td>\n"
@@ -251,7 +251,7 @@ public class CreateOrderController extends HttpServlet implements Constant{
         ArrayList<OrderDetail> orderList = order.getOrderList();
         for (OrderDetail od : orderList) {
             orderDetails += "                                   <tr>\n"
-                    + "                                      <td ><a href=\"localhost:8084/Tradeasia/product-details.jsp?id=\"" + od.getP().getProductId() + "\">" + od.getP().getProductName() + "</a></td>\n"
+                    + "                                      <td ><a href=\"" + ROOT + "productDetail?id=\"" + od.getP().getProductId() + "\">" + od.getP().getProductName() + "</a></td>\n"
                     + "	                              <td align=\"center\">" + od.getPrice() + "USD</td>\n"
                     + "                                      <td align=\"center\">" + od.getUnit() + "</td>\n"
                     + "	                              <td align=\"center\">" + od.getQuantity() + "</td>\n"
@@ -259,52 +259,52 @@ public class CreateOrderController extends HttpServlet implements Constant{
         }
 
         String mailBodyDetail = "<tr><td height=\"10\"></td></tr>\n"
-                + "<tr><th colspan=\"4\" bgcolor=\"#CCCCCC\">Company and Contact Details</th></tr>\n"
+                + "<tr><th colspan=\"4\" bgcolor=\"#CCCCCC\">Thông tin công ty</th></tr>\n"
                 + "  <tr>\n"
-                + "    <th scope=\"row\" align=\"left\">Company Name</th>\n"
+                + "    <th scope=\"row\" align=\"left\">Tên công ty</th>\n"
                 + "    <td>" + order.getCompanyName() + "</td>\n"
-                + "    <th scope=\"row\" align=\"left\">Company Type</th>\n"
+                + "    <th scope=\"row\" align=\"left\">Loại hình công ty</th>\n"
                 + "    <td>" + order.getCompanyType() + "</td>\n"
                 + "  </tr>\n"
                 + "  <tr>\n"
-                + "    <th colspan=\"2\" scope=\"row\" align=\"left\">Address</th>\n"
-                + "    <th scope=\"row\" align=\"left\">Country</th>\n"
+                + "    <th colspan=\"2\" scope=\"row\" align=\"left\">Địa chỉ</th>\n"
+                + "    <th scope=\"row\" align=\"left\">Quốc gia</th>\n"
                 + "    <td>" + order.getCompanyCountry() + "</td>\n"
                 + "  </tr>\n"
                 + "  <tr> <td rowspan=\"3\" colspan=\"2\">" + order.getAddress() + "</td>\n"
-                + "    <th scope=\"row\" align=\"left\">State</th>\n"
+                + "    <th scope=\"row\" align=\"left\">Tỉnh</th>\n"
                 + "    <td>" + order.getCompanyState() + "</td>\n"
                 + "	</tr>\n"
                 + "	<tr>\n"
-                + "    <th scope=\"row\" align=\"left\">City</th>\n"
+                + "    <th scope=\"row\" align=\"left\">Thành phố</th>\n"
                 + "    <td>" + order.getCity() + "</td>\n"
                 + "  </tr>\n"
                 + "  <tr>\n"
-                + "    <th scope=\"row\" align=\"left\">Zip</th>\n"
+                + "    <th scope=\"row\" align=\"left\">Mã bưu điện</th>\n"
                 + "    <td>" + order.getCompanyZip() + "</td>\n"
                 + "  </tr>\n"
                 + "  \n"
                 + "   <tr>\n"
-                + "    <th scope=\"row\" align=\"left\">Country Code</th>\n"
+                + "    <th scope=\"row\" align=\"left\">Mã quốc gia</th>\n"
                 + "    <td>" + order.getCompanyCountry() + "</td>\n"
-                + "    <th scope=\"row\" align=\"left\">Area Code</th>\n"
+                + "    <th scope=\"row\" align=\"left\">Mã vùng</th>\n"
                 + "    <td>" + order.getAreaCode() + "</td>\n"
                 + "  </tr>\n"
                 + "  \n"
                 + "  <tr>\n"
-                + "    <th scope=\"row\" align=\"left\">Phone</th>\n"
+                + "    <th scope=\"row\" align=\"left\">Điện thoại</th>\n"
                 + "    <td>" + order.getCompanyPhone() + "</td>\n"
                 + "    <th scope=\"row\" align=\"left\">Fax</th>\n"
                 + "    <td>" + order.getCompanyFax() + "</td>\n"
                 + "  </tr>\n"
                 + "   <tr>\n"
-                + "    <th scope=\"row\" align=\"left\">Contact Name</th>\n"
+                + "    <th scope=\"row\" align=\"left\">Tên liên lạc</th>\n"
                 + "    <td>" + order.getContactFName() + " " + order.getContactMName() + " " + order.getContactLName() + "</td>\n"
-                + "    <th scope=\"row\" align=\"left\">Mobile Number</th>\n"
+                + "    <th scope=\"row\" align=\"left\"Điện thoại</th>\n"
                 + "    <td>" + order.getContactCallCode() + " " + order.getContactMobile() + "</td>\n"
                 + "  </tr>\n"
                 + "  <tr>\n"
-                + "    <th scope=\"row\" align=\"left\">Mail Id</th>\n"
+                + "    <th scope=\"row\" align=\"left\">Email</th>\n"
                 + "    <td>" + order.getContactEmail() + "</td>\n"
                 + "    <th scope=\"row\" align=\"left\">Messenger </th>\n"
                 + "    <td>" + order.getContactMessengerType() + ":" + order.getContactMessengerID() + "</td>\n"
@@ -312,19 +312,19 @@ public class CreateOrderController extends HttpServlet implements Constant{
                 + "  <tr>\n"
                 + "    <th scope=\"row\" align=\"left\">Website</th>\n"
                 + "    <td>" + order.getCompanyWeb() + "</td>\n"
-                + "    <th scope=\"row\" align=\"left\">Target Delivery Date</th>\n"
+                + "    <th scope=\"row\" align=\"left\">Ngày đưa hàng</th>\n"
                 + "    <td>" + order.getDeliveryDate() + "</td>\n"
                 + "  </tr>\n"
                 + "   <tr>\n"
-                + "    <th scope=\"row\" align=\"left\">Destination Coiuntry</th>\n"
+                + "    <th scope=\"row\" align=\"left\">Quốc gia nhận hàng</th>\n"
                 + "    <td>" + order.getDestinationCountry() + "</td>\n"
-                + "    <th scope=\"row\" align=\"left\">Destination Port</th>\n"
+                + "    <th scope=\"row\" align=\"left\">Địa điểm nhận hàng</th>\n"
                 + "    <td>" + order.getPort() + "</td>\n"
                 + "  </tr>\n"
                 + "  <tr>\n"
-                + "    <th scope=\"row\" align=\"left\">Delivery Terms</th>\n"
+                + "    <th scope=\"row\" align=\"left\">Phương thức vận chuyển</th>\n"
                 + "    <td>" + order.getDeliveryTerm() + "</td>\n"
-                + "    <th scope=\"row\" align=\"left\">Payment Terms</th>\n"
+                + "    <th scope=\"row\" align=\"left\">Phương thức thanh toán</th>\n"
                 + "    <td>" + order.getPaymentTerm() + "</td>\n"
                 + "  </tr>\n"
                 + "  <tr><td height=\"10\"></td></tr>\n"
@@ -332,7 +332,7 @@ public class CreateOrderController extends HttpServlet implements Constant{
                 + "  \n"
                 + "  <tr><td height=\"10\"></td></tr>\n"
                 + "  <tr>\n"
-                + "    <th scope=\"row\"  colspan=\"4\" bgcolor=\"#CCCCCC\">Comments</th></tr><tr>\n"
+                + "    <th scope=\"row\"  colspan=\"4\" bgcolor=\"#CCCCCC\">Ghi chú</th></tr><tr>\n"
                 + "    <td colspan=\"4\">" + order.getComments() + "</td>\n"
                 + "  </tr>";
         return mailBodyDetail;
@@ -340,9 +340,9 @@ public class CreateOrderController extends HttpServlet implements Constant{
 
     private String setMailBodyFooter(String footer) {
         String mailBodyFooter = "<tr><td height=\"10\"></td></tr>\n"
-                + "  <tr><td colspan=\"4\" height=\"10\">We will contact you as soon as possible to follow up your order with <a href=\"chemtradeasia.com\">chemtradeasia.com</a> </td></tr>\n"
+                + "  <tr><td colspan=\"4\" height=\"10\">Chúng tôi sẽ liên lạc với bạn trong thời gian sớm nhất. </td></tr>\n"
                 + "  <tr><td height=\"10\"></td></tr>\n"
-                + "  <tr><td colspan=\"4\">Best Regards,</td></tr><tr><td height=\"10\"></td></tr>\n"
+                + "  <tr><td colspan=\"4\">Thân,</td></tr><tr><td height=\"10\"></td></tr>\n"
                 + "  <tr><td colspan=\"4\">Tradeasia Team</td></tr>\n"
                 + "  <tr><td height=\"10\"></td></tr>\n"
                 + "  \n"

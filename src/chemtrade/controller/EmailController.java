@@ -94,7 +94,7 @@ public class EmailController implements Constant{
 		Connection conn;
         try {
             conn = ConnectionManager.getConnection();
-            PreparedStatement ps = conn.prepareStatement("SELECT distinct * FROM `tbl_email_accounts` where status=1");
+            PreparedStatement ps = conn.prepareStatement("SELECT distinct * FROM `tbl_email_accounts` where `id`=1");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");

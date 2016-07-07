@@ -6,13 +6,27 @@ Created on : May 15, 2015, 11:24:12 AM
     Author     : Qianpin
 --%>
 
-
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ include file = "setting.jsp" %>
+<title>Liên Hệ| Chemtradeasia | Tradeasia
+
+International Pte Ltd - Việt Nam</title> 
+<meta name = "keyword" content = "liên hệ nhà cung cấp hóa chất, địa chỉ liên hệ
+
+nhà kinh hdoanh hóa chất Việt Nam, địa chỉ
+
+tradeasia international Việt Nam, liên hệ văn
+
+phòng đại diện tradeasia">
+
+<meta name = "description" content  = "Chemtradeasia: Chúng tôi luôn hỗ trợ khách
+
+hàng 24/7 qua điện thoại, email hoặc fax."/>
 <link href="css/tabstyle.css" rel="stylesheet">
  <link href="css/contact-us.css" rel="stylesheet">
-	<div class="container" style="background-color:white">
+	<div class="container" >
             <!---to wrap around all body content--->
-            <div class="row">
+            <div class="row col-md-10 col-md-offset-1 centerRow">
                 <!----center content--->
                 <div class="span12">
 
@@ -78,16 +92,17 @@ Created on : May 15, 2015, 11:24:12 AM
                                                 <!-- Description and Form -->
                                                 <td class="holder2" style="padding-left:1%;" valign="top">
                                                     <p class="contact_info">
-                                                        <b>Tradeasia International Pte. Ltd (Ho Chi Minh Representative office)</b><br>
-                                                        VTP office Building, Unit G -Floor No.8 Nguyen Hue Blvd,District 1, 
+                                                        <b>Công ty Tradeasia International (Đại diện ở Thành phố Hồ Chí Minh)</b><br>
+                                                        Tòa nhà VTP, 8 Nguyễn Huệ Bến Nghé, Quận 1,‎
+                                                         
                                                         <br>
-                                                        Ho Chi Minh <br>
-                                                        Vietnam<br>
-                                                        Tel : +84-8-38277218/19 <br>
+                                                        Hồ Chí Minh <br>
+                                                        Việt Nam<br>
+                                                        Điện thoại : +84-8-38277218/19 <br>
                                                         Fax : +84-8-3915 9162<br>
                                                        E-mail : contact@chemtradeasia.com, vietnam@chemtradeasia.com <br>
-                                                        Business Days : Monday - Friday  <br>
-                                                        Business hours : 9:30am - 6pm <br>
+                                                        Ngày làm việc : Thứ 2 - Thứ 6  <br>
+                                                        Giờ làm việc : 9:30am - 6pm <br>
                                                     </p>
                                                     <!-- The Skype/email/linked in etc icons -->
                                                     <table width="100%">
@@ -123,7 +138,7 @@ Created on : May 15, 2015, 11:24:12 AM
                                                 <!-- Google Map Area -->
                                                 <td class="holder1" id="holder" width="60%" height="80%">
                                                     <iframe class="google_map" width="500" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3919.4662715648433!2d106.70193358819577!3d10.775555637839998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1s+VTP+office+Building+No.8+Nguyen+Hue+Blvd%2CDistrict+1%2C+Ho+Chi+Minh!5e0!3m2!1sen!2sin!4v1423541781037"></iframe>
-                                                    <br><small><a href="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3919.4662715648433!2d106.70193358819577!3d10.775555637839998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1s+VTP+office+Building+No.8+Nguyen+Hue+Blvd%2CDistrict+1%2C+Ho+Chi+Minh!5e0!3m2!1sen!2sin!4v1423541781037" target="_blank" class="contentnavi">View Larger Map</a></small>
+                                                    <br><small><a href="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3919.4662715648433!2d106.70193358819577!3d10.775555637839998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1s+VTP+office+Building+No.8+Nguyen+Hue+Blvd%2CDistrict+1%2C+Ho+Chi+Minh!5e0!3m2!1sen!2sin!4v1423541781037" target="_blank" class="contentnavi">Xem bản đồ lớn</a></small>
  </td>
                                                 </td>
                                                 <!-- Google Map Area Ends -->
@@ -132,17 +147,17 @@ Created on : May 15, 2015, 11:24:12 AM
                                     </table>
 
                                     <!-- Contact Us Form -->
-                                    <form class="contact-form form-horizontal" method="post" action="contact-us-form">
+                                    <form class="contact-form form-horizontal" method="post" action="contact-us">
                                         <!-- Form Header-->
                                         <div class="row" style="margin-left:1%; margin-right: 2%">
                                             <div class="col-md-5" >
-                                                <div class="contact-header">Contact Us Form</div>
+                                                <div class="contact-header">Liên hệ</div>
                                             </div>
                                         </div>
 
                                         <div class="row required-notification" style="margin-left:4%;">
                                             <div class="col-md-5">
-                                                * Denotes Required Field
+                                                * Bắt buộc
                                             </div>
                                         </div>
                                         <!-- Form header ends-->
@@ -157,11 +172,11 @@ Created on : May 15, 2015, 11:24:12 AM
                                                     <div class="col-md-6" style="padding-left: 4%;">
 
                                                         <div class="form-group">
-                                                            <input required type="text" name="firstname" class="form-control" placeholder="First Name*"/>
+                                                            <input required type="text" name="firstname" class="form-control" placeholder="Họ*"/>
                                                         </div>
 
                                                         <div class="form-group">
-                                                            <input required type="text" name="lastname" class="form-control" placeholder="Last Name*"/>
+                                                            <input required type="text" name="lastname" class="form-control" placeholder="Tên*"/>
                                                         </div>
 
                                                         <div class="form-group">
@@ -176,17 +191,17 @@ Created on : May 15, 2015, 11:24:12 AM
                                                         <div class="form-group">
                                                             <select required class="contact-form form-control" name="description">
                                                                 <option value="">Your Title*</option>
-                                                                <option value="Trader / Supplier">Trader / Supplier</option>
-                                                                <option value="Manufacturer">Manufacturer</option>
-                                                                <option value="Agent">Agent</option>
-                                                                <option value="Others">Others</option>
+                                                                <option value="Trader / Supplier">Nhà cung cấp/ Công ty thương mại</option>
+                                                                <option value="Manufacturer">Nhà sản xuất</option>
+                                                                <option value="Agent">Đại lí</option>
+                                                                <option value="Others">Khác</option>
                                                             </select>
                                                         </div>
 
                                                         <script type="text/javascript">print_country("country");</script>
                                                         <div class="form-group">
                                                             <select required class="contact-form form-control" onChange="print_state('state', this.selectedIndex);" id="country" name="country">
-                                                                <option value="">Country*</option>
+                                                                <option value="">Quốc gia*</option>
                                                                 <c:forEach items = "${ccodes}" var = "code">
                                                                 	<option value="${code.country}">${code.country }</option>
                                                                 </c:forEach>
@@ -196,7 +211,7 @@ Created on : May 15, 2015, 11:24:12 AM
 
                                                         <div class="form-group">
                                                             <select required class="form-control" title="State" name="state" id="state">
-                                                                <option value="">State*</option>
+                                                                <option value="">Tỉnh*</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -208,21 +223,21 @@ Created on : May 15, 2015, 11:24:12 AM
                                                     <!--Message Box Individual Column-->
                                                     <div class="col-md-12" style="padding-left: 4%;">
                                                         <div class="form-group">
-                                                            <textarea id="textarea" name="message" maxlength="800" class="form-control" rows="5" placeholder="Message: (Max 800 characters)"></textarea>
+                                                            <textarea id="textarea" name="message" maxlength="800" class="form-control" rows="5" placeholder="Tin nhắn: (Tối đa 800 kí tự)"></textarea>
                                                             <div id="characterLeft"></div>
                                                         </div>
                                                     </div>
 
                                                     <script>
-                                                                $('#characterLeft').text('800 characters left');
+                                                                $('#characterLeft').text('800 kí tự');
                                                                 $('#textarea').keyup(function () {
                                                                     var max = 800;
                                                                     var len = $(this).val().length;
                                                                     if (len >= max) {
-                                                                        $('#characterLeft').text(' You have reached the limit');
+                                                                        $('#characterLeft').text(' Bạn chỉ được viết tối đa 800 kí tự');
                                                                     } else {
                                                                         var ch = max - len;
-                                                                        $('#characterLeft').text(ch + ' characters left');
+                                                                        $('#characterLeft').text(' Còn lại ' +ch + ' kí tự');
                                                                     }
                                                                 });
                                                     </script>
@@ -231,7 +246,7 @@ Created on : May 15, 2015, 11:24:12 AM
                                                     <!--Submit Button-->
                                                     <div class="col-md-12" style="padding-left: 4%;">
                                                         <div class="form-group">
-                                                            <button class="btn btn-info" type="submit">Submit</button>
+                                                            <button class="btn btn-info" type="submit">Xác nhận</button>
                                                         </div>
                                                     </div>
                                                     <!--Submit Button Ends-->

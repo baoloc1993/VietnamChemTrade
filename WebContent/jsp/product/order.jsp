@@ -1,6 +1,25 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 
 <%@include file = "../setting.jsp" %>
+<title>Nhận Bảng Báo Giá | Chemtradeasia | Tradeasia International
+
+Pte Ltd</title> 
+<meta name = "keyword" content = "Mẫu Đơn Đặt Hàng; Đặt Hàng Sản Phẩm Hóa Chất Trực
+
+Tuyến, mua hóa chất với số lượng lớn, mua hóa chất trực
+
+tuyến, mua hóa chất nông nghiệp trực tuyến,mua hóa chất tẩy
+
+rửa trực tuyến, đặt hàng hóa chất với số lượng lớn; đặt hàng và
+
+mua hàng">
+
+<meta name = "description" content  = "Chemtradeasia: Chỉ với vài thao tác nhấp chuột, khách hàng sẽ
+
+nhận được bảng báo giá và dễ dàng đặt mua các sản phẩm hóa
+
+chất."/>
 <script src='https://www.google.com/recaptcha/api.js'></script>
 
     <body>
@@ -9,7 +28,7 @@
             <!---to wrap around all body content--->
             <div class="row">
                 <!----center content--->
-                <div class="col-md-12 centerRow">
+                <div class="col-md-10 col-md-offset-1 centerRow">
 
                     <!---add the header and navbar and search bar---->
                     <%@include file="../header_nav.jsp"%>
@@ -38,7 +57,7 @@
 
 	                                        <div class="col-md-4 col-md-offset-1" style="margin-bottom: 15px;">
 	                                            <input type="hidden" name="p_ID" value="${carts.get(i).productId}"> 
-	                                            Product #${i}:<br><b style="color: #666666">${carts.get(i).productName}</b>
+	                                            Sản phẩm #${i}:<br><b style="color: #666666">${carts.get(i).productName}</b>
 	
 	                                            <!--origin, appearance, packaging--->
 	
@@ -47,7 +66,7 @@
 
                                                 <div class="form-group">
 
-                                                    Expected Price: <input class="form-control order-form" id="expected" placeholder="USD/Unit" name="expectedPrice${i}" type="text" required>
+                                                    Giá mong muốn: <input class="form-control order-form" id="expected" placeholder="USD" name="expectedPrice${i}" type="text" required>
                                                     <div id = "errorForm"></div>
                                                 </div>
                                                 
@@ -57,7 +76,7 @@
 
                                                 <div class="form-group">
 
-                                                    Unit: <select class="form-control" id="unit" name="unit">
+                                                    Đơn vị: <select class="form-control" id="unit" name="unit">
                                                         <option value="MT">MT</option>
                                                         <option value="KG">KG</option>
                                                     </select>    
@@ -65,7 +84,7 @@
 
                                             </div>
                                             <div class="col-md-2 ">
-                                                Quantity: <input id="qty" class="form-control order-form" name="expectedQty" placeholder="Expected" type="text" required>
+                                                Số lượng: <input id="qty" class="form-control order-form" name="expectedQty" placeholder="Số lượng mong muốn" type="text" required>
 												<div id = "errorForm"></div>
                                             </div>
 
@@ -74,7 +93,7 @@
 
                                                 <div class="removeBtn form-group">
                                                     <br>                                                    
-                                                    <a style  = "cursor: pointer" onclick= "removeCart('${carts.get(i).productId }')" style="color:white; text-decoration: none"><div class="btn btn-danger">Remove</div></a></div>
+                                                    <a style  = "cursor: pointer" onclick= "removeCart('${carts.get(i).productId }')" style="color:white; text-decoration: none"><div class="btn btn-danger">Xóa khỏi giỏ hàng</div></a></div>
 
                                             </div>
                                         </div>
@@ -97,9 +116,9 @@
 
                                     <div class="col-md-6" style="padding-right: 4%;" >
                                         <div class="form-group">
-                                            <label>Delivery Information</label>
+                                            <label>Thông tin vận chuyển</label>
                                             <select class="form-control" name="deliveryCountry">
-                                                <option value="">Select Country</option>
+                                                <option value="">Chọn quốc gia</option>
                                                 
                                                 <c:forEach items = "${countries }" var = "country">
                                                 	<option value="${country.country}">${country.country }</option>
@@ -113,7 +132,7 @@
 
                                             <select class="form-control" id="team" name="deliveryTerm">
                                                 
-                                                <option value="">Select Delivery Term</option>
+                                                <option value="">Chọn phương thức vận chuyển</option>
                                                
                                                 <c:forEach items = "${deliveries }" var = "delivery">
                                                 	<option value="${delivery}">${delivery }</option>
@@ -124,7 +143,7 @@
 
 
                                         <div class="form-group">
-                                            <input class="form-control" type="text" placeholder="Target Delivery Date" value=""  id="targetDate" name="deliveryDate">
+                                            <input class="form-control" type="text" placeholder="Ngày chuyển hàng" value=""  id="targetDate" name="deliveryDate">
                                         </div>
 
 
@@ -134,14 +153,14 @@
                                     <div class="col-md-6" style="padding-right: 4%;">
                                         <div class="form-group">
                                             <label><font color="white">n</font></label>
-                                            <input type="text" placeholder="Port of Destination" value="" class="form-control" name="port">
+                                            <input type="text" placeholder="Địa điểm chuyển hàng" value="" class="form-control" name="port">
                                         </div>
 
                                         <div class="form-group">
 
                                             <select class="form-control" name="paymentTerm">
                                                 
-                                                <option value="">Select Payment Term</option>
+                                                <option value="">Lựa chọn phương thức thanh toán</option>
                                                 
                                                 <c:forEach items = "${payments}" var = "payment">
                                                 	<option value="${payment }">${payment }></option>
@@ -158,18 +177,18 @@
 
                                     <div class="col-md-6" style="padding-right: 4%;">
                                         <div class="form-group order-form">
-                                            <label>Company Information</label>
-                                            <input type="text" placeholder="Company Name*" class="form-control order-form" value="" name="companyName" required>
+                                            <label>Thông tin công ty</label>
+                                            <input type="text" placeholder="Tên công ty*" class="form-control order-form" value="" name="companyName" required>
 											<div id = "errorForm"></div>
                                         </div>
 										
                                         <div class="form-group">
-                                            <textarea name="address" placeholder="Address" class="form-control" rows="4" ></textarea>
+                                            <textarea name="address" placeholder="Địa chỉ" class="form-control" rows="4" ></textarea>
                                         </div>
 
                                         <div class="form-group">
 
-                                            <input type="text" placeholder="City" class="form-control" value="" name="city"  >
+                                            <input type="text" placeholder="Thành phố" class="form-control" value="" name="city"  >
                                         </div>
 
                                         <div class="row">
@@ -177,14 +196,14 @@
 
                                                 <div class="form-group">
 
-	                                               <input required type="text" placeholder="Calling Code*" class="form-control order-form" value="" name="callCode">
+	                                               <input required type="text" placeholder="Mã quốc gia*" class="form-control order-form" value="" name="callCode">
                                                      <div id = "errorForm"></div>   
                                                 </div>
                                                 
                                             </div>
                                             <div class="col-md-7" style="padding-left: 19px;">
                                                 <div class="form-group">
-                                                    <input type="number" placeholder="Area Code" value="" class="form-control" name="areaCode"  />
+                                                    <input type="number" placeholder="Mã vùng" value="" class="form-control" name="areaCode"  />
                                                 </div>
                                             </div>
                                         </div>
@@ -202,7 +221,7 @@
                                             <label><font color="white">s</font></label>
                                             <select class="form-control" name="companyType">
                                                 
-                                                <option value="">Type of Company</option>
+                                                <option value="">Loại hình công ty</option>
                                                 <c:forEach items="${types}" var = "type">
                                                 	<option value="${type }">${type }</option>
                                                 </c:forEach>
@@ -213,7 +232,7 @@
                                             <select class="form-control" onChange="print_state('state', this.selectedIndex);" id="country" name ="companyCountry" title="Select Country">
                                                 <script type="text/javascript">print_country("country");</script>
                                                 
-                                                	<option value="">Select Country</option>
+                                                	<option value="">Chọn Quốc gia</option>
                                                 
                                                 
                                             </select>
@@ -223,13 +242,13 @@
                                         <div class="form-group">
 
                                             <select class="form-control" title="State" style="height:35px;" name="companyState" id="state">
-                                                <option value="" selected="selected" >Select State</option>
+                                                <option value="" selected="selected" >Chọn Tỉnh/Thành phố</option>
                                             </select>
 
                                         </div>
 
                                         <div class="form-group">
-                                            <input type="number" placeholder="Zip / Postal Code" value="" class="form-control" name="companyZip"  >
+                                            <input type="number" placeholder="Mã bưu điện" value="" class="form-control" name="companyZip"  >
                                         </div>
 
 
@@ -237,12 +256,12 @@
                                             <div class="col-md-6">
 
                                                 <div class="form-group">
-                                                    <input type="number" placeholder="Phone Number" value="" class="form-control" name="companyPhone"  >
+                                                    <input type="number" placeholder="Điện thoại" value="" class="form-control" name="companyPhone"  >
                                                 </div>
                                             </div>
                                             <div class="col-md-6" style="padding-left: 19px;">
                                                 <div class="form-group">
-                                                    <input type="number" placeholder="Fax Number" value="" class="form-control" name="companyFax"  >
+                                                    <input type="number" placeholder="Số FAX" value="" class="form-control" name="companyFax"  >
                                                 </div>
                                             </div>
                                         </div>
@@ -257,7 +276,7 @@
 
                                     <div class="col-md-6" style="padding-right: 4%;">
 
-                                        <div class="row"><div class="col-md-12" ><label>Contact Information</label></div></div>
+                                        <div class="row"><div class="col-md-12" ><label>Thông tin liên lạc</label></div></div>
 
                                         <div class="row">
 
@@ -274,7 +293,7 @@
                                             </div>
                                             <div class="col-md-8" style="padding-left: 19px;">
                                                 <div class="form-group">
-                                                    <input class="form-control order-form" type="text" placeholder="First Name*" value="" name="contactFName"  required>
+                                                    <input class="form-control order-form" type="text" placeholder="Họ*" value="" name="contactFName"  required>
                                                     <div id = "errorForm"></div>
                                                 </div>
                                                 
@@ -288,14 +307,14 @@
 
                                                 <div class="form-group">
                                                     
-                                             		<input required type="text" placeholder="Calling Code*" class="form-control order-form" value="" name="contactCallCode">
+                                             		<input required type="text" placeholder="Mã quốc gia*" class="form-control order-form" value="" name="contactCallCode">
                                                     <div id = "errorForm"></div>
                                                 </div>
                                                 
                                             </div>
                                             <div class="col-md-8" style="padding-left: 19px;">
                                                 <div class="form-group">
-                                                    <input class="form-control order-form" type="number" placeholder="Mobile No.*" value="" name="contactMobile" required>
+                                                    <input class="form-control order-form" type="number" placeholder="Điện thoại*" value="" name="contactMobile" required>
                                                     <div id = "errorForm"></div>
                                                 </div>
                                                 
@@ -316,19 +335,19 @@
                                     <!----second column------>
                                     <div class="col-md-6" style="padding-right: 4%;">
 
-                                        <div class="row"><div class="col-md-12"><label><font color="white">Contact</font></label></div></div>
+                                        <div class="row"><div class="col-md-12"><label><font color="white">Liên hệ</font></label></div></div>
 
 
                                         <div class="row">
 
                                             <div class="col-md-6" style="padding-right: 19px;">
                                                 <div class="form-group">
-                                                    <input class="form-control" value="" type="text" placeholder="Middle Name" name="contactMName">
+                                                    <input class="form-control" value="" type="text" placeholder="Tên đệm" name="contactMName">
                                                 </div>
                                             </div>
                                             <div class="col-md-6" >
                                                 <div class="form-group">
-                                                    <input class="form-control order-form" value="" type="text" placeholder="Last Name*" name="contactLName" required>
+                                                    <input class="form-control order-form" value="" type="text" placeholder="Tên*" name="contactLName" required>
                                                     <div id = "errorForm"></div>
                                                 </div>
                                                 
@@ -337,7 +356,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <input class="form-control order-form" value="" type="email" placeholder="Email ID*" name="contactEmail" required>
+                                            <input class="form-control order-form" value="" type="email" placeholder="Email*" name="contactEmail" required>
                                             <div id = "errorForm"></div>
                                         </div>
 				
@@ -354,7 +373,7 @@
                                     <div class="line"></div>
                                     <div class="col-md-12" style="padding-right: 4%;">                                        
                                         <div class="form-group">                                           
-                                            <textarea name="comments" id="comments" class="form-control" placeholder="Comments/Notes" rows="5">${order.comments }</textarea>
+                                            <textarea name="comments" id="comments" class="form-control" placeholder="Ghi chú/ Lưu ý" rows="5">${order.comments }</textarea>
                                         </div>
                                     </div>
 
@@ -370,8 +389,8 @@
                                 <div class="row" style="margin-top:20px">                                    
                                     <div class="col-md-12"> <center>
                                             <div class="form-group">
-                                                <button type="submit" class="btn btn-info" onclick  = "submitOrder()">Submit</button>
-                                                <button type="reset" class="btn btn-danger" onclick = "reset()">Reset</button>
+                                                <button type="submit" class="btn btn-info" onclick  = "submitOrder()">Xác nhận</button>
+                                                <button type="reset" class="btn btn-danger" onclick = "reset()">Làm lại</button>
                                             </div>
                                         </center>
                                     </div>

@@ -1,3 +1,4 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%-- 
     Document   : index
     Created on : May 15, 2015, 11:24:12 AM
@@ -60,16 +61,18 @@
                                         <div class="col-sm-3 headerMap">
                                             <table class="table tableMap">
                                                 <tr>
-                                                    <th>Our Company</th>
+                                                    <th>Công ty chúng tôi</th>
 
                                                 </tr>
                                                 <tr>
-                                                    <td><a href="index">Home</a><br />
-                                                        <a href="about-us">About Us</a><br />
-                                                        <a href="event">Events</a><br />
+
+                                                    <td><a href="index">Trang chủ</a><br />
+                                                        <a href="about-us">Giới thiệu</a><br />
+                                                        <a href="event">Sự kiện</a><br />
+
                                                         
 
-                                                        <a data-toggle="modal" data-target="#privacyModal">Privacy</a><br />
+                                                        <a data-toggle="modal" data-target="#privacyModal">Bảo mật</a><br />
                                                         <!-- Modal for Privacy -->
                                                         <div class="modal fade" id="privacyModal" role="dialog">
                                                             <div class="modal-dialog">
@@ -77,20 +80,20 @@
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
                                                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                        <h3 class="modal-title">Terms and Conditions</h3>
+                                                                        <h3 class="modal-title">Điều khoản</h3>
                                                                     </div>
                                                                     <div class="modal-body">
                                                                         <p><%@include file="privacyPage.jsp" %></p>
                                                                     </div>
                                                                     <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
                                                                     </div>
                                                                 </div>
 
                                                             </div>
                                                         </div>
 
-                                                        <a data-toggle="modal" data-target="#policyModal">Our Policy</a>
+                                                        <a data-toggle="modal" data-target="#policyModal">Chính sách</a>
                                                         <!-- Modal for policy -->
                                                         <div class="modal fade" id="policyModal" role="dialog">
                                                             <div class="modal-dialog">
@@ -98,13 +101,13 @@
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
                                                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                        <h3 class="modal-title">Terms and Conditions</h3>
+                                                                        <h3 class="modal-title">Điều khoản</h3>
                                                                     </div>
                                                                     <div class="modal-body">
                                                                         <p><%@include file="privacyPage.jsp" %></p>
                                                                     </div>
                                                                     <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
                                                                     </div>
                                                                 </div>
 
@@ -118,15 +121,17 @@
                                         <div class="col-sm-3 headerMap">
                                             <table class="table tableMap">
                                                 <tr>
-                                                    <th>Contact Us</th>
+                                                    <th>Liên hệ</th>
 
                                                 </tr>
                                                 <tr>
                                                     <td>
                                                         <a href="contact_us">Contact Us</a> <br />
-                                                  
+
+                                                        
                                                         <a href="blog">Blog</a> <br />
-                                                        <a href="faq">FAQ</a><br />
+                                                        <a href="faq">Câu hỏi thường gặp</a><br />
+
 
                                                     </td>
                                                 </tr>
@@ -135,14 +140,16 @@
                                         <div class="col-sm-3 headerMap">
                                             <table class="table tableMap">
                                                 <tr>
-                                                    <th>Products</th>
+                                                    <th>Sản phẩm</th>
 
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <a href="contact_us">Products</a> <br />
-                                                        <a href="usefulTools">Useful Tools</a><br />
-                                                        <a href="downloadCenter">Downloads</a>
+
+                                                        <a href="product">Sản phẩm</a> <br />
+                                                        <a href="usefulTools">Công cụ tiện ích</a><br />
+                                                        <a href="downloadCenter">Tải về</a>
+
 
                                                     </td>
                                                 </tr>
@@ -150,12 +157,14 @@
                                         </div><div class="col-sm-3 headerMap">
                                             <table class="table tableMap">
                                                 <tr>
-                                                    <th>Business</th>
+                                                    <th>Giao dịch</th>
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <a href="supplier">Become A Supplier</a><br />
-                                                        <a href="order">Order Now</a><br />
+
+                                                        <a href="supplier">Trở thành nhà cung cấp</a><br />
+                                                        <a href="order">Đặt hàng ngay</a><br />
+
                                                     </td>
                                                 </tr>
                                             </table>

@@ -3,11 +3,11 @@
     Created on : May 20, 2015, 10:33:08 AM
     Author     : Qianpin
 --%>
-
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <style>
     .advance-search-btn {
-    	background-color: #7E9234;
+    	background-color: #800000;
         height: 29px;
         margin-bottom:10px;
         border: 1px #327f75 solid;
@@ -37,37 +37,37 @@
             </form>
             
             <!-- Advanced Search Button -->                   
-            <input type="button" class="advance-search-btn col-md-2 col-xs-5" value="Advanced Search" onclick="return hs.htmlExpand(this)" title="Advanced Search">                
+            <input type="button" class="advance-search-btn col-md-2 col-xs-5" value="Tìm kiếm nâng cao" onclick="return hs.htmlExpand(this)" title="Tìm kiếm nâng cao">                
             <div class="highslide-maincontent" style="display:none; background-color:white;">
                 <form name="frm_adv" id="frm_adv" action="search" method="get">
                     <table style="text-align:left; width:100%;">
 
                         <tr>
-                            <td style="text-align:center; width:80;" colspan="3"><strong style="color:#E90000;">Advanced Search</strong></td>
+                            <td style="text-align:center; width:80;" colspan="3"><strong style="color:#E90000;">Tìm kiếm nâng cao</strong></td>
                         </tr>
                         <tr style="height:10px;"><td>&nbsp;</td></tr>
                         <tr>
                             <td style="width:25px;">&nbsp;</td>
-                            <td style="text-align:left; width:115px;" class="pop_txt" >Product Name</td>
+                            <td style="text-align:left; width:115px;" class="pop_txt" >Tên sản phẩm</td>
                             <td><input type="text" name="pname" id="pname" class="textarea" title="Product Name"/></td>
                         </tr>
 
                         <tr style="height:5px;"><td></td></tr>
                         <tr>
                             <td style="width:10px;">&nbsp;</td>
-                            <td style="text-align:left;" class="pop_txt">CAS No.</td>
+                            <td style="text-align:left;" class="pop_txt">Số CAS</td>
                             <td><input type="text" name="casname" id="casname" class="textarea" title="CAS No."/></td>
                         </tr>
                         <tr style="height:2px;"><td></td></tr>
                         <tr>
                             <td style="width:10px;">&nbsp;</td>
-                            <td style="text-align:left;" class="pop_txt">HS Code</td>
+                            <td style="text-align:left;" class="pop_txt">Mã HS</td>
                             <td><input type="text" name="hscode" id="hscode" class="textarea" title="HS Code"/></td>
                         </tr>
                         <tr style="height:5px;"><td></td></tr>
                         <tr>
                             <td style="width:10px;">&nbsp;</td>
-                            <td style="text-align:left;" class="pop_txt">Origin</td>
+                            <td style="text-align:left;" class="pop_txt">Nguồn gốc</td>
                             <td>
                                 <select title="Origin" style="width:135px;" class="textarea" name="adv_cntry" id="adv_cntry">
                                     <option value="">Select</option>

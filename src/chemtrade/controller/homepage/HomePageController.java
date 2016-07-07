@@ -20,10 +20,11 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
 import chemtrade.configuration.ConnectionManager;
-import chemtrade.controller.CaptchaController;
 import chemtrade.controller.CountryCodeController;
 import chemtrade.controller.UsefulToolsController;
+import chemtrade.controller.blog.BlogController;
 import chemtrade.controller.product.ProductController;
+import chemtrade.entity.Blog;
 import chemtrade.entity.CountryCode;
 import chemtrade.entity.Event;
 import chemtrade.entity.Home;
@@ -60,13 +61,14 @@ public class HomePageController extends HttpServlet{
 		String cartMessage = "";
 		//req.g
 		ArrayList<WrapperProducts> wrapperTopProducts = new ArrayList<WrapperProducts>();
+		ArrayList<BlogWrapper> blogWrappers = new ArrayList<BlogWrapper>();
 		ArrayList<CountryCode> countryCodes = new CountryCodeController().getCountryCodes();
 		ArrayList<Website> otherWebsites = new OtherWebsiteController().getOtherWebsite();
 		ArrayList<Event> latestEvents = new LatestEventController().getLatestEvent();
-		ArrayList<Product> topProducts = new ProductController().getProductListFromDB();
+		ArrayList<Product> topProducts = new ProductController().getTopProducts();
 		//ArrayList<Product> topProducts = new ProductController().getProductListFromDB(1, 12);
 		try{
-			if (topProducts.size() >= 5){
+			if (topProducts.size() >= 20){
 				topProducts = new ArrayList<Product>( topProducts.subList(0, 5));
 			}
 			
@@ -113,14 +115,33 @@ public class HomePageController extends HttpServlet{
 		
 		
 		wrapperTopProducts = configWrapperProduct(topProducts);
-		ArrayList<WrapperBanners> wrapperBanners = new ArrayList<WrapperBanners>();
 		
-			try {
-				wrapperBanners = getBanners();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		ArrayList<String> blogImages = new ArrayList<String>();
+		ArrayList<String> blogLinks = new ArrayList<String>();
+		ArrayList<String>blogNames = new ArrayList<String>();
+		ArrayList<String>blogActive = new ArrayList<String>();
+		try {
+			
+			
+			blogWrappers = configBlogWrapper();
+			for(BlogWrapper blogWrapper : blogWrappers){
+				blogActive.add(blogWrapper.getActive());
+				blogImages.add(blogWrapper.getImage());
+				blogLinks.add(blogWrapper.getLink());
+				blogNames.add(blogWrapper.getName());
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+//		ArrayList<WrapperBanners> wrapperBanners = new ArrayList<WrapperBanners>();
+//		
+//			try {
+//				wrapperBanners = getBanners();
+//			} catch (SQLException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 		
 		//ModelAndView model = new ModelAndView("index/index");
 		
@@ -145,8 +166,36 @@ public class HomePageController extends HttpServlet{
 		req.setAttribute("cartMessage", cartMessage);
 		req.setAttribute("carts", cartList);
 		//req.setAttribute("pageName3", pageName3);
-		//req.setAttribute("wrapperBanners", wrapperBanners);
+		ArrayList<String> test = new ArrayList<String>();
+		
+		//Set attribute for Blog
+		//req.setAttribute("blogNames",blogNames);
+		//req.setAttribute("blogLinks",blogLinks);
+		//req.setAttribute("blogActive",blogActive);
+		//req.setAttribute("blogImages",blogImages);
+		
 		req.getRequestDispatcher("/jsp/index/index.jsp").forward(req,resp);
+	}
+
+
+	private ArrayList<BlogWrapper> configBlogWrapper() throws SQLException {
+		// TODO Auto-generated method stub
+		BlogController blogController = new BlogController();
+		ArrayList<BlogWrapper> blogWrappers = new ArrayList<HomePageController.BlogWrapper>();
+		ArrayList<Blog> blogs = new ArrayList<Blog>();
+		blogs = blogController.getBlogList(1,5); 
+		for (int i = 0 ;  i < blogs.size(); i++){
+			BlogWrapper blogWrapper = new BlogWrapper();
+			if (i== 0 ){
+				blogWrapper.setActive("active");
+			}
+			Blog blog = blogs.get(i);
+			blogWrapper.setImage(blog.getImage());
+			blogWrapper.setLink(blog.getLink());
+			blogWrapper.setName(blog.getTitle());
+			blogWrappers.add(blogWrapper);
+		}
+		return blogWrappers;
 	}
 
 
@@ -164,35 +213,31 @@ public class HomePageController extends HttpServlet{
 		 */
 		int i = 0;
 		
-		while (true){
+		while (i< topProducts.size()){
+			//System.out.println (i);
+			
 			WrapperProducts wrapperProduct = new WrapperProducts();
 			ArrayList<Product> products = new ArrayList<Product>();
-			if((i+TOP_PRODUCT_SIZE) > topProducts.size()){
-				
-				break;
-			}
-			for (int j = i; j < i+TOP_PRODUCT_SIZE; j++){
-				products.add(topProducts.get(j));
-			}
-			wrapperProduct.setProducts(products);
-			
-			// The 1st item is active
+			System.out.println (i);
 			if (i == 0){
+				//The first slide is set active
 				wrapperProduct.setActive("active");
 			}
+			for (int j = i; j < Math.min(i+TOP_PRODUCT_SIZE, topProducts.size()); j++){
+				System.out.println ("j=" + j);
+				products.add(topProducts.get(j));
+				wrapperProduct.setProducts(products);
+			}
+			
+			
+			// The 1st item is active
+			
 			wrapperTopProducts.add(wrapperProduct);
 			i = i+TOP_PRODUCT_SIZE;
-			
-			
+
 		}
 		
-		ArrayList<Product> products2 = new ArrayList<Product>();
-		for (int j = i; j < topProducts.size(); j++){
-			products2.add(topProducts.get(j));
-		}
-		WrapperProducts wrapperProduct = new WrapperProducts();
-		wrapperProduct.setProducts(products2);
-		wrapperTopProducts.add(wrapperProduct);
+
 		return wrapperTopProducts;
 	}
 	
@@ -250,49 +295,49 @@ public class HomePageController extends HttpServlet{
 	
 		
 	
-	/**
-	 * Get List of Banner
-	 * @return
-	 * @throws SQLException 
-	 * @throws Exception
-	 */
-    @SuppressWarnings("finally")
-	public ArrayList<WrapperBanners> getBanners() throws SQLException  {
-        ArrayList<WrapperBanners> bannerList = new ArrayList<WrapperBanners>();
-    
-        String[] btnName = {"DOWNLOAD OUR FREE eBOOK", "SUBSCRIBE TO OUR BLOG", "GET FREE QUOTE", "VIEW OUR PRODUCTS", "DOWNLOAD OUR CASE STUDY"};
-        String[] btnLink = {"eBook.jsp", "blog.jsp", "quote.jsp", "product.jsp", "case-study.jsp"};
-        String[] btnColor = {"btn-danger", "btn-info", "btn-warning", "btn-success", "btn-primary"};
-        //int count = 0;
-        
-        //html code to display slide
-        //String slideMessage = "";
-        
-        int count = 0 ;
-    	Connection conn = null;
-        
-            conn = ConnectionManager.getConnection();
-            PreparedStatement ps = conn.prepareStatement("SELECT banner_id ,name ,file_path , date  FROM tbl_banner WHERE status like '%A'");
-            ResultSet rs  = ps.executeQuery();
-            
-            while (rs.next()) {
-                Home h = new Home(rs.getInt("banner_id"), rs.getString("name"), rs.getString("file_path"), rs.getString("date"));
-                WrapperBanners wrapperBanners = new WrapperBanners();
-                wrapperBanners.setBanner(h);
-                wrapperBanners.setBtnColor(btnColor[count]);
-                wrapperBanners.setBtnName(btnName[count]);
-                wrapperBanners.setBtnLink(btnLink[count]);
-                if (count == 0){
-                	wrapperBanners.setActive("active");
-                }
-                wrapperBanners.setIndex(count);
-                bannerList.add(wrapperBanners);
-                count++;
-            }
-            conn.close();
-        	return bannerList;
-        
-    }
+//	/**
+//	 * Get List of Banner
+//	 * @return
+//	 * @throws SQLException 
+//	 * @throws Exception
+//	 */
+//    @SuppressWarnings("finally")
+//	public ArrayList<WrapperBanners> getBanners() throws SQLException  {
+//        ArrayList<WrapperBanners> bannerList = new ArrayList<WrapperBanners>();
+//    
+//        String[] btnName = {"DOWNLOAD OUR FREE eBOOK", "SUBSCRIBE TO OUR BLOG", "GET FREE QUOTE", "VIEW OUR PRODUCTS", "DOWNLOAD OUR CASE STUDY"};
+//        String[] btnLink = {"eBook.jsp", "blog.jsp", "quote.jsp", "product.jsp", "case-study.jsp"};
+//        String[] btnColor = {"btn-danger", "btn-info", "btn-warning", "btn-success", "btn-primary"};
+//        //int count = 0;
+//        
+//        //html code to display slide
+//        //String slideMessage = "";
+//        
+//        int count = 0 ;
+//    	Connection conn = null;
+//        
+//            conn = ConnectionManager.getConnection();
+//            PreparedStatement ps = conn.prepareStatement("SELECT banner_id ,name ,file_path , date  FROM tbl_banner WHERE status like '%A'");
+//            ResultSet rs  = ps.executeQuery();
+//            
+//            while (rs.next()) {
+//                Home h = new Home(rs.getInt("banner_id"), rs.getString("name"), rs.getString("file_path"), rs.getString("date"));
+//                WrapperBanners wrapperBanners = new WrapperBanners();
+//                wrapperBanners.setBanner(h);
+//                wrapperBanners.setBtnColor(btnColor[count]);
+//                wrapperBanners.setBtnName(btnName[count]);
+//                wrapperBanners.setBtnLink(btnLink[count]);
+//                if (count == 0){
+//                	wrapperBanners.setActive("active");
+//                }
+//                wrapperBanners.setIndex(count);
+//                bannerList.add(wrapperBanners);
+//                count++;
+//            }
+//            conn.close();
+//        	return bannerList;
+//        
+//    }
     
 	/**
 	 * Each WrapperProducts object is analog to the carousel item
@@ -328,169 +373,41 @@ public class HomePageController extends HttpServlet{
 		
 	}	
 	
-	/**
-	 * Each WrapperProducts object is analog to the carousel item
-	 * @author ngolebaoloc
-	 *
-	 */
-	public class WrapperBanners{
-		private Home banner;
-		private String btnColor = "";
-		private String btnLink = "";
-		private String btnName = "";
-		private int index;
-		/**
-		 * 0 = not active
-		 * 1 = active
-		 */
+	public class BlogWrapper{
+		
+		//private Blog blog;
+		private String name, image, link;
 		private String active = "";
 		
-		
-		/**
-		 * @return the banner
-		 */
-		public Home getBanner() {
-			return banner;
-		}
-		/**
-		 * @param banner the banner to set
-		 */
-		public void setBanner(Home banner) {
-			this.banner = banner;
-		}
-		/**
-		 * @return the active
-		 */
 		public String getActive() {
 			return active;
 		}
-		/**
-		 * @param active the active to set
-		 */
 		public void setActive(String active) {
 			this.active = active;
 		}
-		/**
-		 * @return the index
-		 */
-		public int getIndex() {
-			return index;
+		public String getName() {
+			return name;
 		}
-		/**
-		 * @param index the index to set
-		 */
-		public void setIndex(int index) {
-			this.index = index;
+		public void setName(String name) {
+			this.name = name;
 		}
-		
-		public void setBtnColor(String btnColor) {
-			this.btnColor = btnColor;
+		public String getImage() {
+			return image;
 		}
-		
-		public void setBtnLink(String btnLink) {
-			this.btnLink = btnLink;
+		public void setImage(String image) {
+			this.image = image;
 		}
-		public void setBtnName(String btnName) {
-			this.btnName = btnName;
+		public String getLink() {
+			return link;
+		}
+		public void setLink(String link) {
+			this.link = link;
 		}
 		
-		public String getBtnColor() {
-			return btnColor;
-		}
-		public String getBtnLink() {
-			return btnLink;
-		}
-		
-		public String getBtnName() {
-			return btnName;
-		}
 		
 	}
+	
+	
 
-//	@Override
-//	public ModelAndView handleRequest(HttpServletRequest req,
-//			HttpServletResponse resp) throws Exception {
-//		
-//		String cartMessage = "";
-//		
-//		ArrayList<WrapperProducts> wrapperTopProducts = new ArrayList<WrapperProducts>();
-//		ArrayList<CountryCode> countryCodes = new CountryCodeController().getCountryCodes();
-//		ArrayList<Website> otherWebsites = new OtherWebsiteController().getOtherWebsite();
-//		ArrayList<Event> latestEvents = new LatestEventController().getLatestEvent();
-//		ArrayList<Product> topProducts = new TopProductController().getTopProduct();
-//		//ArrayList<Product> topProducts = new ProductController().getProductListFromDB(1, 12);
-//		
-//		/*
-//		 * Use for search bar
-//		 */
-//		String searchComplete = "";
-//		ArrayList<Product> products =  new ProductController().getProductListFromDB();
-//		for (Product product : products){
-//			searchComplete += product.getProductName() + ",";
-//		}
-//		
-//		/*
-//		 * Control cart
-//		 */
-//		ArrayList<Product> cartList = getCart(req, cartMessage);
-//		String uri3 = req.getRequestURI();
-//	    String pageName3 = uri3.substring(uri3.lastIndexOf("/") + 1);
-//	    
-//	    /*
-//	     * Control Social Media
-//	     */
-//	    ArrayList<SocialMedia> mediaLinks = getSocialList();
-//		
-//		/*
-//		 * Get Useful Tool
-//		 */
-//		UsefulToolsController userfulToolsController = new UsefulToolsController();
-//		ArrayList<UsefulTool> widgets = userfulToolsController.getWidgets();
-//		ArrayList<UsefulTool> associationResources = userfulToolsController.getAssociationResource();
-//		
-//		
-//		/*
-//		 * Get Captcha 
-//		 */
-//		String captcha = new CaptchaController().getCaptchaHTML();
-//		
-//		
-//		configWrapperProduct(wrapperTopProducts, topProducts);
-//		ArrayList<WrapperBanners> wrapperBanners = new ArrayList<WrapperBanners>();
-//		
-//			try {
-//				wrapperBanners = getBanners();
-//			} catch (SQLException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		
-//		//ModelAndView model = new ModelAndView("index/index");
-//		
-//		
-//		//storeSearchWords(search, req.getRemoteAddr());
-//		
-//		ModelAndView modelAndView = new ModelAndView("index/index");
-//		
-//		
-//		modelAndView.addObject("countryCodes", countryCodes);
-//		//modelAndView.addObject("searchComplete", searchComplete);
-//
-//		modelAndView.addObject("otherWebsites", otherWebsites);
-//		modelAndView.addObject("latestEvents", latestEvents);
-//		modelAndView.addObject("wrapperTopProducts", wrapperTopProducts);
-//		modelAndView.addObject("widgets", widgets);
-//		modelAndView.addObject("assoRes", associationResources);
-//		modelAndView.addObject("capcha", captcha);
-//		modelAndView.addObject("cartMessage", cartMessage);
-//		modelAndView.addObject("carts", cartList);
-//		//modelAndView.addObject("pageName3", pageName3);
-//		//modelAndView.addObject("wrapperBanners", wrapperBanners);
-////		req.getRequestDispatcher("/jsp/index/index.jsp").forward(req,resp);
-//		// TODO Auto-generated method stub
-//		//if (arg0.getMethod().equals("GET")){
-//			//doGet(arg0, arg1);
-//		//}
-//		return modelAndView;
-//	}	
+	
 }

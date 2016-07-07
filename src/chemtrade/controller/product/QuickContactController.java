@@ -1,6 +1,7 @@
 package chemtrade.controller.product;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -35,6 +36,7 @@ public class QuickContactController extends HttpServlet implements Constant{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		try {
 		String email = req.getParameter("email");
 		String name =  req.getParameter("name");
 		//String insertID =  req.getParameter("insertID");
@@ -44,15 +46,17 @@ public class QuickContactController extends HttpServlet implements Constant{
 		String requirement = req.getParameter("requirement");
 		String ipAddress = req.getRemoteAddr();
 		String type = req.getParameter("fileType");
-		try {
-			
+		String FilePath = req.getLocalAddr();
+        PrintWriter out = resp.getWriter();
 			addToDatabase(name, email, phone, requirement, productID, ipAddress, type, productName);
 			String insertID =  String.valueOf(getLastEnquiryID());
 	    	updateTblSetting(insertID);
-	    	//downloadFile(productID, resp,type, req);
+	    	String fileDir = downloadFile(productID,type);
 	    	//addTopDownload(productID);
-	    	
-			sendEmail(email, name, insertID, phone, productID, productName, requirement);
+	    	out.print(fileDir);
+	    	//req.getRequestDispatcher(fileDir).forward(req, resp);
+	    	return;
+	    	//sendEmail(email, name, insertID, phone, productID, productName, requirement);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -69,11 +73,11 @@ public class QuickContactController extends HttpServlet implements Constant{
 	 * @throws SQLException 
 	 * @throws IOException 
 	 */
-	private void downloadFile(String productID, HttpServletResponse resp, String type, HttpServletRequest request) throws SQLException, IOException {
+	public String downloadFile(String productID, String type) throws SQLException, IOException {
 		// TODO Auto-generated method stub
 		
 		Connection conn = ConnectionManager.getConnection();
-        String FilePath = request.getSession().getServletContext().getRealPath("/upload") + "\\";
+       // String FilePath = request.getSession().getServletContext().getRealPath("/upload") + "/";
 
 		String sql = "";
 		if (type.compareTo("A") == 0){								//MSDS
@@ -81,19 +85,22 @@ public class QuickContactController extends HttpServlet implements Constant{
 		}else if (type.compareTo("B") == 0){						//TDS
 			sql = "select product_dir,specification from tbl_product where `product_id` = '" + productID +"'";
 		}
+		//System.out.println (sql);
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
+		rs.next();
 		
-		String fileDir = "images/" + rs.getString(1) + "/" + rs.getString(2);
-		DownloadCenterController downloadCenterController = new DownloadCenterController();
-    	downloadCenterController.downFile(FilePath, resp, fileDir);
+		String fileDir = ROOT + "images/" + rs.getString(1) + "/" + rs.getString(2);
+		//DownloadCenterController downloadCenterController = new DownloadCenterController();
+    	//downloadCenterController.downFile(FilePath, resp, fileDir);
+		return fileDir;
 		
 	}
 
 	public void sendEmail(String email, String name, String insertID, String phone, String productID, String productName, String requirement) throws Exception{
 		//Session session = EmailConfiguration.settingGmail();
-		String header="http://"+ROOT+"/images/email_header.jpg";
-		String footer="http://"+ROOT+"/images/email_footer.jpg";
+		String header=ROOT+"images/email_header.jpg";
+		String footer=ROOT+"images/email_footer.jpg";
 		//String to = letterId; 
 		
 		String mailBody = getMessage(header, name, insertID, email, phone, productID, productName, requirement, footer);
@@ -118,59 +125,59 @@ public class QuickContactController extends HttpServlet implements Constant{
         message += "</tr>";
         message += "<tr><td height=\"10\"></td></tr>";
         message += "<tr>";
-        message += "<td colspan=\"3\">Dear " + name + ",</td>";
+        message += "<td colspan=\"3\">Chào bạn " + name + ",</td>";
         message += "</tr>";
         message += "<tr><td height=\"10\"></td></tr>";
         message += "<tr>";
-        message += "<td colspan=\"3\">Greetings from Tradeasia International Pte. Ltd!</td>";
+        message += "<td colspan=\"3\">Tradeasia International Pte. Ltd xin gửi lời chào tới bạn!</td>";
         message +="</tr>";
         message +="<tr><td height=\"10\"></td></tr>";
         message += "<tr>";
-        message += "<td colspan=\"3\">Thank you for your enquiry with Tradeasia International Pte. Ltd. Your enquiry Id is" +insertID + "</td>";
+        message += "<td colspan=\"3\">Cảm ơn bạn đã gửi yêu cầu. Mã số yêu cầu của bạn là : " +insertID + "</td>";
         message += "</tr>";
         message +="<tr><td height=\"10\"></td></tr>";
 
-        message += "<tr><td colspan=\"3\" height=\"10\"><a href=\"" + ROOT + "/confirmProduct&id=" + insertID + "\">Please click here to confirm your enquiry about the product.</a></td></tr>";
+        message += "<tr><td colspan=\"3\" height=\"10\"><a href=\"" + ROOT + "/confirmProduct?id=" + insertID + "\">Xin click vào đây để xác nhận.</a></td></tr>";
         message += "<tr><td height=\"10\"></td></tr>";
         message += "<tr>";
-        message += "<td colspan=\"3\">Your enquiry details are follows.</td>";
+        message += "<td colspan=\"3\">Thông tin yêu cầu của bạn:</td>";
         message +="</tr>";
         message +="<tr><td height=\"10\"></td></tr>";
 
         message += "<tr>";
-        message += "<th width=\"159\" scope=\"row\" align=\"left\">Name</th>";
+        message += "<th width=\"159\" scope=\"row\" align=\"left\">Tên</th>";
         message += "<td width=\"17\">:</td>";
         message += "<td width=\"302\">" + name + "</td>";
         message += "</tr>";
 
 		message += "<tr>";
-		message += "<th scope=\"row\" align=\"left\">Mail Id</th>";
+		message += "<th scope=\"row\" align=\"left\">Email</th>";
 		message += "<td>:</td>";
 		message += "<td>" + email +"</td>";
 		message +="</tr>";
 		
 		message += "<tr>";
-		message += "<th scope=\"row\" align=\"left\">Contact Number</th>";
+		message += "<th scope=\"row\" align=\"left\">Điện thoại</th>";
 		message += "<td>:</td>";
 		message += "<td>" + phone + "</td>";
 		message += "</tr>";
 		
 		message += "<tr>";
-		message += "<th scope=\"row\" align=\"left\">Product</th>";
+		message += "<th scope=\"row\" align=\"left\">Sản phẩm</th>";
 		message += "<td>:</td>";
-		message += "<td><a href=\"http://" + ROOT + "/product?id=" + productID + ">" + productName + "</a></td>";
+		message += "<td><a href=\"" + ROOT + "/productDetail?id=" + productID + ">" + productName + "</a></td>";
 		message +="</tr>";
 		
 		message += "<tr>";
-		message += "<th scope=\"row\" align=\"left\">Requirement</th>";
+		message += "<th scope=\"row\" align=\"left\">Yêu cầu</th>";
 		message += "<td>:</td>";
 		message += "<td>" + requirement + "</td>";
 		message += "</tr>";
 		
 		message += "<tr><td height=\"10\"></td></tr>";
-		message += "<tr><td colspan=\"4\" height=\"10\">We will contact you as soon as possible to follow up your order with " + ROOT + "</td></tr>";
+		message += "<tr><td colspan=\"4\" height=\"10\">Chúng tôi sẽ liên lạc với bạn trong thời gian sớm nhất.</td></tr>";
 		message += "<tr><td height=\"10\"></td></tr>";
-		message += "<tr><td colspan=\"4\">Best Regards,</td></tr><tr><td height=\"10\"></td></tr>";
+		message += "<tr><td colspan=\"4\">Thân,</td></tr><tr><td height=\"10\"></td></tr>";
 		message += "<tr><td colspan=\"4\">Tradeasia Team</td></tr>";
 		message += "<tr><td height=\"10\"></td></tr>";
 		
